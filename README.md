@@ -9,12 +9,10 @@
 
 ## Thông tin dự án
 
-Đồ án website application
-Đề tài: Website bán điện thoại Light Studio
-Học phần: Mã nguồn mở - 12DHTH03 - 010100292003
-Giảng viên: Phan Thị Ngọc Mai
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Đồ án website application
+- Đề tài: Website bán điện thoại Light Studio
+- Học phần: Mã nguồn mở - 12DHTH03 - 010100292003
+- Giảng viên: Phan Thị Ngọc Mai
 
 ## Công nghệ sử dụng
 
