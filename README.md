@@ -9,20 +9,19 @@
 
 ## Thông tin dự án
 
-- Đồ án website application
 - Đề tài: Website bán điện thoại Light Studio
 - Học phần: Mã nguồn mở - 12DHTH03 - 010100292003
 - Giảng viên: Phan Thị Ngọc Mai
 
 ## Công nghệ sử dụng
 
-Website Framework: Laravel 10
-Development Environment: Laragon 6.0
-PHP Version: 8.32 (Configuration, Installation) và 8.10 (Deployment)
-Các thành phần khác:
-- Bootstrap 5.3
-- jQuery 3.2.7 (Google APIs)
-- updating...
+1. Website Framework: Laravel 10
+2. Development Environment: Laragon 6.0
+3. PHP Version: 8.32 (Configuration, Installation) và 8.10 (Deployment)
+4. Các thành phần khác:
+ - Bootstrap 5.3
+jQuery 3.2.7 (Google APIs)
+ - updating...
 
 ## Thông tin thành viên
 
