@@ -37,7 +37,7 @@
         <td>Co-Team Leader</td>
     </tr>
     <tr>
-        <td>...</td>
+        <td>2001216316</td>
         <td>Phan Ngọc Bảo Vinh</td>
         <td>Co-Team Leader</td>
     </tr>
