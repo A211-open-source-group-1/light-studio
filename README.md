@@ -43,7 +43,7 @@ Các thành phần khác:
         <td>Co-Team Leader</td>
     </tr>
     <tr>
-        <td>2001215685</td>
+        <td>...</td>
         <td>...</td>
         <td>Member</td>
     </tr>
@@ -56,4 +56,5 @@ updating...
 ## License
 
 Laravel framework là phần mềm nguồn mở được cấp phép theo [giấy phép MIT](https://opensource.org/licenses/MIT).
+<br>
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
