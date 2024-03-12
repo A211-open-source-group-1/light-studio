@@ -19,9 +19,9 @@
 2. Development Environment: Laragon 6.0
 3. PHP Version: 8.32 (Configuration, Installation) và 8.10 (Deployment)
 4. Các thành phần khác:
- - Bootstrap 5.3
-jQuery 3.2.7 (Google APIs)
- - updating...
+    - Bootstrap 5.3
+    - jQuery 3.2.7 (Google APIs)
+    - updating...
 
 ## Thông tin thành viên
 
