@@ -38,7 +38,8 @@
             <div class="card" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
+                <a href="{{URL::to('/detail/1')}}"><h5 class="card-title fw-bold">TITLE TEXT</h5></a>
+                
                 <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
                 <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
               </div>
