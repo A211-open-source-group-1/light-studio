@@ -55,7 +55,7 @@
         <ul class="list-unstyled d-flex">
           <li class="ms-3"><a class="link-dark" href="#">Our Instagram <i class="fa-brands fa-instagram"></i></a></li>
           <li class="ms-3"><a class="link-dark" href="#">Our Facebook <i class="fa-brands fa-facebook"></i></a></li>
-          <li class="ms-3"><a class="link-dark" href="#">Our GitHub <i class="fa-brands fa-github"></i></a></li>
+          <li class="ms-3"><a class="link-dark" href="https://github.com/A211-open-source-group-1/light-studio">Our GitHub <i class="fa-brands fa-github"></i></a></li>
         </ul>
       </div>
     </footer>
