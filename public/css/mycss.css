@@ -10,3 +10,14 @@
 button {
     white-space: normal;
 }
+
+.zoom-on {
+    transition: transform .2s;
+}
+
+.zoom-on:hover {
+    transform: scale(1.05);
+    border: 1px solid black;
+    z-index: 9;
+}
+

@@ -35,7 +35,7 @@
       </div>
       <div class="row mb-3 align-items-md-stretch">
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <a href="{{URL::to('/detail/1')}}"><h5 class="card-title fw-bold">TITLE TEXT</h5></a>
@@ -46,7 +46,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
@@ -66,7 +66,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
@@ -76,7 +76,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
@@ -96,7 +96,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
@@ -106,7 +106,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
@@ -116,7 +116,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
@@ -126,7 +126,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
@@ -136,7 +136,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
@@ -146,7 +146,7 @@
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card" style="">
+            <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <h5 class="card-title fw-bold">TITLE TEXT</h5>
