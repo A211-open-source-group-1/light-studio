@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="{{asset('/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('/css/mycss.css')}}">
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/a597e9f72c.js" crossorigin="anonymous"></script>
     <script src="{{asset('/js/bootstrap.js')}}"></script>
-
+    <script src="{{asset('/js/buttonHandler.js')}}"></script>
 </head>
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg bg-light fixed-top mb-6">
             <div class="container-fluid">
-                <a class="nav-brand" href="#">
+                <a class="nav-brand" href="/">
                     <img class="logo-banner" src="{{asset('/image/logo-banner.png')}}">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler1">
@@ -44,8 +45,8 @@
                     </ul>
                     <div class="d-flex">
                         <button class="btn btn-light text-nowrap"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</button>
-                        <button class="btn btn-light text-nowrap">Đăng nhập</button>
-                        <button class="btn btn-light text-nowrap">Đăng ký</button>
+                        <button id="login-btn" class="btn btn-light text-nowrap">Đăng nhập</button>
+                        <button id="register-btn" class="btn btn-light text-nowrap">Đăng ký</button>
                     </div>
                     <form class="d-flex mt-3">
                         
