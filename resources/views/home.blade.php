@@ -40,8 +40,8 @@
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
                 <a class="text-decoration-none" href="{{URL::to('/detail/' . $row->phone_id)}}"><h5 class="card-title fw-bold">{{$row->phone_name}}</h5></a>
-                <h6 class="text-danger fw-bold">Giá từ: {{$row->PhoneDetails->sortBy('price')->first()->price ?? '...'}} VNĐ  </h6>
-                <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
+                <h6 class="text-danger fw-bold">Giá từ: {{$row->PhoneDetails->sortBy('price')->first()->price ?? '...'}} VNĐ</h6>
+                <a class="btn btn-warning" href="#!" onclick="showToast()">Thêm vào giỏ hàng</a>
               </div>
             </div>
           </div>

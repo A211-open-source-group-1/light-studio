@@ -21,3 +21,34 @@ button {
     z-index: 9;
 }
 
+.product-img {
+    height: 250px;
+}
+
+.bg-toast-success {
+    background-color: #DDFFD7;
+}
+
+@media screen and (min-width: 576px) {
+    .product-img {
+        height: 250px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .product-img {
+        height: 300px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .product-img {
+        height: 350px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .product-img {
+        height: 450px;
+    }
+}
