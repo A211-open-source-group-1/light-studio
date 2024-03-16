@@ -39,7 +39,7 @@
                               <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                        <div class="container mt-4 border-bottom border-top">
+                        <div class="container mt-4 p-3 border-top">
                             <h5 class="mt-3">Chọn phiên bản:</h5>
                             <div class="pb-2  text-center">
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Phiên bản 1</button>
@@ -58,7 +58,7 @@
                             <button class="btn btn-primary btn-block">MUA TRẢ GÓP</button>
                             <button class="btn btn-primary btn-block">MUA TRẢ GÓP QUA THẺ</button>
                         </div>
-                        <h5 class="border-bottom">Thông số kỹ thuật</h5>
+                        <h5 class="border-bottom pb-2">Thông số kỹ thuật</h5>
                         <table class="table table-striped">
                             <tr>
                                 <td>Màn hình</td>
@@ -102,19 +102,19 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-12 border-top border-bottom">
-                        <h5 class="border-bottom">Thông tin sản phẩm</h5>
+                    <div class="col-12 border-top mt-3">
+                        <h5>Thông tin sản phẩm</h5>
                         <div class="container-fluid" style="height: 180px">
                             <div class="row text-center">
-                                <p>UPDATE SOON</p>
+                                <h1>Đang cập nhật...</h1>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 border-top border-bottom">
-                        <h5 class="border-bottom">Đánh giá sản phẩm</h5>
+                    <div class="col-12 border-top mt-3">
+                        <h5>Đánh giá sản phẩm</h5>
                         <div class="container-fluid" style="height: 180px">
                             <div class="row text-center">
-                                <p>UPDATE SOON</p>
+                                <h1>Đang cập nhật...</h1>
                             </div>
                         </div>
                     </div>
