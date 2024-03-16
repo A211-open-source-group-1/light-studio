@@ -1,10 +1,8 @@
 @extends('templates.app')
 @section('content')
-
 <div class="container-fluid p-0 m-0">
     <div class="row p-0 m-0">
         <div class="col-0 col-sm-0 col-md-1 col-lg-1 col-xl-1">
-
         </div>
         <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
             <div class="container-fluid">
@@ -39,13 +37,21 @@
                               <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                        <div class="container mt-4 p-3 border-top">
+                        <div class="container p-1 border-top border-end">
                             <h5 class="mt-3">Chọn phiên bản:</h5>
-                            <div class="pb-2  text-center">
+                            <div class="pb-2 text-center">
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Phiên bản 1</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Phiên bản 2</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Phiên bản 3</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Phiên bản 4</button>
+                            </div>
+                        </div>
+                        <div class="container p-1 border-top border-end">
+                            <h5 class="mt-3">Chọn màu sắc:</h5>
+                            <div class="pb-2 text-center">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Màu sắc 1</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Màu sắc 2</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Màu sắc 3</button>
                             </div>
                         </div>
                     </div>
@@ -102,7 +108,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-12 border-top mt-3">
+                    <div class="col-12 border-top mt-3 p-0">
                         <h5>Thông tin sản phẩm</h5>
                         <div class="container-fluid" style="height: 180px">
                             <div class="row text-center">
@@ -110,7 +116,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 border-top mt-3">
+                    <div class="col-12 border-top mt-3 p-0">
                         <h5>Đánh giá sản phẩm</h5>
                         <div class="container-fluid" style="height: 180px">
                             <div class="row text-center">
@@ -126,5 +132,4 @@
         </div>
     </div>
 </div>
-
 @endsection

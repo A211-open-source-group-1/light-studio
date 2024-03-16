@@ -14,6 +14,4 @@ class Phone extends Model
     function PhoneDetails() {
         return $this->hasMany(PhoneDetails::class, 'phone_id', 'phone_id');
     }
-
-    
 }

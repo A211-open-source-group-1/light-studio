@@ -10,8 +10,6 @@ class ProductController extends Controller
     //
     public function detail($id)
     {
-        return view('product.detail', [
-            'name' => 'them bu l qua'
-        ]);
+        return view('product.detail');
     }
 }

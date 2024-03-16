@@ -62,5 +62,4 @@
   </div>
   
 </body>
-<script src="{{asset('/js/buttonHandler.js')}}"></script>
 </html>
