@@ -49,7 +49,8 @@
             <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
+                <a href="{{URL::to('/detail/1')}}"><h5 class="card-title fw-bold">TITLE TEXT</h5></a>
+                
                 <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
                 <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
               </div>
@@ -59,7 +60,8 @@
             <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
+                <a href="{{URL::to('/detail/1')}}"><h5 class="card-title fw-bold">TITLE TEXT</h5></a>
+                
                 <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
                 <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
               </div>
@@ -69,7 +71,8 @@
             <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
+                <a href="{{URL::to('/detail/1')}}"><h5 class="card-title fw-bold">TITLE TEXT</h5></a>
+                
                 <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
                 <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
               </div>
@@ -79,7 +82,8 @@
             <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
+                <a href="{{URL::to('/detail/1')}}"><h5 class="card-title fw-bold">TITLE TEXT</h5></a>
+                
                 <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
                 <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
               </div>
@@ -89,7 +93,8 @@
             <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
+                <a href="{{URL::to('/detail/1')}}"><h5 class="card-title fw-bold">TITLE TEXT</h5></a>
+                
                 <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
                 <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
               </div>
@@ -99,7 +104,8 @@
             <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
+                <a href="{{URL::to('/detail/1')}}"><h5 class="card-title fw-bold">TITLE TEXT</h5></a>
+                
                 <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
                 <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
               </div>
@@ -109,7 +115,8 @@
             <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
+                <a href="{{URL::to('/detail/1')}}"><h5 class="card-title fw-bold">TITLE TEXT</h5></a>
+                
                 <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
                 <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
               </div>
@@ -119,37 +126,8 @@
             <div class="card zoom-on" style="">
               <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
-                <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
-                <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card zoom-on" style="">
-              <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
-              <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
-                <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
-                <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card zoom-on" style="">
-              <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
-              <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
-                <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
-                <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-            <div class="card zoom-on" style="">
-              <img class="card-img-top" src="{{asset('/image/sample-card.jpg')}}">
-              <div class="card-body text-center">
-                <h5 class="card-title fw-bold">TITLE TEXT</h5>
+                <a href="{{URL::to('/detail/1')}}"><h5 class="card-title fw-bold">TITLE TEXT</h5></a>
+                
                 <h6 class="text-danger fw-bold">Giá: 29.990.000đ</h6>
                 <a class="btn btn-warning" href="#">Thêm vào giỏ hàng</a>
               </div>
