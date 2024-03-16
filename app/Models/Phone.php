@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Phone extends Model
 {
     protected $table = 'phones';
+    protected $primaryKey = 'phone_id';
     public $timestamps = false;
 
     function PhoneDetails() {

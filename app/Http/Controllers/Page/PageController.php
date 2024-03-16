@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
 use App\Models\PageModel;
+use App\Models\Phone;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -13,7 +14,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $phones = Phone::all()->take(10);
+        return view('home', compact('phones'));
     }
 
     public function login()
