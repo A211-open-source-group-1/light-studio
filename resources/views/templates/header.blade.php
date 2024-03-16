@@ -1,19 +1,21 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title></title>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/a597e9f72c.js" crossorigin="anonymous"></script>
     <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="https://kit.fontawesome.com/a597e9f72c.js" crossorigin="anonymous"></script>
     <script src="{{asset('/js/buttonHandler.js')}}"></script>
 
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/mycss.css')}}">
 </head>
 <body>
-@include('templates.userhidden')
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg bg-light fixed-top mb-6">
             <div class="container-fluid">
@@ -45,12 +47,11 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <button class="btn btn-light text-nowrap"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</button>
-                        <button id="login-btn" class="btn btn-light text-nowrap">Đăng nhập</button>
-                        <button id="register-btn" class="btn btn-light text-nowrap">Đăng ký</button>
+                        <button class="btn btn-outline-secondary text-nowrap"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</button>
+                        <button id="login-btn" class="btn btn-outline-secondary text-nowrap ms-1">Đăng nhập</button>
+                        <button id="register-btn" class="btn btn-outline-secondary text-nowrap ms-1">Đăng ký</button>
                     </div>
-                    <form class="d-flex mt-3">
-                        
+                    <form class="d-flex m-1">
                         <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
                         <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>

@@ -17,6 +17,4 @@ use App\Http\Controllers\Product\ProductController;
 
 Route::get('', [PageController::class, 'index']);
 Route::get('page/AboutUs', [PageController::class, 'aboutus']);
-Route::get('/login', [PageController::class, 'login']);
-Route::get('/register', [PageController::class, 'register']);
 Route::get('/detail/{id}', [ProductController::class, 'detail']);
