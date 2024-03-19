@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Page\PageController;
 use App\Http\Controllers\Product\ProductController;
-
+use App\Http\Controllers\Auth\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,5 +16,8 @@ use App\Http\Controllers\Product\ProductController;
 */
 
 Route::get('', [PageController::class, 'index']);
-Route::get('page/AboutUs', [PageController::class, 'aboutus']);
-Route::get('/detail/{id}', [ProductController::class, 'detail']);
+Route::get('page/AboutUs', [PageController::class, 'aboutus'])->name('aboutus');
+Route::get('phone/{phone_id}/detail/{detail_id}/specs/{specs_id}', [ProductController::class, 'detail']);
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');

@@ -3,7 +3,7 @@
     height: 2.13rem;
 }
 
-.link-dark {
+a {
     text-decoration: none;
 }
 
@@ -27,6 +27,18 @@ button {
 
 .bg-toast-success {
     background-color: #DDFFD7;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.truncate-text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @media screen and (min-width: 576px) {

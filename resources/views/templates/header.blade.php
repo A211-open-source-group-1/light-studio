@@ -30,11 +30,33 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Về chúng tôi</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item dropdown">
                             <a class="nav-link" href="#"><i class="fa fa-mobile" aria-hidden="true"></i> Điện thoại</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="#">Samsung</a>
+                                </li>
+                                <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="#">iPhone</a>
+                                </li>
+                                <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="#">Xiaomi</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item dropdown">
                             <a class="nav-link" href="#"><i class="fa fa-tablet" aria-hidden="true"></i> Máy tính bảng</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="#">Samsung</a>
+                                </li>
+                                <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="#">iPhone</a>
+                                </li>
+                                <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="#">Xiaomi</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa-solid fa-cube"></i> Phụ kiện</a>
@@ -46,10 +68,41 @@
                             <a class="nav-link" href="#"><i class="fa-regular fa-envelope"></i> Hỗ trợ</a>
                         </li>
                     </ul>
-                    <div class="d-flex">
-                        <button class="btn btn-outline-secondary text-nowrap"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</button>
-                        <button id="login-btn" class="btn btn-outline-secondary text-nowrap ms-1">Đăng nhập</button>
-                        <button id="register-btn" class="btn btn-outline-secondary text-nowrap ms-1">Đăng ký</button>
+                    <div class="d-flex mt-3 me-2">
+                        <a class="link-dark text-nowrap" href="#"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
+                        <ul style="list-style: none">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @if (Auth::check())
+                                        {{auth()->user()->name}}
+                                    @else
+                                        Tài khoản
+                                    @endif
+                                </a>
+                                <ul class="dropdown-menu">
+                                    @if (Auth::check())
+                                    <li class="dropdown-item border-bottom">
+                                        <a class="link-dark text-nowrap" href="#">Thông tin cá nhân</a>
+                                    </li>
+                                    <li class="dropdown-item border-bottom">
+                                        <a class="link-dark text-nowrap" href="#">Tra cứu đơn hàng</a>
+                                    </li>
+                                    <li class="dropdown-item border-bottom">
+                                        <a class="link-dark text-nowrap" href="{{route('logout')}}">Đăng xuất</a>
+                                    </li>
+                                    @else
+                                    <li class="dropdown-item border-bottom">
+                                        <a id="login-btn" class="link-dark text-nowrap" href="#">Đăng nhập</a>
+                                    </li>
+                                    <li class="dropdown-item border-bottom">
+                                        <a id="register-btn" class="link-dark text-nowrap" href="#">Đăng ký</a>
+                                    </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        
                     </div>
                     <form class="d-flex m-1">
                         <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">

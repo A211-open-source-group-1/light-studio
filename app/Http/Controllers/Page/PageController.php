@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Page;
 use App\Http\Controllers\Controller;
 use App\Models\PageModel;
 use App\Models\Phone;
+use App\Models\PhoneDetails;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -14,7 +15,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $phones = Phone::all()->take(10);
+        $phones = PhoneDetails::all()->take(10);
         return view('home', compact('phones'));
     }
 
