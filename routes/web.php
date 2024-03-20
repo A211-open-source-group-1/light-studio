@@ -21,3 +21,4 @@ Route::get('phone/{phone_id}/detail/{detail_id}/specs/{specs_id}', [ProductContr
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('product/brand/{brand_id}', [ProductController::class, 'products'])->name('products');
