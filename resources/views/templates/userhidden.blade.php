@@ -87,7 +87,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-6 text-center">
-                  <input name="gender" type="radio" value="Nam" required>
+                  <input name="gender" type="radio" value="Nam" checked>
                   <label>Nam</label>
                 </div>
                 <div class="col-6 text-center">
@@ -99,11 +99,14 @@
           </div>
           <div class="mb-2">
             <label class="form-label">Mật khẩu</label>
-            <input class="form-control" name="password" type="password">
+            <input class="form-control" id="password" name="password" type="password">
+            <label id="errorPassword" class="text-danger"></label>
           </div>
           <div class="mb-2">
             <label class="form-label">Nhập lại mật khẩu</label>
-            <input class="form-control" name="repassword" type="password">
+            <input class="form-control" id="repassword" name="repassword" type="password">
+            <label id="errorRepassword" class="text-danger"></label>
+
           </div>
         
       </div>
