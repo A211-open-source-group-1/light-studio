@@ -1,3 +1,4 @@
+
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div class="toast bg-toast-success" id="toastAddToCartSuccess">
       <div class="toast-header">
@@ -59,29 +60,34 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
+
         <h5 class="modal-title">Đăng ký</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="{{route('register')}}" method="post" id="registerForm">
+        {{ csrf_field() }}
           <div class="mb-2">
             <label class="form-label">Số điện thoại</label>
-            <input class="form-control" name="phoneNumber" type="tel">
+            <input class="form-control" name="phoneNumber" id="phoneNumber" type="tel">
+            <label class="text-danger" id="errorPhoneNumber"></label>
           </div>
           <div class="mb-2">
             <label class="form-label">Email</label>
-            <input class="form-control" name="email" type="email">
+            <input class="form-control" name="email" id="email" type="email">
+            <label class="text-danger" id="errorEmail"></label>
           </div>
           <div class="mb-2">
             <label class="form-label">Họ và tên</label>
-            <input class="form-control" name="fullname" type="text">
+            <input class="form-control" name="fullname" id="fullname" type="text">
+            <label class="text-danger" id="errorFullname"></label>
           </div>
           <div class="mb-2">
             <label class="form-label">Giới tính</label>
             <div class="container-fluid">
               <div class="row">
                 <div class="col-6 text-center">
-                  <input name="gender" type="radio" value="Nam">
+                  <input name="gender" type="radio" value="Nam" required>
                   <label>Nam</label>
                 </div>
                 <div class="col-6 text-center">
@@ -99,16 +105,16 @@
             <label class="form-label">Nhập lại mật khẩu</label>
             <input class="form-control" name="repassword" type="password">
           </div>
-        </form>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary">Đăng ký</button>
+        <button type="button" class="btn btn-primary" onclick="handle_validate()">Đăng ký</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
-
 <script>
     function showToast() {
         var toastElList = [].slice.call(document.querySelectorAll('.toast'))
