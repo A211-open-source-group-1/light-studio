@@ -83,11 +83,12 @@
                                 <ul class="dropdown-menu">
                                     @if (Auth::check())
                                     <li class="dropdown-item border-bottom">
-                                        <a class="link-dark text-nowrap" href="#">Thông tin cá nhân</a>
+                                    <a class="link-dark text-nowrap" href="{{route('user.info')}}">Thông tin cá nhân</a>
                                     </li>
                                     <li class="dropdown-item border-bottom">
                                         <a class="link-dark text-nowrap" href="#">Tra cứu đơn hàng</a>
                                     </li>
+                          
                                     <li class="dropdown-item border-bottom">
                                         <a class="link-dark text-nowrap" href="{{route('logout')}}">Đăng xuất</a>
                                     </li>
