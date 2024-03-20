@@ -70,7 +70,7 @@
           </div>
           <div class="mb-2">
             <label class="form-label">Email</label>
-            <input class="form-control" name="phoneNumber" type="email">
+            <input class="form-control" name="email" type="email">
           </div>
           <div class="mb-2">
             <label class="form-label">Họ và tên</label>
