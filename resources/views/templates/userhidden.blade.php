@@ -99,7 +99,7 @@
           </div>
           <div class="mb-2">
             <label class="form-label">Mật khẩu</label>
-            <input class="form-control" id="password" name="password" type="password">
+            <input class="form-control" name="password" type="password" id="password1" value="zzz" >
             <label id="errorPassword" class="text-danger"></label>
           </div>
           <div class="mb-2">

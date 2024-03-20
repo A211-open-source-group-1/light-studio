@@ -90,36 +90,40 @@ function check_fullname()
     }
 
 }
-// function check_password() {
-//     let passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{10,}$/;
+function check_password() {
+    let passwordRegex = /^(?=.*[!@#$%^&*()])[A-Z].{9,}$/;
 
-//     var password = document.getElementById('password').value;
-//     var repassword = document.getElementById('repassword').value;
+    var password =  document.getElementById("password1").value;
+    var repassword = document.getElementById('repassword').value;
+    alert(password);
+    if (password === "") {
+        document.getElementById('errorPassword').innerHTML = "Không được bỏ trống mật khẩu";
+        return false;
+    }
 
-//     if (password === "" || repassword === "") {
-//         document.getElementById('errorPassword').innerHTML = "Không được bỏ trống mật khẩu";
-//         document.getElementById('errorRepassword').innerHTML = "Không được bỏ trống mật khẩu";
-//         return false;
-//     }
+    if (!passwordRegex.test(password)) {
+        document.getElementById('errorPassword').innerHTML = "Mật khẩu phải bắt đầu bằng một chữ cái viết hoa, có ít nhất 10 ký tự, và chứa ít nhất một trong các ký tự đặc biệt !@#$%^&*()";
+        return false;
+    }
 
-//     if (!passwordRegex.test(password)) {
-//         document.getElementById('errorPassword').innerHTML = "Mật khẩu không hợp lệ";
-//         return false;
-//     }
+    if (password !== repassword) {
+        document.getElementById('errorPassword').innerHTML = "";
+        document.getElementById('errorRepassword').innerHTML = "Mật khẩu xác thực không trùng khớp";
+        return false;
+    }
 
-//     if (password !== repassword) {
-//         document.getElementById('errorPassword').innerHTML = "";
-//         document.getElementById('errorRepassword').innerHTML = "Mật khẩu xác thực không trùng khớp";
-//         return false;
-//     }
+    document.getElementById('errorPassword').innerHTML = "";
+    document.getElementById('errorRepassword').innerHTML = "";
+    return true;
+}
 
-//     document.getElementById('errorPassword').innerHTML = "";
-//     document.getElementById('errorRepassword').innerHTML = "";
-//     return true;
-// }
 
 function handle_validate() {
     var isFormValid = true; // Biến này sẽ chỉ đến xem tất cả các điều kiện kiểm tra đã qua hay không
+
+    if (!check_password()) {
+        isFormValid = false;
+    }
 
     // Kiểm tra số điện thoại
     if (!check_numberPhone()) {
@@ -136,11 +140,8 @@ function handle_validate() {
         isFormValid = false;
     }
 
-    // Kiểm tra mật khẩu
-    // if (!check_password()) {
-    //     isFormValid = false;
-    // }
 
+   
     // Nếu tất cả các điều kiện kiểm tra đều đã qua, gửi biểu mẫu đi
     if (isFormValid) {
         document.getElementById('registerForm').submit();
