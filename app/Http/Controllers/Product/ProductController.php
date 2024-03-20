@@ -29,7 +29,7 @@ class ProductController extends Controller
         $brands = Brand::all();
         if ($brand_id == 0) {
             $title = 'Tất cả sản phẩm';
-            $products = PhoneDetails::all();
+            $products = PhoneDetails::paginate(2);
         } else {
             $brand = Brand::where('brand_id', '=', $brand_id)->first();
             $title = $brand->brand_name;
