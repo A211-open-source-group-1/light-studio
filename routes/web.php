@@ -23,3 +23,5 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('product/brand/{brand_id}', [ProductController::class, 'products'])->name('products');
 Route::get('Auth/info', [AuthController::class, 'User_info'])->name('user.info');
 Route::put('/update', [AuthController::class, 'update'])->name('update');
+Route::get('Change/Password', [AuthController::class, 'ChangePassword'])->name('ChangePassword');
+Route::post('/handleChangePassword',[AuthController::class,'handleChangePassword'])->name('handleChangePassword');

@@ -2,8 +2,7 @@
 @section('content')
 <!-- -- -->
 <form method="post" action="/update">
-    @csrf
-    @method('PUT')
+{{ csrf_field() }}
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 text-center border-bottom">
@@ -45,10 +44,6 @@
                         <input id="email" name="email" class="form-control" type="email" required value="{{ $user->email }}" />
                     </div>
                     <div class="form-group">
-                        <label>Mật khẩu</label>
-                        <input id="password" name="password" class="form-control" type="password" required minlength="8" value="{{$user->password}}" />
-                    </div>
-                    <div class="form-group">
                         <label>Điểm tích lũy</label>
                         <input id="user_point" name="text" class="form-control" type="text" readonly value="{{$user->user_point}}" />
                     </div>
@@ -65,6 +60,7 @@
             <div class="col-6">
                 <div class="row">
                     <div class="col-12 text-center d-inline">
+                        <a class="btn btn-primary mt-3" href="{{route('ChangePassword')}}">Đổi mật khẩu</a> 
                         <input class="mt-3 btn btn-success" type="submit" value="Lưu thay đổi" />
                     </div>
                 </div>

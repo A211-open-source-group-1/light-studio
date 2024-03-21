@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,20 +31,49 @@ class AuthController extends Controller
         }
         if (Auth::id()) {
             $user = Auth::user(); // Lấy thông tin của người dùng hiện tại
+
             return view('Auth.info', compact('user'));
         }
     }
     public function update(Request $request)
     {
         $id = $request->only('id');
-        $user = User::where('id',$id)->update(['name' =>$request->input('fullname')
-        ,'address'=>$request->input('address')
-        ,'gender'=>$request->input('gender')
-        ,'email'=>$request->input('email')
-        
-    
-    ]);
+        $user = User::where('id', $id)->update([
+            'name' => $request->input('fullname'), 'address' => $request->input('address'), 'gender' => $request->input('gender'), 'email' => $request->input('email')
+        ]);
         return redirect()->back();
+    }
+    public function changePassword()
+    {
+        if (!Auth::check()) {
+            return redirect('/')->withErrors('Vui lòng đăng nhập trước.');
+        }
+        if (Auth::id()) {
+            $user = Auth::user(); // Lấy thông tin của người dùng hiện tại
+            return view('Auth.ChangePassword', compact('user'));
+        }
+    }
+    public function handleChangePassword(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect('/')->withErrors('Vui lòng đăng nhập trước.');
+        }
+        $user = Auth::user();
+        if (Auth::id()) {
+            if ($user) {
+                if (Hash::check($request->input('password'), $user->password)) {
+                    if ($request->input('rePassword') == $request->input('newPassword')) {
+                        $user = User::find(Auth::id());
+                        $user->update(['password' => bcrypt($request->input('newPassword'))]);
+                        return redirect('/logout');
+                    } else {
+                        return 'MẬT KHẨU XÁC THỰC KHÔNG KHỚP';
+                    }
+                } else {
+                    return 'MẬT KHẨU HIỆN TẠI KHÔNG KHỚP';
+                }
+            }
+        }
     }
     public function register(Request $request)
     {
