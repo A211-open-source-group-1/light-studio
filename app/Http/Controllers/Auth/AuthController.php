@@ -111,4 +111,23 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->back();
     }
+
+        public function identify()
+        {
+            return view('Auth.identify');
+        }
+    public function findNumberPhone(Request $request)
+    {
+        $phone_number = $request->input('phone_number');
+        $user = User::where('phone_number', $phone_number)->first();
+        
+        if($user)
+        {
+            return "Tim thay sdt";
+        }
+        else
+        {
+            return "??????";
+        }
+    }
 }

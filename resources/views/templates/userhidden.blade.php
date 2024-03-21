@@ -49,7 +49,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
           <button type="submit" class="btn btn-primary">Đăng nhập</button>
-          <a type="button" class="btn btn-warning" href="#">Quên mật khẩu</a>
+          <a type="button" class="btn btn-warning" href="/identify">Quên mật khẩu</a>
         </div>
       </form>
     </div>
