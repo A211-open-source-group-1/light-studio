@@ -58,7 +58,7 @@
                         <h5 class="pb-2 border-bottom">Tình trạng: <span class="text-success fw-bold">Còn hàng</span></h5>
                         <h5 class="pb-2 border-bottom">Giá: <span class="text-danger fw-bold">{{$current_details->price}}</span></h5>
                         <div class="d-grid gap-2 pb-2">
-                            <button class="btn btn-warning">MUA NGAY</button>
+                            <button class="btn btn-warning" onclick="">THÊM VÀO GIỎ</button>
                             <button class="btn btn-primary btn-block">MUA TRẢ GÓP</button>
                             <button class="btn btn-primary btn-block">MUA TRẢ GÓP QUA THẺ</button>
                         </div>
