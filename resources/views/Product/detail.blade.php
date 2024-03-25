@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-12 col-lg-4 mt-3">
                         <h5 class="pb-2 border-bottom">Tình trạng: <span class="text-success fw-bold">Còn hàng</span></h5>
-                        <h5 class="pb-2 border-bottom">Giá: <span class="text-danger fw-bold">{{$current_details->price}}</span></h5>
+                        <h5 class="pb-2 border-bottom">Giá: <span class="text-danger fw-bold">{{number_format($current_details->price, 0, ',', '.')}}</span></h5>
                         <div class="d-grid gap-2 pb-2">
                             <button class="btn btn-warning" onclick="">THÊM VÀO GIỎ</button>
                             <button class="btn btn-primary btn-block">MUA TRẢ GÓP</button>
