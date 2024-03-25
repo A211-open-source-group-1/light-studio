@@ -41,6 +41,21 @@ button {
     text-overflow: ellipsis;
 }
 
+.bg-little-dark {
+    background-color: #5D5D5D;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 @media screen and (min-width: 576px) {
     .product-img {
         height: 250px;

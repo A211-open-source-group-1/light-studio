@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Page\PageController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Cart\CartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,3 +29,4 @@ Route::get('Change/Password', [AuthController::class, 'ChangePassword'])->name('
 Route::post('/handleChangePassword',[AuthController::class,'handleChangePassword'])->name('handleChangePassword');
 Route::get('identify',[AuthController::class,'identify'])->name('identify');
 Route::post('findNumberPhone',[AuthController::class,'findNumberPhone'])->name('findNumberPhone');
+Route::get('cart', [CartController::class, 'index'])->name('cart');
