@@ -26,7 +26,7 @@
 <div class="modal fade hide" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <form method="post" action="{{route('login')}}">
+      <form method="post" action="{{route('login')}}" id="loginForm">
       <div class="modal-header">
         <h5 class="modal-title">Đăng nhập</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
@@ -36,10 +36,13 @@
           <div class="mb-2">
             <label class="form-label">Số điện thoại</label>
             <input class="form-control" id="phone_number" name="phone_number" type="tel">
+            <label class="text-danger" id="errorPhoneNumberLogin"></label>
+
           </div>
           <div class="mb-2">
             <label class="form-label">Mật khẩu</label>
             <input class="form-control" id="password" name="password" type="password">
+            <label class="text-danger" id="errorPasswordLogin"></label>
           </div>
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input">
@@ -48,10 +51,17 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-          <button type="submit" class="btn btn-primary">Đăng nhập</button>
+          <button type="button" class="btn btn-primary" onclick="check_Login()">Đăng nhập</button>
           <a type="button" class="btn btn-warning" href="/identify">Quên mật khẩu</a>
         </div>
       </form>
+      @foreach ($errors->all() as $error)
+    <script>
+        alert("{{ $error }}");
+    </script>
+    @endforeach
+
+  
     </div>
   </div>
 </div>

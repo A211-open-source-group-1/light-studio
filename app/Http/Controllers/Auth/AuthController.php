@@ -13,27 +13,27 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
+        
         $request->validate([
-            'phone_number' => 'required',
-            'password' => 'required'
-        ]);
+        'phone_number' => 'required',
+        'password' => 'required'
+    ], [
+        'phone_number.required' => 'Vui lòng nhập số điện thoại.',
+        'password.required' => 'Vui lòng nhập mật khẩu.'
+    ]);
         $credentials = $request->only('phone_number', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->back();
         }
-        return redirect('/fallout')->withErrors('ko dc rui');
+        return redirect()->back()->withErrors('Sai mật khẩu vui lòng thử lại');
     }
-
     public function User_info()
     {
-        if (!Auth::check()) {
-            return redirect('/')->withErrors('Vui lòng đăng nhập trước.');
-        }
         if (Auth::id()) {
             $user = Auth::user(); // Lấy thông tin của người dùng hiện tại
-
             return view('Auth.info', compact('user'));
         }
+        return redirect("/");
     }
     public function update(Request $request)
     {
@@ -49,7 +49,7 @@ class AuthController extends Controller
             return redirect('/')->withErrors('Vui lòng đăng nhập trước.');
         }
         if (Auth::id()) {
-            $user = Auth::user(); // Lấy thông tin của người dùng hiện tại
+            $user = Auth::user();
             return view('Auth.ChangePassword', compact('user'));
         }
     }
@@ -67,10 +67,10 @@ class AuthController extends Controller
                         $user->update(['password' => bcrypt($request->input('newPassword'))]);
                         return redirect('/logout');
                     } else {
-                        return 'MẬT KHẨU XÁC THỰC KHÔNG KHỚP';
+                       return redirect()->back()->withErrors('MẬT KHẨU XÁC THỰC KHÔNG KHỚP');
                     }
                 } else {
-                    return 'MẬT KHẨU HIỆN TẠI KHÔNG KHỚP';
+                   return redirect()->back()->withErrors('MẬT KHẨU HIỆN TẠI KHÔNG KHỚP');
                 }
             }
         }
@@ -101,7 +101,7 @@ class AuthController extends Controller
             $user->save();
             return ('Đăng ký thành công');
         } else {
-            return redirect('/fallout')->withErrors('Mật khẩu không chính xác');
+            return redirect()->back()->withErrors('Mật khẩu không chính xác');
         }
     }
 
@@ -111,11 +111,10 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->back();
     }
-
-        public function identify()
-        {
-            return view('Auth.identify');
-        }
+    public function identify()
+    {
+        return view('Auth.identify');
+    }
     public function findNumberPhone(Request $request)
     {
         $phone_number = $request->input('phone_number');

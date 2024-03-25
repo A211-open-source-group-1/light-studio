@@ -21,10 +21,12 @@ function check_numberPhone() {
     var allPhoneNumbers = [].concat(viettel, vinaphone, mobifone, vietnamobile, gmobile, itelecom);
     document.getElementById("errorPhoneNumber").innerHTML = "";
     var phone_number = document.getElementById('phoneNumber').value;
+    
     if (phone_number === "") {
         document.getElementById("errorPhoneNumber").innerHTML = "Không được bỏ trống số điện thoại";
         return false;
     }
+
     if (phone_number.length === 10) {
         var phonePrefix = phone_number.substring(0, 3);
         if (allPhoneNumbers.includes(phonePrefix)) {
@@ -69,7 +71,7 @@ function check_email() {
 
 function check_fullname()
 {
-    let nameRegex =/^[^\W\d]*$/;
+    let nameRegex =/^[\p{L}\s]+$/    ;
     var fullname = document.getElementById('fullname').value;
     document.getElementById('errorFullname').innerHTML="";
     if(fullname==="")
@@ -80,7 +82,7 @@ function check_fullname()
     }
     if(!nameRegex.test(fullname))
     {
-        document.getElementById('errorFullname').innerHTML="Tên của bạn chứa kí tự đặc biệt";
+        document.getElementById('errorFullname').innerHTML="Tên của bạn không đúng";
 
         return false;
     }
@@ -95,7 +97,6 @@ function check_password() {
 
     var password =  document.getElementById("password1").value;
     var repassword = document.getElementById('repassword').value;
-    alert(password);
     if (password === "") {
         document.getElementById('errorPassword').innerHTML = "Không được bỏ trống mật khẩu";
         return false;
@@ -146,4 +147,28 @@ function handle_validate() {
     if (isFormValid) {
         document.getElementById('registerForm').submit();
     }
+}
+
+
+function check_Login()
+{
+    var phone_number = document.getElementById('phone_number').value;
+    var password = document.getElementById('password').value;
+    var flag = true;
+    if(phone_number.length==0)
+    {
+        document.getElementById('errorPhoneNumberLogin').innerHTML="Vui lòng nhập thông tin đăng nhập";
+        flag=false;
+    }
+    if(password.length==0)
+    {
+        document.getElementById('errorPasswordLogin').innerHTML="Vui lòng nhập mật khẩu";
+        flag=false;
+    }
+
+    if(flag===true)
+    {
+        document.getElementById('loginForm').submit();
+    }
+
 }
