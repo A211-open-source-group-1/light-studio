@@ -1,14 +1,13 @@
-
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    <div class="toast bg-toast-success" id="toastAddToCartSuccess">
-      <div class="toast-header">
-        <strong class="me-auto">Thông báo</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-      </div>
-      <div class="toast-body">
-        <p>Bạn đã thêm một sản phẩm mới vào giỏ hàng!</p>
-      </div>
+  <div class="toast bg-toast-success" id="toastAddToCartSuccess">
+    <div class="toast-header">
+      <strong class="me-auto">Thông báo</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
     </div>
+    <div class="toast-body">
+      <p>Bạn đã thêm một sản phẩm mới vào giỏ hàng!</p>
+    </div>
+  </div>
 </div>
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
@@ -23,29 +22,34 @@
   </div>
 </div>
 
+@php
+    $rem = Cookie::get('rem');
+    $phone_number = Cookie::get('phone_number');
+    $password=Cookie::get('password');
+@endphp
 <div class="modal fade hide" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <form method="post" action="{{route('login')}}" id="loginForm">
-      <div class="modal-header">
-        <h5 class="modal-title">Đăng nhập</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-      </div>
-      <div class="modal-body">
+        <div class="modal-header">
+          <h5 class="modal-title">Đăng nhập</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body">
           {{ csrf_field() }}
           <div class="mb-2">
             <label class="form-label">Số điện thoại</label>
-            <input class="form-control" id="phone_number" name="phone_number" type="tel">
+            <input class="form-control" id="phone_number" name="phone_number" type="tel" value="{{$phone_number??''}}">
             <label class="text-danger" id="errorPhoneNumberLogin"></label>
-
           </div>
           <div class="mb-2">
             <label class="form-label">Mật khẩu</label>
-            <input class="form-control" id="password" name="password" type="password">
+            <input class="form-control" id="password" name="password" type="password" value="{{ $password ?? '' }}">
             <label class="text-danger" id="errorPasswordLogin"></label>
           </div>
           <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input">
+           
+          <input type="checkbox" name="remember" class="form-check-input" {{ $rem == 1 ? 'checked' : '' }}>             
             <label class="form-check-label">Ghi nhớ đăng nhập</label>
           </div>
         </div>
@@ -56,12 +60,12 @@
         </div>
       </form>
       @foreach ($errors->all() as $error)
-    <script>
+      <script>
         alert("{{ $error }}");
-    </script>
-    @endforeach
+      </script>
+      @endforeach
 
-  
+
     </div>
   </div>
 </div>
@@ -76,7 +80,7 @@
       </div>
       <div class="modal-body">
         <form action="{{route('register')}}" method="post" id="registerForm">
-        {{ csrf_field() }}
+          {{ csrf_field() }}
           <div class="mb-2">
             <label class="form-label">Số điện thoại</label>
             <input class="form-control" name="phoneNumber" id="phoneNumber" type="tel">
@@ -109,7 +113,7 @@
           </div>
           <div class="mb-2">
             <label class="form-label">Mật khẩu</label>
-            <input class="form-control" name="password" type="password" id="password1" >
+            <input class="form-control" name="password" type="password" id="password1">
             <label id="errorPassword" class="text-danger"></label>
           </div>
           <div class="mb-2">
@@ -118,7 +122,7 @@
             <label id="errorRepassword" class="text-danger"></label>
 
           </div>
-        
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -129,11 +133,11 @@
   </div>
 </div>
 <script>
-    function showToast() {
-        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-        var toastList = toastElList.map(function(toastEl) {
-            return new bootstrap.Toast(toastEl)
-        })
-        toastList.forEach(toast => toast.show()) 
-    }
+  function showToast() {
+    var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+    var toastList = toastElList.map(function(toastEl) {
+      return new bootstrap.Toast(toastEl)
+    })
+    toastList.forEach(toast => toast.show())
+  }
 </script>

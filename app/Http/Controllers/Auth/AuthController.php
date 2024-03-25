@@ -8,25 +8,45 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        
         $request->validate([
-        'phone_number' => 'required',
-        'password' => 'required'
-    ], [
-        'phone_number.required' => 'Vui lòng nhập số điện thoại.',
-        'password.required' => 'Vui lòng nhập mật khẩu.'
-    ]);
+            'phone_number' => 'required',
+            'password' => 'required'
+        ], [
+            'phone_number.required' => 'Vui lòng nhập số điện thoại.',
+            'password.required' => 'Vui lòng nhập mật khẩu.'
+        ]);
+    
         $credentials = $request->only('phone_number', 'password');
+    
         if (Auth::attempt($credentials)) {
+            $rem = $request->boolean('remember');
+    
+            if ($rem == 1) {
+                $user = Auth::user();
+                cookie()->queue('phone_number',$request->input('phone_number'), 7 * 24 * 60);
+                cookie()->queue('password', $request->input('password'), 7 * 24 * 60);
+                cookie()->queue('rem', $rem, 7 * 24 * 60);
+            } else {
+                if (Cookie::has('rem')) {
+                    return redirect()->back()
+                    ->withCookie(cookie()->forget('rem'))
+                    ->withCookie(cookie()->forget('phone_number'))
+                    ->withCookie(cookie()->forget('password')); 
+                }
+            }
+    
             return redirect()->back();
         }
+    
         return redirect()->back()->withErrors('Sai mật khẩu vui lòng thử lại');
     }
+    
     public function User_info()
     {
         if (Auth::id()) {
