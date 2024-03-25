@@ -7,17 +7,39 @@
             <h5>{{$title}}</h5>
         </div>
     </div>
-    <div class="row border-bottom mb-3">
-        <div class="col-12 m-3">
-            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropDownBrandBtn">
-                Thương hiệu
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropDownBrandBtn">
-                <li><a class="dropdown-item" href="#">Tất cả</a></li>
+    <div class="row border-bottom mb-3 mt-1 pb-1">
+        <div class="col-lg-2 col-md-4 col-6 pe-0">
+            <select class="form-select" name="brand">
+                <option selected disabled>Thương hiệu</option>
                 @foreach($brands as $row)
-                    <li><a class="dropdown-item" href="#">{{$row->brand_name}}</a></li>
+                <option>{{$row->brand_name}}</option>
                 @endforeach
-            </ul>
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 pe-0">
+            <select class="form-select" name="price">
+                <option selected disabled>Khoảng giá</option>
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 pe-0">
+            <select class="form-select" name="os">
+                <option selected disabled>Hệ điều hành</option>
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 pe-0">
+            <select class="form-select" name="sortByName">
+                <option selected disabled>Sắp xếp theo tên</option>
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 pe-0">
+            <select class="form-select" name="sortByPrice">
+                <option selected disabled>Sắp xếp theo giá</option>
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4 col-6 pe-0">
+            <select class="form-select" name="sortByPrice">
+                <option selected disabled>Sắp xếp theo đánh giá</option>
+            </select>
         </div>
     </div>
     <div class="row mb-3 align-items-md-stretch">
@@ -27,7 +49,7 @@
             <img class="card-img-top card-img-product" src="{{asset('/image/sample-card.jpg')}}">
             <div class="card-body text-center">
               <a class="text-decoration-none" href="{{URL::to('/phone/' . $row->parentPhone->phone_id . '/detail/' . $row->phone_details_id) . '/specs/0'}}"><h6 class="card-title fw-bold truncate-text">{{$row->parentPhone->phone_name . ' ' . $row->phone_details_name . ' ' . $row->color_name}}</h6></a>
-              <h6 class="text-danger fw-bold">{{$row->price ?? '...'}} VNĐ</h6>
+              <h6 class="text-danger fw-bold">{{Number::currency($row->price, 'VND', 'fr') ?? '...'}}</h6>
             </div>
           </div>
         </div>
