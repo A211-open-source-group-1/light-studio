@@ -35,6 +35,9 @@
                             <a class="nav-link" href="#"><i class="fa fa-mobile" aria-hidden="true"></i> Điện thoại</a>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="{{URL::to('/product/brand/0')}}">Tất cả</a>
+                                </li>
+                                <li class="dropdown-item border-bottom">
                                     <a class="link-dark" href="#">Samsung</a>
                                 </li>
                                 <li class="dropdown-item border-bottom">
@@ -48,6 +51,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#"><i class="fa fa-tablet" aria-hidden="true"></i> Máy tính bảng</a>
                             <ul class="dropdown-menu">
+                                <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="{{URL::to('/product/brand/0')}}">Tất cả</a>
+                                </li>
                                 <li class="dropdown-item border-bottom">
                                     <a class="link-dark" href="#">Samsung</a>
                                 </li>

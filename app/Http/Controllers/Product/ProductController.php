@@ -29,11 +29,11 @@ class ProductController extends Controller
         $brands = Brand::all();
         if ($brand_id == 0) {
             $title = 'Tất cả sản phẩm';
-            $products = PhoneDetails::paginate(2);
+            $products = PhoneDetails::paginate(12);
         } else {
             $brand = Brand::where('brand_id', '=', $brand_id)->first();
             $title = $brand->brand_name;
-            $products = $brand->PhoneDetails()->paginate(2);
+            $products = $brand->PhoneDetails()->paginate(12);
         }
         return view('product.products', compact('title', 'brands' ,'products'));
     }

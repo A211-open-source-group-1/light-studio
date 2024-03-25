@@ -9,13 +9,13 @@
     </div>
     <div class="row border-bottom mb-3">
         <div class="col-12 m-3">
-            <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropDownBrandBtn">
+            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropDownBrandBtn">
                 Thương hiệu
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropDownBrandBtn">
                 <li><a class="dropdown-item" href="#">Tất cả</a></li>
                 @foreach($brands as $row)
-                <li><a class="dropdown-item" href="#">{{$row->brand_name}}</a></li>
+                    <li><a class="dropdown-item" href="#">{{$row->brand_name}}</a></li>
                 @endforeach
             </ul>
         </div>
