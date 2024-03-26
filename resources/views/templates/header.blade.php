@@ -12,6 +12,7 @@
     <script src="https://kit.fontawesome.com/a597e9f72c.js" crossorigin="anonymous"></script>
     <script src="{{asset('/js/buttonHandler.js')}}"></script>
     <script src="{{asset('/js/userHiddenHandler.js')}}"></script>
+    <script src="{{asset('/js/cartHandler.js')}}"></script>
 
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/mycss.css')}}">

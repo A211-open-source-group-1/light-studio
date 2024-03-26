@@ -1,3 +1,5 @@
+
+
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
   <div class="toast bg-toast-success" id="toastAddToCartSuccess">
     <div class="toast-header">

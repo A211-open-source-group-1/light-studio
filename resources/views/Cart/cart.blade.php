@@ -17,16 +17,16 @@
                                             $sumQuantity = 0;
                                             $sumMoney = 0;   
                                         ?>
-                                        @foreach ($carts as $row)
+                                        @foreach ($prodsInCart as $row)
                                             <div class="col-2 border-bottom d-flex align-items-center">
-                                                <p class="mt-3">img</p>
+                                                <p class="mt-3">{{$row->GetImg()}}</p>
                                             </div>
                                             <div class="col-5 border-bottom d-flex align-items-center">
-                                                <p class="mt-3">{{$row->parentPhoneDetails->parentPhone->phone_name}} {{$row->parentPhoneDetails->parentSpecific->specific_name}} {{$row->parentPhoneDetails->parentColor->color_name}}</p>
+                                                <p class="mt-3">{{$row->GetName()}}</p>
                                             </div>
                                             <div class="col-3 border-bottom d-flex align-items-center">
                                                 <?php
-                                                    $currentQuantity = $row->quantity;
+                                                    $currentQuantity = $row->GetQuantity();
                                                     $sumQuantity = $sumQuantity + $currentQuantity;    
                                                 ?>
                                                 <button class="btn btn-outline-light align-middle border-0"><span class="text-dark">-</span></button>
@@ -36,7 +36,7 @@
                                             </div>
                                             <div class="col-2 border-bottom d-flex align-items-center">
                                                 <?php
-                                                    $currentMoney = $row->quantity * $row->parentPhoneDetails->price - ($row->parentPhoneDetails->price * $row->parentPhoneDetails->discount_percent);
+                                                    $currentMoney = $row->GetFinalPrice();
                                                     $sumMoney = $sumMoney + $currentMoney;
                                                 ?>
                                                 <p class="mt-3">{{number_format($currentMoney, 0, ',', '.')}} VNĐ</p>
@@ -84,7 +84,4 @@
             </div>
         </div>
     </div>
-
-    @foreach ($carts as $row)
-    @endforeach
 @endsection
