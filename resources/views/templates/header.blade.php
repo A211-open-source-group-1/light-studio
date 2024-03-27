@@ -77,7 +77,7 @@
                         </li>
                     </ul>
                     <div class="d-flex mt-3 me-2">
-                        <a class="link-dark text-nowrap" href="#"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
+                        <a class="link-dark text-nowrap" href="{{route('cart')}}"><i class="fa-solid fa-cart-shopping"></i> Giỏ hàng</a>
                         <ul style="list-style: none">
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

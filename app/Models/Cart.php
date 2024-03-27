@@ -7,14 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\PhoneDetails;
 
-class cart extends Model
+class Cart extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'phone_details_id',
+        'quantity'
+    ];
     protected $table = 'cart';
     protected $primaryKey = 'cart_id';
     public $timestamps = false;
 
     public function parentUser() {
-        return $this->belongsTo(User::class, 'id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function parentPhoneDetails() {
