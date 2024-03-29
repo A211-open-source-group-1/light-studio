@@ -32,7 +32,7 @@ class CartController extends Controller
         return view('cart.cart', compact('prodsInCart'));
     }
 
-    public function onActionProduct($id, $action) {
+    public function onActionProduct($details_id, $action) {
         $currentCart = new CurrentCart();
         if (!Auth::check()) {
             if (session('guestCart', 'default') == 'default') {
@@ -51,13 +51,30 @@ class CartController extends Controller
         }
 
         foreach ($currentCart->GetProducts() as $item) {
-            if ($item->GetId() == $id) {
+            if ($item->GetId() == $details_id) {
+                $cart = null;
+                if (Auth::check()) {
+                    $cart = Cart::where('user_id', '=', Auth::user()->id)->where('phone_details_id', '=', $details_id)->first();
+                }
                 if ($action == 'increase') {
                     $item->IncreaseQuantity(1);
+                    if ($cart != null) {
+                        $cart->update([
+                            'quantity' => $item->GetQuantity()
+                        ]);
+                    }
                 } else if ($action == 'decrease') {
                     $item->DecreaseQuantity(1);
+                    if ($cart != null) {
+                        $cart->update([
+                            'quantity' => $item->GetQuantity()
+                        ]);
+                    }
                 } else if ($action == 'delete') {
-                    $currentCart->Remove($id);
+                    $currentCart->Remove($details_id);
+                    if ($cart != null) {
+                        $cart->delete();
+                    }
                 }
             }
         }
