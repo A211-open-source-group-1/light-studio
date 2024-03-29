@@ -37,4 +37,16 @@ class ProductController extends Controller
         }
         return view('product.products', compact('title', 'brands' ,'products'));
     }
+
+    public function search($search_string) {
+        $products = PhoneDetails::join('phones', 'phones.phone_id', '=' ,'phone_details.phone_id')
+        ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+        ->where('phones.phone_name', 'like', '%' . $search_string . '%')
+        ->orWhere('phone_specifics.specific_name', 'like', '%' . $search_string . '%')
+        ->select('phone_details.*');
+    }
+
+    public function filter($brand, $priceRange, $os, $name, $price, $review) {
+
+    }
 }
