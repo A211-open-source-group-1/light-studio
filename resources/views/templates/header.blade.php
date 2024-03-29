@@ -112,8 +112,9 @@
                         
                         
                     </div>
-                    <form class="d-flex m-1">
-                        <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                    <form class="d-flex m-1" action="{{route('search')}}" method="POST">
+                        @csrf
+                        <input class="form-control me-2" name="search_string" type="search" placeholder="Tìm kiếm" aria-label="Search">
                         <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                 </div>
