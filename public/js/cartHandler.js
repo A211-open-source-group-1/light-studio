@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    $('#formCart').submit(function(e) {
+        e.preventDefault();
+    })
+})
+
 function AddToCart(id) {
     $.ajax({
         type: "GET",
@@ -7,7 +13,7 @@ function AddToCart(id) {
             const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
             toastBootstrap.show()
         },
-        error: function(response) {
+        error: function (response) {
             const toastLive = document.getElementById('toastAddToCartFailed')
             const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
             toastBootstrap.show()
@@ -16,13 +22,34 @@ function AddToCart(id) {
 }
 
 function DeleteFromCart(id) {
-
+    $.ajax({
+        type: "GET",
+        url: '/onActionProduct/' + id + '/delete',
+        success: function (response) {
+            $('#data-body').empty()
+            $('#data-body').append(response)
+        }
+    })
 }
 
 function IncreaseFromCart(id) {
-
+    $.ajax({
+        type: "GET",
+        url: '/onActionProduct/' + id + '/increase',
+        success: function (response) {
+            $('#data-body').empty()
+            $('#data-body').append(response)
+        }
+    })
 }
 
 function DecreaseFromCart(id) {
-    
+    $.ajax({
+        type: "GET",
+        url: '/onActionProduct/' + id + '/decrease',
+        success: function (response) {
+            $('#data-body').empty()
+            $('#data-body').append(response)
+        }
+    })
 }

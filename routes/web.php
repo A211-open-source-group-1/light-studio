@@ -31,3 +31,4 @@ Route::get('identify',[AuthController::class,'identify'])->name('identify');
 Route::post('findNumberPhone',[AuthController::class,'findNumberPhone'])->name('findNumberPhone');
 Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::get('/addToCart/{details_id}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/onActionProduct/{id}/{action}', [CartController::class, 'onActionProduct'])->name('onActionProduct');

@@ -32,22 +32,55 @@ class CartController extends Controller
         return view('cart.cart', compact('prodsInCart'));
     }
 
+    public function onActionProduct($id, $action) {
+        $currentCart = new CurrentCart();
+        if (!Auth::check()) {
+            if (session('guestCart', 'default') == 'default') {
+                session(['guestCart' => new CurrentCart()]);
+            }
+            else {
+                $currentCart = session('guestCart');
+            }
+        }
+        else {
+            $carts = Cart::all()->where('user_id', '=', Auth::user()->id);
+            foreach ($carts as $item) {
+                $product = new ProductInCart($item->phone_details_id, $item->parentPhoneDetails->parentPhone->phone_name . ' ' . $item->parentPhoneDetails->parentSpecific->specific_name . ' ' . $item->parentPhoneDetails->parentColor->color_name, $item->quantity, $item->parentPhoneDetails->price, $item->parentPhoneDetails->discount, "img");
+                $currentCart->AddToCart($product);
+            }
+        }
+
+        foreach ($currentCart->GetProducts() as $item) {
+            if ($item->GetId() == $id) {
+                if ($action == 'increase') {
+                    $item->IncreaseQuantity(1);
+                } else if ($action == 'decrease') {
+                    $item->DecreaseQuantity(1);
+                } else if ($action == 'delete') {
+                    $currentCart->Remove($id);
+                }
+            }
+        }
+        $prodsInCart = $currentCart->GetProducts();
+        return response(view('ajax.cartdata', compact('prodsInCart'))->render());
+    }
+
     public function addToCart($details_id) {
-        try { // if not logged in. be a guest
-            $item = PhoneDetails::find($details_id)->first();
+         // if not logged in. be a guest
+            $item = PhoneDetails::where('phone_details_id', '=', $details_id)->first();
             if (!Auth::check()) {
-                if (!session('guestCart', 'default') != 'default') {
+                if (session('guestCart', 'default') == 'default') {
                     session(['guestCart' => new CurrentCart()]);
                 }
                 $currentCart = session('guestCart');
                 $product = new ProductInCart($item->phone_details_id, $item->parentPhone->phone_name . ' ' . $item->parentSpecific->specific_name . ' ' . $item->parentColor->color_name, 1, $item->price, $item->discount, "img");
                 $currentCart->AddToCart($product);
                 session(['guestCart' => $currentCart]);
+
                 return response()->json([
                     'success' => true
                 ]);
             } else { // if logged in. be a real fucking user :D
-                $item = PhoneDetails::find($details_id)->first();
                 $cart = Cart::where('user_id', '=', Auth::user()->id)->where('phone_details_id', '=', $details_id)->first();
                 if ($cart != null) {
                     $cart->update([
@@ -65,10 +98,6 @@ class CartController extends Controller
                     'success' => true
                 ]);
             }
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false
-            ]);
-        }
+         
     }
 }

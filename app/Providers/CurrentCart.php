@@ -12,19 +12,25 @@ class CurrentCart {
     public function AddToCart($product) {
         foreach ($this->products as $item) {
             if ($item->GetId() == $product->GetId()) {
-                $item->IncreaseQuantity($product->quantity);
+                $item->IncreaseQuantity($product->GetQuantity());
                 return;
             }
         }
-        $this->products[] = $product;
+        $this->products->push($product);
     }
 
     public function GetProducts() {
         return $this->products;
     }
 
+    public function Remove($id) {
+        $this->products = $this->products->filter(function ($prod) use ($id) {
+            return $prod->GetId() != $id;
+        });
+    }
+
     public function Count() {
-        return count($this->products);
+        return $this->products->count();
     }
 
     public function ProductAt($index) {

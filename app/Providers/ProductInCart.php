@@ -43,7 +43,7 @@ class ProductInCart {
         return ($this->price * $this->quantity) - ($this->discount * $this->price * $this->quantity / 100);
     }
 
-    public function ReduceQuantity($value) {
+    public function DecreaseQuantity($value) {
         if ($this->quantity - $value >= 0) {
             $this->quantity = $this->quantity - $value;
         }
