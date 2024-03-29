@@ -11,7 +11,7 @@
 </div>
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-  <div class="toast bg-toast-success" id="toastAddToCartFailed">
+  <div class="toast bg-toast-alert" id="toastAddToCartFailed">
     <div class="toast-header">
       <strong class="me-auto">Thông báo</strong>
       <button type="button" class="btn-close" data-bs-dismiss="toast"></button>

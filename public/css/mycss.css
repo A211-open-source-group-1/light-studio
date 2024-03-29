@@ -29,6 +29,10 @@ button {
     background-color: #DDFFD7;
 }
 
+.bg-toast-alert {
+    background-color: #FF8B8B;
+}
+
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;

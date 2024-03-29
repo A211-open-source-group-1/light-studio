@@ -71,9 +71,9 @@
                                     class="text-danger fw-bold">{{ number_format($current_details->price, 0, ',', '.') }}
                                     VNĐ</span></h5>
                             <div class="d-grid gap-2 pb-2">
+                                <script src="{{ asset('/js/cartHandler.js') }}"></script>
                                 <button class="btn btn-warning"
                                     onclick="AddToCart('{{ $current_details->phone_details_id }}')">THÊM VÀO GIỎ</button>
-                                    <a class="btn btn-warning" href="{{URL::to('/addToCart/1')}}">THÊM VÀO GIỎ</a>
                                 <button class="btn btn-primary btn-block">MUA TRẢ GÓP</button>
                                 <button class="btn btn-primary btn-block">MUA TRẢ GÓP QUA THẺ</button>
                             </div>
@@ -159,7 +159,8 @@
                                         <div class="container-fluid">
                                             <div class="row pt-1 border-bottom">
                                                 <div class="col-6">
-                                                    <h6>Trần Đức Bình <span class="lead fs-6">- 12/03/2024 11:35</span></h6>
+                                                    <h6>Trần Đức Bình <span class="lead fs-6">- 12/03/2024 11:35</span>
+                                                    </h6>
                                                 </div>
                                                 <div class="col-6 text-nowrap text-end">
                                                     <i class="fa-solid fa-star text-warning"></i>

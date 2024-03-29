@@ -11,7 +11,7 @@ class CurrentCart {
 
     public function AddToCart($product) {
         foreach ($this->products as $item) {
-            if ($item->id == $product->id) {
+            if ($item->GetId() == $product->GetId()) {
                 $item->IncreaseQuantity($product->quantity);
                 return;
             }

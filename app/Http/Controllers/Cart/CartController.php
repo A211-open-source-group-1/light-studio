@@ -9,6 +9,8 @@ use App\Models\PhoneDetails;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\CurrentCart;
 use App\Providers\ProductInCart;
+use App\Exception;
+use ExceptionTest;
 
 class CartController extends Controller
 {
@@ -31,22 +33,19 @@ class CartController extends Controller
     }
 
     public function addToCart($details_id) {
+        try { // if not logged in. be a guest
             $item = PhoneDetails::find($details_id)->first();
-            // if not logged in. be a guest
             if (!Auth::check()) {
                 if (!session('guestCart', 'default') != 'default') {
                     session(['guestCart' => new CurrentCart()]);
                 }
-                if (session('guestCart', 'default') != 'default') {
-                    $currentCart = session('guestCart');
-                    $product = new ProductInCart($item->phone_details_id, $item->parentPhone->phone_name . ' ' . $item->parentSpecific->specific_name . ' ' . $item->parentColor->color_name, 1, $item->price, $item->discount, "img");
-                    $currentCart->AddToCart($product);
-                    session(['guestCart' => $currentCart]);
-                    return $details_id;
-                }
-                else {
-                    return null;
-                }
+                $currentCart = session('guestCart');
+                $product = new ProductInCart($item->phone_details_id, $item->parentPhone->phone_name . ' ' . $item->parentSpecific->specific_name . ' ' . $item->parentColor->color_name, 1, $item->price, $item->discount, "img");
+                $currentCart->AddToCart($product);
+                session(['guestCart' => $currentCart]);
+                return response()->json([
+                    'success' => true
+                ]);
             } else { // if logged in. be a real fucking user :D
                 $item = PhoneDetails::find($details_id)->first();
                 $cart = Cart::where('user_id', '=', Auth::user()->id)->where('phone_details_id', '=', $details_id)->first();
@@ -62,7 +61,14 @@ class CartController extends Controller
                     $newItemInCart->quantity = 1;
                     $newItemInCart->save();
                 }
-                return $details_id;
+                return response()->json([
+                    'success' => true
+                ]);
             }
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false
+            ]);
+        }
     }
 }
