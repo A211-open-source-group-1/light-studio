@@ -11,6 +11,4 @@ $(document).ready(function() {
     $('#register-btn').click(function() {
         $('#registerModal').modal('show')
     })
-
-    
 })

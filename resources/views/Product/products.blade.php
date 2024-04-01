@@ -6,10 +6,10 @@
                 <h5>{{ $title ?? ''}}</h5>
             </div>
         </div>
+        <script src="{{ asset('/js/productHandler.js') }}"></script>
         <form id="filterForm">
             @csrf
-            <div class="row border-bottom mb-3 mt-1 pb-1">
-                <script src="{{ asset('/js/productHandler.js') }}"></script>
+            <div id="filterDiv" class="row border-bottom mb-3 mt-1 pb-1">
                 <div class="col-lg-2 col-md-4 col-6 pe-0">
                     <select class="form-select" name="brand" onchange="defaultSubmit()">
                         <option selected disabled>Thương hiệu</option>
@@ -22,9 +22,9 @@
                 <div class="col-lg-2 col-md-4 col-6 pe-0">
                     <select class="form-select" name="priceRange" onchange="defaultSubmit()">
                         <option selected disabled>Khoảng giá</option>
-                        <option value="all">Tất cả</option>
+                        <option value="default">Mặc định</option>
                         <option value="range-1">Dưới 2 triệu</option>
-                        <option value="range-2">Từ 2 - 4triệu</option>
+                        <option value="range-2">Từ 2 - 4 triệu</option>
                         <option value="range-3">Từ 4 - 8 triệu</option>
                         <option value="range-4">Từ 8 - 15 triệu</option>
                         <option value="range-5">Trên 15 triệu</option>
@@ -33,21 +33,33 @@
                 <div class="col-lg-2 col-md-4 col-6 pe-0">
                     <select class="form-select" name="os" onchange="defaultSubmit()">
                         <option selected disabled>Hệ điều hành</option>
+                        <option value="android">Android</option>
+                        <option value="ios">iOS</option>
+                        <option>Khác</option>
                     </select>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6 pe-0">
                     <select class="form-select" name="name" onchange="defaultSubmit()">
                         <option selected disabled>Sắp xếp theo tên</option>
+                        <option>Mặc định</option>
+                        <option value="asc">A - Z</option>
+                        <option value="desc">Z - A</option>
                     </select>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6 pe-0">
                     <select class="form-select" name="price" onchange="defaultSubmit()">
                         <option selected disabled>Sắp xếp theo giá</option>
+                        <option>Mặc định</option>
+                        <option value="asc">Giá tăng dần</option>
+                        <option value="desc">Giá giảm dần</option>
                     </select>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6 pe-0">
                     <select class="form-select" name="review" onchange="defaultSubmit()">
                         <option selected disabled>Sắp xếp theo đánh giá</option>
+                        <option>Mặc định</option>
+                        <option value="asc">Đánh giá cao nhất</option>
+                        <option value="desc">Đánh giá tệ nhất</option>
                     </select>
                 </div>
             </div>

@@ -56,26 +56,45 @@ class ProductController extends Controller
     public function filter(Request $request) {
         $brands = Brand::all();
         $products = new PhoneDetails();
+        $products = $products->join('phones', 'phones.phone_id', '=' ,'phone_details.phone_id')
+            ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+            ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+            ->join('brand', 'brand.brand_id', 'phones.brand_id');
         if (session('search', 'default') != 'default') {
             $search_string = session('search');
-            $products = $products->join('phones', 'phones.phone_id', '=' ,'phone_details.phone_id')->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')->where('phones.phone_name', 'like', '%' . $search_string . '%')->orWhere('phone_specifics.specific_name', 'like', '%' . $search_string . '%');
+            $products = $products->where('phones.phone_name', 'like', '%' . $search_string . '%')
+            ->orWhere('phone_specifics.specific_name', 'like', '%' . $search_string . '%');
         }
         
-        $preFilter1 = '';
-        if (session('search', 'default') != 'default') {
-            $preFilter1 = 'phone_details.';
-        }
+        $preFilter1 = '.';
+        $preFilter2 = 'phone_details.';
+        $preFilter3 = '.';
+        $preFilter4 = 'phones.';
+        $preFilter5 = 'phone_details.';
+        $preFilter6 = 'phone_details.';
 
         if ($request->priceRange == 'range-1') { // below 2mils VND
-            $products = $products->where($preFilter1 . 'price', '<', 2000000);
+            $products = $products->where($preFilter2 . 'price', '<', 2000000);
         } else if ($request->priceRange == 'range-2') { // from 2mils to 4mils VND
-            $products = $products->where($preFilter1 . 'price', '<', 4000000);
+            $products = $products->where($preFilter2 . 'price', '<', 4000000);
         } else if ($request->priceRange == 'range-3') { // from 4mils to 8mils VND
-            $products = $products->where($preFilter1 . 'price', '<', 8000000);
+            $products = $products->where($preFilter2 . 'price', '<', 8000000);
         } else if ($request->priceRange == 'range-4') { // from 8mils to 15mils VND
-            $products = $products->where($preFilter1 . 'price', '<', 15000000);
+            $products = $products->where($preFilter2 . 'price', '<', 15000000);
         } else if ($request->priceRange == 'range-5') { // above 15 mils VND
-            $products = $products->where($preFilter1 . 'price', '>=', 15000000);
+            $products = $products->where($preFilter2 . 'price', '>=', 15000000);
+        }
+
+        if ($request->name == 'asc') {
+            $products = $products->orderBy($preFilter4 . 'phone_name', 'asc');
+        } else if ($request->name == 'desc') {
+            $products = $products->orderBy($preFilter4 . 'phone_name', 'desc');
+        }
+
+        if ($request->price == 'asc') {
+            $products = $products->orderBy($preFilter5 . 'price', 'asc');
+        } else if ($request->price == 'desc') {
+            $products = $products->orderBy($preFilter5 . 'price', 'desc');
         }
 
         $products = $products->paginate(16);
