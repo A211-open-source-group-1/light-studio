@@ -5,7 +5,7 @@ function defaultSubmit() {
     $('#product-section').append('<div class="loading"></div>');
     setTimeout(() =>
         $.ajax({
-            type: 'get',
+            type: 'post',
             url: '/filter',
             async: false,
             data: $('#filterForm').serialize(),

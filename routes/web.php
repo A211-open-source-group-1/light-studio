@@ -34,4 +34,4 @@ Route::get('/addToCart/{details_id}', [CartController::class, 'addToCart'])->nam
 Route::get('/onActionProduct/{id}/{action}', [CartController::class, 'onActionProduct'])->name('onActionProduct');
 Route::post('search', [ProductController::class, 'search'])->name('search');
 Route::get('search', [ProductController::class, 'search'])->name('search');
-Route::get('filter', [ProductController::class, 'filter'])->name('filter');
+Route::post('filter', [ProductController::class, 'filter'])->name('filter');

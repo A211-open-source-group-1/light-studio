@@ -14,8 +14,7 @@ class ProductController extends Controller
     {
         if ($spec_id != 0) {
             $current_details = PhoneDetails::where('specific_id', '=', $spec_id)->first();
-        }
-        else {
+        } else {
             $current_details = PhoneDetails::where('phone_details_id', '=', $detail_id)->first();
         }
         $other_details_specs = $current_details->parentPhone()->first()->Specifics()->get();
@@ -24,48 +23,54 @@ class ProductController extends Controller
         return view('product.detail', compact('phone_id', 'detail_id', 'current_details', 'other_details_colors', 'other_details_specs'));
     }
 
-    public function products($brand_id) {
+    public function products($brand_id)
+    {
         session(['search' => null]);
         $brands = Brand::all();
         if ($brand_id == 0) {
             $title = 'Tất cả sản phẩm';
             $products = PhoneDetails::join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
-            ->join('phone_colors', 'phone_colors.color_id', '=','phone_details.color_id')
-            ->paginate(16);
+                ->join('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id')
+                ->paginate(16);
         } else {
             $brand = Brand::where('brand_id', '=', $brand_id)->first();
             $title = $brand->brand_name;
             $products = $brand->PhoneDetails();
         }
-        return view('product.products', compact('title', 'brands' ,'products'));
+        return view('product.products', compact('title', 'brands', 'products'));
     }
 
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
+        $search_string = $request->search_string;
         $brands = Brand::all();
-        $products = PhoneDetails::join('phones', 'phones.phone_id', '=' ,'phone_details.phone_id')
-        ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
-        ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
-        ->where('phones.phone_name', 'like', '%' . $request->search_string . '%')
-        ->orWhere('phone_specifics.specific_name', 'like', '%' . $request->search_string . '%')
-        ->paginate(16);
+        $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+            ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+            ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+            ->where(function($query) use ($search_string) {
+                $query->where('phones.phone_name', 'like', '%' . $search_string . '%')
+                ->orWhere('phone_specifics.specific_name', 'like', '%' . $search_string . '%');
+            })->paginate(16);
         $title = 'Tìm thấy ' . $products->total() . ' kết quả khớp với từ khóa "' . $request->search_string . '".';
         session(['search' => $request->search_string]);
         return view('product.products', compact('title', 'brands', 'products'));
     }
 
-    public function filter(Request $request) {
+    public function filter(Request $request)
+    {
         $brands = Brand::all();
         $products = new PhoneDetails();
-        $products = $products->join('phones', 'phones.phone_id', '=' ,'phone_details.phone_id')
-            ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
-            ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
-            ->join('brand', 'brand.brand_id', 'phones.brand_id');
+        $products = $products->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+        ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+        ->join('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id');
         if (session('search', 'default') != 'default') {
             $search_string = session('search');
-            $products = $products->where('phones.phone_name', 'like', '%' . $search_string . '%')
-            ->orWhere('phone_specifics.specific_name', 'like', '%' . $search_string . '%');
+            $products = $products->where(function($query) use ($search_string) {
+                $query->where('phones.phone_name', 'like', '%' . $search_string . '%')
+                ->orWhere('phone_specifics.specific_name', 'like', '%' . $search_string . '%');
+            });
         }
-        
+
         $preFilter1 = '.';
         $preFilter2 = 'phone_details.';
         $preFilter3 = '.';
@@ -99,6 +104,6 @@ class ProductController extends Controller
 
         $products = $products->paginate(16);
 
-        return response(view('product.products', compact('brands','products'))->render());
+        return response(view('product.products', compact('brands', 'products'))->render());
     }
 }
