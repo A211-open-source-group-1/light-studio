@@ -10,9 +10,6 @@ function defaultSubmit() {
             async: false,
             data: $('#filterForm').serialize(),
             success: function (response) {
-                // var newDoc = document.open("text/html", "replace");
-                // newDoc.write(response);
-                // newDoc.close();
                 $('#product-section').html($(response).find('#product-section').html());
             },
             complete: function () {
