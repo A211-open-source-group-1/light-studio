@@ -21,7 +21,6 @@
     </div>
   </div>
 </div>
-
 @php
     $rem = Cookie::get('rem');
     $phone_number = Cookie::get('phone_number');
@@ -132,12 +131,3 @@
     </div>
   </div>
 </div>
-<script>
-  function showToast() {
-    var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-    var toastList = toastElList.map(function(toastEl) {
-      return new bootstrap.Toast(toastEl)
-    })
-    toastList.forEach(toast => toast.show())
-  }
-</script>
