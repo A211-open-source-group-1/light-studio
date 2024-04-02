@@ -19,8 +19,9 @@ class ProductController extends Controller
         }
         $other_details_specs = $current_details->parentPhone()->first()->Specifics()->get();
         $other_details_colors = $current_details->parentSpecific()->first()->detailsColorsOfThisSpecs();
+        $images = $current_details->childImages()->get();
 
-        return view('product.detail', compact('phone_id', 'detail_id', 'current_details', 'other_details_colors', 'other_details_specs'));
+        return view('product.detail', compact('phone_id', 'detail_id', 'current_details', 'other_details_colors', 'other_details_specs', 'images'));
     }
 
     public function products($brand_id)

@@ -10,41 +10,57 @@
                         <div class="col-12 border-bottom">
                             <h4>PRODUCT NAME</h4>
                         </div>
-                        <div class="col-12 col-lg-8 mt-3 p-0">
-                            <div id="carousel" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"
-                                        aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1"
-                                        aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2"
-                                        aria-label="Slide 3"></button>
+                        <div class="col-12 col-lg-6 mt-3 p-0">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-1">
+
+                                    </div>
+                                    @php
+                                        $num = 1;
+                                    @endphp
+                                    <div class="col-10">
+                                        <div id="carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                            <div class="carousel-indicators">
+                                                <button type="button" data-bs-target="#carousel"
+                                                        data-bs-slide-to="0" class="active"
+                                                        aria-current="true" aria-label="Slide 0"></button>
+                                                @foreach ($images as $row)
+                                                    <button type="button" data-bs-target="#carousel"
+                                                        data-bs-slide-to="{{ $num }}" class="active"
+                                                        aria-current="true" aria-label="Slide {{ $num++ }}"></button>
+                                                @endforeach
+                                            </div>
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active text-center">
+                                                    <img src="{{ asset('/image/' . $current_details->thumbnail_img) }}"
+                                                        class="d-block w-100 h-100 product-img" alt="...">
+                                                </div>
+                                                @foreach ($images as $row)
+                                                    <div class="carousel-item">
+                                                        <img src="{{ asset('/image/' . $row->file_path) }}"
+                                                            class="d-block w-100 h-100 product-img" alt="...">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
+                                                data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button" data-bs-target="#carousel"
+                                                data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+
+                                    </div>
                                 </div>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="{{ asset('/image/banner1.jpg') }}" class="d-block w-100 product-img"
-                                            alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="{{ asset('/image/banner2.jpg') }}" class="d-block w-100 product-img"
-                                            alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="{{ asset('/image/banner3.jpg') }}" class="d-block w-100 product-img"
-                                            alt="...">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel"
-                                    data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carousel"
-                                    data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
+
                             <div class="container p-1 border-top border-end">
                                 <h5 class="mt-3">Chọn phiên bản:</h5>
                                 <div class="pb-2 text-center">
@@ -64,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-4 mt-3">
+                        <div class="col-12 col-lg-6 mt-3">
                             <h5 class="pb-2 border-bottom">Tình trạng: <span class="text-success fw-bold">Còn hàng</span>
                             </h5>
                             <h5 class="pb-2 border-bottom">Giá: <span

@@ -21,16 +21,16 @@ button {
     z-index: 9;
 }
 
-.product-img {
-    height: 250px;
-}
-
 .bg-toast-success {
     background-color: #DDFFD7;
 }
 
 .bg-toast-alert {
     background-color: #FF8B8B;
+}
+
+.product-img {
+  min-height: 480px;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -182,9 +182,9 @@ input[type=number] {
   }
 
 @media screen and (min-width: 576px) {
-    .product-img {
-        height: 250px;
-    }
+  .product-img {
+    min-height: 320px;
+  }
     .logo-banner {
         width: 8rem;
         height: 2.13rem;
@@ -192,9 +192,9 @@ input[type=number] {
 }
 
 @media screen and (min-width: 768px) {
-    .product-img {
-        height: 300px;
-    }
+  .product-img {
+    min-height: 370px;
+  }
     .logo-banner {
         width: 8rem;
         height: 2.13rem;
@@ -202,9 +202,9 @@ input[type=number] {
 }
 
 @media screen and (min-width: 992px) {
-    .product-img {
-        height: 350px;
-    }
+  .product-img {
+    min-height: 440px;
+  }
     .logo-banner {
         width: 12rem;
         height: 3.2rem;
@@ -212,7 +212,7 @@ input[type=number] {
 }
 
 @media screen and (min-width: 1200px) {
-    .product-img {
-        height: 450px;
-    }
+  .product-img {
+    min-height: 512px;
+  }
 }

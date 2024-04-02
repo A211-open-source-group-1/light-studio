@@ -3,7 +3,7 @@
     <div class="container-fluid p-0 m-1">
         <div class="row border-bottom">
             <div class="col-12">
-                <h5>{{ $title ?? ''}}</h5>
+                <h5>{{ $title ?? '' }}</h5>
             </div>
         </div>
         <script src="{{ asset('/js/productHandler.js') }}"></script>
@@ -68,8 +68,8 @@
             <div class="row mb-3 align-items-md-stretch">
                 @foreach ($products as $row)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-                        <div class="card zoom-on" style="">
-                            <img class="card-img-top card-img-product" src="{{ asset('/image/sample-card.jpg') }}">
+                        <div class="card zoom-on w-100 h-100" style="">
+                            <img class="card-img-top card-img-product w-100 h-100" src="{{ asset('/image/' . $row->thumbnail_img) }}">
                             <div class="card-body text-center">
                                 <a class="text-decoration-none"
                                     href="{{ URL::to('/phone/' . $row->parentPhone->phone_id . '/detail/' . $row->phone_details_id) . '/specs/0' }}">
