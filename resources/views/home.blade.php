@@ -40,7 +40,7 @@
               <img class="card-img-top card-img-product" src="{{asset('/image/sample-card.jpg')}}">
               <div class="card-body text-center">
     <a class="text-decoration-none" href="{{ URL::to('/phone/' . $row->phone_id . '/detail/' . $row->phone_details_id) . '/specs/0' }}">
-        <h6 class="card-title fw-bold truncate-text">{{ $row->phone_name ?? 'null' . ' ' . $row->specific_name ?? 'null' . ' ' . $row->color_name ?? 'null'}}</h6>
+        <h6 class="card-title fw-bold truncate-text">{{ ($row->phone_name ?? 'null') . ' ' . ($row->specific_name ?? 'null') . ' ' . ($row->color_name ?? 'null')}}</h6>
     </a>
   
     <h6 class="text-danger fw-bold">{{ number_format($row->price, 0, ',', '.') ?? 'null' }} VNĐ</h6>
