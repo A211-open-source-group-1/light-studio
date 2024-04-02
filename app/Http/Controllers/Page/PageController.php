@@ -18,7 +18,7 @@ class PageController extends Controller
         $phones = PhoneDetails::all()->take(10);
         return view('home', compact('phones'));
     }
-
+    
     public function login()
     {
         

@@ -21,32 +21,32 @@ class AuthController extends Controller
             'phone_number.required' => 'Vui lòng nhập số điện thoại.',
             'password.required' => 'Vui lòng nhập mật khẩu.'
         ]);
-    
+
         $credentials = $request->only('phone_number', 'password');
-    
+
         if (Auth::attempt($credentials)) {
             $rem = $request->boolean('remember');
-    
+
             if ($rem == 1) {
                 $user = Auth::user();
-                cookie()->queue('phone_number',$request->input('phone_number'), 7 * 24 * 60);
+                cookie()->queue('phone_number', $request->input('phone_number'), 7 * 24 * 60);
                 cookie()->queue('password', $request->input('password'), 7 * 24 * 60);
                 cookie()->queue('rem', $rem, 7 * 24 * 60);
             } else {
                 if (Cookie::has('rem')) {
                     return redirect()->back()
-                    ->withCookie(cookie()->forget('rem'))
-                    ->withCookie(cookie()->forget('phone_number'))
-                    ->withCookie(cookie()->forget('password')); 
+                        ->withCookie(cookie()->forget('rem'))
+                        ->withCookie(cookie()->forget('phone_number'))
+                        ->withCookie(cookie()->forget('password'));
                 }
             }
-    
+
             return redirect()->back();
         }
-    
+
         return redirect()->back()->withErrors('Sai mật khẩu vui lòng thử lại');
     }
-    
+
     public function User_info()
     {
         if (Auth::id()) {
@@ -87,10 +87,10 @@ class AuthController extends Controller
                         $user->update(['password' => bcrypt($request->input('newPassword'))]);
                         return redirect('/logout');
                     } else {
-                       return redirect()->back()->withErrors('MẬT KHẨU XÁC THỰC KHÔNG KHỚP');
+                        return redirect()->back()->withErrors('MẬT KHẨU XÁC THỰC KHÔNG KHỚP');
                     }
                 } else {
-                   return redirect()->back()->withErrors('MẬT KHẨU HIỆN TẠI KHÔNG KHỚP');
+                    return redirect()->back()->withErrors('MẬT KHẨU HIỆN TẠI KHÔNG KHỚP');
                 }
             }
         }
@@ -139,18 +139,32 @@ class AuthController extends Controller
     {
         $phone_number = $request->input('phone_number');
         $user = User::where('phone_number', $phone_number)->first();
-        
-        if($user)
-        {
-            return "Tim thay sdt";
-        }
-        else
-        {
+
+        if ($user) {
+            return view("auth.ResetPassword", compact('user'));
+        } else {
             return "??????";
         }
     }
+    public function resetPassword(Request $request)
+    {
+        $phone_number = $request->phone_number;
+        $user  = User::where('phone_number', $phone_number)->first();
 
-    public function admin(Request $request) {
+        if ($user) {
+            if($request->newPassword === $request->rePassword)
+            {
+                $user->update(['password' => bcrypt($request->newPassword)]);
+                return redirect('/');
+            }
+            else{
+                return view('fallout');
+            }
+        }
+        return view('fallout');
+    }
+    public function admin(Request $request)
+    {
         return view('auth.adminlogin');
     }
 }

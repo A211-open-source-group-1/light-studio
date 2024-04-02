@@ -28,4 +28,5 @@ class PhoneDetails extends Model
         $siblings = PhoneDetails::where('phone_details.phone_id', '=', $this->phone_id)->join('phone_colors', 'phone_details.color_id', '=', 'phone_colors.color_id')->get();
         return $siblings;
     }
+    
 }

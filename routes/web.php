@@ -19,16 +19,21 @@ use App\Http\Controllers\Cart\CartController;
 Route::get('', [PageController::class, 'index']);
 Route::get('page/AboutUs', [PageController::class, 'aboutus'])->name('aboutus');
 Route::get('phone/{phone_id}/detail/{detail_id}/specs/{specs_id}', [ProductController::class, 'detail']);
+Route::get('product/brand/{brand_id}', [ProductController::class, 'products'])->name('products');
+
+
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('product/brand/{brand_id}', [ProductController::class, 'products'])->name('products');
 Route::get('Auth/info', [AuthController::class, 'User_info'])->name('user.info');
 Route::post('/update', [AuthController::class, 'update'])->name('update');
 Route::get('Change/Password', [AuthController::class, 'ChangePassword'])->name('ChangePassword');
 Route::post('/handleChangePassword',[AuthController::class,'handleChangePassword'])->name('handleChangePassword');
 Route::get('identify',[AuthController::class,'identify'])->name('identify');
 Route::post('findNumberPhone',[AuthController::class,'findNumberPhone'])->name('findNumberPhone');
+Route::get('resetPassword',[AuthController::class,'resetPassword'])->name('resetPassword');
+
+
 Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::get('/addToCart/{details_id}', [CartController::class, 'addToCart'])->name('addToCart');
 Route::get('/onActionProduct/{id}/{action}', [CartController::class, 'onActionProduct'])->name('onActionProduct');
@@ -36,4 +41,8 @@ Route::post('search', [ProductController::class, 'search'])->name('search');
 Route::get('search', [ProductController::class, 'search'])->name('search');
 Route::post('filter', [ProductController::class, 'filter'])->name('filter');
 Route::get('filter', [ProductController::class, 'filter'])->name('filter');
+
+
 Route::get('admin', [AuthController::class, 'admin'])->name('adminLogins');
+
+
