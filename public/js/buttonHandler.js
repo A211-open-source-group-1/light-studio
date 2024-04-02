@@ -1,14 +1,14 @@
-$(document).ready(function() {
-    $('#login-btn').click(function() {
+$(document).ready(function () {
+    $('#login-btn').click(function () {
         $('#loginModal').modal('show')
     })
 
-    $('#login-link').click(function() {
+    $('#login-link').click(function () {
         $('#loginModal').modal('show')
     })
 
-    
-    $('#register-btn').click(function() {
+
+    $('#register-btn').click(function () {
         $('#registerModal').modal('show')
     })
 })

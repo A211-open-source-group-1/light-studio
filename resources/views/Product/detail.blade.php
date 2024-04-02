@@ -8,7 +8,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 border-bottom">
-                            <h4>{{$current_details->parentPhone->phone_name}}</h4>
+                            <h4>{{ $current_details->parentPhone->phone_name }}</h4>
                         </div>
                         <div class="col-12 col-lg-6 mt-3 p-0">
                             <div class="container-fluid">
@@ -22,9 +22,8 @@
                                     <div class="col-12 col-lg-10">
                                         <div id="carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
                                             <div class="carousel-indicators">
-                                                <button type="button" data-bs-target="#carousel"
-                                                        data-bs-slide-to="0" class="active"
-                                                        aria-current="true" aria-label="Slide 0"></button>
+                                                <button type="button" data-bs-target="#carousel" data-bs-slide-to="0"
+                                                    class="active" aria-current="true" aria-label="Slide 0"></button>
                                                 @foreach ($images as $row)
                                                     <button type="button" data-bs-target="#carousel"
                                                         data-bs-slide-to="{{ $num }}" class="active"

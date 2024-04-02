@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    $('#formCart').submit(function(e) {
+$(document).ready(function () {
+    $('#formCart').submit(function (e) {
         e.preventDefault();
     })
 })
