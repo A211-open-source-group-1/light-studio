@@ -39,27 +39,21 @@
                     </select>
                 </div>
                 <div class="col-lg-2 col-md-4 col-6 pe-0">
-                    <select class="form-select" name="name" onchange="defaultSubmit()">
-                        <option selected disabled>Sắp xếp theo tên</option>
-                        <option>Mặc định</option>
-                        <option value="asc">A - Z</option>
-                        <option value="desc">Z - A</option>
-                    </select>
+
                 </div>
                 <div class="col-lg-2 col-md-4 col-6 pe-0">
-                    <select class="form-select" name="price" onchange="defaultSubmit()">
-                        <option selected disabled>Sắp xếp theo giá</option>
-                        <option>Mặc định</option>
-                        <option value="asc">Giá tăng dần</option>
-                        <option value="desc">Giá giảm dần</option>
-                    </select>
+
                 </div>
                 <div class="col-lg-2 col-md-4 col-6 pe-0">
-                    <select class="form-select" name="review" onchange="defaultSubmit()">
-                        <option selected disabled>Sắp xếp theo đánh giá</option>
+                    <select class="form-select" name="sort" onchange="defaultSubmit()">
+                        <option selected disabled>Sắp xếp</option>
                         <option>Mặc định</option>
-                        <option value="asc">Đánh giá cao nhất</option>
-                        <option value="desc">Đánh giá tệ nhất</option>
+                        <option value="name_asc">Tên giảm dần (A - Z)</option>
+                        <option value="name_desc">tên tăng dần (Z - A)</option>
+                        <option value="price_asc">Giá tăng dần</option>
+                        <option value="price_desc">Giá giảm dần</option>
+                        <option value="review_asc">Đánh giá cao nhất</option>
+                        <option value="review_desc">Đánh giá tệ nhất</option>
                     </select>
                 </div>
             </div>
