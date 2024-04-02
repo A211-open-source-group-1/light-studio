@@ -36,3 +36,4 @@ Route::post('search', [ProductController::class, 'search'])->name('search');
 Route::get('search', [ProductController::class, 'search'])->name('search');
 Route::post('filter', [ProductController::class, 'filter'])->name('filter');
 Route::get('filter', [ProductController::class, 'filter'])->name('filter');
+Route::get('admin', [AuthController::class, 'admin'])->name('adminLogins');

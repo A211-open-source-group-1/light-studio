@@ -149,4 +149,8 @@ class AuthController extends Controller
             return "??????";
         }
     }
+
+    public function admin(Request $request) {
+        return view('auth.adminlogin');
+    }
 }
