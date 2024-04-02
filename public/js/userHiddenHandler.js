@@ -21,7 +21,7 @@ function check_numberPhone() {
     var allPhoneNumbers = [].concat(viettel, vinaphone, mobifone, vietnamobile, gmobile, itelecom);
     document.getElementById("errorPhoneNumber").innerHTML = "";
     var phone_number = document.getElementById('phoneNumber').value;
-    
+
     if (phone_number === "") {
         document.getElementById("errorPhoneNumber").innerHTML = "Không được bỏ trống số điện thoại";
         return false;
@@ -69,24 +69,21 @@ function check_email() {
     }
 }
 
-function check_fullname()
-{
-    let nameRegex =/^[\p{L}\s]+$/    ;
+function check_fullname() {
+    let nameRegex = /^[\p{L}\s]+$/;
     var fullname = document.getElementById('fullname').value;
-    document.getElementById('errorFullname').innerHTML="";
-    if(fullname==="")
-    {
-        document.getElementById('errorFullname').innerHTML="Không được bỏ trống tên";
+    document.getElementById('errorFullname').innerHTML = "";
+    if (fullname === "") {
+        document.getElementById('errorFullname').innerHTML = "Không được bỏ trống tên";
 
         return false;
     }
-    if(!nameRegex.test(fullname))
-    {
-        document.getElementById('errorFullname').innerHTML="Tên của bạn không đúng";
+    if (!nameRegex.test(fullname)) {
+        document.getElementById('errorFullname').innerHTML = "Tên của bạn không đúng";
 
         return false;
     }
-    else{
+    else {
 
         return true;
     }
@@ -95,7 +92,7 @@ function check_fullname()
 function check_password() {
     let passwordRegex = /^(?=.*[!@#$%^&*()])[A-Z].{9,}$/;
 
-    var password =  document.getElementById("password1").value;
+    var password = document.getElementById("password1").value;
     var repassword = document.getElementById('repassword').value;
     if (password === "") {
         document.getElementById('errorPassword').innerHTML = "Không được bỏ trống mật khẩu";
@@ -142,7 +139,7 @@ function handle_validate() {
     }
 
 
-   
+
     // Nếu tất cả các điều kiện kiểm tra đều đã qua, gửi biểu mẫu đi
     if (isFormValid) {
         document.getElementById('registerForm').submit();
@@ -150,24 +147,20 @@ function handle_validate() {
 }
 
 
-function check_Login()
-{
+function check_Login() {
     var phone_number = document.getElementById('phone_number').value;
     var password = document.getElementById('password').value;
     var flag = true;
-    if(phone_number.length==0)
-    {
-        document.getElementById('errorPhoneNumberLogin').innerHTML="Vui lòng nhập thông tin đăng nhập";
-        flag=false;
+    if (phone_number.length == 0) {
+        document.getElementById('errorPhoneNumberLogin').innerHTML = "Vui lòng nhập thông tin đăng nhập";
+        flag = false;
     }
-    if(password.length==0)
-    {
-        document.getElementById('errorPasswordLogin').innerHTML="Vui lòng nhập mật khẩu";
-        flag=false;
+    if (password.length == 0) {
+        document.getElementById('errorPasswordLogin').innerHTML = "Vui lòng nhập mật khẩu";
+        flag = false;
     }
 
-    if(flag===true)
-    {
+    if (flag === true) {
         document.getElementById('loginForm').submit();
     }
 
