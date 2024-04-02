@@ -8,18 +8,18 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 border-bottom">
-                            <h4>PRODUCT NAME</h4>
+                            <h4>{{$current_details->parentPhone->phone_name}}</h4>
                         </div>
                         <div class="col-12 col-lg-6 mt-3 p-0">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-1">
+                                    <div class="col-0 col-lg-1">
 
                                     </div>
                                     @php
                                         $num = 1;
                                     @endphp
-                                    <div class="col-10">
+                                    <div class="col-12 col-lg-10">
                                         <div id="carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
                                             <div class="carousel-indicators">
                                                 <button type="button" data-bs-target="#carousel"
@@ -55,7 +55,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-0 col-lg-1">
 
                                     </div>
                                 </div>
