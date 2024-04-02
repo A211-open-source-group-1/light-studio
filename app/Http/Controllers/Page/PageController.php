@@ -15,7 +15,11 @@ class PageController extends Controller
      */
     public function index()
     {
-        $phones = PhoneDetails::all()->take(10);
+        $phones = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+            ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+            ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+            ->take(10)
+            ->get();
         return view('home', compact('phones'));
     }
     

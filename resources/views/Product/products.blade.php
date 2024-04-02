@@ -74,7 +74,7 @@
                                 <a class="text-decoration-none"
                                     href="{{ URL::to('/phone/' . $row->parentPhone->phone_id . '/detail/' . $row->phone_details_id) . '/specs/0' }}">
                                     <h6 class="card-title fw-bold truncate-text">
-                                        {{ $row->parentPhone->phone_name ?? 'null' . ' ' . $row->parentSpecific->specific_name ?? 'null' . ' ' . $row->parentColor->color_name ?? 'null' }}
+                                        {{ $row->phone_name ?? 'null' . ' ' . $row->specific_name ?? 'null' . ' ' . $row->color_name ?? 'null' }}
                                     </h6>
                                 </a>
                                 <h6 class="text-danger fw-bold">{{ number_format($row->price, 0, ',', '.') ?? 'null' }} VNĐ
