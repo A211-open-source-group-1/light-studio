@@ -92,16 +92,37 @@ class ProductController extends Controller
             $products = $products->where($preFilter2 . 'price', '>=', 15000000);
         }
 
-        if ($request->name == 'asc') {
-            $products = $products->orderBy($preFilter4 . 'phone_name', 'asc');
-        } else if ($request->name == 'desc') {
-            $products = $products->orderBy($preFilter4 . 'phone_name', 'desc');
-        }
+        // if ($request->sort == 'asc') {
+            
+        // } else if ($request->name == 'desc') {
+            
+        // }
 
-        if ($request->price == 'asc') {
-            $products = $products->orderBy($preFilter5 . 'price', 'asc');
-        } else if ($request->price == 'desc') {
-            $products = $products->orderBy($preFilter5 . 'price', 'desc');
+        // if ($request->price == 'asc') {
+            
+        // } else if ($request->price == 'desc') {
+            
+        // }
+        
+        switch ($request->sort) {
+            case 'name_asc': {
+                $products = $products->orderBy($preFilter4 . 'phone_name', 'asc');
+            }
+            case 'name_desc': {
+                $products = $products->orderBy($preFilter4 . 'phone_name', 'desc');
+            }
+            case 'price_asc': {
+                $products = $products->orderBy($preFilter5 . 'price', 'asc');
+            }
+            case 'price_desc': {
+                $products = $products->orderBy($preFilter5 . 'price', 'desc');
+            }
+            case 'review_asc': {
+
+            }
+            case 'review_desc': {
+
+            }
         }
 
         $products = $products->paginate(16);

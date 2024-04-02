@@ -1,6 +1,6 @@
 @extends('templates.app')
 @section('content')
-    <div class="container-fluid p-0 m-1">
+    <div class="container-fluid p-0">
         <div class="row border-bottom">
             <div class="col-12">
                 <h5>{{ $title ?? '' }}</h5>
@@ -10,7 +10,7 @@
         <form id="filterForm">
             @csrf
             <div id="filterDiv" class="row border-bottom mb-3 mt-1 pb-1">
-                <div class="col-lg-2 col-md-4 col-6 pe-0">
+                <div class="col-lg-3 col-md-4 col-6 pe-0">
                     <select class="form-select" name="brand" onchange="defaultSubmit()">
                         <option selected disabled>Thương hiệu</option>
                         <option>Tất cả</option>
@@ -19,7 +19,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-lg-2 col-md-4 col-6 pe-0">
+                <div class="col-lg-3 col-md-4 col-6 pe-0">
                     <select class="form-select" name="priceRange" onchange="defaultSubmit()">
                         <option selected disabled>Khoảng giá</option>
                         <option value="default">Mặc định</option>
@@ -30,7 +30,7 @@
                         <option value="range-5">Trên 15 triệu</option>
                     </select>
                 </div>
-                <div class="col-lg-2 col-md-4 col-6 pe-0">
+                <div class="col-lg-3 col-md-4 col-6 pe-0">
                     <select class="form-select" name="os" onchange="defaultSubmit()">
                         <option selected disabled>Hệ điều hành</option>
                         <option value="android">Android</option>
@@ -38,18 +38,12 @@
                         <option>Khác</option>
                     </select>
                 </div>
-                <div class="col-lg-2 col-md-4 col-6 pe-0">
-
-                </div>
-                <div class="col-lg-2 col-md-4 col-6 pe-0">
-
-                </div>
-                <div class="col-lg-2 col-md-4 col-6 pe-0">
+                <div class="col-lg-3 col-md-4 col-6 pe-0">
                     <select class="form-select" name="sort" onchange="defaultSubmit()">
                         <option selected disabled>Sắp xếp</option>
                         <option>Mặc định</option>
-                        <option value="name_asc">Tên giảm dần (A - Z)</option>
-                        <option value="name_desc">tên tăng dần (Z - A)</option>
+                        <option value="name_asc">Tên giảm dần</option>
+                        <option value="name_desc">Tên tăng dần</option>
                         <option value="price_asc">Giá tăng dần</option>
                         <option value="price_desc">Giá giảm dần</option>
                         <option value="review_asc">Đánh giá cao nhất</option>
