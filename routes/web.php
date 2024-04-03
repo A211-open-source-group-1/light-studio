@@ -20,8 +20,6 @@ Route::get('', [PageController::class, 'index']);
 Route::get('page/AboutUs', [PageController::class, 'aboutus'])->name('aboutus');
 Route::get('phone/{phone_id}/detail/{detail_id}/specs/{specs_id}', [ProductController::class, 'detail']);
 Route::get('product/brand/{brand_id}', [ProductController::class, 'products'])->name('products');
-
-
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
@@ -44,5 +42,5 @@ Route::get('filter', [ProductController::class, 'filter'])->name('filter');
 
 
 Route::get('admin', [AuthController::class, 'admin'])->name('adminLogins');
-
+Route::post('authAdmin',[AuthController::class,'authAdmin'])->name('authAdmin');
 

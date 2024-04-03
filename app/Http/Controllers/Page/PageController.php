@@ -54,32 +54,32 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PageModel $pageModel)
-    {
-        //
-    }
+    // public function show(PageModel $pageModel)
+    // {
+    //     //
+    // }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PageModel $pageModel)
-    {
-        //
-    }
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  */
+    // public function edit(PageModel $pageModel)
+    // {
+    //     //
+    // }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, PageModel $pageModel)
-    {
-        //
-    }
+    // /**
+    //  * Update the specified resource in storage.
+    //  */
+    // public function update(Request $request, PageModel $pageModel)
+    // {
+    //     //
+    // }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(PageModel $pageModel)
-    {
-        //
-    }
+    // /**
+    //  * Remove the specified resource from storage.
+    //  */
+    // public function destroy(PageModel $pageModel)
+    // {
+    //     //
+    // }
 }

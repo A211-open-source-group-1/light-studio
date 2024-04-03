@@ -163,8 +163,45 @@ class AuthController extends Controller
         }
         return view('fallout');
     }
-    public function admin(Request $request)
+    public function admin()
     {
-        return view('auth.adminlogin');
+        return view('auth.loginAdmin');
+    }
+
+    public function authAdmin(Request $request)
+    {
+        $request->validate([
+            'phone_number' => 'required',
+            'password' => 'required'
+        ], [
+            'phone_number.required' => 'Vui lòng nhập số điện thoại.',
+            'password.required' => 'Vui lòng nhập mật khẩu.'
+        ]);
+
+        $credentials = $request->only('phone_number', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // $rem = $request->boolean('remember');
+
+            // if ($rem == 1) {
+            //     $user = Auth::user();
+            //     cookie()->queue('phone_number', $request->input('phone_number'), 7 * 24 * 60);
+            //     cookie()->queue('password', $request->input('password'), 7 * 24 * 60);
+            //     cookie()->queue('rem', $rem, 7 * 24 * 60);
+            // } else {
+            //     if (Cookie::has('rem')) {
+            //         return ('auth.pageAdmin')
+            //             ->withCookie(cookie()->forget('rem'))
+            //             ->withCookie(cookie()->forget('phone_number'))
+            //             ->withCookie(cookie()->forget('password'));
+            //     }
+            // }
+                return ('auth.pageAdmin');
+
+        }
+        else{
+            return "??";
+        }
+
     }
 }
