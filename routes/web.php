@@ -42,5 +42,6 @@ Route::get('filter', [ProductController::class, 'filter'])->name('filter');
 
 
 Route::get('admin', [AuthController::class, 'admin'])->name('adminLogins');
-Route::post('authAdmin',[AuthController::class,'authAdmin'])->name('authAdmin');
-
+Route::post('authAdmin',[AuthController::class,'indexAdmin'])->name('authAdmin');
+Route::get('customer',[AuthController::class,'customer'])->name('customer');
+Route::get('index',[AuthController::class,'indexAdmin'])->name('indexAdmin');

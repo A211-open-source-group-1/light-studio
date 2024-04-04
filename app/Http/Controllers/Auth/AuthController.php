@@ -196,7 +196,7 @@ class AuthController extends Controller
             //             ->withCookie(cookie()->forget('password'));
             //     }
             // }
-                return ('auth.pageAdmin');
+                return view('auth.admin.index');
 
         }
         else{
@@ -204,4 +204,15 @@ class AuthController extends Controller
         }
 
     }
+    public function indexAdmin()
+    {
+        return view('auth.admin.index');
+    }
+
+    public function customer()
+    {
+        return view('Auth.Admin.customer');
+    }
+
+    
 }

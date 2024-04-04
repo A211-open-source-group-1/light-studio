@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/mycss.css')}}">
 </head>
-<body>
+<boady>
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg bg-light fixed-top mb-6">
             <div class="container-fluid">
@@ -122,5 +122,5 @@
 </div>
 <main class="container-fluid mt-6">
     <div class="row" style="height: 100px">
-        
+               
     </div>
