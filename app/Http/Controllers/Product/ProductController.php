@@ -129,4 +129,8 @@ class ProductController extends Controller
 
         return response(view('product.products', compact('brands', 'products'))->render());
     }
+
+    public function sampleWrite(Request $request) {
+        
+    }
 }
