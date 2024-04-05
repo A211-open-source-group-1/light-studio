@@ -131,6 +131,10 @@ class ProductController extends Controller
     }
 
     public function sampleWrite(Request $request) {
-        
+
+    }
+
+    public function sampleWriteIndex(Request $request) {
+        return view('product.SampleWriter');
     }
 }

@@ -45,3 +45,6 @@ Route::get('admin', [AuthController::class, 'admin'])->name('adminLogins');
 Route::post('authAdmin',[AuthController::class,'indexAdmin'])->name('authAdmin');
 Route::get('customer',[AuthController::class,'customer'])->name('customer');
 Route::get('index',[AuthController::class,'indexAdmin'])->name('indexAdmin');
+
+Route::get('sampleWriteIndex', [ProductController::class, 'sampleWriteIndex'])->name('sampleWriteIndex');
+Route::post('sampleWrite', [ProductController::class, 'sampleWrite'])->name('sampleWrite');
