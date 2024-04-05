@@ -15,9 +15,11 @@
     <script src="{{ asset('/js/userHiddenHandler.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/mycss.css') }}">
-    <!-- include summernote css/js -->
+    <link rel="stylesheet" href="{{ asset('/summernote/summernote-bs4.css') }}" />
+    <script src="{{ asset('/summernote/summernote-bs4.js') }}"></script>
 </head>
-<boady>
+
+<body>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-light fixed-top mb-6">
             <div class="container-fluid">

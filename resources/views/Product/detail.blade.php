@@ -139,8 +139,12 @@
                         <div class="col-12 border-top mt-3 p-0">
                             <h5>Thông tin sản phẩm</h5>
                             <div class="container-fluid" style="height: 180px">
-                                <div class="row text-center">
-                                    <h1>Đang cập nhật...</h1>
+                                <div class="row">
+                                    <div>
+                                        @php
+                                            echo $current_details->parentPhone->description
+                                        @endphp
+                                    </div>
                                 </div>
                             </div>
                         </div>

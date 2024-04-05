@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Product;
 use App\Http\Controllers\Controller;
 use App\Models\PhoneDetails;
 use App\Models\Brand;
+use App\Models\Phone;
+use DOMDocument;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -132,9 +135,22 @@ class ProductController extends Controller
 
     public function sampleWrite(Request $request) {
 
+        $description = $request->description;
+        $dom = new DOMDocument();
+        $dom->encoding = 'utf-8';
+        $dom->loadHTML(mb_convert_encoding($description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $description = $dom->saveHTML();
+    
+        $updatingPhone = Phone::where('phone_id', '=', $request->phone_id)->first();
+        $updatingPhone->update([
+            'description' => $description
+        ]);
+        return redirect()->back();
+
     }
 
     public function sampleWriteIndex(Request $request) {
-        return view('product.SampleWriter');
+        $phones = Phone::all();
+        return view('product.SampleWriter', compact('phones'));
     }
 }

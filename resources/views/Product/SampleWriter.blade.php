@@ -1,35 +1,36 @@
 @extends('templates.app')
 @section('content')
-
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <div>
-    <form method="post" action="/">
+    <form method="post" action="{{route('sampleWrite')}}">
         @csrf
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <select name="details_id">
-
+                    <label for="phone_id">Detail ID:</label>
+                    <select id="phone_id" name="phone_id">
+                        @foreach ($phones as $row)
+                            <option value="{{$row->phone_id}}">{{$row->phone_id}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <label for="description_s">
+                    <label for="description">
                         Description
                     </label>
-                    <textarea id="description_s" name="description_s">
+                    <textarea id="description" name="description">
+
                     </textarea>
-                    <button type="submit">
+                    <button type="submit" class="btn btn-primary">
                         Click me to update
                     </button>
                     <script>
                         $(document).ready(function() {
-                            $('#description_s').summernote({
+                            $('#description').summernote({
                                 placeholder: 'Type here...',
-                                height: 350,
-                                tabsize: 2
+                                tabsize: 2,
+                                height: 350
                             });
                         });
                     </script>
@@ -39,4 +40,13 @@
         
     </form>
 </div>
+<script>
+    $(document).ready(function() {
+        $('.summernote').summernote();
+        var noteBar = $('.note-toolbar');
+        noteBar.find('[data-toggle]').each(function() {
+            $(this).attr('data-bs-toggle', $(this).attr('data-toggle')).removeAttr('data-toggle');
+        });
+    });
+</script>
 @endsection
