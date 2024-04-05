@@ -93,17 +93,17 @@ class ProductController extends Controller
         }
 
         // if ($request->sort == 'asc') {
-            
+
         // } else if ($request->name == 'desc') {
-            
+
         // }
 
         // if ($request->price == 'asc') {
-            
+
         // } else if ($request->price == 'desc') {
-            
+
         // }
-        
+
         switch ($request->sort) {
             case 'name_asc': {
                 $products = $products->orderBy($preFilter4 . 'phone_name', 'asc');
