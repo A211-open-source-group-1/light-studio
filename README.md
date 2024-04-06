@@ -42,8 +42,8 @@
         <td>Co-Team Leader</td>
     </tr>
     <tr>
-        <td>...</td>
-        <td>...</td>
+        <td>2033210453</td>
+        <td>Hoàng Quốc Phong</td>
         <td>Member</td>
     </tr>
 </table>
