@@ -42,9 +42,11 @@ Route::get('filter', [ProductController::class, 'filter'])->name('filter');
 
 
 Route::get('admin', [AuthController::class, 'admin'])->name('adminLogins');
-Route::post('authAdmin',[AuthController::class,'indexAdmin'])->name('authAdmin');
+Route::post('authAdmin',[AuthController::class,'authAdmin'])->name('authAdmin');
 Route::get('customer',[AuthController::class,'customer'])->name('customer');
 Route::get('index',[AuthController::class,'indexAdmin'])->name('indexAdmin');
+Route::post('deleteUser',[AuthController::class,'deleteUser'])->name('deleteUser');
+
 
 Route::get('sampleWriteIndex', [ProductController::class, 'sampleWriteIndex'])->name('sampleWriteIndex');
 Route::post('sampleWrite', [ProductController::class, 'sampleWrite'])->name('sampleWrite');

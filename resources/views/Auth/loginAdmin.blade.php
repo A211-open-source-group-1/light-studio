@@ -18,7 +18,7 @@ $password=Cookie::get('password');
 @endphp
 
 <body>
-  <form action="authAdmin" method="post" id="loginForm">
+  <form action="{{ route('authAdmin') }}" method="post" id="loginForm">
     {{ csrf_field() }}
     <div class="imgcontainer">
       <img src="{{asset('/image/logo-banner.png')}}" alt="Avatar" class="avatar">
@@ -38,7 +38,7 @@ $password=Cookie::get('password');
       </div>
 
 
-      <button type="button" onclick="check_Login()">Đăng nhập</button>
+      <button type="button" onclick="check_Login()" class="btn-login">Đăng nhập</button>
       <div class="row">
         <div class="row">
           <label>
@@ -52,7 +52,6 @@ $password=Cookie::get('password');
         </div>
       </div>
     </div>
-
     </div>
   </form>
 </body>

@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="{{asset('/css/admincss.css')}}">
     <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('/js/sidebarAdmin.js')}}"></script>
-
-
 </head>
 <body>
 
 <div class="sidebar">
   <a href="{{ route('indexAdmin') }}" id="home">Home</a>
   <a href="{{route('customer')}}" id="customer">Khách hàng</a>
+  <a href="#" id="phone">Điện thoại</a>
+  <a href="#" id="order">Đơn hàng</a>
+
 </div>
 
 <div class="content">

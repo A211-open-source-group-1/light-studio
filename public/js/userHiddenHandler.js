@@ -70,7 +70,7 @@ function check_email() {
 }
 
 function check_fullname() {
-    let nameRegex = /^[\p{L}\s]+$/;
+    let nameRegex = /^[^\W\d_]+$/;
     var fullname = document.getElementById('fullname').value;
     document.getElementById('errorFullname').innerHTML = "";
     if (fullname === "") {

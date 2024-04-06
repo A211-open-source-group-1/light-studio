@@ -177,33 +177,15 @@ class AuthController extends Controller
             'phone_number.required' => 'Vui lòng nhập số điện thoại.',
             'password.required' => 'Vui lòng nhập mật khẩu.'
         ]);
-
+        
         $credentials = $request->only('phone_number', 'password');
-
         if (Auth::attempt($credentials)) {
-            // $rem = $request->boolean('remember');
-
-            // if ($rem == 1) {
-            //     $user = Auth::user();
-            //     cookie()->queue('phone_number', $request->input('phone_number'), 7 * 24 * 60);
-            //     cookie()->queue('password', $request->input('password'), 7 * 24 * 60);
-            //     cookie()->queue('rem', $rem, 7 * 24 * 60);
-            // } else {
-            //     if (Cookie::has('rem')) {
-            //         return ('auth.pageAdmin')
-            //             ->withCookie(cookie()->forget('rem'))
-            //             ->withCookie(cookie()->forget('phone_number'))
-            //             ->withCookie(cookie()->forget('password'));
-            //     }
-            // }
-                return view('auth.admin.index');
-
+            return redirect()->route('indexAdmin');
+        } else {
+            return redirect()->back()->withInput()->withErrors(['auth' => 'Thông tin đăng nhập không chính xác.']);
         }
-        else{
-            return "??";
-        }
-
     }
+    
     public function indexAdmin()
     {
         return view('auth.admin.index');
@@ -211,8 +193,24 @@ class AuthController extends Controller
 
     public function customer()
     {
-        return view('Auth.Admin.customer');
+        $user = User::all();
+        return view('Auth.Admin.customer.customer',compact('user'));
     }
-
-    
+  
+   public function deleteUser(Request $request)
+   {
+    try {
+        $user = User::find($request->deleteUserId);
+        if (!$user) {
+            throw new \Exception('User not found');
+        }
+       $user->delete();
+        $users = User::all();
+        $message = "Xóa thành công";    
+           return redirect()->back()->with('mess',$message);
+    } catch (\Exception $e) {
+        $message = "Xóa không thành công: " . $e->getMessage();
+        return redirect()->back()->with('mess',$message);
+    }
+    }    
 }

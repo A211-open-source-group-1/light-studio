@@ -140,7 +140,6 @@ class ProductController extends Controller
         $dom->encoding = 'utf-8';
         $dom->loadHTML(mb_convert_encoding($description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $description = $dom->saveHTML();
-    
         $updatingPhone = Phone::where('phone_id', '=', $request->phone_id)->first();
         $updatingPhone->update([
             'description' => $description
