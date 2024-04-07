@@ -20,8 +20,7 @@
     <div class="sidebar">
         <a href="{{ route('indexAdmin') }}" id="home">Trang chủ</a>
         <a href="{{ route('customer') }}" id="customer">Khách hàng</a>
-        <a href="#" id="phone">Điện thoại</a>
+        <a href="{{ route('productsIndex', ['type' => 0]) }}" id="products">Điện thoại</a>
         <a href="#" id="order">Đơn hàng</a>
-        <a href="#">Sản phẩm</a>
     </div>
     <div class="content">

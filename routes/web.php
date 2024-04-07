@@ -5,6 +5,7 @@ use App\Http\Controllers\Page\PageController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Cart\CartController;
+use App\Http\Controllers\Management\MProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +49,7 @@ Route::get('index',[AuthController::class,'indexAdmin'])->name('indexAdmin');
 Route::post('deleteUser',[AuthController::class,'deleteUser'])->name('deleteUser');
 Route::get('/get-user/{id}', [AuthController::class, 'getUser'])->name('getUser');
 Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
-
+Route::get('productsIndex/{type}', [MProductController::class, 'index'])->name('productsIndex');
 
 
 Route::get('sampleWriteIndex', [ProductController::class, 'sampleWriteIndex'])->name('sampleWriteIndex');
