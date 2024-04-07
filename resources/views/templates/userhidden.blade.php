@@ -131,3 +131,9 @@
     </div>
   </div>
 </div>
+
+@if(session('successful'))
+    <script>
+        alert("{{ session('successful') }}");
+    </script>
+@endif

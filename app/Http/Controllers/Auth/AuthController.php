@@ -119,7 +119,7 @@ class AuthController extends Controller
             $user->email = $request->input('email');
             $user->password = bcrypt($request->input('password'));
             $user->save();
-            return ('Đăng ký thành công');
+            return redirect()->back()->with('successful',"Đăng ký thành công");
         } else {
             return redirect()->back()->withErrors('Mật khẩu không chính xác');
         }
@@ -212,5 +212,26 @@ class AuthController extends Controller
         $message = "Xóa không thành công: " . $e->getMessage();
         return redirect()->back()->with('mess',$message);
     }
-    }    
+    }
+    
+    public function getUser($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            return response()->json($user);
+        } else {
+            return response()->json(['message' => 'Không tìm thấy'], 404);
+        }
+    }
+
+    public function editUser(Request $request)
+    {
+        $id = $request->only('id');
+        $user = User::where('id', $id)->update([
+            'name' => $request->input('fullname'), 'address' => $request->input('address'), 'gender' => $request->input('gender'), 'email' => $request->input('email')
+        ]);
+        return redirect()->back();
+    }
+
 }

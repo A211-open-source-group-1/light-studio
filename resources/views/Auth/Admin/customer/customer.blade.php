@@ -9,6 +9,10 @@
         </div>
     </div>
     <div class="row">
+            <label>Tìm kiếm</label>
+            <input type="search" name="search" placeholder="Tìm kiếm">
+    </div>
+    <div class="row">
         <table class="table" >
             <thead>
                 <tr>
@@ -33,9 +37,9 @@
                     <td>{{ $row->email }}</td>
                     <td>{{ $row->user_point }}</td>
                     <td>
-                        <a class="btn btn-primary">Sửa</a>
-                        &nbsp; &nbsp;
-                        <a class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteUser" data-user-id="{{$row->id}}" >Xóa</a>
+                        <a class="col btn btn-primary edit-btn" data-bs-toggle="modal" data-bs-target="#editUser" data-user-id="{{$row->id}}">Sửa</a>
+
+                        <a class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteUser" data-user-id="{{$row->id}}" >Xóa</a>
                     </td>
                 </tr>
                 @endforeach
@@ -48,6 +52,7 @@
 
 @if(session('mess'))
     <script>
-        alert({{ json_encode(session('mess')) }});
+        alert("{{ session('mess') }}");
     </script>
 @endif
+

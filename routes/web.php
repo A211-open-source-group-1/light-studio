@@ -46,6 +46,9 @@ Route::post('authAdmin',[AuthController::class,'authAdmin'])->name('authAdmin');
 Route::get('customer',[AuthController::class,'customer'])->name('customer');
 Route::get('index',[AuthController::class,'indexAdmin'])->name('indexAdmin');
 Route::post('deleteUser',[AuthController::class,'deleteUser'])->name('deleteUser');
+Route::get('/get-user/{id}', [AuthController::class, 'getUser'])->name('getUser');
+Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
+
 
 
 Route::get('sampleWriteIndex', [ProductController::class, 'sampleWriteIndex'])->name('sampleWriteIndex');

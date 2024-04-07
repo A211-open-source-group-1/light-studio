@@ -70,25 +70,25 @@ function check_email() {
 }
 
 function check_fullname() {
-    let nameRegex = /^[^\W\d_]+$/;
+    let nameRegex = /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/gm;
+
     var fullname = document.getElementById('fullname').value;
+
     document.getElementById('errorFullname').innerHTML = "";
+
     if (fullname === "") {
         document.getElementById('errorFullname').innerHTML = "Không được bỏ trống tên";
-
         return false;
     }
+
     if (!nameRegex.test(fullname)) {
         document.getElementById('errorFullname').innerHTML = "Tên của bạn không đúng";
-
         return false;
-    }
-    else {
-
+    } else {
         return true;
     }
-
 }
+
 function check_password() {
     let passwordRegex = /^(?=.*[!@#$%^&*()])[A-Z].{9,}$/;
 

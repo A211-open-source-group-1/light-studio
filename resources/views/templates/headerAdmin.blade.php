@@ -6,14 +6,17 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
+    <script src="https://kit.fontawesome.com/a597e9f72c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{asset('/css/admincss.css')}}">
     <script src="{{asset('/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('/js/sidebarAdmin.js')}}"></script>
+    
+
 </head>
 <body>
 
 <div class="sidebar">
-  <a href="{{ route('indexAdmin') }}" id="home">Home</a>
+  <a href="{{ route('indexAdmin') }}" id="home">Trang chủ</a>
   <a href="{{route('customer')}}" id="customer">Khách hàng</a>
   <a href="#" id="phone">Điện thoại</a>
   <a href="#" id="order">Đơn hàng</a>
