@@ -50,6 +50,7 @@ Route::post('deleteUser',[AuthController::class,'deleteUser'])->name('deleteUser
 Route::get('/get-user/{id}', [AuthController::class, 'getUser'])->name('getUser');
 Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
 Route::get('productsIndex/{type}', [MProductController::class, 'index'])->name('productsIndex');
+Route::get('/searchUser/{searchTerm}',[AuthController::class,'searchUser'])->name('searchUser');
 
 
 Route::get('sampleWriteIndex', [ProductController::class, 'sampleWriteIndex'])->name('sampleWriteIndex');

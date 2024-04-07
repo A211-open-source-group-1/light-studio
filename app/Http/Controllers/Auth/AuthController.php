@@ -105,25 +105,33 @@ class AuthController extends Controller
             'password' => 'required',
             'repassword' => 'required',
         ]);
-
+    
         $password = $request->input('password');
         $repassword = $request->input('repassword');
-
+    
         if ($password === $repassword) {
-
-            $user = new User();
-            $user->phone_number = $request->input('phoneNumber');
-            $user->name = $request->input('fullname');
-            $user->gender = $request->input('gender');
-            $user->user_point = 0;
-            $user->email = $request->input('email');
-            $user->password = bcrypt($request->input('password'));
-            $user->save();
-            return redirect()->back()->with('successful',"Đăng ký thành công");
+            try {
+                $user = new User();
+                $user->phone_number = $request->input('phoneNumber');
+                $user->name = $request->input('fullname');
+                $user->gender = $request->input('gender');
+                $user->user_point = 0;
+                $user->email = $request->input('email');
+                $user->password = bcrypt($request->input('password'));
+                $user->save();
+                return redirect()->back()->with('successful', "Đăng ký thành công");
+            } catch (\Illuminate\Database\QueryException $e) {
+                if ($e->errorInfo[1] == 1062) {
+                    return redirect()->back()->withErrors('Số điện thoại đã tồn tại');
+                } else {
+                    return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
+                }
+            }
         } else {
             return redirect()->back()->withErrors('Mật khẩu không chính xác');
         }
     }
+
 
     public function logout()
     {
@@ -233,5 +241,17 @@ class AuthController extends Controller
         ]);
         return redirect()->back();
     }
-
+    public function searchUser($searchTerm)
+    {
+        $users = User::where('name', 'like', '%' . $searchTerm . '%')
+                     ->orWhere('email', 'like', '%' . $searchTerm . '%')
+                     ->orWhere('id', 'like', '%' . $searchTerm . '%')
+                     ->orWhere('address', 'like', '%' . $searchTerm . '%')
+                     ->orWhere('phone_number', 'like', '%' . $searchTerm . '%')
+                     ->get();
+        if ($users->isEmpty()) {
+            return response()->json(['message' => 'Không tìm thấy người dùng phù hợp'], 404);
+        }
+        return response()->json($users);
+    }
 }

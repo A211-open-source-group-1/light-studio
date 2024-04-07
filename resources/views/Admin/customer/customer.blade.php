@@ -10,7 +10,7 @@
     </div>
     <div class="row">
             <label>Tìm kiếm</label>
-            <input type="search" name="search" placeholder="Tìm kiếm">
+            <input id = "search" type="search" name="search" placeholder="Tìm kiếm">
     </div>
     <div class="row">
         <table class="table" >
