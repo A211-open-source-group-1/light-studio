@@ -188,13 +188,13 @@ class AuthController extends Controller
     
     public function indexAdmin()
     {
-        return view('auth.admin.index');
+        return view('admin.index');
     }
 
     public function customer()
     {
         $user = User::all();
-        return view('Auth.Admin.customer.customer',compact('user'));
+        return view('Admin.customer.customer',compact('user'));
     }
   
    public function deleteUser(Request $request)
