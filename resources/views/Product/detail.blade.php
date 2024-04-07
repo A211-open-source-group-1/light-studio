@@ -138,7 +138,7 @@
                         </div>
                         <div class="col-12 border-top mt-3 p-0">
                             <h5>Thông tin sản phẩm</h5>
-                            <div class="container-fluid" style="height: 180px">
+                            <div class="container-fluid">
                                 <div class="row">
                                     <div>
                                         @php
