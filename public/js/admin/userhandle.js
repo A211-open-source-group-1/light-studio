@@ -26,12 +26,24 @@ $('.edit-btn').click(function () {
     });
 });
 
+$('.phone-edit-btn').click(function () {
+    var phoneId = $(this).data('phone-id');
+    $.ajax({
+        url: '/editPhone/' + phoneId,
+        type: 'GET',
+        success: function (response) {
+            $('#phone_id').val(response.phone_id);
+            $('#phone_name').val(response.phone_name);
+            $('#description').summernote('code', response.description)
+        },
+    });
+})
 
 $(document).ready(function () {
     $('#search').on('input', function () {
         var searchTerm = $(this).val();
         if (searchTerm.trim() === '') {
-            searchTerm = ''; 
+            searchTerm = '';
         }
         $.ajax({
             url: '/searchUser/' + searchTerm,
@@ -45,7 +57,7 @@ $(document).ready(function () {
                         '<td>' + user.phone_number + '</td>' +
                         '<td>' + user.gender + '</td>' +
                         '<td>' + (user.address ? user.address : '') + '</td>'
-                        '<td>' + user.email + '</td>' +
+                    '<td>' + user.email + '</td>' +
                         '<td>' + user.user_point + '</td>' +
                         '<td>' +
                         '<a class="col btn btn-primary edit-btn" data-bs-toggle="modal" data-bs-target="#editUser" data-user-id="' + user.id + '">Sửa</a>' +

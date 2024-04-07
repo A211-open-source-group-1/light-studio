@@ -52,6 +52,7 @@ Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
 Route::get('productsIndex/{type}', [MProductController::class, 'index'])->name('productsIndex');
 Route::get('/searchUser/{searchTerm}',[AuthController::class,'searchUser'])->name('searchUser');
 
-
+Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
+Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');
 Route::get('sampleWriteIndex', [ProductController::class, 'sampleWriteIndex'])->name('sampleWriteIndex');
 Route::post('sampleWrite', [ProductController::class, 'sampleWrite'])->name('sampleWrite');

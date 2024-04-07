@@ -12,6 +12,11 @@
             <input type="search" name="search" placeholder="Tìm kiếm">
         </div>
         <div class="row">
+            <div class="col-12 p-0 m-0">
+                <a href="#" class="btn btn-success mt-2 mb-2">Thêm mới</a>
+            </div>
+        </div>
+        <div class="row">
             <table class="table">
                 <thead>
                     <tr>
@@ -23,6 +28,7 @@
                         <th scope="col">Số màu sắc hiện có</th>
                         <th scope="col">Số phiên bản hiện có</th>
                         <th scope="col">Số sản phẩm con hiện có</th>
+                        <th scope="col">Hành động</th>
                     </tr>
                 </thead>
                 <tbody id="data-body">
@@ -31,16 +37,15 @@
                             <td scope="row">{{ $row->phone_id }}</td>
                             <td>{{ $row->phone_name }}</td>
                             <td>{{ $row->brand_name }}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{ $row->colors_count }}</td>
-                            <td>{{ $row->specifics_count }}</td>
-                            <td>{{ $row->phone_details_count }}</td>
+                            <td>{{ $row->category_name }}</td>
+                            <td>{{ $row->os_name }}</td>
+                            <td>{{ $row->colors_count }} <button type="button" class="btn btn-sm btn-warning">Chi tiết</button></td>
+                            <td>{{ $row->specifics_count }} <button type="button" class="btn btn-sm btn-warning">Chi tiết</button></td>
+                            <td>{{ $row->phone_details_count }} <button type="button" class="btn btn-sm btn-warning">Chi tiết</button></td>
                             <td>
-                                <a class="col btn btn-primary edit-btn" data-bs-toggle="modal" data-bs-target="#"
+                                <a class="col btn btn-primary phone-edit-btn" data-bs-toggle="modal" data-bs-target="#editPhone"
                                     data-phone-id="{{ $row->phone_id }}">Sửa</a>
-
-                                <a class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#"
+                                <a class="col btn btn-danger phone-edit-btn" data-bs-toggle="modal" data-bs-target="#"
                                     data-phone-id="{{ $row->phone_id }}">Xóa</a>
                             </td>
                         </tr>
