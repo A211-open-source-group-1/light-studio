@@ -242,7 +242,7 @@ class AuthController extends Controller
         return redirect()->back();
     }
     public function searchUser($searchTerm)
-    {
+    {        
         $users = User::where('name', 'like', '%' . $searchTerm . '%')
                      ->orWhere('email', 'like', '%' . $searchTerm . '%')
                      ->orWhere('id', 'like', '%' . $searchTerm . '%')
@@ -250,7 +250,8 @@ class AuthController extends Controller
                      ->orWhere('phone_number', 'like', '%' . $searchTerm . '%')
                      ->get();
         if ($users->isEmpty()) {
-            return response()->json(['message' => 'Không tìm thấy người dùng phù hợp'], 404);
+            $users = User::all();
+            return response()->json($users);
         }
         return response()->json($users);
     }
