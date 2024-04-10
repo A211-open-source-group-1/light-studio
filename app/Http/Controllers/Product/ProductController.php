@@ -52,6 +52,8 @@ class ProductController extends Controller
         $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
             ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
             ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+            ->join('brand', 'phones.brand_id', '=', 'brand.brand_id')
+            ->join('phone_os', 'phones.os_id', '=', 'phone_os.os_id')
             ->where(function ($query) use ($search_string) {
                 $query->where('phones.phone_name', 'like', '%' . $search_string . '%')
                     ->orWhere('phone_specifics.specific_name', 'like', '%' . $search_string . '%');
@@ -67,7 +69,10 @@ class ProductController extends Controller
         $products = new PhoneDetails();
         $products = $products->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
             ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
-            ->join('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id');
+            ->join('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id')
+            ->join('brand', 'phones.brand_id', '=', 'brand.brand_id')
+            ->join('phone_os', 'phones.os_id', '=', 'phone_os.os_id');
+        
         if (session('search', 'default') != 'default') {
             $search_string = session('search');
             $products = $products->where(function ($query) use ($search_string) {
@@ -83,6 +88,22 @@ class ProductController extends Controller
         $preFilter5 = 'phone_details.';
         $preFilter6 = 'phone_details.';
 
+        if ($request->brand) {
+            $products = $products->where('brand.brand_name', '=', $request->brand);
+        }
+
+        switch ($request->os) {
+            case '1': {
+                $products = $products->where('phone_os.os_id', '=', $request->os);
+            }
+            case '2': {
+                $products = $products->where('phone_os.os_id', '=', $request->os);
+            }
+            default: {
+
+            }
+        }
+
         if ($request->priceRange == 'range-1') { // below 2mils VND
             $products = $products->where($preFilter2 . 'price', '<', 2000000);
         } else if ($request->priceRange == 'range-2') { // from 2mils to 4mils VND
@@ -95,17 +116,6 @@ class ProductController extends Controller
             $products = $products->where($preFilter2 . 'price', '>=', 15000000);
         }
 
-        // if ($request->sort == 'asc') {
-
-        // } else if ($request->name == 'desc') {
-
-        // }
-
-        // if ($request->price == 'asc') {
-
-        // } else if ($request->price == 'desc') {
-
-        // }
 
         switch ($request->sort) {
             case 'name_asc': {

@@ -17,6 +17,7 @@
                         @foreach ($brands as $row)
                             <option value="{{ $row->brand_name }}">{{ $row->brand_name }}</option>
                         @endforeach
+                        <option value="2">2 value</option>
                     </select>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 pe-0">
@@ -33,8 +34,8 @@
                 <div class="col-lg-3 col-md-4 col-6 pe-0">
                     <select class="form-select" name="os" onchange="defaultSubmit()">
                         <option selected disabled>Hệ điều hành</option>
-                        <option value="android">Android</option>
-                        <option value="ios">iOS</option>
+                        <option value="1">iOS</option>
+                        <option value="2">Android</option>
                         <option>Khác</option>
                     </select>
                 </div>
