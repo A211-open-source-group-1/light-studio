@@ -28,9 +28,29 @@ $(document).ready(function () {
             url: '/editPhone/' + phoneId,
             type: 'GET',
             success: function (response) {
-                $('#phone_id').val(response.phone_id);
-                $('#phone_name').val(response.phone_name);
-                $('#description').summernote('code', response.description);
+                $('#phone_id').val(response[0].phone_id);
+                $('#phone_name').val(response[0].phone_name);
+                $('#description').summernote('code', response[0].description);
+                $('#brand_name').empty();
+                $('#category_name').empty();
+                $('#os_name').empty();
+                for (let i = 0; i < response[1].length; ++i) {
+                    $('#brand_name').append(
+                        '<option value="' + response[1][i].brand_id + '" ' + (response[0].brand_id == response[1][i].brand_id ? ' selected ' : '') + ' >' + response[1][i].brand_name + '</option>'
+                    );
+                }
+
+                for (let i = 0; i < response[2].length; ++i) {
+                    $('#category_name').append(
+                        '<option value="' + response[2][i].category_id + '" ' + (response[0].category_id == response[2][i].category_id ? ' selected ' : '') + '>' + response[2][i].category_name + '</option>'
+                    );
+                }
+
+                for (let i = 0; i < response[3].length; ++i) {
+                    $('#os_name').append(
+                        '<option value="' + response[3][i].os_id + '" ' + (response[0].os_id == response[3][i].os_id ? ' selected ' : '') + ' >' + response[3][i].os_name + '</option>'
+                    );
+                }
             }
         });
     });

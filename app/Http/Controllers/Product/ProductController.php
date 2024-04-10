@@ -50,10 +50,10 @@ class ProductController extends Controller
         $search_string = $request->search_string;
         $brands = Brand::all();
         $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
-            ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
-            ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
-            ->join('brand', 'phones.brand_id', '=', 'brand.brand_id')
-            ->join('phone_os', 'phones.os_id', '=', 'phone_os.os_id')
+            ->leftJoin('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+            ->leftJoin('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+            ->leftJoin('brand', 'phones.brand_id', '=', 'brand.brand_id')
+            ->leftJoin('phone_os', 'phones.os_id', '=', 'phone_os.os_id')
             ->where(function ($query) use ($search_string) {
                 $query->where('phones.phone_name', 'like', '%' . $search_string . '%')
                     ->orWhere('phone_specifics.specific_name', 'like', '%' . $search_string . '%');
@@ -68,10 +68,10 @@ class ProductController extends Controller
         $brands = Brand::all();
         $products = new PhoneDetails();
         $products = $products->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
-            ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
-            ->join('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id')
-            ->join('brand', 'phones.brand_id', '=', 'brand.brand_id')
-            ->join('phone_os', 'phones.os_id', '=', 'phone_os.os_id');
+            ->leftJoin('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+            ->leftJoin('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id')
+            ->leftJoin('brand', 'phones.brand_id', '=', 'brand.brand_id')
+            ->leftJoin('phone_os', 'phones.os_id', '=', 'phone_os.os_id');
         
         if (session('search', 'default') != 'default') {
             $search_string = session('search');
@@ -94,13 +94,19 @@ class ProductController extends Controller
 
         switch ($request->os) {
             case '1': {
-                $products = $products->where('phone_os.os_id', '=', $request->os);
+                $products = $products->where(function ($query) {
+                    $query->where('phones.os_id', '=', 1);
+                });
+                break;
             }
             case '2': {
-                $products = $products->where('phone_os.os_id', '=', $request->os);
+                $products = $products->where(function ($query) {
+                    $query->where('phones.os_id', '=', 2);
+                });
+                break;
             }
             default: {
-
+                break;
             }
         }
 
@@ -119,23 +125,25 @@ class ProductController extends Controller
 
         switch ($request->sort) {
             case 'name_asc': {
-                $products = $products->orderBy($preFilter4 . 'phone_name', 'asc');
+                $products = $products->orderBy($preFilter4 . 'phone_name', 'asc'); break;
             }
             case 'name_desc': {
-                $products = $products->orderBy($preFilter4 . 'phone_name', 'desc');
+                $products = $products->orderBy($preFilter4 . 'phone_name', 'desc'); break;
             }
             case 'price_asc': {
-                $products = $products->orderBy($preFilter5 . 'price', 'asc');
+                $products = $products->orderBy($preFilter5 . 'price', 'asc'); break;
             }
             case 'price_desc': {
-                $products = $products->orderBy($preFilter5 . 'price', 'desc');
+                $products = $products->orderBy($preFilter5 . 'price', 'desc'); break;
             }
             case 'review_asc': {
-
+                ;break;
             }
             case 'review_desc': {
-
+                ;break;
             }
+            default:
+                ;break;
         }
 
         $products = $products->paginate(16);

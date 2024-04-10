@@ -138,7 +138,7 @@
                                             <div class="form-group">
                                                 <label for="brand_name">Hãng</label>
                                                 <select class="form-control" id="brand_name" name="brand_id">
-                                                    <option>xxx</option>
+                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -146,7 +146,7 @@
                                             <div class="form-group">
                                                 <label for="category_name">Loại</label>
                                                 <select class="form-control" id="category_name" name="category_id">
-                                                    <option>xxx1</option>
+                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -154,7 +154,7 @@
                                             <div class="form-group">
                                                 <label for="os_name">Hệ điều hành</label>
                                                 <select class="form-control" id="os_name" name="os_id">
-                                                    <option>xxx1</option>
+                                                    
                                                 </select>
                                             </div>
                                         </div>
