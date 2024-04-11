@@ -190,7 +190,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('indexAdmin');
         } else {
-            return redirect()->back()->withInput()->withErrors(['auth' => 'Thông tin đăng nhập không chính xác.']);
+            return redirect()->back()->with(['auth' => 'Thông tin đăng nhập không chính xác.']);
         }
     }
     
