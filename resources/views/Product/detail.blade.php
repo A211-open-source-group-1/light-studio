@@ -56,7 +56,7 @@
                             <h5 class="mt-3">Chọn phiên bản:</h5>
                             <div class="pb-2 text-center">
                                 @foreach ($other_details_specs as $row)
-                                <a class="btn btn-sm btn-outline-secondary" href="{{ URL::to('/phone/' . $phone_id . '/detail/' . '0' . '/specs/' . $row->specific_id) }}">{{ $row->specific_name }}</a>
+                                <a class="btn btn-sm btn-outline-secondary" href="{{ URL::to('/phone/' . $phone_id . '/detail/' .  $current_details->phone_details_id . '/specs/' . $row->specific_id )}}">{{ $row->specific_name }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -220,13 +220,12 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        @isset($current_details->parentPhone->phone_name)
+                 
                         <input type="hidden" name="phone_details_id" value="{{$current_details->phone_details_id}}">
 
+                       
                         <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
-                        @else
-                        <h4>null</h4>
-                        @endisset
+                      
                     </div>
                     <div class="card-body">
                         <textarea placeholder="Mời bạn bình luận sản phẩm" name="content" class="form-control"></textarea>
