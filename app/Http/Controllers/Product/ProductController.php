@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\PhoneDetails;
 use App\Models\Brand;
 use App\Models\Phone;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\Review;
 use DOMDocument;
 use Exception;
 use Illuminate\Http\Request;
@@ -23,7 +26,8 @@ class ProductController extends Controller
         $other_details_specs = $current_details->parentPhone()->first()->Specifics()->get();
         $other_details_colors = $current_details->parentSpecific()->first()->detailsColorsOfThisSpecs();
         $images = $current_details->childImages()->get();
-        return view('product.detail', compact('phone_id', 'detail_id', 'current_details', 'other_details_colors', 'other_details_specs', 'images'));
+        $reviews = Review::where('phone_details_id', '=', $detail_id)->get();
+        return view('product.detail', compact('phone_id', 'detail_id', 'current_details', 'other_details_colors', 'other_details_specs', 'images','reviews'));
     }
 
     public function products($brand_id)
@@ -71,7 +75,7 @@ class ProductController extends Controller
             ->leftJoin('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id')
             ->leftJoin('brand', 'phones.brand_id', '=', 'brand.brand_id')
             ->leftJoin('phone_os', 'phones.os_id', '=', 'phone_os.os_id');
-        
+
         if (session('search', 'default') != 'default') {
             $search_string = session('search');
             $products = $products->where(function ($query) use ($search_string) {
@@ -93,20 +97,20 @@ class ProductController extends Controller
 
         switch ($request->os) {
             case '1': {
-                $products = $products->where(function ($query) {
-                    $query->where('phones.os_id', '=', 1);
-                });
-                break;
-            }
+                    $products = $products->where(function ($query) {
+                        $query->where('phones.os_id', '=', 1);
+                    });
+                    break;
+                }
             case '2': {
-                $products = $products->where(function ($query) {
-                    $query->where('phones.os_id', '=', 2);
-                });
-                break;
-            }
+                    $products = $products->where(function ($query) {
+                        $query->where('phones.os_id', '=', 2);
+                    });
+                    break;
+                }
             default: {
-                break;
-            }
+                    break;
+                }
         }
 
         if ($request->priceRange == 'range-1') { // below 2mils VND
@@ -124,25 +128,29 @@ class ProductController extends Controller
 
         switch ($request->sort) {
             case 'name_asc': {
-                $products = $products->orderBy($preFilter4 . 'phone_name', 'asc'); break;
-            }
+                    $products = $products->orderBy($preFilter4 . 'phone_name', 'asc');
+                    break;
+                }
             case 'name_desc': {
-                $products = $products->orderBy($preFilter4 . 'phone_name', 'desc'); break;
-            }
+                    $products = $products->orderBy($preFilter4 . 'phone_name', 'desc');
+                    break;
+                }
             case 'price_asc': {
-                $products = $products->orderBy($preFilter5 . 'price', 'asc'); break;
-            }
+                    $products = $products->orderBy($preFilter5 . 'price', 'asc');
+                    break;
+                }
             case 'price_desc': {
-                $products = $products->orderBy($preFilter5 . 'price', 'desc'); break;
-            }
-            case 'review_asc': {
-                ;break;
-            }
-            case 'review_desc': {
-                ;break;
-            }
-            default:
-                ;break;
+                    $products = $products->orderBy($preFilter5 . 'price', 'desc');
+                    break;
+                }
+            case 'review_asc': {;
+                    break;
+                }
+            case 'review_desc': {;
+                    break;
+                }
+            default:;
+                break;
         }
 
         $products = $products->paginate(16);
@@ -150,6 +158,19 @@ class ProductController extends Controller
         return response(view('product.products', compact('brands', 'products'))->render());
     }
 
- 
-
+    public function userRatingProduct(Request $request)
+    { 
+        if (!Auth::check()) {
+        return redirect('/')->withErrors('Vui lòng đăng nhập trước.');
+    }
+    $user = Auth::user();
+        $current_details = PhoneDetails::where('phone_details_id', '=', $request->phone_details_id)->first();
+        $review = new Review();     
+        $review->phone_details_id = $request->phone_details_id;
+        $review->user_id  = $user->id;
+        $review->content = $request->content;
+        $review->rating = 5;
+        $review->save();
+        return redirect()->back()->with('mess', "Bình luận thành công");
+    }
 }

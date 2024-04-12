@@ -130,45 +130,7 @@ $password=Cookie::get('password');
   </div>
 </div>
 
-<div class="modal fade hide" id="ratingModal" tabindex="-1" aria-labelledby="ratingModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Đánh giá</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
-      </div>
-      <div class="modal-body card">
-        <div class="text-center">
-          <img class="card-img-top w-50" src="{{ asset('/image/thumbnail_den.jpg')}}" alt="Card image cap">
-        </div>
-        <div class="text-center">
-          <div class="text-center">
-            <i class="fa-regular fa-star text-warning" data-index="1"></i>
-            <i class="fa-regular fa-star text-warning" data-index="2"></i>
-            <i class="fa-regular fa-star text-warning" data-index="3"></i>
-            <i class="fa-regular fa-star text-warning" data-index="4"></i>
-            <i class="fa-regular fa-star text-warning" data-index="5"></i>
-          </div>
-        </div>
-      <div class="text-center">
-      @isset($current_details->parentPhone->phone_name)
-        <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
-        @else
-        <h4>null</h4>
-        @endisset
-      </div>
-        <div class="card-body">
-          <textarea placeholder="Mời bạn bình luận sản phẩm" class="form-control"></textarea>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary" onclick="handle_validate()">Gửi đánh giá</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
+
 
 
 @if(session('successful'))

@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 border-bottom">
-                    <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
+                        <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
                     </div>
                     <div class="col-12 col-lg-6 mt-3 p-0">
                         <div class="container-fluid">
@@ -140,11 +140,12 @@
                         <h5>Đánh giá sản phẩm</h5>
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-12 col-lg-7 border rounded mt-2">
+                            @foreach ($reviews as $row)
+                            <div class="col-12 col-lg-7 border rounded mt-2">
                                     <div class="container-fluid">
                                         <div class="row pt-1 border-bottom">
                                             <div class="col-6">
-                                                <h6>Nguyễn An <span class="lead fs-6">- 18/12/2023 12:52</span></h6>
+                                                <h6>{{$row->parentUser->name}} <span class="lead fs-6">- 18/12/2023 12:52</span></h6>
                                             </div>
                                             <div class="col-6 text-nowrap text-end">
                                                 <i class="fa-solid fa-star text-warning"></i>
@@ -156,110 +157,88 @@
                                         </div>
                                         <div class="row p-0">
                                             <div class="col-12">
-                                                <p>mình mua điện thoại này 4 lần rùi, xài rất tốt, 3 tháng hư 1 lần.
-                                                    recommend nha :D</p>
+                                                <p>{{$row->content}}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach                                                                                      
                                 <div class="col-12 col-lg-7 border rounded mt-2">
-                                    <div class="container-fluid">
-                                        <div class="row pt-1 border-bottom">
-                                            <div class="col-6">
-                                                <h6>Trần Đức Bình <span class="lead fs-6">- 12/03/2024 11:35</span>
-                                                </h6>
-                                            </div>
-                                            <div class="col-6 text-nowrap text-end">
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-regular fa-star text-warning"></i>
-                                            </div>
+                                    <div class="row p-2 text-center">
+                                        <div class="col-10 ">
+                                            <a class="btn btn-sm btn-outline-secondary p-2">Xem đánh giá</a>
+                                            @if (Auth::check())
+                                            <a id="rating-btn" class="btn btn-primary btn-sm btn-outline-light p-2" data-user-id="{{'/phone'.$current_details->parentPhone->phone_id . '/detail/' . $current_details->phone_details_id . '/specs/0'}}">Viết đánh giá</a>
                                         </div>
-                                        <div class="row p-0">
-                                            <div class="col-12">
-                                                <p>điện thoại quá lởm, ko nên mua nhé mn</p>
-                                            </div>
-                                        </div>
+                                        @else
+                                        <h6>Bạn cần đăng nhập để có thể đánh giá sản phẩm này!</h6>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="col-12 col-lg-7 border rounded mt-2">
-                                    <div class="container-fluid">
-                                        <div class="row pt-1 border-bottom">
-                                            <div class="col-6">
-                                                <h6>bảnh <span class="lead fs-6">- 19/03/2024 21:27</span></h6>
-                                            </div>
-                                            <div class="col-6 text-nowrap text-end">
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-regular fa-star text-warning"></i>
-                                                <i class="fa-regular fa-star text-warning"></i>
-                                                <i class="fa-regular fa-star text-warning"></i>
-                                                <i class="fa-regular fa-star text-warning"></i>
-                                            </div>
-                                        </div>
-                                        <div class="row p-0">
-                                            <div class="col-12">
-                                                <p>tổ sư bọn bán điện thoại thất đức</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-7 border rounded mt-2">
-                                    <div class="container-fluid">
-                                        <div class="row pt-1 border-bottom">
-                                            <div class="col-6">
-                                                <h6>superman can tho <span class="lead fs-6">- 15/01/2024 16:01</span>
-                                                </h6>
-
-                                            </div>
-                                            <div class="col-6 text-nowrap text-end">
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-regular fa-star text-warning"></i>
-                                                <i class="fa-regular fa-star text-warning"></i>
-                                                <i class="fa-regular fa-star text-warning"></i>
-                                            </div>
-                                        </div>
-                                        <div class="row p-0">
-                                            <div class="col-12">
-                                                <p>tr ơi nghĩ gì mà dám bán cái điện thoại liệt màn hình >:</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-7 border rounded mt-2">
-                                 
-                                        <div class="row p-2 text-center">
-                                            <div class="col-10 ">
-                                                <a class="btn btn-sm btn-outline-secondary p-2">Xem đánh giá</a>
-                                                @if (Auth::check())
-                                                <a id="rating-btn" class="btn btn-primary btn-sm btn-outline-light p-2"  data-user-id="{{'/phone'.$row->parentPhone->phone_id . '/detail/' . $row->phone_details_id . '/specs/0'}}">Viết đánh giá</a>                                            </div>
-                                                @else
-                                                <h6>Bạn cần đăng nhập để có thể đánh giá sản phẩm này!</h6>
-                                                @endif
-                                            </div>
-                                          
-                                        </div>
-                                    
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 border-top mt-3 p-0">
-                        <h5>Xem thêm sản phẩm khác</h5>
-                        <div class="container-fluid" style="height: 180px">
-                            <div class="row text-center">
-                                <h1>Đang cập nhật...</h1>
-                            </div>
+                </div>
+                <div class="col-12 border-top mt-3 p-0">
+                    <h5>Xem thêm sản phẩm khác</h5>
+                    <div class="container-fluid" style="height: 180px">
+                        <div class="row text-center">
+                            <h1>Đang cập nhật...</h1>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-0 col-sm-0 col-md-1 col-lg-1 col-xl-1">
+    </div>
+    <div class="col-0 col-sm-0 col-md-1 col-lg-1 col-xl-1">
 
+    </div>
+</div>
+</div>
+
+<div class="modal fade hide" id="ratingModal" tabindex="-1" aria-labelledby="ratingModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Đánh giá</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <form action="{{route('userRatingProduct')}}" method="post">
+                {{ csrf_field() }}
+                <div class="modal-body card">
+                    <div class="text-center">
+
+                        <img class="card-img-top w-50" src="{{ asset('/image/'.$current_details->thumbnail_img) }}" alt="Card image cap">
+                    </div>
+                    <div class="text-center">
+                        <div class="text-center">
+                            <i class="fa-regular fa-star text-warning" data-index="1"></i>
+                            <i class="fa-regular fa-star text-warning" data-index="2"></i>
+                            <i class="fa-regular fa-star text-warning" data-index="3"></i>
+                            <i class="fa-regular fa-star text-warning" data-index="4"></i>
+                            <i class="fa-regular fa-star text-warning" data-index="5"></i>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        @isset($current_details->parentPhone->phone_name)
+                        <input type="hidden" name="phone_details_id" value="{{$current_details->phone_details_id}}">
+
+                        <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
+                        @else
+                        <h4>null</h4>
+                        @endisset
+                    </div>
+                    <div class="card-body">
+                        <textarea placeholder="Mời bạn bình luận sản phẩm" name="content" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
 @endsection
