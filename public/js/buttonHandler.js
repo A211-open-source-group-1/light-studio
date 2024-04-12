@@ -15,4 +15,9 @@ $(document).ready(function () {
     $('#rating-btn').click(function () {
         $('#ratingModal').modal('show')
     })
+
+    $('.info').click(function () {
+        $('#infoProductModal').modal('show')
+    })
+
 })

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const stars = document.querySelectorAll('.fa-star');
+    const stars = document.querySelectorAll('.rating');
     let ratingValue = 0; 
     stars.forEach(star => {
         star.addEventListener('click', function () {
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             updateStars(index);
             ratingValue = index; 
             console.log('Current rating:', ratingValue); 
-           
+            document.querySelector('.number_rating').value = ratingValue;
         });
     });
 

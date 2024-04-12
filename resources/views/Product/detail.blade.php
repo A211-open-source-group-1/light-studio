@@ -23,17 +23,18 @@
                                         <div class="carousel-indicators">
                                             <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
                                             @foreach ($images as $row)
-                                            <button type="button" data-bs-target="#carousel" data-bs-slide-to="{{ $num }}" class="active" aria-current="true" aria-label="Slide {{ $num++ }}"></button>
+                                            <button type="button" data-bs-target="#carousel" data-bs-slide-to="{{ $num }}" class="active " aria-current="true" aria-label="Slide {{ $num++ }}"></button>
                                             @endforeach
                                         </div>
                                         <div class="carousel-inner">
                                             <div class="carousel-item active text-center">
-                                                <img src="{{ asset('/image/' . $current_details->thumbnail_img) }}" class="d-block w-100 h-100 product-img" alt="...">
+                                                <img src="{{ asset('/image/' . $current_details->thumbnail_img) }}" class="btn d-block w-100 h-100 product-img info" alt="...">
                                             </div>
                                             @foreach ($images as $row)
                                             <div class="carousel-item">
-                                                <img src="{{ asset('/image/' . $row->file_path) }}" class="d-block w-100 h-100 product-img" alt="...">
+                                                <img src="{{ asset('/image/' . $row->file_path) }}" class="btn d-block w-100 h-100 product-img info" alt="...">
                                             </div>
+
                                             @endforeach
                                         </div>
                                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
@@ -140,20 +141,25 @@
                         <h5>Đánh giá sản phẩm</h5>
                         <div class="container-fluid">
                             <div class="row">
-                            @foreach ($reviews as $row)
-                            <div class="col-12 col-lg-7 border rounded mt-2">
+                                @foreach ($reviews as $row)
+                                <div class="col-12 col-lg-7 border rounded mt-2">
                                     <div class="container-fluid">
                                         <div class="row pt-1 border-bottom">
                                             <div class="col-6">
                                                 <h6>{{$row->parentUser->name}} <span class="lead fs-6">- 18/12/2023 12:52</span></h6>
                                             </div>
                                             <div class="col-6 text-nowrap text-end">
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-solid fa-star text-warning"></i>
-                                                <i class="fa-solid fa-star text-warning"></i>
+                                                @for ($i = 0; $i < $row->rating; $i++)
+                                                    <i class="fa-solid fa-star text-warning"></i>
+                                                    @endfor
+
+                                                    @if ($row->rating < 5) @php $count=5 - $row->rating;
+                                                        @endphp
+                                                        @for ($i = 0; $i < $count; $i++) <i class="fa-regular fa-star text-warning"></i>
+                                                            @endfor
+                                                            @endif
                                             </div>
+
                                         </div>
                                         <div class="row p-0">
                                             <div class="col-12">
@@ -162,7 +168,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach                                                                                      
+                                @endforeach
                                 <div class="col-12 col-lg-7 border rounded mt-2">
                                     <div class="row p-2 text-center">
                                         <div class="col-10 ">
@@ -207,28 +213,25 @@
                 {{ csrf_field() }}
                 <div class="modal-body card">
                     <div class="text-center">
-
                         <img class="card-img-top w-50" src="{{ asset('/image/'.$current_details->thumbnail_img) }}" alt="Card image cap">
                     </div>
-                    <div class="text-center">
-                        <div class="text-center">
-                            <i class="fa-regular fa-star text-warning" data-index="1"></i>
-                            <i class="fa-regular fa-star text-warning" data-index="2"></i>
-                            <i class="fa-regular fa-star text-warning" data-index="3"></i>
-                            <i class="fa-regular fa-star text-warning" data-index="4"></i>
-                            <i class="fa-regular fa-star text-warning" data-index="5"></i>
-                        </div>
+                    <div class="text-center ">
+                        <i class="fa-regular fa-star text-warning rating" ></i>
+                        <i class="fa-regular fa-star text-warning rating" data-index="2"></i>
+                        <i class="fa-regular fa-star text-warning rating" data-index="3"></i>
+                        <i class="fa-regular fa-star text-warning rating" data-index="4"></i>
+                        <i class="fa-regular fa-star text-warning rating" data-index="5"></i>
                     </div>
                     <div class="text-center">
-                 
+                        <input type="hidden" name="number_rating" class="number_rating">
                         <input type="hidden" name="phone_details_id" value="{{$current_details->phone_details_id}}">
 
-                       
+
                         <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
-                      
+
                     </div>
                     <div class="card-body">
-                        <textarea placeholder="Mời bạn bình luận sản phẩm" name="content" class="form-control"></textarea>
+                        <textarea placeholder="Mời bạn bình luận sản phẩm" name="content" class="form-control" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -239,5 +242,78 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade hide" id="infoProductModal" tabindex="-1" aria-labelledby="infoProductModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered w-100">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center">Thông tin sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body card">
+                <div class="text-center">
+                    <img class="card-img-top w-50" src="{{ asset('/image/'.$current_details->thumbnail_img) }}" alt="Card image cap">
+                </div>
+                <div class="text-center">          
+                    <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
+                </div>
+                <div class="card-body">
+                <table class="table table-striped">
+                            <tr>
+                                <td>Màn hình</td>
+                                <td>{{ $current_details->screen }}</td>
+                            </tr>
+                            <tr>
+                                <td>Màu sắc</td>
+                                <td>{{ $current_details->parentColor()->first()->color_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>Bộ nhớ RAM</td>
+                                <td>{{ $current_details->ram }}</td>
+                            </tr>
+                            <tr>
+                                <td>Bộ nhớ trong</td>
+                                <td>{{ $current_details->rom }}</td>
+                            </tr>
+                            <tr>
+                                <td>CPU</td>
+                                <td>{{ $current_details->cpu }}</td>
+                            </tr>
+                            <tr>
+                                <td>Camera trước</td>
+                                <td>{{ $current_details->front_cam }}</td>
+                            </tr>
+                            <tr>
+                                <td>Camera sau</td>
+                                <td>{{ $current_details->rear_cam }}</td>
+                            </tr>
+                            <tr>
+                                <td>Bluetooth</td>
+                                <td>{{ $current_details->bluetooth_ver }}</td>
+                            </tr>
+                            <tr>
+                                <td>WiFi</td>
+                                <td>{{ $current_details->wifi_ver }}</td>
+                            </tr>
+                            <tr>
+                                <td>NFC</td>
+                                <td>{{ $current_details->nfc }}</td>
+                            </tr>
+                        </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if(session('mess'))
+<script>
+    alert("{{ session('mess') }}");
+</script>
+@endif
 
 @endsection

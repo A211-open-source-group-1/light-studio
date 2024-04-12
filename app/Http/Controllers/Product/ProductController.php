@@ -169,7 +169,7 @@ class ProductController extends Controller
         $review->phone_details_id = $request->phone_details_id;
         $review->user_id  = $user->id;
         $review->content = $request->content;
-        $review->rating = 5;
+        $review->rating = $request->number_rating;
         $review->save();
         return redirect()->back()->with('mess', "Bình luận thành công");
     }
