@@ -32,7 +32,6 @@ Route::get('identify',[AuthController::class,'identify'])->name('identify');
 Route::post('findNumberPhone',[AuthController::class,'findNumberPhone'])->name('findNumberPhone');
 Route::get('resetPassword',[AuthController::class,'resetPassword'])->name('resetPassword');
 
-
 Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::get('/addToCart/{details_id}', [CartController::class, 'addToCart'])->name('addToCart');
 Route::get('/onActionProduct/{id}/{action}', [CartController::class, 'onActionProduct'])->name('onActionProduct');
@@ -55,5 +54,3 @@ Route::get('/searchUser/{searchTerm}',[AuthController::class,'searchUser'])->nam
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
 Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');
 Route::get('/editColors/{phone_id}', [MProductController::class, 'editColors'])->name('editColors');
-Route::get('sampleWriteIndex', [ProductController::class, 'sampleWriteIndex'])->name('sampleWriteIndex');
-Route::post('sampleWrite', [ProductController::class, 'sampleWrite'])->name('sampleWrite');

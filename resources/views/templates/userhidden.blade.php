@@ -150,9 +150,15 @@ $password=Cookie::get('password');
             <i class="fa-regular fa-star text-warning" data-index="5"></i>
           </div>
         </div>
-
+      <div class="text-center">
+      @isset($current_details->parentPhone->phone_name)
+        <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
+        @else
+        <h4>null</h4>
+        @endisset
+      </div>
         <div class="card-body">
-         <textarea placeholder="Mời bạn bình luận sản phẩm" class="form-control"></textarea>
+          <textarea placeholder="Mời bạn bình luận sản phẩm" class="form-control"></textarea>
         </div>
       </div>
       <div class="modal-footer">

@@ -8,13 +8,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 border-bottom">
-                        <h4>{{ $current_details->parentPhone->phone_name }}</h4>
+                    <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
                     </div>
                     <div class="col-12 col-lg-6 mt-3 p-0">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-0 col-lg-1">
-
                                 </div>
                                 @php
                                 $num = 1;

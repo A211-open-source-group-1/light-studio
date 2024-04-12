@@ -23,7 +23,6 @@ class ProductController extends Controller
         $other_details_specs = $current_details->parentPhone()->first()->Specifics()->get();
         $other_details_colors = $current_details->parentSpecific()->first()->detailsColorsOfThisSpecs();
         $images = $current_details->childImages()->get();
-
         return view('product.detail', compact('phone_id', 'detail_id', 'current_details', 'other_details_colors', 'other_details_specs', 'images'));
     }
 
@@ -151,23 +150,6 @@ class ProductController extends Controller
         return response(view('product.products', compact('brands', 'products'))->render());
     }
 
-    public function sampleWrite(Request $request) {
+ 
 
-        $description = $request->description;
-        $dom = new DOMDocument();
-        $dom->encoding = 'utf-8';
-        $dom->loadHTML(mb_convert_encoding($description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        $description = $dom->saveHTML();
-        $updatingPhone = Phone::where('phone_id', '=', $request->phone_id)->first();
-        $updatingPhone->update([
-            'description' => $description
-        ]);
-        return redirect()->back();
-
-    }
-
-    public function sampleWriteIndex(Request $request) {
-        $phones = Phone::all();
-        return view('product.SampleWriter', compact('phones'));
-    }
 }
