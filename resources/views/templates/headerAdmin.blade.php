@@ -24,11 +24,3 @@
         <a href="#" id="order">Đơn hàng</a>
     </div>
     <div class="content">
-@php
-    @if (@section('auth'))
-    {
-        <h2>SAI MAT KHAU</h2>
-    }
-        
-    @endif
-@endphp

@@ -1,5 +1,12 @@
 <script src="{{ asset('/js/admin/userhandle.js') }}"></script>
 
+@if(session('auth'))
+    <script>
+        alert("{{ session('auth') }}");
+    </script>
+@endif  
+
+
 <div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

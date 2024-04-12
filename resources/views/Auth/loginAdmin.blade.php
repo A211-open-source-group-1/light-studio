@@ -16,11 +16,7 @@ $rem = Cookie::get('rem');
 $phone_number = Cookie::get('phone_number');
 $password=Cookie::get('password');
 @endphp
-@if(session('auth'))
-    <script>
-        alert("{{ session('auth') }}");
-    </script>
-@endif
+
 
 <body>
   <form action="{{ route('authAdmin') }}" method="post" id="loginForm">
