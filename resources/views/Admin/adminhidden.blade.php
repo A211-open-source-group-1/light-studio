@@ -1,10 +1,10 @@
 <script src="{{ asset('/js/admin/userhandle.js') }}"></script>
 
-@if(session('auth'))
+@if (session('auth'))
     <script>
         alert("{{ session('auth') }}");
     </script>
-@endif  
+@endif
 
 
 <div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">
@@ -113,7 +113,7 @@
 <div class="modal fade" id="editPhone" tabindex="-1" aria-labelledby="editPhone" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <form action="{{route('editPhoneSubmit')}}" method="post">
+            <form action="{{ route('editPhoneSubmit') }}" method="post">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">Chỉnh sửa</h5>
@@ -132,20 +132,22 @@
                                         <div class="col-3">
                                             <div class="form-group">
                                                 <label for="phone_id">Mã</label>
-                                                <input type="text" id="phone_id" name="phone_id" class="form-control disabled" readonly>
+                                                <input type="text" id="phone_id" name="phone_id"
+                                                    class="form-control disabled" readonly>
                                             </div>
                                         </div>
                                         <div class="col-9">
                                             <div class="form-group">
                                                 <label for="phone_name">Tên điện thoại</label>
-                                                <input type="text" id="phone_name" class="form-control" name="phone_name">
+                                                <input type="text" id="phone_name" class="form-control"
+                                                    name="phone_name">
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="form-group">
                                                 <label for="brand_name">Hãng</label>
                                                 <select class="form-control" id="brand_name" name="brand_id">
-                                                    
+
                                                 </select>
                                             </div>
                                         </div>
@@ -153,7 +155,7 @@
                                             <div class="form-group">
                                                 <label for="category_name">Loại</label>
                                                 <select class="form-control" id="category_name" name="category_id">
-                                                    
+
                                                 </select>
                                             </div>
                                         </div>
@@ -161,7 +163,7 @@
                                             <div class="form-group">
                                                 <label for="os_name">Hệ điều hành</label>
                                                 <select class="form-control" id="os_name" name="os_id">
-                                                    
+
                                                 </select>
                                             </div>
                                         </div>
@@ -199,5 +201,40 @@
                 </div>
             </form>
         </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editPhoneColor" tabindex="-1" aria-labelledby="editPhoneColor" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form action="{{ '' }}" method="post">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Chỉnh sửa màu sắc sản phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="ec_phone_name">Tên sản phẩm</label>
+                                <input readonly id="ec_phone_name" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="container-fluid m-0 p-0" id="color-board">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        </div>
+        </form>
     </div>
 </div>

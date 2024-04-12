@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Color;
 use App\Models\Phone;
 use App\Models\PhoneCategory;
 use App\Models\PhoneDetails;
@@ -49,7 +50,7 @@ class MProductController extends Controller
     }
 
     public function editPhoneSubmit(Request $request) {
-        $phone = Phone::where('phone_id', '=', 1)
+        $phone = Phone::where('phone_id', '=', $request->phone_id)
         ->first();
         $description = $request->description;
         $dom = new DOMDocument();
@@ -64,5 +65,82 @@ class MProductController extends Controller
             'description' =>  $description
         ]);
         return redirect()->back();
+    }
+
+    public function editColors($phone_id) {
+        $phone = Phone::where('phone_id', '=', $phone_id)->first();
+        $colors = Color::select('*')
+        ->leftJoin('phones', 'phones.phone_id', '=', 'phone_colors.phone_id')
+        ->where('phones.phone_id', '=', $phone_id)
+        ->get() ;
+        return response()->json([$colors, $phone]);
+    }
+
+    public function editSpecifics($phone_id) {
+
+    }
+
+    public function editDetails($phone_id) {
+
+    }
+
+    public function editSelectedColor($color_id) {
+
+    }
+
+    public function editSelectedSpecific($specs_id) {
+
+    }
+
+    public function editSelectedDetails($detail_id) {
+
+    }
+
+    public function editSelectedColorSubmit(Request $request) {
+
+    }
+
+    public function editSelectedSpecificSubmit(Request $request) {
+
+    }
+
+    public function editSelectedDetailsSubmit(Request $request) {
+
+    }
+
+    public function addColor($phone_id) {
+
+    }
+
+    public function addSpecific($phone_id) {
+
+    }
+
+    public function addDetails($phone_id) {
+
+    }
+
+    public function addColorSubmit(Request $request) {
+
+    }
+
+    public function addSpecificSubmit(Request $request) {
+
+    }
+
+    public function addDetailsSubmit(Request $request) {
+
+    }
+
+    public function deleteDetails($detail_id) {
+
+    }
+
+    public function deleteColor($color_id) {
+
+    }
+
+    public function deleteSpecific($specs_id) {
+
     }
 }

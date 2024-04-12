@@ -15,4 +15,8 @@ class Color extends Model
     public function parentPhone() {
         return $this->belongsTo(Phone::class, 'phone_id', 'phone_id');
     }
+
+    public function PhoneDetails() {
+        return $this->hasMany(PhoneDetails::class, 'color_id', 'color_id');
+    }
 }

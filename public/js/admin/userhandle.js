@@ -55,6 +55,25 @@ $(document).ready(function () {
         });
     });
 
+    $('.edit-phone-color-btn').click(function() {
+        var phone_id = $(this).data('phone-id');
+        $.ajax({
+            url: '/editColors/' + phone_id,
+            type: 'GET',
+            success: function(response) {
+                
+                alert(response[1].phone_name);
+                $('#ec_phone_name').val(response[1].phone_name);
+                $('#color-board').empty();
+                for (let i = 0; i < response[0].length; ++i) {
+                    $('#color-board').append(
+                        '<p>' + response[0][i].color_name + '</p>'
+                    )
+                }
+            }
+        })
+    });
+
     $('#search').on('input', function () {
         var searchTerm = $(this).val().trim();
         $.ajax({

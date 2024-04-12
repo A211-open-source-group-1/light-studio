@@ -54,5 +54,6 @@ Route::get('/searchUser/{searchTerm}',[AuthController::class,'searchUser'])->nam
 
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
 Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');
+Route::get('/editColors/{phone_id}', [MProductController::class, 'editColors'])->name('editColors');
 Route::get('sampleWriteIndex', [ProductController::class, 'sampleWriteIndex'])->name('sampleWriteIndex');
 Route::post('sampleWrite', [ProductController::class, 'sampleWrite'])->name('sampleWrite');
