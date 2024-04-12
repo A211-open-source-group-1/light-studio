@@ -13,7 +13,7 @@
                 <div class="col-lg-3 col-md-4 col-6 pe-0">
                     <select class="form-select" name="brand" onchange="defaultSubmit()">
                         <option selected disabled>Thương hiệu</option>
-                        <option>Tất cả</option>
+                        <option value="">Tất cả</option>
                         @foreach ($brands as $row)
                             <option value="{{ $row->brand_name }}">{{ $row->brand_name }}</option>
                         @endforeach
@@ -23,7 +23,7 @@
                 <div class="col-lg-3 col-md-4 col-6 pe-0">
                     <select class="form-select" name="priceRange" onchange="defaultSubmit()">
                         <option selected disabled>Khoảng giá</option>
-                        <option value="default">Mặc định</option>
+                        <option value="">Mặc định</option>
                         <option value="range-1">Dưới 2 triệu</option>
                         <option value="range-2">Từ 2 - 4 triệu</option>
                         <option value="range-3">Từ 4 - 8 triệu</option>
