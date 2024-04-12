@@ -61,8 +61,6 @@ $(document).ready(function () {
             url: '/editColors/' + phone_id,
             type: 'GET',
             success: function(response) {
-                
-                alert(response[1].phone_name);
                 $('#ec_phone_name').val(response[1].phone_name);
                 $('#color-board').empty();
                 for (let i = 0; i < response[0].length; ++i) {
