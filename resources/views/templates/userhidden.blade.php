@@ -22,9 +22,9 @@
   </div>
 </div>
 @php
-    $rem = Cookie::get('rem');
-    $phone_number = Cookie::get('phone_number');
-    $password=Cookie::get('password');
+$rem = Cookie::get('rem');
+$phone_number = Cookie::get('phone_number');
+$password=Cookie::get('password');
 @endphp
 <div class="modal fade hide" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -47,8 +47,8 @@
             <label class="text-danger" id="errorPasswordLogin"></label>
           </div>
           <div class="mb-3 form-check">
-           
-          <input type="checkbox" name="remember" class="form-check-input" {{ $rem == 1 ? 'checked' : '' }}>             
+
+            <input type="checkbox" name="remember" class="form-check-input" {{ $rem == 1 ? 'checked' : '' }}>
             <label class="form-check-label">Ghi nhớ đăng nhập</label>
           </div>
         </div>
@@ -119,9 +119,7 @@
             <label class="form-label">Nhập lại mật khẩu</label>
             <input class="form-control" id="repassword" name="repassword" type="password">
             <label id="errorRepassword" class="text-danger"></label>
-
           </div>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -132,8 +130,43 @@
   </div>
 </div>
 
+<div class="modal fade hide" id="ratingModal" tabindex="-1" aria-labelledby="ratingModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Đánh giá</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+      </div>
+      <div class="modal-body card">
+        <div class="text-center">
+          <img class="card-img-top w-50" src="{{ asset('/image/thumbnail_den.jpg')}}" alt="Card image cap">
+        </div>
+        <div class="text-center">
+          <div class="text-center">
+            <i class="fa-regular fa-star text-warning" data-index="1"></i>
+            <i class="fa-regular fa-star text-warning" data-index="2"></i>
+            <i class="fa-regular fa-star text-warning" data-index="3"></i>
+            <i class="fa-regular fa-star text-warning" data-index="4"></i>
+            <i class="fa-regular fa-star text-warning" data-index="5"></i>
+          </div>
+        </div>
+
+        <div class="card-body">
+         <textarea placeholder="Mời bạn bình luận sản phẩm" class="form-control"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" onclick="handle_validate()">Gửi đánh giá</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 @if(session('successful'))
-    <script>
-        alert("{{ session('successful') }}");
-    </script>
+<script>
+  alert("{{ session('successful') }}");
+</script>
 @endif

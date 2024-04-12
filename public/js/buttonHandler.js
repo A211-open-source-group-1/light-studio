@@ -11,4 +11,8 @@ $(document).ready(function () {
     $('#register-btn').click(function () {
         $('#registerModal').modal('show')
     })
+    
+    $('#rating-btn').click(function () {
+        $('#ratingModal').modal('show')
+    })
 })

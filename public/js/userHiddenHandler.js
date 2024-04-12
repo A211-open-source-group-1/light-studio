@@ -1,3 +1,30 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const stars = document.querySelectorAll('.fa-star');
+    let ratingValue = 0; 
+    stars.forEach(star => {
+        star.addEventListener('click', function () {
+            const index = this.getAttribute('data-index');
+            updateStars(index);
+            ratingValue = index; 
+            console.log('Current rating:', ratingValue); 
+           
+        });
+    });
+
+    function updateStars(index) {
+        stars.forEach(star => {
+            if (star.getAttribute('data-index') <= index) {
+                star.classList.remove('fa-regular');
+                star.classList.add('fa-solid');
+            } else {
+                star.classList.remove('fa-solid');
+                star.classList.add('fa-regular');
+            }
+        });
+    }
+});
+
+
 function check_numberPhone() {
     // Head number phone Viettel 
     var viettel = ['086', '096', '097', '039', '038', '037', '036', '035', '034', '033', '032'];
@@ -165,3 +192,4 @@ function check_Login() {
     }
 
 }
+
