@@ -55,3 +55,5 @@ Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->n
 Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');
 Route::get('/editColors/{phone_id}', [MProductController::class, 'editColors'])->name('editColors');
 Route::post('/userRatingProduct',[ProductController::class,'userRatingProduct'])->name('userRatingProduct');
+Route::get('/editSelectedColor/{color_id}', [MProductController::class, 'editSelectedColor'])->name('editSelectedColor');
+Route::POST('/editSelectedColorSubmit', [MProductController::class, 'editSelectedColorSubmit'])->name('editSelectedColorSubmit');

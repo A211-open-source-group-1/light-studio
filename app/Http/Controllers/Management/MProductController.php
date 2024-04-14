@@ -85,7 +85,10 @@ class MProductController extends Controller
     }
 
     public function editSelectedColor($color_id) {
-
+        $color = Color::select('*')
+        ->where('color_id', '=', $color_id)
+        ->first();
+        return response()->json($color);
     }
 
     public function editSelectedSpecific($specs_id) {
@@ -97,7 +100,16 @@ class MProductController extends Controller
     }
 
     public function editSelectedColorSubmit(Request $request) {
-
+        $color = Color::where('color_id', '=', $request->current_color_id)
+        ->first();
+        if ($color != null) {
+            $color->update(
+                [
+                    'color_name' => $request->current_color_name
+                ]
+            );
+        }
+        return redirect()->back();
     }
 
     public function editSelectedSpecificSubmit(Request $request) {

@@ -1,10 +1,10 @@
 $(document).ready(function () {
-    $(document).on('click', '.edit-btn', function() {
+    $(document).on('click', '.edit-btn', function () {
         var userId = $(this).data('user-id');
         $('#deleteUserId').val(userId);
     });
 
-    $(document).on('click', '.edit-btn', function() {
+    $(document).on('click', '.edit-btn', function () {
         var userId = $(this).data('user-id');
         console.log(userId);
         $.ajax({
@@ -55,22 +55,75 @@ $(document).ready(function () {
         });
     });
 
-    $('.edit-phone-color-btn').click(function() {
-        var phone_id = $(this).data('phone-id');
+    function ajaxGetColors(phone_id) {
         $.ajax({
             url: '/editColors/' + phone_id,
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 $('#ec_phone_name').val(response[1].phone_name);
+                $('#ec_phone_id').val(response[1].phone_id);
                 $('#color-board').empty();
                 for (let i = 0; i < response[0].length; ++i) {
                     $('#color-board').append(
-                        '<p>' + response[0][i].color_name + '</p>'
+                        '<tr>' +
+                        '<td scope="row">' +
+                        response[0][i].color_id +
+                        '</td>' +
+                        '<td>' +
+                        response[0][i].color_name +
+                        '</td>' +
+                        '<td>' +
+                        '</td>' +
+                        '<td>' +
+                        '<button data-color-id="' + response[0][i].color_id + '" class="btn btn-primary edit-selected-color-btn">Sửa</button>' +
+                        '<button data-color-id="' + response[0][i].color_id + '" class="ms-1 btn btn-danger delete-selected-color-btn">Xóa</button>' +
+                        '</td>' +
+                        '</tr>'
                     )
                 }
             }
         })
+    }
+
+    $('.edit-phone-color-btn').click(function () {
+        var phone_id = $(this).data('phone-id');
+        ajaxGetColors(phone_id);
     });
+
+    $(document).on('click', '.edit-selected-color-btn', function () {
+        var color_id = $(this).data('color-id');
+        $.ajax({
+            url: '/editSelectedColor/' + color_id,
+            type: 'GET',
+            success: function(response) {
+                $('#edit-color-form').removeClass('d-none');
+                $('#ec_color_id').val(response.color_id)
+                $('#ec_color_name').val(response.color_name)
+            }
+        })
+    });
+
+    $(document).on('click', '#close-edit-color-form-btn', function() {
+        $('#edit-color-form').addClass('d-none');
+        $('#ec_color_id').val('')
+        $('#ec_color_name').val('')
+    })
+
+    $(document).on('submit', '#edit-color-form', function(e) {
+        var phone_id = $('#ec_phone_id').val()
+        e.preventDefault()
+        alert('wtf')
+        var form = $(this)
+        $.ajax({
+            type: 'POST',
+            url: '/editSelectedColorSubmit/',
+            data: form.serialize(),
+            success: function(response) {
+                alert('wtf')
+            }
+        })
+        ajaxGetColors(phone_id)
+    })
 
     $('#search').on('input', function () {
         var searchTerm = $(this).val().trim();
@@ -95,7 +148,7 @@ $(document).ready(function () {
                         '</tr>';
                     $('#data-body').append(row);
                 });
-            },
+            }
         });
     });
 });

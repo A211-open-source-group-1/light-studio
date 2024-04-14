@@ -8,6 +8,9 @@ use App\Models\Phone;
 
 class Color extends Model
 {
+    protected $fillable = [
+        'color_name'
+    ];
     protected $table = 'phone_colors';
     protected $primaryKey = 'color_id';
     public $timestamps = false;
