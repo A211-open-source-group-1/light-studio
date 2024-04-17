@@ -28,5 +28,4 @@ class Review extends Model
     public function parentPhoneDetails() {
         return $this->belongsTo(PhoneDetails::class, 'phone_details_id', 'phone_details_id');
     }
-
 }

@@ -5,8 +5,7 @@
             <div class="col-0 col-lg-1 col-xl-1">
             </div>
             <div class="col-12 col-lg-10 col-xl-10" id="data-body">
-                <form method="post" id="formCart" action="{{route('proccedOrder')}}">
-                {{ csrf_field() }}
+                <form  id="formCart">
                     <h5 class="border-bottom mb-2 pb-2">Giỏ hàng của bạn</h5>
                     <div class="container-fluid mb-2">
                         <div class="row">
@@ -88,8 +87,7 @@
                                         <div class="col-12 text-center">
                                             <input type="button" class="btn btn-light mb-2 mt-2"
                                              id="proccedOrder" value="TIẾN HÀNH THANH TOÁN" >
-                                           
-                                        </div>
+                                        </div>  
                                     </div>
                                 </div>
                             </div>

@@ -35,7 +35,10 @@ class CartController extends Controller
         $prodsInCart = $currentCart->GetProducts();
         return view('cart.cart', compact('prodsInCart'));
     }
-
+    public function indexCart()
+    {
+        
+    }
     public function onActionProduct($details_id, $action) {
         $currentCart = new CurrentCart();
         if (!Auth::check()) {
@@ -120,7 +123,7 @@ class CartController extends Controller
             }
          
     }
-    public function proccedOrder(Request $request)
+    public function proccedOrder($paymentMethod)
     {
         if(!Auth::check())
         {
@@ -133,9 +136,8 @@ class CartController extends Controller
                 $product = new ProductInCart($item->phone_details_id, $item->parentPhoneDetails->parentPhone->phone_name . ' ' . $item->parentPhoneDetails->parentSpecific->specific_name . ' ' . $item->parentPhoneDetails->parentColor->color_name, $item->quantity, $item->parentPhoneDetails->price, $item->parentPhoneDetails->discount, $item->parentPhoneDetails->thumbnail_img);
                 $currentCart->AddToCart($product);
             }
-            $prodsInCart = $currentCart->GetProducts();
-
-            return view('Cart.checkout', compact('prodsInCart'));
+            $prodsInCart = $currentCart->GetProducts();         
+            return response(view('ajax.cartcheckout', compact('prodsInCart'))->render());
         }
     }
 }

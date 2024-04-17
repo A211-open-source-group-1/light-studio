@@ -1,13 +1,5 @@
-@extends('templates.app')
-@section('content')
-<div class="container-fluid p-0 m-0">
-    <h2 class="text-center">TRANG THANH TOÁN</h2>
-    <h3 class="text-center">Hình thức thanh toán: COD</h3>
-    <div class="row">
-            <div class="col-0 col-lg-1 col-xl-1">
-            </div>
-            <div class="col-12 col-lg-10 col-xl-10" id="data-body">
-                <form method="post" id="formCart" action="{{route('proccedOrder')}}">
+<form method="post" id="formCart">
+                <h3 class="text-center">Hình thức thanh toán: COD</h3>
                 {{ csrf_field() }}
                     <h5 class="border-bottom mb-2 pb-2">Giỏ hàng của bạn</h5>
                     <div class="container-fluid mb-2">
@@ -73,19 +65,17 @@
                             <label for="r3"><span><i class="fa-solid fa-qrcode"></i> </span>VNPAY
                                 QR</label>
                         </div>
-                        <div class="col-12 text-center">
+                        <div class="row text-center">      
+                            <div class="col-4">
+                            <a class="btn btn-primary mb-2 mt-2" onclick="backCart()">Trở về</a>
+                            </div>
+                            <div class="col-8">
                             <input type="submit" class="btn btn-light mb-2 mt-2" value="TIẾN HÀNH THANH TOÁN">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>               
+                 </div>               
                         </div>
                     </div>
-                </form>
-            </div>
-            
-            <div class="col-0 col-lg-1 col-xl-1">
-            </div>
-        </div>
-</div>
-@endsection
+</form>
