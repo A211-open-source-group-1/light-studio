@@ -52,6 +52,8 @@ Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
 Route::get('productsIndex/{type}', [MProductController::class, 'index'])->name('productsIndex');
 Route::get('/searchUser/{searchTerm}',[AuthController::class,'searchUser'])->name('searchUser');
 Route::get('/orderedCart',[MOrderedCartController::class,'index'])->name('orderedCart');
+Route::post('/proccedOrder',[CartController::class,'proccedOrder'])->name('proccedOrder');
+
 
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
 Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');

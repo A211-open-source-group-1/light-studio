@@ -1,8 +1,18 @@
 $(document).ready(function () {
+    var formSubmissionAllowed = false;
+
     $('#formCart').submit(function (e) {
-        e.preventDefault();
-    })
-})
+        if (!formSubmissionAllowed) {
+            e.preventDefault();
+        }
+    });
+
+    $('#proccedOrder').click(function (){
+        formSubmissionAllowed = true;
+        $('#formCart').submit();
+    });
+});
+
 
 function AddToCart(id) {
     $.ajax({

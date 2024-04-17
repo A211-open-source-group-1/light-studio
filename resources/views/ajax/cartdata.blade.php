@@ -12,7 +12,7 @@
                         <script src="{{ asset('/js/cartHandler.js') }}"></script>
                         @foreach ($prodsInCart as $row)
                             <div class="col-2 border-bottom d-flex align-items-center">
-                                <p class="mt-3">{{ $row->GetImg() }}</p>
+                            <p class="mt-3"> <img class="w-75" src="{{ asset('/image/' . $row->GetImg()) }}">
                             </div>
                             <div class="col-5 border-bottom d-flex align-items-center">
                                 <p class="mt-3">{{ $row->GetName() }}</p>

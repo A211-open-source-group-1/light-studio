@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\PhoneDetails;
+use App\Models\Order;
+use App\Models\OrderDetails;
+use App\Models\OrderStatus;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\CurrentCart;
 use App\Providers\ProductInCart;
+use Illuminate\Support\Facades\Session;
 use App\Exception;
 use ExceptionTest;
 
@@ -24,7 +28,7 @@ class CartController extends Controller
         else {
             $carts = Cart::all()->where('user_id', '=', Auth::user()->id);
             foreach ($carts as $item) {
-                $product = new ProductInCart($item->phone_details_id, $item->parentPhoneDetails->parentPhone->phone_name . ' ' . $item->parentPhoneDetails->parentSpecific->specific_name . ' ' . $item->parentPhoneDetails->parentColor->color_name, $item->quantity, $item->parentPhoneDetails->price, $item->parentPhoneDetails->discount, "img");
+                $product = new ProductInCart($item->phone_details_id, $item->parentPhoneDetails->parentPhone->phone_name . ' ' . $item->parentPhoneDetails->parentSpecific->specific_name . ' ' . $item->parentPhoneDetails->parentColor->color_name, $item->quantity, $item->parentPhoneDetails->price, $item->parentPhoneDetails->discount, $item->parentPhoneDetails->thumbnail_img);
                 $currentCart->AddToCart($product);
             }
         }
@@ -45,11 +49,10 @@ class CartController extends Controller
         else {
             $carts = Cart::all()->where('user_id', '=', Auth::user()->id);
             foreach ($carts as $item) {
-                $product = new ProductInCart($item->phone_details_id, $item->parentPhoneDetails->parentPhone->phone_name . ' ' . $item->parentPhoneDetails->parentSpecific->specific_name . ' ' . $item->parentPhoneDetails->parentColor->color_name, $item->quantity, $item->parentPhoneDetails->price, $item->parentPhoneDetails->discount, "img");
+                $product = new ProductInCart($item->phone_details_id, $item->parentPhoneDetails->parentPhone->phone_name . ' ' . $item->parentPhoneDetails->parentSpecific->specific_name . ' ' . $item->parentPhoneDetails->parentColor->color_name, $item->quantity, $item->parentPhoneDetails->price, $item->parentPhoneDetails->discount,$item->parentPhoneDetails->thumbnail_img);
                 $currentCart->AddToCart($product);
             }
         }
-
         foreach ($currentCart->GetProducts() as $item) {
             if ($item->GetId() == $details_id) {
                 $cart = null;
@@ -90,14 +93,14 @@ class CartController extends Controller
                     session(['guestCart' => new CurrentCart()]);
                 }
                 $currentCart = session('guestCart');
-                $product = new ProductInCart($item->phone_details_id, $item->parentPhone->phone_name . ' ' . $item->parentSpecific->specific_name . ' ' . $item->parentColor->color_name, 1, $item->price, $item->discount, "img");
+                $product = new ProductInCart($item->phone_details_id, $item->parentPhone->phone_name . ' ' . $item->parentSpecific->specific_name . ' ' . $item->parentColor->color_name, 1, $item->price, $item->discount, $item->thumbnail_img);
                 $currentCart->AddToCart($product);
                 session(['guestCart' => $currentCart]);
 
                 return response()->json([
                     'success' => true
                 ]);
-            } else { // if logged in. be a real fucking user :D
+            } else {
                 $cart = Cart::where('user_id', '=', Auth::user()->id)->where('phone_details_id', '=', $details_id)->first();
                 if ($cart != null) {
                     $cart->update([
@@ -116,5 +119,23 @@ class CartController extends Controller
                 ]);
             }
          
+    }
+    public function proccedOrder(Request $request)
+    {
+        if(!Auth::check())
+        {
+            return "đăng nhập vô cu ơi";
+        }
+        else{
+            $currentCart = new CurrentCart();
+            $carts = Cart::all()->where('user_id', '=', Auth::user()->id);
+            foreach ($carts as $item) {
+                $product = new ProductInCart($item->phone_details_id, $item->parentPhoneDetails->parentPhone->phone_name . ' ' . $item->parentPhoneDetails->parentSpecific->specific_name . ' ' . $item->parentPhoneDetails->parentColor->color_name, $item->quantity, $item->parentPhoneDetails->price, $item->parentPhoneDetails->discount, $item->parentPhoneDetails->thumbnail_img);
+                $currentCart->AddToCart($product);
+            }
+            $prodsInCart = $currentCart->GetProducts();
+
+            return view('Cart.checkout', compact('prodsInCart'));
+        }
     }
 }

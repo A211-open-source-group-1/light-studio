@@ -3,10 +3,10 @@
     <div class="container-fluid p-0 m-0">
         <div class="row">
             <div class="col-0 col-lg-1 col-xl-1">
-
             </div>
             <div class="col-12 col-lg-10 col-xl-10" id="data-body">
-                <form id="formCart">
+                <form method="post" id="formCart" action="{{route('proccedOrder')}}">
+                {{ csrf_field() }}
                     <h5 class="border-bottom mb-2 pb-2">Giỏ hàng của bạn</h5>
                     <div class="container-fluid mb-2">
                         <div class="row">
@@ -20,8 +20,9 @@
                                         <script src="{{ asset('/js/cartHandler.js') }}"></script>
                                         @foreach ($prodsInCart as $row)
                                             <div class="col-2 border-bottom d-flex align-items-center">
-                                                <p class="mt-3">{{ $row->GetImg() }}</p>
-                                            </div>
+
+                                            <p class="mt-3"> <img class="w-75" src="{{ asset('/image/' . $row->GetImg()) }}">
+                                                                                    </div>
                                             <div class="col-5 border-bottom d-flex align-items-center">
                                                 <p class="mt-3">{{ $row->GetName() }}</p>
                                             </div>
@@ -85,8 +86,9 @@
                                                 QR</label>
                                         </div>
                                         <div class="col-12 text-center">
-                                            <input type="submit" class="btn btn-light mb-2 mt-2"
-                                                value="TIẾN HÀNH THANH TOÁN">
+                                            <input type="button" class="btn btn-light mb-2 mt-2"
+                                             id="proccedOrder" value="TIẾN HÀNH THANH TOÁN" >
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +98,6 @@
                 </form>
             </div>
             <div class="col-0 col-lg-1 col-xl-1">
-
             </div>
         </div>
     </div>
