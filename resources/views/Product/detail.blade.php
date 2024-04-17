@@ -244,7 +244,7 @@
 </div>
 
 <div class="modal fade hide" id="infoProductModal" tabindex="-1" aria-labelledby="infoProductModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg  modal-dialog-centered w-100">
+    <div class="modal-dialog modal-lg modal-dialog-centered w-100">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-center">Hình ảnh sản phẩm</h5>
