@@ -1,5 +1,16 @@
 @extends('templates.app')
 @section('content')
+<script>
+    function loadMore() {
+        if (x + 10 >= max) {
+            $("#btnLoad").addClass("hiddenComp");
+        }
+        for (let i = x + 1; i <= x + 10; ++i) {
+            $("#" + i.toString()).removeClass("hiddenComp");
+        }
+        x += 10;
+    }
+</script>
 <div class="container-fluid p-0 m-0">
     <div class="row p-0 m-0">
         <div class="col-0 col-sm-0 col-md-1 col-lg-1 col-xl-1">
@@ -140,9 +151,12 @@
                     <div class="col-12 border-top mt-3 p-0">
                         <h5>Đánh giá sản phẩm</h5>
                         <div class="container-fluid">
+                            <?php
+                            $num = 1;
+                            ?>
                             <div class="row">
                                 @foreach ($reviews as $row)
-                                <div class="col-12 col-lg-7 border rounded mt-2">
+                                <div id="<?php echo $num ?>" class="col-12 col-lg-7 border rounded mt-2 hiddenComp">
                                     <div class="container-fluid">
                                         <div class="row pt-1 border-bottom">
                                             <div class="col-6">
@@ -167,12 +181,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?php $num++;?>
                                 </div>
                                 @endforeach
                                 <div class="col-12 col-lg-7 border rounded mt-2">
                                     <div class="row p-2 text-center">
                                         <div class="col-10 ">
-                                            <a class="btn btn-sm btn-outline-secondary p-2">Xem đánh giá</a>
+                                            <button class="btn btn-sm btn-outline-secondary p-2 " id="btnLoad" onclick="loadMore()">Xem thêm đánh giá</button>
                                             @if (Auth::check())
                                             <a id="rating-btn" class="btn btn-primary btn-sm btn-outline-light p-2" data-user-id="{{'/phone'.$current_details->parentPhone->phone_id . '/detail/' . $current_details->phone_details_id . '/specs/0'}}">Viết đánh giá</a>
                                         </div>
@@ -216,7 +231,7 @@
                         <img class="card-img-top w-50" src="{{ asset('/image/'.$current_details->thumbnail_img) }}" alt="Card image cap">
                     </div>
                     <div class="text-center ">
-                        <i class="fa-regular fa-star text-warning rating" ></i>
+                        <i class="fa-regular fa-star text-warning rating"></i>
                         <i class="fa-regular fa-star text-warning rating" data-index="2"></i>
                         <i class="fa-regular fa-star text-warning rating" data-index="3"></i>
                         <i class="fa-regular fa-star text-warning rating" data-index="4"></i>
@@ -250,50 +265,50 @@
                 <h5 class="modal-title text-center">Hình ảnh sản phẩm</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
-            <div class="modal-body card">             
-                <div class="text-center">          
+            <div class="modal-body card">
+                <div class="text-center">
                     <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
                 </div>
                 <div class="card-body">
-                <div class="row">
-                                <div class="col-0 col-lg-1">
+                    <div class="row">
+                        <div class="col-0 col-lg-1">
+                        </div>
+                        @php
+                        $num = 1;
+                        @endphp
+                        <div class="col-12 col-lg-10">
+                            <div id="carousel2" class="carousel carousel-dark slide" data-bs-ride="carousel2">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+                                    @foreach ($images as $row)
+                                    <button type="button" data-bs-target="#carousel2" data-bs-slide-to="{{ $num }}" class="active " aria-current="true" aria-label="Slide {{ $num++ }}"></button>
+                                    @endforeach
                                 </div>
-                                @php
-                                $num = 1;
-                                @endphp
-                                <div class="col-12 col-lg-10">
-                                    <div id="carousel2" class="carousel carousel-dark slide" data-bs-ride="carousel2">
-                                        <div class="carousel-indicators">
-                                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
-                                            @foreach ($images as $row)
-                                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="{{ $num }}" class="active " aria-current="true" aria-label="Slide {{ $num++ }}"></button>
-                                            @endforeach
-                                        </div>
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active text-center">
-                                                <img src="{{ asset('/image/' . $current_details->thumbnail_img) }}" class="btn d-block w-100 h-100 product-img " alt="...">
-                                            </div>
-                                            @foreach ($images as $row)
-                                            <div class="carousel-item">
-                                                <img src="{{ asset('/image/' . $row->file_path) }}" class="btn d-block w-100 h-100 product-img " alt="...">
-                                            </div>
-
-                                            @endforeach
-                                        </div>
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active text-center">
+                                        <img src="{{ asset('/image/' . $current_details->thumbnail_img) }}" class="btn d-block w-100 h-100 product-img " alt="...">
                                     </div>
-                                </div>
-                                <div class="col-0 col-lg-1">
+                                    @foreach ($images as $row)
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('/image/' . $row->file_path) }}" class="btn d-block w-100 h-100 product-img " alt="...">
+                                    </div>
 
+                                    @endforeach
                                 </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
+                        </div>
+                        <div class="col-0 col-lg-1">
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -309,5 +324,16 @@
     alert("{{ session('mess') }}");
 </script>
 @endif
-
+<script>
+    let max = <?php echo $reviews->count() ?>;
+    let x = 5;
+    $(document).ready(function() {
+        if (5 >= max - 1) {
+            $("#btnLoad").addClass("hiddenComp");
+        }
+        for (let i = 1; i <= 5; ++i) {
+            $("#" + i.toString()).removeClass("hiddenComp");
+        }
+    });
+</script>
 @endsection

@@ -230,3 +230,7 @@ input[type=number] {
     max-height: 512px;
   }
 }
+
+.hiddenComp {
+  display: none;
+}

@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title></title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/a597e9f72c.js" crossorigin="anonymous"></script>
     <script src="{{ asset('/js/buttonHandler.js') }}"></script>
     <script src="{{ asset('/js/userHiddenHandler.js') }}"></script>
