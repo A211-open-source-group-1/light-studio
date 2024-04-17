@@ -244,62 +244,56 @@
 </div>
 
 <div class="modal fade hide" id="infoProductModal" tabindex="-1" aria-labelledby="infoProductModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered w-100">
+    <div class="modal-dialog modal-lg  modal-dialog-centered w-100">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-center">Thông tin sản phẩm</h5>
+                <h5 class="modal-title text-center">Hình ảnh sản phẩm</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
             </div>
-            <div class="modal-body card">
-                <div class="text-center">
-                    <img class="card-img-top w-50" src="{{ asset('/image/'.$current_details->thumbnail_img) }}" alt="Card image cap">
-                </div>
+            <div class="modal-body card">             
                 <div class="text-center">          
                     <h4>{{$current_details->parentPhone->phone_name.' '.$current_details->parentSpecific->specific_name.' '.$current_details->parentColor->color_name}} </h4>
                 </div>
                 <div class="card-body">
-                <table class="table table-striped">
-                            <tr>
-                                <td>Màn hình</td>
-                                <td>{{ $current_details->screen }}</td>
-                            </tr>
-                            <tr>
-                                <td>Màu sắc</td>
-                                <td>{{ $current_details->parentColor()->first()->color_name }}</td>
-                            </tr>
-                            <tr>
-                                <td>Bộ nhớ RAM</td>
-                                <td>{{ $current_details->ram }}</td>
-                            </tr>
-                            <tr>
-                                <td>Bộ nhớ trong</td>
-                                <td>{{ $current_details->rom }}</td>
-                            </tr>
-                            <tr>
-                                <td>CPU</td>
-                                <td>{{ $current_details->cpu }}</td>
-                            </tr>
-                            <tr>
-                                <td>Camera trước</td>
-                                <td>{{ $current_details->front_cam }}</td>
-                            </tr>
-                            <tr>
-                                <td>Camera sau</td>
-                                <td>{{ $current_details->rear_cam }}</td>
-                            </tr>
-                            <tr>
-                                <td>Bluetooth</td>
-                                <td>{{ $current_details->bluetooth_ver }}</td>
-                            </tr>
-                            <tr>
-                                <td>WiFi</td>
-                                <td>{{ $current_details->wifi_ver }}</td>
-                            </tr>
-                            <tr>
-                                <td>NFC</td>
-                                <td>{{ $current_details->nfc }}</td>
-                            </tr>
-                        </table>
+                <div class="row">
+                                <div class="col-0 col-lg-1">
+                                </div>
+                                @php
+                                $num = 1;
+                                @endphp
+                                <div class="col-12 col-lg-10">
+                                    <div id="carousel2" class="carousel carousel-dark slide" data-bs-ride="carousel2">
+                                        <div class="carousel-indicators">
+                                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 0"></button>
+                                            @foreach ($images as $row)
+                                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="{{ $num }}" class="active " aria-current="true" aria-label="Slide {{ $num++ }}"></button>
+                                            @endforeach
+                                        </div>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active text-center">
+                                                <img src="{{ asset('/image/' . $current_details->thumbnail_img) }}" class="btn d-block w-100 h-100 product-img " alt="...">
+                                            </div>
+                                            @foreach ($images as $row)
+                                            <div class="carousel-item">
+                                                <img src="{{ asset('/image/' . $row->file_path) }}" class="btn d-block w-100 h-100 product-img " alt="...">
+                                            </div>
+
+                                            @endforeach
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-0 col-lg-1">
+
+                                </div>
+                            </div>
                 </div>
             </div>
             <div class="modal-footer">

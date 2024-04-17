@@ -6,6 +6,7 @@ use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\Management\MProductController;
+use App\Http\Controllers\Management\MOrderedCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::get('/get-user/{id}', [AuthController::class, 'getUser'])->name('getUser'
 Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
 Route::get('productsIndex/{type}', [MProductController::class, 'index'])->name('productsIndex');
 Route::get('/searchUser/{searchTerm}',[AuthController::class,'searchUser'])->name('searchUser');
+Route::get('/orderedCart',[MOrderedCartController::class,'index'])->name('orderedCart');
 
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
 Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');
