@@ -73,6 +73,7 @@ $(document).ready(function () {
                         response[0][i].color_name +
                         '</td>' +
                         '<td>' +
+                        response[0][i].phone_details_count +
                         '</td>' +
                         '<td>' +
                         '<button data-color-id="' + response[0][i].color_id + '" class="btn btn-primary edit-selected-color-btn">Sửa</button>' +

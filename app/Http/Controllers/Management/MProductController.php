@@ -71,6 +71,7 @@ class MProductController extends Controller
         $phone = Phone::where('phone_id', '=', $phone_id)->first();
         $colors = Color::select('*')
         ->leftJoin('phones', 'phones.phone_id', '=', 'phone_colors.phone_id')
+        ->withCount('PhoneDetails')
         ->where('phones.phone_id', '=', $phone_id)
         ->get() ;
         return response()->json([$colors, $phone]);

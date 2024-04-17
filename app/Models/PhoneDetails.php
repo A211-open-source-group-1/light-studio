@@ -39,4 +39,9 @@ class PhoneDetails extends Model
         return $siblings;
     }
 
+    public function Reviews()
+    {
+        return $this->hasMany(Review::class, 'phone_details_id', 'phone_details_id');
+    }
+
 }
