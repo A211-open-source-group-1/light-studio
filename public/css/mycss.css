@@ -215,7 +215,7 @@ input[type=number] {
 @media screen and (min-width: 992px) {
   .product-img {
     min-height: 440px;
-    max-height: 440px;
+    max-height: 512px;
   }
 
   .logo-banner {
