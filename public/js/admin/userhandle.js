@@ -99,6 +99,7 @@ $(document).ready(function () {
                 $('#edit-color-form').removeClass('d-none');
                 $('#ec_color_id').val(response.color_id)
                 $('#ec_color_name').val(response.color_name)
+                $('#notification').addClass('d-none');
             }
         })
     });
@@ -107,22 +108,25 @@ $(document).ready(function () {
         $('#edit-color-form').addClass('d-none');
         $('#ec_color_id').val('')
         $('#ec_color_name').val('')
+        $('#notification').addClass('d-none');
     })
 
     $(document).on('submit', '#edit-color-form', function(e) {
         var phone_id = $('#ec_phone_id').val()
         e.preventDefault()
-        alert('wtf')
         var form = $(this)
         $.ajax({
             type: 'POST',
-            url: '/editSelectedColorSubmit/',
+            url: '/editSelectedColorSubmit',
             data: form.serialize(),
             success: function(response) {
-                alert('wtf')
+                ajaxGetColors(phone_id)
+                $('#notification').removeClass('d-none');
+            },
+            error: function() {
+                alert('dcmm')
             }
         })
-        ajaxGetColors(phone_id)
     })
 
     $('#search').on('input', function () {

@@ -109,6 +109,9 @@
                                 <button id="close-edit-color-form-btn" class="btn btn-dark" type="button">Hủy</button>
                             </div>
                         </div>
+                        <div class="row" id="notification" class="d-none">
+                            <p class="text-success text-end mt-3">Sửa thành công!</p>
+                        </div>
                     </form>
                     <div class="row">
                         <div class="col-12">
