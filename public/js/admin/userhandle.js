@@ -130,6 +130,7 @@ $(document).ready(function () {
         })
     })
 
+   
     $('#search').on('input', function () {
         var searchTerm = $(this).val().trim();
         $.ajax({

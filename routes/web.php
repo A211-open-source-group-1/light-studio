@@ -56,6 +56,8 @@ Route::get('/orderedCart',[MOrderedCartController::class,'index'])->name('ordere
 Route::get('/proccedOrder/{paymentMethod}',[CartController::class,'proccedOrder'])->name('proccedOrder');
 Route::get('index',[MPhoneCategoryController::class,'index'])->name('indexCategory');
 Route::get('/listPhoneCategory/{id}',[MPhoneCategoryController::class,'listPhoneCategory'])->name('listPhoneCategory');
+Route::get('/searchCategory/{searchItem}',[MPhoneCategoryController::class,'searchCategory'])->name('searchCategory');
+Route::post('addCategory',[MPhoneCategoryController::class,'addCategory'])->name('addCategory');
 
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
 Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');

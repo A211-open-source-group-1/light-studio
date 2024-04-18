@@ -100,4 +100,25 @@ $(document).ready(function(){
         });
     });
     
+    $('#searchCategory').on('input', function () {
+        var searchTerm = $(this).val().trim();
+        $.ajax({
+            url: '/searchCategory/' + searchTerm,
+            type: 'GET',
+            success: function (data) {
+                $('#data-body').empty();
+                $.each(data, function (index, row) {
+                    var row = '<tr>'+
+                    '<th scope="row">'+ row.category_id +'</th>' +
+                    '<td> ' + row.category_name + '</td>'+
+                    '<td>' + row.category_description +'</td>'+
+                   '<td scope="row">'+
+                        '<a class="col btn btn-primary listCategory-btn" data-bs-toggle="modal" data-bs-target="#listPhoneCategory" data-category-id="'+ row.category_id +'">Xem danh sách</a>'+
+                         '<a class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#" data-category-id="'+ row.category_id +'">Xóa</a>'+
+                       ' </td>'
+                    $('#data-body').append(row);
+                });
+            }
+        });
+    });
 })
