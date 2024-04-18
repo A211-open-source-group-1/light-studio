@@ -156,4 +156,7 @@ class MProductController extends Controller
     public function deleteSpecific($specs_id) {
 
     }
+
+
+
 }

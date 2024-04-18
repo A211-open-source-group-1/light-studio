@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\Management\MProductController;
 use App\Http\Controllers\Management\MOrderedCartController;
+use App\Http\Controllers\Management\MPhoneCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Route::get('filter', [ProductController::class, 'filter'])->name('filter');
 Route::get('admin', [AuthController::class, 'admin'])->name('adminLogins');
 Route::post('authAdmin',[AuthController::class,'authAdmin'])->name('authAdmin');
 Route::get('customer',[AuthController::class,'customer'])->name('customer');
-Route::get('index',[AuthController::class,'indexAdmin'])->name('indexAdmin');
+Route::get('indexAdmin',[AuthController::class,'indexAdmin'])->name('indexAdmin');
 Route::post('deleteUser',[AuthController::class,'deleteUser'])->name('deleteUser');
 Route::get('/get-user/{id}', [AuthController::class, 'getUser'])->name('getUser');
 Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
@@ -53,7 +54,8 @@ Route::get('productsIndex/{type}', [MProductController::class, 'index'])->name('
 Route::get('/searchUser/{searchTerm}',[AuthController::class,'searchUser'])->name('searchUser');
 Route::get('/orderedCart',[MOrderedCartController::class,'index'])->name('orderedCart');
 Route::get('/proccedOrder/{paymentMethod}',[CartController::class,'proccedOrder'])->name('proccedOrder');
-
+Route::get('index',[MPhoneCategoryController::class,'index'])->name('indexCategory');
+Route::get('/listPhoneCategory/{id}',[MPhoneCategoryController::class,'listPhoneCategory'])->name('listPhoneCategory');
 
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
 Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');
