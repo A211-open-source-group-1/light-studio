@@ -61,7 +61,7 @@ Route::get('/searchCategory/{searchItem}',[MPhoneCategoryController::class,'sear
 Route::post('addCategory',[MPhoneCategoryController::class,'addCategory'])->name('addCategory');
 Route::get('brandIndex',[MBrandController::class,'brandIndex'])->name('brandIndex');
 Route::get('listItemBrand/{id}',[MBrandController::class,'listItemBrand'])->name('listItemBrand');
-
+Route::post('addBrand',[MBrandController::class,'addBrand'])->name('addBrand');
 
 
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');

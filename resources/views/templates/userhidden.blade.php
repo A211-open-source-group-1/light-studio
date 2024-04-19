@@ -131,8 +131,6 @@ $password=Cookie::get('password');
 </div>
 
 
-
-
 @if(session('successful'))
 <script>
   alert("{{ session('successful') }}");

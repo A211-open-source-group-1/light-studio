@@ -33,13 +33,54 @@ class MBrandController extends Controller
     }
     public function addBrand(Request $request)
     {
-        try{
-            $brand = new Brand();
-            $brand->brand_name = $request->brand_name;
-            $brand->brand_img = $request->brand_img;
-            
-        } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
+        $request->validate([
+            'brand_name' => 'required',
+            'brand_img' => 'required|mimes:jpg,jpeg,png', 
+        ], [
+            'brand_name.required' => 'Vui lòng nhập tên',
+            'brand_img.required' => 'Hình ảnh file phải là jpg, png, jpeg',
+        ]);
+    
+        if ($request->hasFile('brand_img') && $request->file('brand_img')->isValid()) {
+            $extension = $request->file('brand_img')->guessExtension();
+            $allowedExtensions = ['jpg', 'png', 'jpeg'];
+            if (!in_array($extension, $allowedExtensions)) {
+                return "FILE LỖI - Phần mở rộng tệp không được phép.";
+            }
+    
+            $originalFileName = $request->file('brand_img')->getClientOriginalName();
+            $img = 'image' . time() . '-' . $request->brand_name . '-' . $originalFileName;
+    
+            $request->file('brand_img')->move(public_path('/image'), $img);
+    
+            try {
+                $brand = new Brand();
+                $brand->brand_name = $request->brand_name;
+                $brand->brand_img = $img;
+                $brand->brand_description = $request->brand_description;
+                $brand->save();
+    
+             //   return redirect()->route('some.route')->with('success', 'Thương hiệu đã được thêm thành công!');
+            } catch (\Illuminate\Database\QueryException $e) {
+                return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
+            }
+        } else {
+            return redirect()->back()->withErrors('File không hợp lệ hoặc không tồn tại');
         }
+    }
+    
+        
+
+    public function searchBrands($term)
+    {
+        $brand = Brand::where('brand_id','like','%'.$term.'%')
+        ->orWhere('brand_name','like','%'.$term.'%')
+        ->orWhere('brand_description','like','%'.$term.'%');
+
+        if($brand->isEmpty())
+        {
+            $brand = Brand::all();
+        }
+        return response()->json([$brand]);
     }
 }

@@ -36,7 +36,7 @@ class MPhoneCategoryController extends Controller
             ->orWhere('category_id', 'like', '%' . $searchItem . '%')
             ->orWhere('category_description', 'like', '%' . $searchItem . '%')
             ->get();
-        if ($phoneCategorys->isEmpty()) {
+       if ($phoneCategorys->isEmpty()) {
             $phoneCategorys = PhoneCategory::all();
             return response()->json($phoneCategorys);
         }

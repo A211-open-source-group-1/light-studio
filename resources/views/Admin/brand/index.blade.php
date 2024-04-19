@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <div class="col-12 p-0 m-0">
-                <a href="#" class="btn btn-success mt-2 mb-2 btn-add-category" data-bs-toggle="modal" data-bs-target="#addPhoneCategory">Thêm mới</a>
+                <a href="#" class="btn btn-success mt-2 mb-2 btn-add-category" data-bs-toggle="modal" data-bs-target="#addBrand">Thêm mới</a>
             </div>
         </div>
         <div class="row">
@@ -75,6 +75,44 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addBrand" tabindex="-1" aria-labelledby="addBrand" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <form action="{{route('addBrand')}}" method="post" enctype="multipart/form-data">
+
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="addBrandLabel">Thêm mới thương hiệu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    @csrf
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="mb-3">
+                        <label for="brand_img" class="form-label">Chọn hình ảnh đại diện</label>
+                        <input type="file" class="form-control" id="brand_img" name="brand_img" placeholder="Nhập tên thương hiệu">
+                        <div class="text-danger" id="errorbrand_img"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="brand_name" class="form-label">Tên thương hiệu</label>
+                        <input type="text" class="form-control" id="brand_name" name="brand_name" placeholder="Nhập tên thương hiệu">
+                        <div class="text-danger" id="errorbrand_name"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="brand_description" class="form-label">Chú thích thương hiệu</label>
+                        <textarea class="form-control" id="brand_description" name="brand_description" rows="3" placeholder="Thêm mô tả cho loại sản phẩm"></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <input type="submit" class="btn btn-primary" value="Tạo"></input>
+            </div>
+            </form>
         </div>
     </div>
 </div>
