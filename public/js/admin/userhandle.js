@@ -157,5 +157,34 @@ $(document).ready(function () {
             }
         });
     });
+
+
+    $(document).on('click','.list-brand-btn',function(){
+        var brand_id = $(this).data('brand-id');
+        $.ajax({
+            url:'/listItemBrand/'+brand_id,
+            type:'GET',
+            success: function(data)
+            {
+                $('#data-body-list-brand-item').empty();
+                console.log(data);
+                for (let i = 0; i < data[0].length; ++i) {
+                    var row = '<tr>' +
+                        '<th scope="row">' + data[0][i].phone_id + '</th>' +
+                        '<td>' + data[0][i].phone_name + '</td>' +
+                        '<td>' + data[0][i].brand_name + '</td>' +
+                        '<td>' + data[0][i].category_description + '</td>' +
+                        '<td>' + data[0][i].os_name + '</td>' +                                          
+                        '<td>'+  data[0][i].colors_count +' <button type="button"  class="btn btn-sm btn-warning edit-phone-color-btn" data-bs-toggle="modal"  data-bs-target="#editPhoneColor" data-phone-id="'+data[0][i].phone_id+'">Chi tiết</button>'+'</td>' +
+                        '<td>' + data[0][i].specifics_count+ '<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> '+ '</td>' +
+                        '<td>' + data[0][i].phone_details_count +'<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> '+ '</td>' +
+                        '<td>'+' <a class="col btn btn-primary phone-edit-btn" data-bs-toggle="modal" data-bs-target="#editPhone" data-phone-id="'+data[0][i].phone_id+'">Sửa</a>   <a class="col btn btn-danger phone-edit-btn" data-bs-toggle="modal" data-bs-target="#" data-phone-id="{{ $row->phone_id }}">Xóa</a></td>'+
+                        '</tr>';
+                    $('#data-body-list-brand-item').append(row);
+                }  
+            }
+        })
+    })
+
 });
 

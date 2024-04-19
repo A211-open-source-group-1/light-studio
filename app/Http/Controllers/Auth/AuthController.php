@@ -95,6 +95,7 @@ class AuthController extends Controller
             }
         }
     }
+
     public function register(Request $request)
     {
         $request->validate([
@@ -255,4 +256,5 @@ class AuthController extends Controller
         }
         return response()->json($users);
     }
+    
 }

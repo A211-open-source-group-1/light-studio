@@ -8,6 +8,7 @@ use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\Management\MProductController;
 use App\Http\Controllers\Management\MOrderedCartController;
 use App\Http\Controllers\Management\MPhoneCategoryController;
+use App\Http\Controllers\Management\MBrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,10 @@ Route::get('index',[MPhoneCategoryController::class,'index'])->name('indexCatego
 Route::get('/listPhoneCategory/{id}',[MPhoneCategoryController::class,'listPhoneCategory'])->name('listPhoneCategory');
 Route::get('/searchCategory/{searchItem}',[MPhoneCategoryController::class,'searchCategory'])->name('searchCategory');
 Route::post('addCategory',[MPhoneCategoryController::class,'addCategory'])->name('addCategory');
+Route::get('brandIndex',[MBrandController::class,'brandIndex'])->name('brandIndex');
+Route::get('listItemBrand/{id}',[MBrandController::class,'listItemBrand'])->name('listItemBrand');
+
+
 
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
 Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');

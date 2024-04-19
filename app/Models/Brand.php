@@ -25,7 +25,10 @@ class Brand extends Model
         //         $products->push($detail->first());
         //     }
         // }
-        $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')->join('brand', 'brand.brand_id', '=', 'phones.brand_id')->join('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id')->where('brand.brand_id', '=', $this->brand_id);
+        $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+        ->join('brand', 'brand.brand_id', '=', 'phones.brand_id')
+        ->join('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id')
+        ->where('brand.brand_id', '=', $this->brand_id);
         return $products;
     }
     

@@ -49,7 +49,6 @@ class MPhoneCategoryController extends Controller
 
         ], [
             'CategoryName.required' => 'Vui lòng nhập tên loại sản phẩm.',
-
         ]);
         try {
             $phoneCategory = new PhoneCategory();

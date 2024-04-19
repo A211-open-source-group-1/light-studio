@@ -81,6 +81,7 @@ $(document).ready(function(){
             url: '/listPhoneCategory/' + id,
             type: 'get',
             success: function (data) {
+                console.log(data);  
                 $('#data-body-list').empty();
                 for (let i = 0; i < data[0].length; ++i) {
                     var row = '<tr>' +
