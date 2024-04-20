@@ -40,14 +40,22 @@ class MBrandController extends Controller
             'brand_name.required' => 'Vui lòng nhập tên',
             'brand_img.required' => 'Hình ảnh file phải là jpg, png, jpeg',
         ]);
-    
+        $mess = "";
         if ($request->hasFile('brand_img') && $request->file('brand_img')->isValid()) {
+            
             $extension = $request->file('brand_img')->guessExtension();
             $allowedExtensions = ['jpg', 'png', 'jpeg'];
             if (!in_array($extension, $allowedExtensions)) {
-                return "FILE LỖI - Phần mở rộng tệp không được phép.";
+                $mess ="FILE PHẢI LÀ .JPG, .PNG , .JPEG";
+                return redirect()->back()->with('mess',$mess);
             }
-    
+           $fileSize = $request->file('brand_img')->getSize()/1024/1024;
+             if($fileSize>25)
+             {
+                $mess ="FILE ẢNH PHẢI CÓ KÍCH THƯỚC DƯỚI 25MB";
+                return redirect()->back()->with('mess',$mess);
+           }
+             
             $originalFileName = $request->file('brand_img')->getClientOriginalName();
             $img = 'image' . time() . '-' . $request->brand_name . '-' . $originalFileName;
     
@@ -59,8 +67,8 @@ class MBrandController extends Controller
                 $brand->brand_img = $img;
                 $brand->brand_description = $request->brand_description;
                 $brand->save();
-    
-             //   return redirect()->route('some.route')->with('success', 'Thương hiệu đã được thêm thành công!');
+            return redirect()->back();
+
             } catch (\Illuminate\Database\QueryException $e) {
                 return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
             }
@@ -71,16 +79,17 @@ class MBrandController extends Controller
     
         
 
-    public function searchBrands($term)
+    public function searchBrand($term)
     {
         $brand = Brand::where('brand_id','like','%'.$term.'%')
         ->orWhere('brand_name','like','%'.$term.'%')
-        ->orWhere('brand_description','like','%'.$term.'%');
-
+        ->orWhere('brand_description','like','%'.$term.'%')->get();
+        
         if($brand->isEmpty())
         {
             $brand = Brand::all();
+            return response()->json($brand);
         }
-        return response()->json([$brand]);
+        return response()->json($brand);
     }
 }

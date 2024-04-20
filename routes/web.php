@@ -62,6 +62,7 @@ Route::post('addCategory',[MPhoneCategoryController::class,'addCategory'])->name
 Route::get('brandIndex',[MBrandController::class,'brandIndex'])->name('brandIndex');
 Route::get('listItemBrand/{id}',[MBrandController::class,'listItemBrand'])->name('listItemBrand');
 Route::post('addBrand',[MBrandController::class,'addBrand'])->name('addBrand');
+Route::get('/searchBrand/{term}',[MBrandController::class,'searchBrand'])->name('searchBrand');
 
 
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');

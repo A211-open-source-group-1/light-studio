@@ -138,7 +138,10 @@ $(document).ready(function () {
             type: 'GET',
             success: function (data) {
                 $('#data-body').empty();
+
                 $.each(data, function (index, user) {
+                    console.log(user);
+
                     var row = '<tr>' +
                         '<th scope="row">' + user.id + '</th>' +
                         '<td>' + user.name + '</td>' +
@@ -281,5 +284,32 @@ $(document).ready(function () {
             }
         });
     });
+
+
+    $('#searchBrand').on('input', function() {
+        var searchTerm = $(this).val().trim();
+        $.ajax({
+            url: '/searchBrand/' + searchTerm,
+            type: 'GET',
+            success: function(data) {
+                $('#data-body').empty();
+                $.each(data, function(index, brand) {
+                    console.log(brand);
+                    var imageSrc = '/image/' + brand.brand_img; // Assuming the images are stored in a directory named 'image'
+                    var row = '<tr>' +
+                        '<th scope="row">' + brand.brand_id + '</th>' +
+                        '<td scope="row" class="align-middle"><img class="img-brand" src="' + imageSrc + '"></td>' +
+                        '<td scope="row" class="align-middle">' + brand.brand_name + '</td>' +
+                        '<td scope="row" class="align-middle">' + brand.brand_description + '</td>' +
+                        '<td scope="row" class="align-middle"><a class="col btn btn-primary list-brand-btn" data-bs-toggle="modal" data-bs-target="#listBrand" data-brand-id="' + brand.brand_id + '">Xem danh sách</a>' +
+                        '</tr>';
+                    $('#data-body').append(row);
+                });
+            }
+        });
+    });
+    
+    
+
 });
 

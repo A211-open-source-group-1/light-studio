@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <label>Tìm kiếm</label>
-            <input id="searchCategory" type="search" name="searchsearchCategory" placeholder="Tìm kiếm">
+            <input id="searchBrand" type="search" name="searchBrand" placeholder="Tìm kiếm">
         </div>
         <div class="row">
             <div class="col-12 p-0 m-0">
@@ -29,11 +29,11 @@
                 <tbody id="data-body">
                     @foreach ($brands as $row)
                     <tr>
-                        <th scope="row">{{$row->brand_id}}</th>
-                        <td scope="row"><img src="{{ asset('/image/' . $row->brand_img) }}"></td>
-                        <td scope="row">{{$row->brand_name }}</td>
-                        <td scope="row">{{$row-> brand_description	}}</td>
-                        <td scope="row">
+                        <th scope="row" class="text-center align-middle">{{$row->brand_id}}</th>
+                        <td scope="row" class="align-middle"><img class="img-brand" src="{{ asset('/image/' . $row->brand_img) }}"></td>
+                        <td scope="row" class="align-middle">{{$row->brand_name }}</td>
+                        <td scope="row" class="align-middle">{{$row-> brand_description	}}</td>
+                        <td scope="row" class="align-middle">
                             <a class="col btn btn-primary list-brand-btn" data-bs-toggle="modal" data-bs-target="#listBrand" data-brand-id="{{$row->brand_id}}">Xem danh sách</a>
                         </td>
                     </tr>
@@ -116,4 +116,10 @@
         </div>
     </div>
 </div>
+
+@if(session('mess'))
+<script>
+  alert("{{ session('mess') }}");
+</script>
+@endif
 @endsection

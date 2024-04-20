@@ -20,19 +20,19 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Loại sản phẩm</th>
-                        <th scope="col">Chú thích</th>
-                        <th scope="col">Thao tác</th>
+                        <th scope="col" >ID</th>
+                        <th scope="col" >Loại sản phẩm</th>
+                        <th scope="col" >Chú thích</th>
+                        <th scope="col" >Thao tác</th>
                     </tr>
                 </thead>
                 <tbody id="data-body">
                     @foreach ($phoneCategorys as $row)
                     <tr>
-                        <th scope="row">{{$row->category_id}}</th>
-                        <td scope="row">{{$row->category_name}}</td>
-                        <td scope="row">{{$row->category_description }}</td>
-                        <td scope="row">
+                        <th scope="row" class="align-middle">{{$row->category_id}}</th>
+                        <td scope="row" class="align-middle">{{$row->category_name}}</td>
+                        <td scope="row" class="align-middle">{{$row->category_description }}</td>
+                        <td scope="row" class="align-middle">
                             <a class="col btn btn-primary listCategory-btn" data-bs-toggle="modal" data-bs-target="#listPhoneCategory" data-category-id="{{$row->category_id}}">Xem danh sách</a>
                             <a class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#" data-category-id="{{$row->category_id}}">Xóa</a>
                         </td>
