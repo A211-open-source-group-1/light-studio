@@ -1,9 +1,9 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $(document).on('click', '.listCategory-btn', function () {
         var id = $(this).data('category-id');
         $('#idCategory').val(id);
     });
-    
+
 
 
     $(document).on('click', '.phone-edit-btn', function () {
@@ -42,7 +42,7 @@ $(document).ready(function(){
     $(document).on('click', '.edit-phone-color-btn', function () {
         var id = $(this).data('phone-id');
         ajaxGetColors(id);
-    });  
+    });
 
     function ajaxGetColors(phone_id) {
         $.ajax({
@@ -81,7 +81,7 @@ $(document).ready(function(){
             url: '/listPhoneCategory/' + id,
             type: 'get',
             success: function (data) {
-                console.log(data);  
+                console.log(data);
                 $('#data-body-list').empty();
                 for (let i = 0; i < data[0].length; ++i) {
                     var row = '<tr>' +
@@ -89,18 +89,18 @@ $(document).ready(function(){
                         '<td>' + data[0][i].phone_name + '</td>' +
                         '<td>' + data[0][i].brand_name + '</td>' +
                         '<td>' + data[0][i].category_description + '</td>' +
-                        '<td>' + data[0][i].os_name + '</td>' +                                          
-                        '<td>'+  data[0][i].colors_count +' <button type="button"  class="btn btn-sm btn-warning edit-phone-color-btn" data-bs-toggle="modal"  data-bs-target="#editPhoneColor" data-phone-id="'+data[0][i].phone_id+'">Chi tiết</button>'+'</td>' +
-                        '<td>' + data[0][i].specifics_count+ '<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> '+ '</td>' +
-                        '<td>' + data[0][i].phone_details_count +'<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> '+ '</td>' +
-                        '<td>'+' <a class="col btn btn-primary phone-edit-btn" data-bs-toggle="modal" data-bs-target="#editPhone" data-phone-id="'+data[0][i].phone_id+'">Sửa</a>   <a class="col btn btn-danger phone-edit-btn" data-bs-toggle="modal" data-bs-target="#" data-phone-id="{{ $row->phone_id }}">Xóa</a></td>'+
+                        '<td>' + data[0][i].os_name + '</td>' +
+                        '<td>' + data[0][i].colors_count + ' <button type="button"  class="btn btn-sm btn-warning edit-phone-color-btn" data-bs-toggle="modal"  data-bs-target="#editPhoneColor" data-phone-id="' + data[0][i].phone_id + '">Chi tiết</button>' + '</td>' +
+                        '<td>' + data[0][i].specifics_count + '<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> ' + '</td>' +
+                        '<td>' + data[0][i].phone_details_count + '<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> ' + '</td>' +
+                        '<td>' + ' <a class="col btn btn-primary phone-edit-btn" data-bs-toggle="modal" data-bs-target="#editPhone" data-phone-id="' + data[0][i].phone_id + '">Sửa</a>   <a class="col btn btn-danger phone-edit-btn" data-bs-toggle="modal" data-bs-target="#" data-phone-id="{{ $row->phone_id }}">Xóa</a></td>' +
                         '</tr>';
                     $('#data-body-list').append(row);
-                }   
+                }
             }
         });
     });
-    
+   
     $('#searchCategory').on('input', function () {
         var searchTerm = $(this).val().trim();
         $.ajax({
@@ -109,17 +109,50 @@ $(document).ready(function(){
             success: function (data) {
                 $('#data-body').empty();
                 $.each(data, function (index, row) {
-                    var rows = '<tr>'+
-                    '<th scope="row">'+ row.category_id +'</th>' +
-                    '<td> ' + row.category_name + '</td>'+
-                    '<td>' + row.category_description +'</td>'+
-                   '<td scope="row">'+
-                        '<a class="col btn btn-primary listCategory-btn" data-bs-toggle="modal" data-bs-target="#listPhoneCategory" data-category-id="'+ row.category_id +'">Xem danh sách</a>'+
-                         '<a class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#" data-category-id="'+ row.category_id +'">Xóa</a>'+
-                       ' </td>'
+                    var rows = '<tr>' +
+                        '<th scope="row">' + row.category_id + '</th>' +
+                        '<td> ' + row.category_name + '</td>' +
+                        '<td>' + row.category_description + '</td>' +
+                        '<td scope="row">' +
+                        '<a class="col btn btn-primary listCategory-btn" data-bs-toggle="modal" data-bs-target="#listPhoneCategory" data-category-id="' + row.category_id + '">Xem danh sách</a>' +
+                        '<a class="col btn btn-secondary editCategory-btn" data-bs-toggle="modal" data-bs-target="#editCategory" data-category-id="' + row.category_id + '">Sửa</a>' +
+                        '<a class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#" data-category-id="' + row.category_id + '">Xóa</a>' +
+                        ' </td>'
                     $('#data-body').append(rows);
                 });
             }
         });
     });
+
+
+
 })
+
+$(document).ready('click', '.editCategory-btn', function () {
+    var id = $(this).data('category-id');
+    $.ajax({
+        url: '/loadModalCategory/' + id,
+        type: 'get',
+        success: function (data) {
+            console.log(data);
+            console.log(data.category_description);
+            $('#MCategoryName').val(data.category_name);
+            $('#MdescriptionCategory').val(data.category_description);
+        }
+    });
+});
+$(document).on('click', '.editCategory-btn', function () {
+    var id = $(this).data('category-id');
+    console.log(id);
+        $.ajax({
+        url: '/loadModalCategory/' + id,
+        type: 'get',
+        success: function (data) {
+            console.log(data);
+            console.log(data.category_description);
+            $('#MCategory_id').val(data.category_id);
+            $('#MCategoryName').val(data.category_name);
+            $('#MdescriptionCategory').val(data.category_description);
+        }
+    });
+});

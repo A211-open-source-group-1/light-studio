@@ -63,6 +63,10 @@ Route::get('brandIndex',[MBrandController::class,'brandIndex'])->name('brandInde
 Route::get('listItemBrand/{id}',[MBrandController::class,'listItemBrand'])->name('listItemBrand');
 Route::post('addBrand',[MBrandController::class,'addBrand'])->name('addBrand');
 Route::get('/searchBrand/{term}',[MBrandController::class,'searchBrand'])->name('searchBrand');
+Route::post('editCategory',[MPhoneCategoryController::class,'editCategory'])->name('editCategory');
+Route::get('loadModalCategory/{id}',[MPhoneCategoryController::class,'loadModalCategory'])->name('loadModalCategory');
+Route::get('loadModalBrand/{id}',[MBrandController::class,'loadModalBrand'])->name('loadModalBrand');
+Route::get('editBrand',[MBrandController::class,'editBrand'])->name('editBrand');
 
 
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');

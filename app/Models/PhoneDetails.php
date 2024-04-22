@@ -22,7 +22,7 @@ class PhoneDetails extends Model
     {
         return $this->belongsTo(Color::class, 'color_id', 'color_id');
     }
-
+    
     public function parentSpecific()
     {
         return $this->belongsTo(PhoneSpecs::class, 'specific_id', 'specific_id');

@@ -60,4 +60,32 @@ class MPhoneCategoryController extends Controller
             return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
         }
     }
+    public function loadModalCategory($id)
+    {
+        $phoneCategory = PhoneCategory::where('category_id', $id)->first();
+        if ($phoneCategory) {
+            return response()->json($phoneCategory);
+        }
+        return response()->json(['message' => 'Không tìm thấy'], 404);
+    }
+    
+    public function editCategory(Request $request)
+    {
+        $request->validate([
+            'CategoryName' => 'required',
+        ], [
+            'CategoryName.required' => 'Vui lòng nhập tên loại sản phẩm.',
+        ]);
+        try {
+            $phoneCategory = PhoneCategory::where('category_id','=',$request->category_id)->first();
+            $phoneCategory->category_name = $request->CategoryName;
+            $phoneCategory->category_description = $request->descriptionCategory;
+            $phoneCategory->save();
+            return redirect()->back()->with('successful', 'Sửa thành công');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
+        } 
+    }
+    // public function deleteCategory()
+
 }

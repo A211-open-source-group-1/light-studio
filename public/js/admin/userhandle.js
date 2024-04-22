@@ -342,7 +342,7 @@ $(document).ready(function () {
                 $('#data-body').empty();
                 $.each(data, function (index, brand) {
                     console.log(brand);
-                    var imageSrc = '/image/' + brand.brand_img; // Assuming the images are stored in a directory named 'image'
+                    var imageSrc = '/image/' + brand.brand_img;
                     var row = '<tr>' +
                         '<th scope="row">' + brand.brand_id + '</th>' +
                         '<td scope="row" class="align-middle"><img class="img-brand" src="' + imageSrc + '"></td>' +
@@ -358,5 +358,37 @@ $(document).ready(function () {
 
 
 
+
+});
+$(document).ready('click', '.edit-brand-btn', function () {
+    var id = $(this).data('brand-id');
+    $.ajax({
+        url: '/loadModalBrand/' + id,
+        type: 'GET',
+        success: function (data) {
+            // $('#Mbrand_img').val(data.brand_img);
+            $('#Mbrand_name').val(data.brand_name);
+            $('#Mbrand_description').val(data.brand_description);
+        }
+    });
+});
+$(document).on('click', '.edit-brand-btn', function () {
+    var id = $(this).data('brand-id');
+    $.ajax({
+        url: '/loadModalBrand/' + id,
+        type: 'GET',
+        success: function (data) {
+            $('#Mbrand_name').val(data.brand_name);
+            $('#Mbrand_description').val(data.brand_description);
+            $('#Mbrand_img').attr('src', '/image/' + data.brand_img);
+        }
+    });
 });
 
+
+$(document).ready(function(){
+    $('.img-btn').click(function(){
+        var id = $('#Loadbrand_img').val();
+        alert(id);
+    });
+});

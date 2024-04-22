@@ -131,6 +131,7 @@ class AuthController extends Controller
         } else {
             return redirect()->back()->withErrors('Mật khẩu không chính xác');
         }
+        return "132";
     }
 
 

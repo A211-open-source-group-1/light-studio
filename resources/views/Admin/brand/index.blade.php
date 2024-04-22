@@ -35,6 +35,7 @@
                         <td scope="row" class="align-middle">{{$row-> brand_description	}}</td>
                         <td scope="row" class="align-middle">
                             <a class="col btn btn-primary list-brand-btn" data-bs-toggle="modal" data-bs-target="#listBrand" data-brand-id="{{$row->brand_id}}">Xem danh sách</a>
+                            <a class="col btn btn-secondary edit-brand-btn" data-bs-toggle="modal" data-bs-target="#editBrand" data-brand-id="{{$row->brand_id}}">Sửa</a>
                         </td>
                     </tr>
                     @endforeach
@@ -82,13 +83,13 @@
 <div class="modal fade" id="addBrand" tabindex="-1" aria-labelledby="addBrand" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-        <form action="{{route('addBrand')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('addBrand')}}" method="post" enctype="multipart/form-data">
 
-            <div class="modal-header border-bottom-0">
-                <h5 class="modal-title" id="addBrandLabel">Thêm mới thương hiệu</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title" id="addBrandLabel">Thêm mới thương hiệu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="mb-3">
@@ -107,19 +108,57 @@
                         <label for="brand_description" class="form-label">Chú thích thương hiệu</label>
                         <textarea class="form-control" id="brand_description" name="brand_description" rows="3" placeholder="Thêm mô tả cho loại sản phẩm"></textarea>
                     </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                <input type="submit" class="btn btn-primary" value="Tạo"></input>
-            </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <input type="submit" class="btn btn-primary" value="Tạo"></input>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
+<div class="modal fade" id="editBrand" tabindex="-1" aria-labelledby="editBrand" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="{{route('editBrand')}}" method="post" enctype="multipart/form-data">
+
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title" id="editBrandLabel">Sửa thương hiệu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @csrf
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="mb-3">
+                        <label for="brand_img" class="form-label">Chọn hình ảnh đại diện</label>
+                        <img class=" img-brand m-3  " src="{{ asset('/image/2')}}" id="Mbrand_img">
+                        <input type="file" class="form-control" id="Loadbrand_img" name="Loadbrand_img">
+                        <div class="text-end">
+                            <button type="button" class="btn btn-primary m-2 text-end img-btn">Tải lên</button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="brand_name" class="form-label">Tên thương hiệu</label>
+                        <input type="text" class="form-control" id="Mbrand_name" name="brand_name" placeholder="Nhập tên thương hiệu">
+                        <div class="text-danger" id="errorbrand_name"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="brand_description" class="form-label">Chú thích thương hiệu</label>
+                        <textarea class="form-control" id="Mbrand_description" name="brand_description" rows="3" placeholder="Thêm mô tả cho loại sản phẩm"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <input type="submit" class="btn btn-primary" value="Sửa"></input>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @if(session('mess'))
 <script>
-  alert("{{ session('mess') }}");
+    alert("{{ session('mess') }}");
 </script>
 @endif
 @endsection

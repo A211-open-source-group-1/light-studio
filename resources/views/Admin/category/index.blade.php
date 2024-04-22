@@ -34,6 +34,7 @@
                         <td scope="row" class="align-middle">{{$row->category_description }}</td>
                         <td scope="row" class="align-middle">
                             <a class="col btn btn-primary listCategory-btn" data-bs-toggle="modal" data-bs-target="#listPhoneCategory" data-category-id="{{$row->category_id}}">Xem danh sách</a>
+                            <a class="col btn btn-secondary editCategory-btn" data-bs-toggle="modal" data-bs-target="#editCategory" data-category-id="{{$row->category_id}}">Sửa</a>
                             <a class="col btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#" data-category-id="{{$row->category_id}}">Xóa</a>
                         </td>
                     </tr>
@@ -80,7 +81,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal  add-->
 <div class="modal fade" id="addPhoneCategory" tabindex="-1" aria-labelledby="addPhoneCategoryLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -114,5 +115,35 @@
     </div>
 </div>
 
+<div class="modal fade" id="editCategory" tabindex="-1" aria-labelledby="editCategory" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <form action="{{route('editCategory')}}" method="post">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="editCategoryLabel">Sửa loại</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    @csrf
+                    <input type="hidden" id="MCategory_id" name="category_id" value="">
+                    <div class="mb-3">
+                        <label for="CategoryName" class="form-label">Tên loại sản phẩm</label>
+                        <input type="text" class="form-control" id="MCategoryName" name="CategoryName" placeholder="Nhập tên loại sản phẩm">
+                        <div class="text-danger" id="errorCategoryName"></div>
+                    </div>
 
+                    <div class="mb-3">
+                        <label for="descriptionCategory" class="form-label">Chú thích loại sản phẩm</label>
+                        <textarea class="form-control" id="MdescriptionCategory" name="descriptionCategory" rows="3" placeholder="Thêm mô tả cho loại sản phẩm"></textarea>
+                        <div class="text-danger" id="errordescriptionCategory"></div>
+                    </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <input type="submit" class="btn btn-primary" value="Sửa"></input>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
