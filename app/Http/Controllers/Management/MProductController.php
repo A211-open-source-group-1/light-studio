@@ -134,6 +134,11 @@ class MProductController extends Controller
     }
 
     public function addColorSubmit(Request $request) {
+        $new_color = new Color();
+        $new_color->phone_id = $request->phone_id;
+        $new_color->color_name = $request->new_color_name;
+        $new_color->save();
+        return response()->json(['isSucceed' => true]);
 
     }
 
@@ -150,7 +155,9 @@ class MProductController extends Controller
     }
 
     public function deleteColor($color_id) {
-
+        $delete_color = Color::where('color_id', '=', $color_id)->first();
+        $delete_color->delete();
+        return response()->json(['isSucceed' => true]);
     }
 
     public function deleteSpecific($specs_id) {

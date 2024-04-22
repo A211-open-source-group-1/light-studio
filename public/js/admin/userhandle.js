@@ -96,23 +96,23 @@ $(document).ready(function () {
         $.ajax({
             url: '/editSelectedColor/' + color_id,
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 $('#edit-color-form').removeClass('d-none');
                 $('#ec_color_id').val(response.color_id)
                 $('#ec_color_name').val(response.color_name)
-                $('#notification').addClass('d-none');
+                $('#edit_notification').addClass('d-none');
             }
         })
     });
 
-    $(document).on('click', '#close-edit-color-form-btn', function() {
+    $(document).on('click', '#close-edit-color-form-btn', function () {
         $('#edit-color-form').addClass('d-none');
         $('#ec_color_id').val('')
         $('#ec_color_name').val('')
         $('#notification').addClass('d-none');
     })
 
-    $(document).on('submit', '#edit-color-form', function(e) {
+    $(document).on('submit', '#edit-color-form', function (e) {
         var phone_id = $('#ec_phone_id').val()
         e.preventDefault()
         var form = $(this)
@@ -120,17 +120,65 @@ $(document).ready(function () {
             type: 'POST',
             url: '/editSelectedColorSubmit',
             data: form.serialize(),
-            success: function(response) {
+            success: function (response) {
                 ajaxGetColors(phone_id)
-                $('#notification').removeClass('d-none');
+                $('#edit_notification').removeClass('d-none');
             },
-            error: function() {
-                alert('dcmm')
+            error: function () {
+                alert('Loi r')
             }
         })
     })
 
-   
+    $(document).on('click', '#close-add-color-form-btn', function () {
+        $('#add-color-form').addClass('d-none');
+        $('#add_notification').addClass('d-none');
+        $('#add-color-form-btn').removeClass('d-none');
+        $('#delete_notification').addClass('d-none')
+    })
+
+    $(document).on('click', '#add-color-form-btn', function () {
+        $('#add-color-form').removeClass('d-none');
+        $('#add_notification').addClass('d-none');
+        $('#add-color-form-btn').addClass('d-none');
+        $('#delete_notification').addClass('d-none')
+        $('#new_color_id').val('');
+    })
+
+    $(document).on('submit', '#add-color-form', function (e) {
+        var phone_id = $('#ec_phone_id').val()
+        e.preventDefault();
+        var form = $(this);
+        $.ajax({
+            type: 'POST',
+            url: '/addColorSubmit',
+            data: form.serialize() + '&' + 'phone_id=' + phone_id,
+            success: function (response) {
+                ajaxGetColors(phone_id)
+                $('#add_notification').removeClass('d-none')
+            },
+            error: function () {
+                alert('Loi r')
+            }
+        })
+    })
+
+    $(document).on('click', '.delete-selected-color-btn', function () {
+        var phone_id = $('#ec_phone_id').val()
+        var color_id = $(this).data('color-id');
+        $.ajax({
+            type: 'GET',
+            url: '/deleteColor/' + color_id,
+            success: function (response) {
+                ajaxGetColors(phone_id)
+                $('#delete_notification').removeClass('d-none')
+            },
+            error: function () {
+                alert('Loi r')
+            }
+        })
+    })
+
     $('#search').on('input', function () {
         var searchTerm = $(this).val().trim();
         $.ajax({
@@ -162,13 +210,12 @@ $(document).ready(function () {
     });
 
 
-    $(document).on('click','.list-brand-btn',function(){
+    $(document).on('click', '.list-brand-btn', function () {
         var brand_id = $(this).data('brand-id');
         $.ajax({
-            url:'/listItemBrand/'+brand_id,
-            type:'GET',
-            success: function(data)
-            {
+            url: '/listItemBrand/' + brand_id,
+            type: 'GET',
+            success: function (data) {
                 $('#data-body-list-brand-item').empty();
                 console.log(data);
                 for (let i = 0; i < data[0].length; ++i) {
@@ -177,14 +224,14 @@ $(document).ready(function () {
                         '<td>' + data[0][i].phone_name + '</td>' +
                         '<td>' + data[0][i].brand_name + '</td>' +
                         '<td>' + data[0][i].category_description + '</td>' +
-                        '<td>' + data[0][i].os_name + '</td>' +                                          
-                        '<td>'+  data[0][i].colors_count +' <button type="button"  class="btn btn-sm btn-warning edit-phone-color-btn" data-bs-toggle="modal"  data-bs-target="#editPhoneColor" data-phone-id="'+data[0][i].phone_id+'">Chi tiết</button>'+'</td>' +
-                        '<td>' + data[0][i].specifics_count+ '<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> '+ '</td>' +
-                        '<td>' + data[0][i].phone_details_count +'<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> '+ '</td>' +
-                        '<td>'+' <a class="col btn btn-primary phone-edit-btn" data-bs-toggle="modal" data-bs-target="#editPhone" data-phone-id="'+data[0][i].phone_id+'">Sửa</a>   <a class="col btn btn-danger phone-edit-btn" data-bs-toggle="modal" data-bs-target="#" data-phone-id="{{ $row->phone_id }}">Xóa</a></td>'+
+                        '<td>' + data[0][i].os_name + '</td>' +
+                        '<td>' + data[0][i].colors_count + ' <button type="button"  class="btn btn-sm btn-warning edit-phone-color-btn" data-bs-toggle="modal"  data-bs-target="#editPhoneColor" data-phone-id="' + data[0][i].phone_id + '">Chi tiết</button>' + '</td>' +
+                        '<td>' + data[0][i].specifics_count + '<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> ' + '</td>' +
+                        '<td>' + data[0][i].phone_details_count + '<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> ' + '</td>' +
+                        '<td>' + ' <a class="col btn btn-primary phone-edit-btn" data-bs-toggle="modal" data-bs-target="#editPhone" data-phone-id="' + data[0][i].phone_id + '">Sửa</a>   <a class="col btn btn-danger phone-edit-btn" data-bs-toggle="modal" data-bs-target="#" data-phone-id="{{ $row->phone_id }}">Xóa</a></td>' +
                         '</tr>';
                     $('#data-body-list-brand-item').append(row);
-                }  
+                }
             }
         })
     })
@@ -226,7 +273,7 @@ $(document).ready(function () {
     $(document).on('click', '.edit-phone-color-btn', function () {
         var id = $(this).data('phone-id');
         ajaxGetColors(id);
-    });  
+    });
 
     function ajaxGetColors(phone_id) {
         $.ajax({
@@ -265,7 +312,7 @@ $(document).ready(function () {
             url: '/listPhoneCategory/' + id,
             type: 'get',
             success: function (data) {
-                console.log(data);  
+                console.log(data);
                 $('#data-body-list').empty();
                 for (let i = 0; i < data[0].length; ++i) {
                     var row = '<tr>' +
@@ -273,27 +320,27 @@ $(document).ready(function () {
                         '<td>' + data[0][i].phone_name + '</td>' +
                         '<td>' + data[0][i].brand_name + '</td>' +
                         '<td>' + data[0][i].category_description + '</td>' +
-                        '<td>' + data[0][i].os_name + '</td>' +                                          
-                        '<td>'+  data[0][i].colors_count +' <button type="button"  class="btn btn-sm btn-warning edit-phone-color-btn" data-bs-toggle="modal"  data-bs-target="#editPhoneColor" data-phone-id="'+data[0][i].phone_id+'">Chi tiết</button>'+'</td>' +
-                        '<td>' + data[0][i].specifics_count+ '<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> '+ '</td>' +
-                        '<td>' + data[0][i].phone_details_count +'<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> '+ '</td>' +
-                        '<td>'+' <a class="col btn btn-primary phone-edit-btn" data-bs-toggle="modal" data-bs-target="#editPhone" data-phone-id="'+data[0][i].phone_id+'">Sửa</a>   <a class="col btn btn-danger phone-edit-btn" data-bs-toggle="modal" data-bs-target="#" data-phone-id="{{ $row->phone_id }}">Xóa</a></td>'+
+                        '<td>' + data[0][i].os_name + '</td>' +
+                        '<td>' + data[0][i].colors_count + ' <button type="button"  class="btn btn-sm btn-warning edit-phone-color-btn" data-bs-toggle="modal"  data-bs-target="#editPhoneColor" data-phone-id="' + data[0][i].phone_id + '">Chi tiết</button>' + '</td>' +
+                        '<td>' + data[0][i].specifics_count + '<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> ' + '</td>' +
+                        '<td>' + data[0][i].phone_details_count + '<button type="button" class="btn btn-sm btn-warning">Chi tiết</button> ' + '</td>' +
+                        '<td>' + ' <a class="col btn btn-primary phone-edit-btn" data-bs-toggle="modal" data-bs-target="#editPhone" data-phone-id="' + data[0][i].phone_id + '">Sửa</a>   <a class="col btn btn-danger phone-edit-btn" data-bs-toggle="modal" data-bs-target="#" data-phone-id="{{ $row->phone_id }}">Xóa</a></td>' +
                         '</tr>';
                     $('#data-body-list').append(row);
-                }   
+                }
             }
         });
     });
 
 
-    $('#searchBrand').on('input', function() {
+    $('#searchBrand').on('input', function () {
         var searchTerm = $(this).val().trim();
         $.ajax({
             url: '/searchBrand/' + searchTerm,
             type: 'GET',
-            success: function(data) {
+            success: function (data) {
                 $('#data-body').empty();
-                $.each(data, function(index, brand) {
+                $.each(data, function (index, brand) {
                     console.log(brand);
                     var imageSrc = '/image/' + brand.brand_img; // Assuming the images are stored in a directory named 'image'
                     var row = '<tr>' +
@@ -308,8 +355,8 @@ $(document).ready(function () {
             }
         });
     });
-    
-    
+
+
 
 });
 

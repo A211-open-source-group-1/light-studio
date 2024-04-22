@@ -245,12 +245,37 @@
                                 <button id="close-edit-color-form-btn" class="btn btn-dark" type="button">Hủy</button>
                             </div>
                         </div>
-                        <div class="row" id="notification" class="d-none">
+                        <div class="row" id="edit_notification" class="d-none">
                             <p class="text-success text-end mt-3">Sửa thành công!</p>
                         </div>
                     </form>
+                    <form id="add-color-form" method="POST" class="form border-0 d-none" action="{{route('addColorSubmit')}}">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <label for="new_color_id">Tên màu</label>
+                                <input id="new_color_id" name="new_color_name" class="form-control" type="text" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+
+                            </div>
+                            <div class="col-4 text-end">
+                                <button id="submit-add-color-form-btn" class="btn btn-success" type="submit">Thêm</button>
+                                <button id="close-add-color-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                            </div>
+                        </div>
+                        <div class="row" id="add_notification" class="d-none">
+                            <p class="text-success text-end mt-3">Thêm thành công!</p>
+                        </div>
+                    </form>
+                    <div class="row" id="delete_notification" class="d-none">
+                        <p class="text-success text-end mt-3">Xóa thành công!</p>
+                    </div>
                     <div class="row">
                         <div class="col-12">
+                            <button id="add-color-form-btn" class="btn btn-success">Thêm</button>
                             <div class="container-fluid m-0 p-0">
                                 <table class="table table-light">
                                     <thead>
