@@ -210,14 +210,14 @@ class AuthController extends Controller
    public function deleteUser(Request $request)
    {
     try {
+
         $user = User::find($request->deleteUserId);
         if (!$user) {
-            throw new \Exception('User not found');
+            throw new \Exception('User not found' . $request->deleteUserId);
         }
-       $user->delete();
-        $users = User::all();
-        $message = "Xóa thành công";    
-           return redirect()->back()->with('mess',$message);
+        $user->delete();
+        $message = "Xóa thành công ".$user->id;    
+        return redirect()->back()->with('mess',$message);
     } catch (\Exception $e) {
         $message = "Xóa không thành công: " . $e->getMessage();
         return redirect()->back()->with('mess',$message);

@@ -42,7 +42,6 @@ class User extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
-
     protected $name ='name';
     protected $phone_number ='phone_number';
     protected $email = 'email';

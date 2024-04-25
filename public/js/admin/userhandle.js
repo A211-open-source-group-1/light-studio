@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(document).on('click', '.edit-btn', function () {
+    $(document).on('click', '.delete-btn', function () {
         var userId = $(this).data('user-id');
         $('#deleteUserId').val(userId);
     });
