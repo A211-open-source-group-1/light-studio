@@ -9,6 +9,7 @@ use App\Models\Phone;
 use App\Models\PhoneCategory;
 use App\Models\PhoneDetails;
 use App\Models\PhoneOs;
+use App\Models\PhoneSpecs;
 use DOMDocument;
 use Exception;
 use Illuminate\Http\Request;
@@ -78,7 +79,13 @@ class MProductController extends Controller
     }
 
     public function editSpecifics($phone_id) {
-
+        $phone = Phone::where('phone_id', '=', $phone_id)->first();
+        $specs = PhoneSpecs::select('*')
+        ->leftJoin('phones', 'phones.phone_id', '=', 'phone_specifics.phone_id')
+        ->withCount('PhoneDetails')
+        ->where('phones.phone_id', '=', $phone_id)
+        ->get();
+        return response()->json([$specs, $phone]);
     }
 
     public function editDetails($phone_id) {
