@@ -4,6 +4,15 @@ $(document).ready(function () {
         $('#deleteUserId').val(userId);
     });
 
+    $(document).ready('click', '.delete-brand-btn', function () {
+        var userId = $(this).data('brand-id');
+        $('#deleteBrandID').val(userId);
+    });
+    $(document).on('click', '.delete-brand-btn', function () {
+        var userId = $(this).data('brand-id');
+        $('#deleteBrandID').val(userId);
+    });
+
     $(document).on('click', '.edit-btn', function () {
         var userId = $(this).data('user-id');
         console.log(userId);

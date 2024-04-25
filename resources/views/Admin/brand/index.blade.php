@@ -36,6 +36,8 @@
                         <td scope="row" class="align-middle">
                             <a class="col btn btn-primary list-brand-btn" data-bs-toggle="modal" data-bs-target="#listBrand" data-brand-id="{{$row->brand_id}}">Xem danh sách</a>
                             <a class="col btn btn-secondary edit-brand-btn" data-bs-toggle="modal" data-bs-target="#editBrand" data-brand-id="{{$row->brand_id}}">Sửa</a>
+                            <a class="col btn btn-danger delete-brand-btn" data-bs-toggle="modal" data-bs-target="#deleteBrand" data-brand-id="{{$row->brand_id}}">Xóa</a>
+
                         </td>
                     </tr>
                     @endforeach
@@ -118,6 +120,27 @@
     </div>
 </div>
 
+<div class="modal fade" id="deleteBrand" tabindex="-1" aria-labelledby="deleteBrandLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ route('deleteBrand') }}" method="post">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteBrandLabel">Xóa thương hiệu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="deleteBrandID" name="deleteBrandID">
+                    <p>Bạn có chắc chắn muốn xóa thương hiệu này?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="editBrand" tabindex="-1" aria-labelledby="editBrand" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

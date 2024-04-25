@@ -117,4 +117,20 @@ class MBrandController extends Controller
         }
         return response()->json($brand);
     }
+    public function deleteBrand(Request $request)
+    {
+        try {
+
+            $brand = Brand::find($request->deleteBrandID);
+            if (!$brand) {
+                throw new \Exception('Brand không tìm thấy' . $request->deleteBrandID);
+            }
+            $brand->delete();
+            $message = "Xóa thành công ".$brand->brand_id;    
+            return redirect()->back()->with('mess',$message);
+        } catch (\Exception $e) {
+            $message = "Xóa không thành công: " . $e->getMessage();
+            return redirect()->back()->with('mess',$message);
+        }
+    }
 }

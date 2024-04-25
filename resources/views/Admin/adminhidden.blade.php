@@ -17,7 +17,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" id="deleteUserId" name="deleteUserId">
+                    <input type="hidden" id="deleteUserId" name="deleteUserId">
                     <p>Bạn có chắc chắn muốn xóa người dùng này?</p>
                 </div>
                 <div class="modal-footer">

@@ -67,7 +67,7 @@ Route::post('editCategory',[MPhoneCategoryController::class,'editCategory'])->na
 Route::get('loadModalCategory/{id}',[MPhoneCategoryController::class,'loadModalCategory'])->name('loadModalCategory');
 Route::get('loadModalBrand/{id}',[MBrandController::class,'loadModalBrand'])->name('loadModalBrand');
 Route::get('editBrand',[MBrandController::class,'editBrand'])->name('editBrand');
-
+Route::post('deleteBrand',[MBrandController::class,'deleteBrand'])->name('deleteBrand');
 
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
 Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');
