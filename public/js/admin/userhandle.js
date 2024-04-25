@@ -121,7 +121,7 @@ $(document).ready(function () {
         $.ajax({
             url: '/editDetails/' + phone_id,
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 $('#ed_phone_name').val(response[1].phone_name);
                 $('#ed_phone_id').val(response[1].phone_id);
                 $('#details-board').empty();
@@ -157,13 +157,13 @@ $(document).ready(function () {
                     )
                 }
             },
-            error: function() {
+            error: function () {
                 alert('dcm');
             }
         })
     }
 
-    $(document).on('click', '.edit-phone-details-btn', function() {
+    $(document).on('click', '.edit-phone-details-btn', function () {
         var phoneId = $(this).data('phone-id');
         ajaxGetDetails(phoneId);
     })

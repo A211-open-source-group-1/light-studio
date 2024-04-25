@@ -110,7 +110,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="editPhone" tabindex="-1" aria-labelledby="editPhone" aria-hidden="true" >
+<div class="modal fade" id="editPhone" tabindex="-1" aria-labelledby="editPhone" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <form action="{{ route('editPhoneSubmit') }}" method="post">
@@ -224,16 +224,19 @@
                             <input readonly id="ec_phone_name" class="form-control" type="text">
                         </div>
                     </div>
-                    <form id="edit-color-form" method="POST" class="form border-0 d-none" action="{{route('editSelectedColorSubmit')}}">
+                    <form id="edit-color-form" method="POST" class="form border-0 d-none"
+                        action="{{ route('editSelectedColorSubmit') }}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="ec_color_id">Mã màu</label>
-                                <input readonly id="ec_color_id" name="current_color_id" class="form-control" type="text">
+                                <input readonly id="ec_color_id" name="current_color_id" class="form-control"
+                                    type="text">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ec_color_name">Tên màu</label>
-                                <input id="ec_color_name" name="current_color_name" class="form-control" type="text">
+                                <input id="ec_color_name" name="current_color_name" class="form-control"
+                                    type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -241,20 +244,24 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-edit-color-form-btn" class="btn btn-success" type="submit">Lưu</button>
-                                <button id="close-edit-color-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-edit-color-form-btn" class="btn btn-success"
+                                    type="submit">Lưu</button>
+                                <button id="close-edit-color-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
                         <div class="row" id="edit_notification" class="d-none">
                             <p class="text-success text-end mt-3">Sửa thành công!</p>
                         </div>
                     </form>
-                    <form id="add-color-form" method="POST" class="form border-0 d-none" action="{{route('addColorSubmit')}}">
+                    <form id="add-color-form" method="POST" class="form border-0 d-none"
+                        action="{{ route('addColorSubmit') }}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="new_color_id">Tên màu</label>
-                                <input id="new_color_id" name="new_color_name" class="form-control" type="text" required>
+                                <input id="new_color_id" name="new_color_name" class="form-control" type="text"
+                                    required>
                             </div>
                         </div>
                         <div class="row">
@@ -262,8 +269,10 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-add-color-form-btn" class="btn btn-success" type="submit">Thêm</button>
-                                <button id="close-add-color-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-add-color-form-btn" class="btn btn-success"
+                                    type="submit">Thêm</button>
+                                <button id="close-add-color-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
                         <div class="row" id="add_notification" class="d-none">
@@ -303,7 +312,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="editPhoneSpecifics" tabindex="-1" aria-labelledby="editPhoneSpecifics" aria-hidden="true">
+<div class="modal fade" id="editPhoneSpecifics" tabindex="-1" aria-labelledby="editPhoneSpecifics"
+    aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             @csrf
@@ -323,16 +333,19 @@
                             <input readonly id="es_phone_name" class="form-control" type="text">
                         </div>
                     </div>
-                    <form id="edit-color-form" method="POST" class="form border-0 d-none" action="{{route('editSelectedColorSubmit')}}">
+                    <form id="edit-color-form" method="POST" class="form border-0 d-none"
+                        action="{{ route('editSelectedColorSubmit') }}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="ec_specs_id">Mã phiên bản</label>
-                                <input readonly id="ec_specs_id" name="current_specs_id" class="form-control" type="text">
+                                <input readonly id="ec_specs_id" name="current_specs_id" class="form-control"
+                                    type="text">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ec_specs_name">Tên phiên bản</label>
-                                <input id="ec_specs_name" name="current_specs_name" class="form-control" type="text">
+                                <input id="ec_specs_name" name="current_specs_name" class="form-control"
+                                    type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -340,20 +353,24 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-edit-color-form-btn" class="btn btn-success" type="submit">Lưu</button>
-                                <button id="close-edit-color-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-edit-color-form-btn" class="btn btn-success"
+                                    type="submit">Lưu</button>
+                                <button id="close-edit-color-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
                         <div class="row" id="edit_notification" class="d-none">
                             <p class="text-success text-end mt-3">Sửa thành công!</p>
                         </div>
                     </form>
-                    <form id="add-color-form" method="POST" class="form border-0 d-none" action="{{route('addColorSubmit')}}">
+                    <form id="add-color-form" method="POST" class="form border-0 d-none"
+                        action="{{ route('addColorSubmit') }}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="new_color_id">Tên màu</label>
-                                <input id="new_color_id" name="new_color_name" class="form-control" type="text" required>
+                                <input id="new_color_id" name="new_color_name" class="form-control" type="text"
+                                    required>
                             </div>
                         </div>
                         <div class="row">
@@ -361,8 +378,10 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-add-color-form-btn" class="btn btn-success" type="submit">Thêm</button>
-                                <button id="close-add-color-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-add-color-form-btn" class="btn btn-success"
+                                    type="submit">Thêm</button>
+                                <button id="close-add-color-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
                         <div class="row" id="add_notification" class="d-none">
