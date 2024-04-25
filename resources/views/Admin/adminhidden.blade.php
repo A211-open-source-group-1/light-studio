@@ -401,3 +401,57 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="editDetails" tabindex="-1" aria-labelledby="editDetails" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            @csrf
+            <div class="modal-header">
+                <h5 class="modal-title">Chỉnh sửa sản phẩm con</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <label for="ed_phone_id">Mã điện thoại</label>
+                            <input readonly id="ed_phone_id" class="form-control" type="text">
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <label for="ed_phone_name">Tên điện thoại</label>
+                            <input readonly id="ed_phone_name" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button id="add-color-form-btn" class="btn btn-success">Thêm</button>
+                            <div class="container-fluid m-0 p-0">
+                                <table class="table table-light">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Hình ảnh</th>
+                                            <th scope="col">Mã sản phẩm</th>
+                                            <th scope="col">Điện thoại</th>
+                                            <th scope="col">Phiên bản</th>
+                                            <th scope="col">Màu sắc</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Giảm giá</th>
+                                            <th scope="col">Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="details-board">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                {{-- <button type="submit" class="btn btn-success">Lưu</button> --}}
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+            </div>
+        </div>
+    </div>
+</div>

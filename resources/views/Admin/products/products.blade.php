@@ -47,7 +47,9 @@
                                     class="btn btn-sm btn-warning edit-phone-specs-btn" data-bs-toggle="modal"
                                     data-bs-target="#editPhoneSpecifics" data-phone-id="{{ $row->phone_id }}">Chi
                                     tiết</button></td>
-                            <td>{{ $row->phone_details_count }} <button type="button" class="btn btn-sm btn-warning">Chi
+                            <td>{{ $row->phone_details_count }} <button type="button"
+                                    class="btn btn-sm btn-warning edit-phone-details-btn" data-bs-toggle="modal"
+                                    data-bs-target="#editDetails" data-phone-id="{{ $row->phone_id }}">Chi
                                     tiết</button></td>
                             <td>
                                 <a class="col btn btn-primary phone-edit-btn" data-bs-toggle="modal"

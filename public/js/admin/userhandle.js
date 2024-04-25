@@ -117,6 +117,57 @@ $(document).ready(function () {
         })
     }
 
+    function ajaxGetDetails(phone_id) {
+        $.ajax({
+            url: '/editDetails/' + phone_id,
+            type: 'GET',
+            success: function(response) {
+                $('#ed_phone_name').val(response[1].phone_name);
+                $('#ed_phone_id').val(response[1].phone_id);
+                $('#details-board').empty();
+                for (let i = 0; i < response[0].length; ++i) {
+                    $('#details-board').append(
+                        '<tr>' +
+                        '<td scope="row"><img src="/image/' +
+                        response[0][i].thumbnail_img +
+                        '" style="width: 5.5rem; height: 5.5rem;"></td>' +
+                        '<td>' +
+                        response[0][i].phone_details_id +
+                        '</td>' +
+                        '<td>' +
+                        response[0][i].phone_name +
+                        '</td>' +
+                        '<td>' +
+                        response[0][i].specific_name +
+                        '</td>' +
+                        '<td>' +
+                        response[0][i].color_name +
+                        '</td>' +
+                        '<td>' +
+                        response[0][i].price +
+                        '</td>' +
+                        '<td>' +
+                        response[0][i].discount_percent +
+                        '</td>' +
+                        '<td>' +
+                        '<button data-color-id="' + response[0][i].specific_id + '" class="btn btn-primary edit-selected-color-btn">Sửa</button>' +
+                        '<button data-color-id="' + response[0][i].specific_id + '" class="ms-1 btn btn-danger delete-selected-color-btn">Xóa</button>' +
+                        '</td>' +
+                        '</tr>'
+                    )
+                }
+            },
+            error: function() {
+                alert('dcm');
+            }
+        })
+    }
+
+    $(document).on('click', '.edit-phone-details-btn', function() {
+        var phoneId = $(this).data('phone-id');
+        ajaxGetDetails(phoneId);
+    })
+
     $(document).on('click', '.edit-phone-specs-btn', function () {
         var phoneId = $(this).data('phone-id');
         ajaxGetSpecs(phoneId)
