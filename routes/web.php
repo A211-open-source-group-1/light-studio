@@ -76,4 +76,5 @@ Route::post('/userRatingProduct',[ProductController::class,'userRatingProduct'])
 Route::get('/editSelectedColor/{color_id}', [MProductController::class, 'editSelectedColor'])->name('editSelectedColor');
 Route::POST('/editSelectedColorSubmit', [MProductController::class, 'editSelectedColorSubmit'])->name('editSelectedColorSubmit');
 Route::post('/addColorSubmit', [MProductController::class, 'addColorSubmit'])->name('addColorSubmit');
-Route::get('deleteColor/{color_id}', [MProductController::class, 'deleteColor'])->name('deleteColor');
+Route::get('/deleteColor/{color_id}', [MProductController::class, 'deleteColor'])->name('deleteColor');
+Route::get('/editSpecifics/{phone_id}', [MProductController::class, 'editSpecifics'])->name('editSpecifics');

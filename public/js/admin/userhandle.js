@@ -86,6 +86,42 @@ $(document).ready(function () {
         })
     }
 
+    function ajaxGetSpecs(phone_id) {
+        $.ajax({
+            url: '/editSpecifics/' + phone_id,
+            type: 'GET',
+            success: function (response) {
+                $('#es_phone_name').val(response[1].phone_name);
+                $('#es_phone_id').val(response[1].phone_id);
+                $('#specs-board').empty();
+                for (let i = 0; i < response[0].length; ++i) {
+                    $('#specs-board').append(
+                        '<tr>' +
+                        '<td scope="row">' +
+                        response[0][i].specific_id +
+                        '</td>' +
+                        '<td>' +
+                        response[0][i].specific_name +
+                        '</td>' +
+                        '<td>' +
+                        response[0][i].phone_details_count +
+                        '</td>' +
+                        '<td>' +
+                        '<button data-color-id="' + response[0][i].specific_id + '" class="btn btn-primary edit-selected-color-btn">Sửa</button>' +
+                        '<button data-color-id="' + response[0][i].specific_id + '" class="ms-1 btn btn-danger delete-selected-color-btn">Xóa</button>' +
+                        '</td>' +
+                        '</tr>'
+                    )
+                }
+            }
+        })
+    }
+
+    $(document).on('click', '.edit-phone-specs-btn', function () {
+        var phoneId = $(this).data('phone-id');
+        ajaxGetSpecs(phoneId)
+    })
+
     $(document).on('click', '.edit-phone-color-btn', function () {
         var phone_id = $(this).data('phone-id');
         ajaxGetColors(phone_id);
@@ -104,10 +140,6 @@ $(document).ready(function () {
             }
         })
     });
-
-    $(document).on('click', '.edit-phone-specs-btn', function() {
-        
-    })
 
     $(document).on('click', '#close-edit-color-form-btn', function () {
         $('#edit-color-form').addClass('d-none');
@@ -390,8 +422,8 @@ $(document).on('click', '.edit-brand-btn', function () {
 });
 
 
-$(document).ready(function(){
-    $('.img-btn').click(function(){
+$(document).ready(function () {
+    $('.img-btn').click(function () {
         var id = $('#Loadbrand_img').val();
         alert(id);
     });

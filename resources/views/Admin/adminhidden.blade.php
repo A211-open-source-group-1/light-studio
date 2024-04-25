@@ -282,7 +282,7 @@
                                         <tr>
                                             <th scope="col">Mã màu</th>
                                             <th scope="col">Tên màu</th>
-                                            <th scope="col">Số lượng PB</th>
+                                            <th scope="col">Số lượng SP con</th>
                                             <th scope="col">Hành động</th>
                                         </tr>
                                     </thead>
@@ -308,31 +308,31 @@
         <div class="modal-content">
             @csrf
             <div class="modal-header">
-                <h5 class="modal-title">Chỉnh sửa màu sắc sản phẩm</h5>
+                <h5 class="modal-title">Chỉnh sửa phiên bản sản phẩm</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 col-lg-6">
-                            <label for="ec_phone_id">Mã điện thoại</label>
-                            <input readonly id="ec_phone_id" class="form-control" type="text">
+                            <label for="es_phone_id">Mã điện thoại</label>
+                            <input readonly id="es_phone_id" class="form-control" type="text">
                         </div>
                         <div class="col-12 col-lg-6">
-                            <label for="ec_phone_name">Tên sản phẩm</label>
-                            <input readonly id="ec_phone_name" class="form-control" type="text">
+                            <label for="es_phone_name">Tên sản phẩm</label>
+                            <input readonly id="es_phone_name" class="form-control" type="text">
                         </div>
                     </div>
                     <form id="edit-color-form" method="POST" class="form border-0 d-none" action="{{route('editSelectedColorSubmit')}}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
-                                <label for="ec_color_id">Mã màu</label>
-                                <input readonly id="ec_color_id" name="current_color_id" class="form-control" type="text">
+                                <label for="ec_specs_id">Mã phiên bản</label>
+                                <input readonly id="ec_specs_id" name="current_specs_id" class="form-control" type="text">
                             </div>
                             <div class="col-12 col-lg-6">
-                                <label for="ec_color_name">Tên màu</label>
-                                <input id="ec_color_name" name="current_color_name" class="form-control" type="text">
+                                <label for="ec_specs_name">Tên phiên bản</label>
+                                <input id="ec_specs_name" name="current_specs_name" class="form-control" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -379,13 +379,13 @@
                                 <table class="table table-light">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Mã màu</th>
-                                            <th scope="col">Tên màu</th>
-                                            <th scope="col">Số lượng PB</th>
+                                            <th scope="col">Mã phiên bản</th>
+                                            <th scope="col">Tên phiên bản</th>
+                                            <th scope="col">Số lượng SP con</th>
                                             <th scope="col">Hành động</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="color-board">
+                                    <tbody id="specs-board">
 
                                     </tbody>
                                 </table>
