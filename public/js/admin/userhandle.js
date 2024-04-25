@@ -86,7 +86,7 @@ $(document).ready(function () {
         })
     }
 
-    $('.edit-phone-color-btn').click(function () {
+    $(document).on('click', '.edit-phone-color-btn', function () {
         var phone_id = $(this).data('phone-id');
         ajaxGetColors(phone_id);
     });
@@ -104,6 +104,10 @@ $(document).ready(function () {
             }
         })
     });
+
+    $(document).on('click', '.edit-phone-specs-btn', function() {
+        
+    })
 
     $(document).on('click', '#close-edit-color-form-btn', function () {
         $('#edit-color-form').addClass('d-none');

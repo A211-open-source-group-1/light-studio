@@ -43,14 +43,16 @@
                                     class="btn btn-sm btn-warning edit-phone-color-btn" data-bs-toggle="modal"
                                     data-bs-target="#editPhoneColor" data-phone-id="{{ $row->phone_id }}">Chi tiết</button>
                             </td>
-                            <td>{{ $row->specifics_count }} <button type="button" class="btn btn-sm btn-warning">Chi
+                            <td>{{ $row->specifics_count }} <button type="button"
+                                    class="btn btn-sm btn-warning edit-phone-specs-btn" data-bs-toggle="modal"
+                                    data-bs-target="#editPhoneSpecifics" data-phone-id="{{ $row->phone_id }}">Chi
                                     tiết</button></td>
                             <td>{{ $row->phone_details_count }} <button type="button" class="btn btn-sm btn-warning">Chi
                                     tiết</button></td>
                             <td>
                                 <a class="col btn btn-primary phone-edit-btn" data-bs-toggle="modal"
                                     data-bs-target="#editPhone" data-phone-id="{{ $row->phone_id }}">Sửa</a>
-                                <a class="col btn btn-danger phone-edit-btn" data-bs-toggle="modal" data-bs-target="#"
+                                <a class="col btn btn-danger phone-delete-btn" data-bs-toggle="modal" data-bs-target="#"
                                     data-phone-id="{{ $row->phone_id }}">Xóa</a>
                             </td>
                         </tr>
@@ -67,4 +69,3 @@
         alert("{{ session('mess') }}");
     </script>
 @endif
-

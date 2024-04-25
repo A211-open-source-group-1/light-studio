@@ -121,10 +121,6 @@ class MProductController extends Controller
 
     }
 
-    public function addColor($phone_id) {
-
-    }
-
     public function addSpecific($phone_id) {
 
     }
