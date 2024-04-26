@@ -17,6 +17,11 @@ $phone_number = Cookie::get('phone_number');
 $password=Cookie::get('password');
 @endphp
 
+@foreach ($errors->all() as $error)
+      <script>
+        alert("{{ $error }}");
+      </script>
+      @endforeach
 
 <body>
   <form action="{{ route('authAdmin') }}" method="post" id="loginForm">
@@ -37,8 +42,6 @@ $password=Cookie::get('password');
         <input type="password" placeholder="Nhập mật khẩu" name="password" id="password">
         <label class="text-danger" id="errorPasswordLogin"></label>
       </div>
-
-
       <button type="button" onclick="check_Login()" class="btn-login">Đăng nhập</button>
       <div class="row">
         <div class="row">

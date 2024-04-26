@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{ asset('/summernote/summernote-bs4.css') }}" />
     <script src="{{ asset('/summernote/summernote-bs4.js') }}"></script>
 </head>
-
 <body>
 
     <div class="sidebar">
@@ -24,5 +23,7 @@
         <a href="{{route('indexCategory')}}" id="category">Loại điện thoại</a>
         <a href="{{ route('productsIndex', ['type' => 2]) }}" id="products">Điện thoại</a>
         <a href="{{route('orderedCart')}}" id="orderedCart">Đơn hàng</a>
+        <a class="btn-logout-admin" data-bs-toggle="modal" data-bs-target="#logoutAdmin">Đăng xuất</a>    
     </div>
+    
     <div class="content">

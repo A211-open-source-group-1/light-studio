@@ -43,6 +43,10 @@ class AuthController extends Controller
 
             return redirect()->back();
         }
+        else{
+            return redirect()->back()->withErrors('Không tìm thấy tên đăng nhập');
+
+        }
 
         return redirect()->back()->withErrors('Sai mật khẩu vui lòng thử lại');
     }
@@ -119,6 +123,8 @@ class AuthController extends Controller
                 $user->user_point = 0;
                 $user->email = $request->input('email');
                 $user->password = bcrypt($request->input('password'));
+                $user->created_at = now();
+                $user->updated_at = now();
                 $user->save();
                 return redirect()->back()->with('successful', "Đăng ký thành công");
             } catch (\Illuminate\Database\QueryException $e) {
@@ -131,7 +137,7 @@ class AuthController extends Controller
         } else {
             return redirect()->back()->withErrors('Mật khẩu không chính xác');
         }
-        return "132";
+        return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
     }
 
 
@@ -192,7 +198,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('indexAdmin');
         } else {
-            return redirect()->back()->with(['auth' => 'Thông tin đăng nhập không chính xác.']);
+            return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
         }
     }
     
@@ -257,5 +263,10 @@ class AuthController extends Controller
         }
         return response()->json($users);
     }
-    
+    public function logoutAdmin()
+    {
+        Session::flush();
+        Auth::logout();
+        return redirect('/admin');
+    }
 }

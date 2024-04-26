@@ -6,6 +6,27 @@
     </script>
 @endif
 
+<div class="modal fade" id="logoutAdmin" tabindex="-1" aria-labelledby="logoutAdminLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ route('logoutAdmin') }}" method="get">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteUserLabel">Thông báo</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="deleteUserId" name="deleteUserId">
+                    <p>Bạn có chắc chắn muốn đăng xuất?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-danger">Đăng xuất</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">
     <div class="modal-dialog">
