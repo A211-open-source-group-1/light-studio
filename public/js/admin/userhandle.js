@@ -116,8 +116,8 @@ $(document).ready(function () {
                         response[0][i].phone_details_count +
                         '</td>' +
                         '<td>' +
-                        '<button data-color-id="' + response[0][i].specific_id + '" class="btn btn-primary edit-selected-color-btn">Sửa</button>' +
-                        '<button data-color-id="' + response[0][i].specific_id + '" class="ms-1 btn btn-danger delete-selected-color-btn">Xóa</button>' +
+                        '<button data-specs-id="' + response[0][i].specific_id + '" class="btn btn-primary edit-selected-specs-btn">Sửa</button>' +
+                        '<button data-specs-id="' + response[0][i].specific_id + '" class="ms-1 btn btn-danger delete-selected-specs-btn">Xóa</button>' +
                         '</td>' +
                         '</tr>'
                     )
@@ -159,8 +159,8 @@ $(document).ready(function () {
                         response[0][i].discount_percent +
                         '</td>' +
                         '<td>' +
-                        '<button data-color-id="' + response[0][i].specific_id + '" class="btn btn-primary edit-selected-color-btn">Sửa</button>' +
-                        '<button data-color-id="' + response[0][i].specific_id + '" class="ms-1 btn btn-danger delete-selected-color-btn">Xóa</button>' +
+                        '<button data-color-id="' + response[0][i].phone_details_id + '" class="btn btn-primary edit-selected-color-btn">Sửa</button>' +
+                        '<button data-color-id="' + response[0][i].phone_details_id + '" class="ms-1 btn btn-danger delete-selected-color-btn">Xóa</button>' +
                         '</td>' +
                         '</tr>'
                     )
@@ -208,6 +208,45 @@ $(document).ready(function () {
         $('#notification').addClass('d-none');
     })
 
+    $(document).on('click', '.edit-selected-specs-btn', function () {
+        var specsId = $(this).data('specs-id');
+        $.ajax({
+            url: '/editSelectedSpecific/' + specsId,
+            type: 'GET',
+            success: function (response) {
+                $('#edit-specs-form').removeClass('d-none');
+                $('#es_specs_id').val(response.specific_id)
+                $('#es_specs_name').val(response.specific_name)
+                $('#edit_specs_notification').addClass('d-none');
+            }
+        });
+    })
+
+    $(document).on('click', '#close-edit-specs-form-btn', function () {
+        $('#edit-specs-form').addClass('d-none');
+        $('#es_specs_id').val('')
+        $('#es_specs_name').val('')
+        $('#edit_specs_notification').addClass('d-none');
+    })
+
+    $(document).on('submit', '#edit-specs-form', function(e) {
+        var phone_id = $('#es_phone_id').val()
+        e.preventDefault()
+        var form = $(this)
+        $.ajax({
+            url: '/editSelectedSpecificSubmit',
+            type: 'POST',
+            data: form.serialize(),
+            success: function(response) {
+                ajaxGetSpecs(phone_id)
+                $('#edit_specs_notification').removeClass('d-none')
+            },
+            error: function(response) {
+
+            }
+        })
+    })
+
     $(document).on('submit', '#edit-color-form', function (e) {
         var phone_id = $('#ec_phone_id').val()
         e.preventDefault()
@@ -225,6 +264,54 @@ $(document).ready(function () {
             }
         })
     })
+
+    $(document).on('click', '#add-specs-form-btn', function() {
+        $('#add-specs-form').removeClass('d-none')
+        $('#add_specs_notification').addClass('d-none');
+        $('#new_specs_name').val('')
+    })
+
+    $(document).on('click', '#close-add-specs-form-btn', function() {
+        $('#add-specs-form').addClass('d-none')
+        $('#add_specs_notification').addClass('d-none');
+        $('#new_specs_name').val('')
+    })
+
+    $(document).on('submit', '#add-specs-form', function(e) {
+        var phoneId = $('#es_phone_id').val();
+        e.preventDefault();
+        var form = $(this);
+        $.ajax({
+            url: '/addSpecificSubmit',
+            type: 'POST',
+            data: form.serialize() + '&' + 'phone_id=' + phoneId,
+            success: function(response) {
+                if (response.isSpecsAdded === true) {
+                    ajaxGetSpecs(phoneId)
+                    $('#add_specs_notification').removeClass('d-none')
+                }
+            },
+            error: function() {
+                alert('wtf dude')
+            }
+        })
+    })
+
+    $(document).on('click', '.delete-selected-specs-btn', function() {
+        var phoneId = $('#es_phone_id').val();
+        var specsId = $(this).data('specs-id');
+        $.ajax({
+            url: '/deleteSpecific/' + specsId,
+            type: 'GET',
+            success: function(response) {
+                ajaxGetSpecs(phoneId)
+            },
+            error: function() {
+
+            }
+        })
+    })
+
 
     $(document).on('click', '#close-add-color-form-btn', function () {
         $('#add-color-form').addClass('d-none');

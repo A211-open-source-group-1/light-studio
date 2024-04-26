@@ -145,7 +145,12 @@ class MProductController extends Controller
 
     public function editSelectedSpecificSubmit(Request $request)
     {
-
+        $specs = PhoneSpecs::where('specific_id', '=', $request->current_specs_id)->first();
+        $specs->update([
+            'specific_name' => $request->current_specs_name
+        ]);
+        $specs->save();
+        return redirect()->back();
     }
 
     public function editSelectedDetailsSubmit(Request $request)
@@ -163,9 +168,24 @@ class MProductController extends Controller
 
     }
 
+    public function addSpecificSubmit(Request $request)
+    {
+        $new_specs = new PhoneSpecs();
+        $new_specs->phone_id = $request->phone_id;
+        $new_specs->specific_name = $request->new_specs_name;
+        $new_specs->save();
+        return response()->json(['isSpecsAdded' => true]);
+    }
+
+    public function addPhoneDetailsSubmit(Request $request) {
+
+    }
+
     public function deleteDetails($detail_id)
     {
-
+        $delete_details = PhoneDetails::where('phone_details_id', '=', $detail_id)->first();
+        $delete_details->delete();
+        return response()->json(['isDeleteDetailsSucceed' => true]);
     }
 
     public function deleteColor($color_id)
@@ -177,7 +197,13 @@ class MProductController extends Controller
 
     public function deleteSpecific($specs_id)
     {
-
+        try {
+            $delete_specs = PhoneSpecs::where('specific_id', '=', $specs_id)->first();
+            $delete_specs->delete();
+            return response()->json(['isDeleteSpecsSucceed' => true]);
+        } catch (Exception $ex) {
+            return response()->json(['isDeleteSpecsSucceed' => false, 'errorMsg' => $ex->getMessage()]);
+        }
     }
 
 

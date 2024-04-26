@@ -11,7 +11,9 @@ class PhoneSpecs extends Model
 {
     protected $table = 'phone_specifics';
     protected $primaryKey = 'specific_id';
-    
+    protected $fillable = [
+        'specific_name'
+    ];
     public $timestamps = false;
 
     public function parentPhone() {

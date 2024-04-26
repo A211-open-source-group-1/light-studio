@@ -79,3 +79,7 @@ Route::post('/addColorSubmit', [MProductController::class, 'addColorSubmit'])->n
 Route::get('/deleteColor/{color_id}', [MProductController::class, 'deleteColor'])->name('deleteColor');
 Route::get('/editSpecifics/{phone_id}', [MProductController::class, 'editSpecifics'])->name('editSpecifics');
 Route::get('/editDetails/{phone_id}', [MProductController::class, 'editDetails'])->name('editDetails');
+Route::post('/addSpecificSubmit', [MProductController::class, 'addSpecificSubmit'])->name('addSpecificSubmit');
+Route::post('/editSelectedSpecificSubmit', [MProductController::class, 'editSelectedSpecificSubmit'])->name('editSelectedSpecificSubmit');
+Route::get('/editSelectedSpecific/{specs_id}', [MProductController::class, 'editSelectedSpecific'])->name('editSelectedSpecific');
+Route::get('/deleteSpecific/{specs_id}', [MProductController::class, 'deleteSpecific'])->name('deleteSpecific');

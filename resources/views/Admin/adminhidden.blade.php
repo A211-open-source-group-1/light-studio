@@ -333,18 +333,18 @@
                             <input readonly id="es_phone_name" class="form-control" type="text">
                         </div>
                     </div>
-                    <form id="edit-color-form" method="POST" class="form border-0 d-none"
-                        action="{{ route('editSelectedColorSubmit') }}">
+                    <form id="edit-specs-form" method="POST" class="form border-0 d-none"
+                        action="{{ route('editSelectedSpecificSubmit') }}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
-                                <label for="ec_specs_id">Mã phiên bản</label>
-                                <input readonly id="ec_specs_id" name="current_specs_id" class="form-control"
+                                <label for="es_specs_id">Mã phiên bản</label>
+                                <input readonly id="es_specs_id" name="current_specs_id" class="form-control"
                                     type="text">
                             </div>
                             <div class="col-12 col-lg-6">
-                                <label for="ec_specs_name">Tên phiên bản</label>
-                                <input id="ec_specs_name" name="current_specs_name" class="form-control"
+                                <label for="es_specs_name">Tên phiên bản</label>
+                                <input id="es_specs_name" name="current_specs_name" class="form-control"
                                     type="text">
                             </div>
                         </div>
@@ -353,23 +353,23 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-edit-color-form-btn" class="btn btn-success"
+                                <button id="submit-edit-specs-form-btn" class="btn btn-success"
                                     type="submit">Lưu</button>
-                                <button id="close-edit-color-form-btn" class="btn btn-dark"
+                                <button id="close-edit-specs-form-btn" class="btn btn-dark"
                                     type="button">Hủy</button>
                             </div>
                         </div>
-                        <div class="row" id="edit_notification" class="d-none">
+                        <div class="row" id="edit_specs_notification" class="d-none">
                             <p class="text-success text-end mt-3">Sửa thành công!</p>
                         </div>
                     </form>
-                    <form id="add-color-form" method="POST" class="form border-0 d-none"
-                        action="{{ route('addColorSubmit') }}">
+                    <form id="add-specs-form" method="POST" class="form border-0 d-none"
+                        action="{{ route('addSpecificSubmit') }}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
-                                <label for="new_color_id">Tên màu</label>
-                                <input id="new_color_id" name="new_color_name" class="form-control" type="text"
+                                <label for="new_specs_name">Tên phiên bản</label>
+                                <input id="new_specs_name" name="new_specs_name" class="form-control" type="text"
                                     required>
                             </div>
                         </div>
@@ -378,22 +378,22 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-add-color-form-btn" class="btn btn-success"
+                                <button id="submit-add-specs-form-btn" class="btn btn-success"
                                     type="submit">Thêm</button>
-                                <button id="close-add-color-form-btn" class="btn btn-dark"
+                                <button id="close-add-specs-form-btn" class="btn btn-dark"
                                     type="button">Hủy</button>
                             </div>
                         </div>
-                        <div class="row" id="add_notification" class="d-none">
+                        <div class="row" id="add_specs_notification" class="d-none">
                             <p class="text-success text-end mt-3">Thêm thành công!</p>
                         </div>
                     </form>
                     <div class="row">
-                        <p id="delete_notification" class="text-success text-end mt-3 d-none">Xóa thành công!</p>
+                        <p id="delete_specs_notification" class="text-success text-end mt-3 d-none">Xóa thành công!</p>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button id="add-color-form-btn" class="btn btn-success">Thêm</button>
+                            <button id="add-specs-form-btn" class="btn btn-success">Thêm</button>
                             <div class="container-fluid m-0 p-0">
                                 <table class="table table-light">
                                     <thead>
