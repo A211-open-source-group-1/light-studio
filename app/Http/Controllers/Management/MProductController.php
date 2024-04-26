@@ -115,12 +115,18 @@ class MProductController extends Controller
 
     public function editSelectedSpecific($specs_id)
     {
-
+        $specs = PhoneSpecs::select('*')
+        ->where('specific_id', '=', $specs_id)
+        ->first();
+        return response()->json($specs);
     }
 
     public function editSelectedDetails($detail_id)
     {
-
+        $detail = PhoneDetails::select('*')
+        ->where('phone_details_id', '=', $detail_id)
+        ->first();
+        return response()->json($detail);
     }
 
     public function editSelectedColorSubmit(Request $request)
@@ -147,16 +153,6 @@ class MProductController extends Controller
 
     }
 
-    public function addSpecific($phone_id)
-    {
-
-    }
-
-    public function addDetails($phone_id)
-    {
-
-    }
-
     public function addColorSubmit(Request $request)
     {
         $new_color = new Color();
@@ -164,16 +160,6 @@ class MProductController extends Controller
         $new_color->color_name = $request->new_color_name;
         $new_color->save();
         return response()->json(['isSucceed' => true]);
-
-    }
-
-    public function addSpecificSubmit(Request $request)
-    {
-
-    }
-
-    public function addDetailsSubmit(Request $request)
-    {
 
     }
 
