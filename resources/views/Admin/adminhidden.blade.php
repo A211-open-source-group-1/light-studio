@@ -337,7 +337,6 @@
     aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            @csrf
             <div class="modal-header">
                 <h5 class="modal-title">Chỉnh sửa phiên bản sản phẩm</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -445,7 +444,6 @@
 <div class="modal fade" id="editDetails" tabindex="-1" aria-labelledby="editDetails" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            @csrf
             <div class="modal-header">
                 <h5 class="modal-title">Chỉnh sửa sản phẩm con</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -462,6 +460,35 @@
                             <input readonly id="ed_phone_name" class="form-control" type="text">
                         </div>
                     </div>
+                    <form id="edit-selected-details-form" method="POST" class="form border-0 d-none">
+                        @csrf
+                        <label for="ed_details_color">Màu sản phẩm</label>
+                        <select>
+
+                        </select>
+                        <label for="ed_details_specs">Phiên bản sản phẩm</label>
+                        <select>
+
+                        </select>
+                        <label for="ed_details_screen"></label>
+                        <input id="ed_details_screen" type="text">
+                        <label for="ed_details_ram"></label>
+                        <input id="ed_details_ram" type="text">
+                        <label for="ed_details_rom"></label>
+                        <input id="ed_details_rom" type="text">
+                        <label for="ed_details_cpu"></label>
+                        <input id="ed_details_cpu" type="text">
+                        <label for="ed_details_frontcam"></label>
+                        <input id="ed_details_frontcam" type="text">
+                        <label for="ed_details_rearcam"></label>
+                        <input id="ed_details_rearcam" type="text">
+                        <label for="ed_details_bluetoothver"></label>
+                        <input id="ed_details_bluetoothver" type="text">
+                        <label for="ed_details_wifiver"></label>
+                        <input id="ed_details_wifiver" type="text">
+                        <label for="ed_details_nfc"></label>
+                        <input id="ed_details_nfc" type="text">
+                    </form>
                     <div class="row">
                         <div class="col-12">
                             <button id="add-color-form-btn" class="btn btn-success">Thêm</button>

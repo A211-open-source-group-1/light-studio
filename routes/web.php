@@ -84,3 +84,4 @@ Route::post('/addSpecificSubmit', [MProductController::class, 'addSpecificSubmit
 Route::post('/editSelectedSpecificSubmit', [MProductController::class, 'editSelectedSpecificSubmit'])->name('editSelectedSpecificSubmit');
 Route::get('/editSelectedSpecific/{specs_id}', [MProductController::class, 'editSelectedSpecific'])->name('editSelectedSpecific');
 Route::get('/deleteSpecific/{specs_id}', [MProductController::class, 'deleteSpecific'])->name('deleteSpecific');
+Route::get('/editSelectedDetails/{details_id}', [MProductController::class, 'editSelectedDetails'])->name('editSelectedDetails');

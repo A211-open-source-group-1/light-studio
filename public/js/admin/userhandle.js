@@ -31,7 +31,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.phone-edit-btn').click(function () {
+    $(document).on('click', '.phone-edit-btn', function () {
         var phoneId = $(this).data('phone-id');
         $.ajax({
             url: '/editPhone/' + phoneId,
@@ -63,6 +63,17 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).on('click', '.edit-selected-details-btn', function () {
+        var detailsId = $(this).data('details-id');
+        $.ajax({
+            url: '/editSelectedDetails/' + detailsId,
+            type: 'GET',
+            success: function (response) {
+                $('#edit-selected-details-form').removeClass('d-none')
+            }
+        });
+    })
 
     function ajaxGetColors(phone_id) {
         $.ajax({
@@ -159,8 +170,8 @@ $(document).ready(function () {
                         response[0][i].discount_percent +
                         '</td>' +
                         '<td>' +
-                        '<button data-color-id="' + response[0][i].phone_details_id + '" class="btn btn-primary edit-selected-color-btn">Sửa</button>' +
-                        '<button data-color-id="' + response[0][i].phone_details_id + '" class="ms-1 btn btn-danger delete-selected-color-btn">Xóa</button>' +
+                        '<button data-details-id="' + response[0][i].phone_details_id + '" class="btn btn-primary edit-selected-details-btn">Sửa</button>' +
+                        '<button data-details-id="' + response[0][i].phone_details_id + '" class="ms-1 btn btn-danger delete-selected-details-btn">Xóa</button>' +
                         '</td>' +
                         '</tr>'
                     )
@@ -229,7 +240,7 @@ $(document).ready(function () {
         $('#edit_specs_notification').addClass('d-none');
     })
 
-    $(document).on('submit', '#edit-specs-form', function(e) {
+    $(document).on('submit', '#edit-specs-form', function (e) {
         var phone_id = $('#es_phone_id').val()
         e.preventDefault()
         var form = $(this)
@@ -237,11 +248,11 @@ $(document).ready(function () {
             url: '/editSelectedSpecificSubmit',
             type: 'POST',
             data: form.serialize(),
-            success: function(response) {
+            success: function (response) {
                 ajaxGetSpecs(phone_id)
                 $('#edit_specs_notification').removeClass('d-none')
             },
-            error: function(response) {
+            error: function (response) {
 
             }
         })
@@ -265,19 +276,19 @@ $(document).ready(function () {
         })
     })
 
-    $(document).on('click', '#add-specs-form-btn', function() {
+    $(document).on('click', '#add-specs-form-btn', function () {
         $('#add-specs-form').removeClass('d-none')
         $('#add_specs_notification').addClass('d-none');
         $('#new_specs_name').val('')
     })
 
-    $(document).on('click', '#close-add-specs-form-btn', function() {
+    $(document).on('click', '#close-add-specs-form-btn', function () {
         $('#add-specs-form').addClass('d-none')
         $('#add_specs_notification').addClass('d-none');
         $('#new_specs_name').val('')
     })
 
-    $(document).on('submit', '#add-specs-form', function(e) {
+    $(document).on('submit', '#add-specs-form', function (e) {
         var phoneId = $('#es_phone_id').val();
         e.preventDefault();
         var form = $(this);
@@ -285,28 +296,28 @@ $(document).ready(function () {
             url: '/addSpecificSubmit',
             type: 'POST',
             data: form.serialize() + '&' + 'phone_id=' + phoneId,
-            success: function(response) {
+            success: function (response) {
                 if (response.isSpecsAdded === true) {
                     ajaxGetSpecs(phoneId)
                     $('#add_specs_notification').removeClass('d-none')
                 }
             },
-            error: function() {
+            error: function () {
                 alert('wtf dude')
             }
         })
     })
 
-    $(document).on('click', '.delete-selected-specs-btn', function() {
+    $(document).on('click', '.delete-selected-specs-btn', function () {
         var phoneId = $('#es_phone_id').val();
         var specsId = $(this).data('specs-id');
         $.ajax({
             url: '/deleteSpecific/' + specsId,
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 ajaxGetSpecs(phoneId)
             },
-            error: function() {
+            error: function () {
 
             }
         })
