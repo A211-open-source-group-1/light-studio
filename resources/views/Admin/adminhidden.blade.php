@@ -469,38 +469,72 @@
                                 <input id="ed_details_id" class="form-control" type="text" readonly>
                             </div>
                             <div class="col-12 col-lg-6">
-                                <label for="ed_details_color">Màu sản phẩm</label>
-                                <select class="form-select">
-                                    
+                                <label for="ed_details_color" class="mb-3">Màu sản phẩm</label>
+                                <select id="ed_color_select" class="form-select">
+                                    <option value="1">vcl</option>
+                                    <option value="2">vcl</option>
+                                    <option value="3">dcm</option>
                                 </select>
                             </div>
                             <div class="col-12 col-lg-6">
-                                <label for="ed_details_specs">Phiên bản sản phẩm</label>
-                                <select class="form-select">
-                                    
+                                <label for="ed_specs_select" class="mb-3">Phiên bản sản phẩm</label>
+                                <select id="ed_specs_select" class="form-select">
+                                    <option value="1">vcl</option>
+                                    <option value="2">vcl</option>
+                                    <option value="3">dcm</option>
                                 </select>
                             </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_screen">Màn hình</label>
+                                <input id="ed_details_screen" class="form-control" type="text">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_ram">Dung lượng RAM</label>
+                                <input id="ed_details_ram" class="form-control" type="text">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_rom">Dung lượng bộ nhớ trong</label>
+                                <input id="ed_details_rom" class="form-control" type="text">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_cpu">CPU</label>
+                                <input id="ed_details_cpu" class="form-control" type="text">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_frontcam">Camera trước</label>
+                                <input id="ed_details_frontcam" class="form-control" type="text">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_rearcam">Camera sau</label>
+                                <input id="ed_details_rearcam" class="form-control" type="text">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_bluetoothver">Bluetooth</label>
+                                <input id="ed_details_bluetoothver" class="form-control" type="text">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_wifiver">WiFi</label>
+                                <input id="ed_details_wifiver" class="form-control" type="text">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_nfc">NFC</label>
+                                <input id="ed_details_nfc" class="form-control" type="text">
+                            </div>
+                            <div class="col-12">
+                                <label>Hình ảnh sản phẩm</label>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div class="col-8">
 
-                        
-                        <label for="ed_details_screen"></label>
-                        <input id="ed_details_screen" type="text">
-                        <label for="ed_details_ram"></label>
-                        <input id="ed_details_ram" type="text">
-                        <label for="ed_details_rom"></label>
-                        <input id="ed_details_rom" type="text">
-                        <label for="ed_details_cpu"></label>
-                        <input id="ed_details_cpu" type="text">
-                        <label for="ed_details_frontcam"></label>
-                        <input id="ed_details_frontcam" type="text">
-                        <label for="ed_details_rearcam"></label>
-                        <input id="ed_details_rearcam" type="text">
-                        <label for="ed_details_bluetoothver"></label>
-                        <input id="ed_details_bluetoothver" type="text">
-                        <label for="ed_details_wifiver"></label>
-                        <input id="ed_details_wifiver" type="text">
-                        <label for="ed_details_nfc"></label>
-                        <input id="ed_details_nfc" type="text">
+                            </div>
+                            <div class="col-4 text-end">
+                                <button id="submit-edit-details-form-btn" class="btn btn-success"
+                                    type="submit">Lưu</button>
+                                <button id="close-edit-details-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
+                            </div>
+                        </div>
                     </form>
                     <div class="row">
                         <div class="col-12">

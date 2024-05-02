@@ -13,6 +13,8 @@
     <script src="{{ asset('/js/sidebarAdmin.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('/summernote/summernote-bs4.css') }}" />
     <script src="{{ asset('/summernote/summernote-bs4.js') }}"></script>
+    <link rel="stylesheet" href="{{asset('/css/select2.min.css')}}">
+    <script src="/js/select2.min.js"></script>
 </head>
 
 <body>

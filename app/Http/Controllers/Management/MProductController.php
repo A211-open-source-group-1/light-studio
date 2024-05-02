@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Color;
+use App\Models\Image;
 use App\Models\Phone;
 use App\Models\PhoneCategory;
 use App\Models\PhoneDetails;
@@ -116,17 +117,22 @@ class MProductController extends Controller
     public function editSelectedSpecific($specs_id)
     {
         $specs = PhoneSpecs::select('*')
-        ->where('specific_id', '=', $specs_id)
-        ->first();
+            ->where('specific_id', '=', $specs_id)
+            ->first();
         return response()->json($specs);
     }
 
     public function editSelectedDetails($detail_id)
     {
         $detail = PhoneDetails::select('*')
-        ->where('phone_details_id', '=', $detail_id)
-        ->first();
-        return response()->json($detail);
+            ->leftJoin('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+            ->leftJoin('phone_colors', 'phone_details.color_id', '=', 'phone_colors.color_id')
+            ->leftJoin('phone_specifics', 'phone_details.specific_id', '=', 'phone_specifics.specific_id')
+            ->where('phone_details_id', '=', $detail_id)
+            ->first();
+        $image = Image::where('phone_details_id', '=', $detail_id)
+        ->get();
+        return response()->json([$detail, $image]);
     }
 
     public function editSelectedColorSubmit(Request $request)
@@ -177,7 +183,8 @@ class MProductController extends Controller
         return response()->json(['isSpecsAdded' => true]);
     }
 
-    public function addPhoneDetailsSubmit(Request $request) {
+    public function addPhoneDetailsSubmit(Request $request)
+    {
 
     }
 
@@ -206,7 +213,7 @@ class MProductController extends Controller
         }
     }
 
-    
+
 
 
 }

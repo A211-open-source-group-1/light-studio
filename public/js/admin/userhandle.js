@@ -71,10 +71,31 @@ $(document).ready(function () {
             url: '/editSelectedDetails/' + detailsId,
             type: 'GET',
             success: function (response) {
-                $('#edit-selected-details-form').removeClass('d-none')
-                $('#ed_details_id').val(response.phone_details_id)
+                $('#edit-selected-details-form').removeClass('d-none');
+                $('#ed_details_id').val(response[0].phone_details_id)
+                $('#ed_color_select').select2({
+                    dropdownParent: $('#editDetails')
+                });
+                $('#ed_specs_select').select2({
+                    dropdownParent: $('#editDetails')
+                })
+                $('#ed_details_screen').val(response[0].screen);
+                $('#ed_details_ram').val(response[0].ram);
+                $('#ed_details_rom').val(response[0].rom);
+                $('#ed_details_cpu').val(response[0].cpu);
+                $('#ed_details_frontcam').val(response[0].front_cam);
+                $('#ed_details_rearcam').val(response[0].rear_cam);
+                $('#ed_details_bluetoothver').val(response[0].bluetooth_ver);
+                $('#ed_details_wifiver').val(response[0].wifi_ver);
+                $('#ed_details_nfc').val(response[0].nfc);
             }
         });
+    })
+
+    
+
+    $(document).on('click', '#submit-edit-details-form-btn', function() {
+        $('#edit-selected-details-form').addClass('d-none');
     })
 
     function ajaxGetColors(phone_id) {
@@ -105,8 +126,8 @@ $(document).ready(function () {
                     )
                 }
             },
-            error: function() {
-                
+            error: function () {
+
             }
         })
     }
@@ -116,7 +137,7 @@ $(document).ready(function () {
             url: '/editSpecifics/' + phone_id,
             type: 'GET',
             success: function (response) {
-                $('#es_phone_name').val(response[1].phone_name); 
+                $('#es_phone_name').val(response[1].phone_name);
                 $('#es_phone_id').val(response[1].phone_id);
                 $('#specs-board').empty();
                 for (let i = 0; i < response[0].length; ++i) {
@@ -256,7 +277,7 @@ $(document).ready(function () {
             success: function (response) {
                 ajaxGetSpecs(phone_id)
                 $('#edit_specs_notification').removeClass('d-none')
-                
+
             },
             error: function (response) {
 
