@@ -96,7 +96,7 @@ $(document).ready(function () {
         e.preventDefault();
     })
 
-    $(document).on('click', '#submit-edit-details-form-btn', function() {
+    $(document).on('click', '#close-edit-details-form-btn', function() {
         $('#edit-selected-details-form').addClass('d-none');
     })
 
