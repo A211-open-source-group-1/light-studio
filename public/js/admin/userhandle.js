@@ -92,7 +92,9 @@ $(document).ready(function () {
         });
     })
 
-    
+    $(document).on('submit', '#edit-selected-details-form', function(e) {
+        e.preventDefault();
+    })
 
     $(document).on('click', '#submit-edit-details-form-btn', function() {
         $('#edit-selected-details-form').addClass('d-none');
