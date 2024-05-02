@@ -107,8 +107,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại</label>
-                                <input id="phonenumber" name="phonenumber" class="form-control" type="tel" readonly
-                                    required minlength="10" />
+                                <input id="phonenumber" name="phonenumber" class="form-control" type="tel"
+                                    readonly required minlength="10" />
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
@@ -409,7 +409,8 @@
                         </div>
                     </form>
                     <div class="row">
-                        <p id="delete_specs_notification" class="text-success text-end mt-3 d-none">Xóa thành công!</p>
+                        <p id="delete_specs_notification" class="text-success text-end mt-3 d-none">Xóa thành công!
+                        </p>
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -462,14 +463,26 @@
                     </div>
                     <form id="edit-selected-details-form" method="POST" class="form border-0 d-none">
                         @csrf
-                        <label for="ed_details_color">Màu sản phẩm</label>
-                        <select>
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_id">Mã sản phẩm</label>
+                                <input id="ed_details_id" class="form-control" type="text" readonly>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_color">Màu sản phẩm</label>
+                                <select class="form-select">
+                                    
+                                </select>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_specs">Phiên bản sản phẩm</label>
+                                <select class="form-select">
+                                    
+                                </select>
+                            </div>
+                        </div>
 
-                        </select>
-                        <label for="ed_details_specs">Phiên bản sản phẩm</label>
-                        <select>
-
-                        </select>
+                        
                         <label for="ed_details_screen"></label>
                         <input id="ed_details_screen" type="text">
                         <label for="ed_details_ram"></label>

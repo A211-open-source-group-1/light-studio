@@ -8,6 +8,7 @@ $(document).ready(function () {
         var userId = $(this).data('brand-id');
         $('#deleteBrandID').val(userId);
     });
+
     $(document).on('click', '.delete-brand-btn', function () {
         var userId = $(this).data('brand-id');
         $('#deleteBrandID').val(userId);
@@ -71,6 +72,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (response) {
                 $('#edit-selected-details-form').removeClass('d-none')
+                $('#ed_details_id').val(response.phone_details_id)
             }
         });
     })
@@ -102,6 +104,9 @@ $(document).ready(function () {
                         '</tr>'
                     )
                 }
+            },
+            error: function() {
+                
             }
         })
     }
@@ -111,7 +116,7 @@ $(document).ready(function () {
             url: '/editSpecifics/' + phone_id,
             type: 'GET',
             success: function (response) {
-                $('#es_phone_name').val(response[1].phone_name);
+                $('#es_phone_name').val(response[1].phone_name); 
                 $('#es_phone_id').val(response[1].phone_id);
                 $('#specs-board').empty();
                 for (let i = 0; i < response[0].length; ++i) {
@@ -251,6 +256,7 @@ $(document).ready(function () {
             success: function (response) {
                 ajaxGetSpecs(phone_id)
                 $('#edit_specs_notification').removeClass('d-none')
+                
             },
             error: function (response) {
 
