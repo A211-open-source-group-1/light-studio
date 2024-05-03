@@ -42,5 +42,4 @@
         <a href="{{ route('orderedCart') }}" id="orderedCart">Đơn hàng</a>
         <a class="btn-logout-admin" data-bs-toggle="modal" data-bs-target="#logoutAdmin">Đăng xuất</a>
     </div>
-
     <div class="content">

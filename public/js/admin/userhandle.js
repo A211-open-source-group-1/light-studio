@@ -587,10 +587,6 @@ $(document).ready(function () {
             }
         });
     });
-
-
-
-
 });
 $(document).ready('click', '.edit-brand-btn', function () {
     var id = $(this).data('brand-id');
