@@ -88,6 +88,14 @@ $(document).ready(function () {
                 $('#ed_details_bluetoothver').val(response[0].bluetooth_ver);
                 $('#ed_details_wifiver').val(response[0].wifi_ver);
                 $('#ed_details_nfc').val(response[0].nfc);
+
+                for (let i = 0; i < response[1].length; ++i) {
+                    $('#img_holder').append('<div class="col-3 p-1 border rounded position-relative">' +
+                    '<img src="/image/' + response[1][i].file_path + '" class="h-100 w-100" style="z-index: 999">' +
+                    '<button class="btn position-absolute top-0 end-0 rounded-circle bg-danger mb-3" style="z-index: 998"><i class="fa-solid fa-xmark text-light"></i></button>' +
+                    '</div>');
+                }
+                $('#img_holder').append('<div class="col-3 p-1 border rounded text-center d-flex"><button class="btn w-100 h-100 my-auto" style="font-size: 3rem;">+</button></div>');
             }
         });
     })

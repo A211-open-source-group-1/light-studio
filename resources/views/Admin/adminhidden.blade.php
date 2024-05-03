@@ -522,6 +522,11 @@
                             </div>
                             <div class="col-12">
                                 <label>Hình ảnh sản phẩm</label>
+                                <div class="container-fluid">
+                                    <div id="img_holder" class="row">
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
