@@ -1,7 +1,13 @@
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-input[type=text], input[type=password] {
+form {
+  border: 3px solid #f1f1f1;
+}
+
+input[type=text],
+input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -17,7 +23,7 @@ input[type=text], input[type=password] {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-   width: 100%;
+  width: 100%;
 }
 
 button:hover {
@@ -52,11 +58,12 @@ span.psw {
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
-     display: block;
-     float: none;
+    display: block;
+    float: none;
   }
+
   .cancelbtn {
-     width: 100%;
+    width: 100%;
   }
 }
 
@@ -81,7 +88,7 @@ body {
   padding: 16px;
   text-decoration: none;
 }
- 
+
 .sidebar a.active {
   background-color: #04AA6D;
   color: white;
@@ -104,8 +111,14 @@ div.content {
     height: auto;
     position: relative;
   }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
+
+  .sidebar a {
+    float: left;
+  }
+
+  div.content {
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -160,12 +173,16 @@ div.content {
 }
 
 
-.img-brand{
-width: 100px;
-height: 100px;
+.img-brand {
+  width: 100px;
+  height: 100px;
 
 }
 
 a {
   text-decoration: none;
+}
+
+.min-col {
+  height: 13rem
 }

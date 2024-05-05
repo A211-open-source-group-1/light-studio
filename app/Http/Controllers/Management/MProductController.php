@@ -131,7 +131,7 @@ class MProductController extends Controller
             ->where('phone_details_id', '=', $detail_id)
             ->first();
         $image = Image::where('phone_details_id', '=', $detail_id)
-        ->get();
+            ->get();
         return response()->json([$detail, $image]);
     }
 
