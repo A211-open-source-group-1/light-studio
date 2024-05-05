@@ -104,7 +104,7 @@ $(document).ready(function () {
                     $('#img_holder').append('<div id="img-col-id-' + response[1][i].image_id + '" class="col-3 p-1 position-relative">' +
                         '<img src="/image/' + response[1][i].file_path + '" class="h-100 w-100 border rounded" style="z-index: 999">' +
                         '<button data-img-id="' + response[1][i].image_id + '" class="btn position-absolute top-0 end-0 rounded-circle bg-danger mb-3 remove-img-btn" style="z-index: 998"><i class="fa-solid fa-xmark text-light"></i></button>' +
-                        '<input name="details-img-"' + i + '" class="d-none" type="text" value="' + response[1][i].file_path +'">' +
+                        '<input name="details-img-' + i + '" class="d-none" type="text" value="' + response[1][i].file_path +'">' +
                         '</div>');
                 }
                 $('#img_holder').append('<div id="add-img-btn" class="col-3 p-1 text-center d-flex"><button class="btn w-100 h-100 my-auto border rounded add-img-btn" style="font-size: 3rem;">+</button></div>');
@@ -123,6 +123,9 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '.add-img-btn', function() {
+        $('.input-img-added').filter(function() {
+            return !$(this).val() 
+        }).remove();
         var uniqueId = Math.floor(Date.now() * Math.random());
         $('#img_holder').append('<input id="file-' + 
         uniqueId +
@@ -144,6 +147,7 @@ $(document).ready(function () {
 
     $(document).on('change', '.input-img-added', function() {
         if ($(this).prop('files') && $(this).prop('files')[0]) {
+            alert($(this).val())
             var reader = new FileReader();
             var uniqueId = Math.floor(Date.now() * Math.random());
             var fileName = $(this).val().replace(/.*[\/\\]/, '');
@@ -152,18 +156,29 @@ $(document).ready(function () {
                 $('#img_holder').append('<div id="img-col-id-' + uniqueId + '" class="col-3 p-1 position-relative">' +
                 '<img id="auto-img-' + uniqueId + '" class="h-100 w-100 border rounded" style="z-index: 999">' +
                 '<button data-img-id="' + uniqueId + '" class="btn position-absolute top-0 end-0 rounded-circle bg-danger mb-3 remove-img-btn" style="z-index: 998"><i class="fa-solid fa-xmark text-light"></i></button>' +
-                '<input name="details-img-"' + uniqueId + '" class="d-none" type="text" value="' + fileName +'">' +
+                '<input name="details-img-' + uniqueId + '" class="d-none" type="text" value="' + fileName +'">' +
                 '</div>');
                 $('#auto-img-' + uniqueId).attr('src', e.target.result);
                 $('#img_holder').append('<div id="add-img-btn" class="col-3 p-1 text-center d-flex"><button class="btn w-100 h-100 my-auto border rounded add-img-btn" style="font-size: 3rem;">+</button></div>');
             };
-            
             reader.readAsDataURL($(this).prop('files')[0]);
+        } else {
+            alert('!')
         }
     })
 
     $(document).on('submit', '#edit-selected-details-form', function (e) {
         e.preventDefault();
+        var form = $(this);
+        //var formData = new FormData($("#formID")[0]);
+        $.ajax({
+            url: '/editSelectedDetailsSubmit',
+            type: 'POST',
+            data: form.serialize(),
+            success: function(response) {
+                alert(response);
+            }
+        })
     })
 
     $(document).on('click', '#close-edit-details-form-btn', function () {

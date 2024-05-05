@@ -161,7 +161,7 @@ class MProductController extends Controller
 
     public function editSelectedDetailsSubmit(Request $request)
     {
-
+        return response()->json($request);
     }
 
     public function addColorSubmit(Request $request)
