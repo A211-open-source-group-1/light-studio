@@ -454,11 +454,11 @@
                     <div class="row">
                         <div class="col-12 col-lg-6">
                             <label for="ed_phone_id">Mã điện thoại</label>
-                            <input readonly id="ed_phone_id" class="form-control" type="text">
+                            <input readonly disabled id="ed_phone_id" class="form-control" type="text">
                         </div>
                         <div class="col-12 col-lg-6">
                             <label for="ed_phone_name">Tên điện thoại</label>
-                            <input readonly id="ed_phone_name" class="form-control" type="text">
+                            <input readonly disabled id="ed_phone_name" class="form-control" type="text">
                         </div>
                     </div>
                     <form id="edit-selected-details-form" method="POST" class="form border-0 d-none">
@@ -519,6 +519,14 @@
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_nfc">NFC</label>
                                 <input id="ed_details_nfc" class="form-control" type="text">
+                            </div>
+                            <div class="col-12">
+                                <label>Hình ảnh Thumbnail</label>
+                                <div class="container-fluid">
+                                    <div id="thumbnail_holder" class="row">
+                                        
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-12">
                                 <label>Hình ảnh sản phẩm</label>

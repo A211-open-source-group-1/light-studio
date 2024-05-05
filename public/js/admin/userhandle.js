@@ -74,6 +74,7 @@ $(document).ready(function () {
                 $('#edit-selected-details-form').removeClass('d-none');
                 $('#ed_details_id').val(response[0].phone_details_id);
                 $('#img_holder').empty();
+                $('#thumbnail_holder').empty();
                 $('#ed_color_select').select2({
                     dropdownParent: $('#editDetails')
                 });
@@ -90,22 +91,39 @@ $(document).ready(function () {
                 $('#ed_details_wifiver').val(response[0].wifi_ver);
                 $('#ed_details_nfc').val(response[0].nfc);
 
+                $('#thumbnail_holder').append('<div class="col-3 p-1 position-relative">' +
+                    '<img src="/image/' + response[0].thumbnail_img + '" class="h-100 w-100 border rounded" style="z-index: 1001">' +
+                    '<label for="thumbnail">' +
+                    '<button class="btn position-absolute top-0 end-0 rounded-circle bg-dark mb-3 thumbnail-change" style="z-index: 998"><i class="fa-solid fa-rotate text-light"></i></button>' +
+                    '<input type="file" class="form-control d-none" id="thumbnail">' +
+                    '</label>' +
+                    '</div>'
+                )
+
                 for (let i = 0; i < response[1].length; ++i) {
                     $('#img_holder').append('<div class="col-3 p-1 position-relative">' +
-                    '<img src="/image/' + response[1][i].file_path + '" class="h-100 w-100 border rounded" style="z-index: 999">' +
-                    '<button class="btn position-absolute top-0 end-0 rounded-circle bg-danger mb-3" style="z-index: 998"><i class="fa-solid fa-xmark text-light"></i></button>' +
-                    '</div>');
+                        '<img src="/image/' + response[1][i].file_path + '" class="h-100 w-100 border rounded" style="z-index: 999">' +
+                        '<button class="btn position-absolute top-0 end-0 rounded-circle bg-danger mb-3" style="z-index: 998"><i class="fa-solid fa-xmark text-light"></i></button>' +
+                        '</div>');
                 }
-                $('#img_holder').append('<div class="col-3 p-1 border rounded text-center d-flex"><button class="btn w-100 h-100 my-auto" style="font-size: 3rem;">+</button></div>');
+                $('#img_holder').append('<div class="col-3 p-1 text-center d-flex"><button class="btn w-100 h-100 my-auto border rounded add-img-btn" style="font-size: 3rem;">+</button></div>');
             }
         });
     })
 
-    $(document).on('submit', '#edit-selected-details-form', function(e) {
+    $(document).on('click', '.thumbnail-change', function () {
+        $('#thumbnail').click();
+    })
+
+    $(document).on('click', '.add-img-btn', function() {
+        $('#img_holder').append('<input type="file" name="">');
+    })
+
+    $(document).on('submit', '#edit-selected-details-form', function (e) {
         e.preventDefault();
     })
 
-    $(document).on('click', '#close-edit-details-form-btn', function() {
+    $(document).on('click', '#close-edit-details-form-btn', function () {
         $('#edit-selected-details-form').addClass('d-none');
     })
 
