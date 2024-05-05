@@ -524,7 +524,7 @@
                                 <label>Hình ảnh Thumbnail</label>
                                 <div class="container-fluid">
                                     <div id="thumbnail_holder" class="row">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -532,7 +532,7 @@
                                 <label>Hình ảnh sản phẩm</label>
                                 <div class="container-fluid">
                                     <div id="img_holder" class="row">
-                                        
+
                                     </div>
                                 </div>
                             </div>
