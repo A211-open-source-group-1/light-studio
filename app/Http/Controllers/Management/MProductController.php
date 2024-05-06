@@ -171,7 +171,6 @@ class MProductController extends Controller
         $new_color->color_name = $request->new_color_name;
         $new_color->save();
         return response()->json(['isSucceed' => true]);
-
     }
 
     public function addSpecificSubmit(Request $request)
