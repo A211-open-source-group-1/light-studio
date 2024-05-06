@@ -17,17 +17,17 @@
                 <div class="form">
                     <div class="form-group">
                         <label>Mật khẩu hiện tại</label>
-                        <input name="password" class="form-control" />
+                        <input type="password" name="password" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label>Mật khẩu mới</label>
-                        <input id="newPassword" name="newPassword" class="form-control" type="text" />
+                        <input id="newPassword" name="newPassword" class="form-control" type="password" />
                     </div>
                    
                     <div class="form-group">
                         <label>Xác thực mật khẩu</label>
-                        <input id="rePassword" name="rePassword" class="form-control" type="text"/>
+                        <input id="rePassword" name="rePassword" class="form-control" type="password"/>
                     </div>
                     
                 </div>

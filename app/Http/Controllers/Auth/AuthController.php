@@ -42,10 +42,8 @@ class AuthController extends Controller
             }
 
             return redirect()->back();
-        }
-        else{
+        } else {
             return redirect()->back()->withErrors('Không tìm thấy tên đăng nhập');
-
         }
 
         return redirect()->back()->withErrors('Sai mật khẩu vui lòng thử lại');
@@ -110,10 +108,10 @@ class AuthController extends Controller
             'password' => 'required',
             'repassword' => 'required',
         ]);
-    
+
         $password = $request->input('password');
         $repassword = $request->input('repassword');
-    
+
         if ($password === $repassword) {
             try {
                 $user = new User();
@@ -159,7 +157,7 @@ class AuthController extends Controller
         if ($user) {
             return view("auth.ResetPassword", compact('user'));
         } else {
-            return "??????";
+            return redirect()->back()->withErrors('Không tìm thấy số điện thoại này!');
         }
     }
     public function resetPassword(Request $request)
@@ -168,12 +166,10 @@ class AuthController extends Controller
         $user  = User::where('phone_number', $phone_number)->first();
 
         if ($user) {
-            if($request->newPassword === $request->rePassword)
-            {
+            if ($request->newPassword === $request->rePassword) {
                 $user->update(['password' => bcrypt($request->newPassword)]);
                 return redirect('/');
-            }
-            else{
+            } else {
                 return view('fallout');
             }
         }
@@ -193,7 +189,7 @@ class AuthController extends Controller
             'phone_number.required' => 'Vui lòng nhập số điện thoại.',
             'password.required' => 'Vui lòng nhập mật khẩu.'
         ]);
-        
+
         $credentials = $request->only('phone_number', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->route('indexAdmin');
@@ -201,7 +197,7 @@ class AuthController extends Controller
             return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
         }
     }
-    
+
     public function indexAdmin()
     {
         return view('admin.index');
@@ -210,26 +206,26 @@ class AuthController extends Controller
     public function customer()
     {
         $user = User::all();
-        return view('Admin.customer.customer',compact('user'));
+        return view('Admin.customer.customer', compact('user'));
     }
-  
-   public function deleteUser(Request $request)
-   {
-    try {
 
-        $user = User::find($request->deleteUserId);
-        if (!$user) {
-            throw new \Exception('User not found' . $request->deleteUserId);
+    public function deleteUser(Request $request)
+    {
+        try {
+
+            $user = User::find($request->deleteUserId);
+            if (!$user) {
+                throw new \Exception('User not found' . $request->deleteUserId);
+            }
+            $user->delete();
+            $message = "Xóa thành công " . $user->id;
+            return redirect()->back()->with('mess', $message);
+        } catch (\Exception $e) {
+            $message = "Xóa không thành công: " . $e->getMessage();
+            return redirect()->back()->with('mess', $message);
         }
-        $user->delete();
-        $message = "Xóa thành công ".$user->id;    
-        return redirect()->back()->with('mess',$message);
-    } catch (\Exception $e) {
-        $message = "Xóa không thành công: " . $e->getMessage();
-        return redirect()->back()->with('mess',$message);
     }
-    }
-    
+
     public function getUser($id)
     {
         $user = User::find($id);
@@ -250,13 +246,13 @@ class AuthController extends Controller
         return redirect()->back();
     }
     public function searchUser($searchTerm)
-    {        
+    {
         $users = User::where('name', 'like', '%' . $searchTerm . '%')
-                     ->orWhere('email', 'like', '%' . $searchTerm . '%')
-                     ->orWhere('id', 'like', '%' . $searchTerm . '%')
-                     ->orWhere('address', 'like', '%' . $searchTerm . '%')
-                     ->orWhere('phone_number', 'like', '%' . $searchTerm . '%')
-                     ->get();
+            ->orWhere('email', 'like', '%' . $searchTerm . '%')
+            ->orWhere('id', 'like', '%' . $searchTerm . '%')
+            ->orWhere('address', 'like', '%' . $searchTerm . '%')
+            ->orWhere('phone_number', 'like', '%' . $searchTerm . '%')
+            ->get();
         if ($users->isEmpty()) {
             $users = User::all();
             return response()->json($users);
