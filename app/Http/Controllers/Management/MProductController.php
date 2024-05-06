@@ -196,9 +196,13 @@ class MProductController extends Controller
 
     public function deleteColor($color_id)
     {
-        $delete_color = Color::where('color_id', '=', $color_id)->first();
-        $delete_color->delete();
-        return response()->json(['isSucceed' => true]);
+        try {
+            $delete_color = Color::where('color_id', '=', $color_id)->first();
+            $delete_color->delete();
+            return response()->json(['isSucceed' => true]);
+        } catch (Exception $ex) {
+            return response()->json(['isDeleteColorSucceed' => false, 'errorMsg' => $ex->getMessage()]);
+        }
     }
 
     public function deleteSpecific($specs_id)
