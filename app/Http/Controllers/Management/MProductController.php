@@ -196,9 +196,9 @@ class MProductController extends Controller
         }
     }
 
-    public function deleteDetails($detail_id)
+    public function deleteDetails(Request $request)
     {
-        $delete_details = PhoneDetails::where('phone_details_id', '=', $detail_id)->first();
+        $delete_details = PhoneDetails::where('phone_details_id', '=', $request->details_id)->first();
         $delete_details->delete();
         return response()->json(['isDeleteDetailsSucceed' => true]);
     }
