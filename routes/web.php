@@ -43,7 +43,6 @@ Route::get('search', [ProductController::class, 'search'])->name('search');
 Route::post('filter', [ProductController::class, 'filter'])->name('filter');
 Route::get('filter', [ProductController::class, 'filter'])->name('filter');
 
-
 Route::get('admin', [AuthController::class, 'admin'])->name('adminLogins');
 Route::post('authAdmin', [AuthController::class, 'authAdmin'])->name('authAdmin');
 Route::get('logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
