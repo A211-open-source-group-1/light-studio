@@ -549,9 +549,98 @@
                             </div>
                         </div>
                     </form>
+                    <!-- Add Details Form Section -->
+                    <form id="add-details-form" method="POST" action="/addPhoneDetailsSubmit" class="form border-0 d-none">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_id">Mã sản phẩm</label>
+                                <input id="new_details_id" class="form-control" type="text" name="details_id" readonly disabled>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_color_select" class="mb-3">Màu sản phẩm</label>
+                                <select id="new_color_select" class="form-select" name="color_id">
+                                    <option value="1">vcl</option>
+                                    <option value="2">vcl</option>
+                                    <option value="3">dcm</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_specs_select" class="mb-3">Phiên bản sản phẩm</label>
+                                <select id="new_specs_select" class="form-select" name="specs_id">
+                                    <option value="1">vcl</option>
+                                    <option value="2">vcl</option>
+                                    <option value="3">dcm</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_screen">Màn hình</label>
+                                <input id="new_details_screen" class="form-control" type="text" name="screen">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_ram">Dung lượng RAM</label>
+                                <input id="new_details_ram" class="form-control" type="text" name="ram">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_rom">Dung lượng bộ nhớ trong</label>
+                                <input id="new_details_rom" class="form-control" type="text" name="rom">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_cpu">CPU</label>
+                                <input id="new_details_cpu" class="form-control" type="text" name="cpu">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_frontcam">Camera trước</label>
+                                <input id="new_details_frontcam" class="form-control" type="text" name="front_cam">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_frontcam">Camera sau</label>
+                                <input id="new_details_frontcam" class="form-control" type="text" name="rear_cam">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_bluetoothver">Bluetooth</label>
+                                <input id="new_details_bluetoothver" class="form-control" type="text" name="bluetooth_ver">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_wifiver">WiFi</label>
+                                <input id="new_details_wifiver" class="form-control" type="text" name="wifi_ver">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_nfc">NFC</label>
+                                <input id="new_details_nfc" class="form-control" type="text" name="nfc">
+                            </div>
+                            <div class="col-12">
+                                <label>Hình ảnh Thumbnail</label>
+                                <div class="container-fluid">
+                                    <div id="new_thumbnail_holder" class="row">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label>Hình ảnh sản phẩm</label>
+                                <div class="container-fluid">
+                                    <div id="new_img_holder" class="row">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+
+                            </div>
+                            <div class="col-4 text-end">
+                                <button id="submit-add-details-form-btn" class="btn btn-success"
+                                    type="submit">Thêm</button>
+                                <button id="close-add-details-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
+                            </div>
+                        </div>
+                    </form>
                     <div class="row">
                         <div class="col-12">
-                            <button id="add-color-form-btn" class="btn btn-success">Thêm</button>
+                            <button id="add-details-form-btn" class="btn btn-success">Thêm</button>
                             <div class="container-fluid m-0 p-0">
                                 <table class="table table-light">
                                     <thead>

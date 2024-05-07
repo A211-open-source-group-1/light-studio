@@ -65,6 +65,28 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on('click', '#add-details-form-btn', function() {
+        $('#new_img_holder').empty();
+        $('#new_thumbnail_holder').empty();
+        $('#add-details-form').removeClass('d-none');
+        $('#edit-selected-details-form').addClass('d-none');
+        $('#new_img_holder').append('<div id="new-add-img-btn" class="col-3 p-1 text-center d-flex min-col"><button class="btn w-100 h-100 my-auto border rounded add-img-btn" data-details-type="insert" style="font-size: 3rem;" type="button">+</button></div>');
+        $('#new_color_select').select2({
+            dropdownParent: $('#editDetails')
+        });
+        $('#new_specs_select').select2({
+            dropdownParent: $('#editDetails')
+        })
+    })
+
+    $(document).on('click', '#submit-add-details-form-btn', function() {
+
+    })
+
+    $(document).on('click', '#close-add-details-form-btn', function() {
+        $('#add-details-form').addClass('d-none');
+    })
+
     $(document).on('click', '.edit-selected-details-btn', function () {
         var detailsId = $(this).data('details-id');
         $.ajax({
@@ -119,7 +141,6 @@ $(document).ready(function () {
     $(document).on('click', '.remove-img-btn', function() {
         var imgId = $(this).data('img-id');
         var fileName = $(this).data('file-name');
-        alert(fileName + ' ' + imgId);
         $('#img-col-id-' + imgId).remove();
         $('#file-' + imgId).remove();
         $('#img_holder').append('<input name="delete-details-img[]" class="d-none" type="text" value="' + imgId + '-' + fileName +'">');
@@ -130,10 +151,17 @@ $(document).ready(function () {
             return !$(this).val() 
         }).remove();
         var uniqueId = Math.floor(Date.now() * Math.random());
-        $('#img_holder').append('<input id="file-' + 
-        uniqueId +
-        '" type="file" class="d-none input-img-added" name="file[]' + 
-        '" data-img-id="' + uniqueId + '">');
+        if ($(this).data('details-type') == 'insert') {
+            $('#new_img_holder').append('<input id="file-' + 
+            uniqueId +
+            '" type="file" class="d-none input-img-added" data-input-type="insert" name="file[]' + 
+            '" data-img-id="' + uniqueId + '">');
+        } else {
+            $('#img_holder').append('<input id="file-' + 
+            uniqueId +
+            '" type="file" class="d-none input-img-added" name="file[]' + 
+            '" data-img-id="' + uniqueId + '">');
+        }
         $('#file-' + uniqueId).click();
     })
 
@@ -152,14 +180,24 @@ $(document).ready(function () {
             var reader = new FileReader();
             var uniqueId = $(this).data('img-id');
             var fileName = $(this).val().replace(/.*[\/\\]/, '');
+            var type = $(this).data('input-type');
             reader.onload = function(e) {
-                $('#add-img-btn').remove();
-                $('#img_holder').append('<div id="img-col-id-' + uniqueId + '" class="col-3 p-1 position-relative min-col">' +
-                '<img id="auto-img-' + uniqueId + '" class="h-100 w-100 border rounded" style="z-index: 999">' +
-                '<button data-img-id="' + uniqueId + '" class="btn position-absolute top-0 end-0 rounded-circle bg-danger mb-3 remove-img-btn" style="z-index: 998"><i class="fa-solid fa-xmark text-light"></i></button>' +
-                '</div>');
+                if (type == 'insert') {
+                    $('#new-add-img-btn').remove();
+                    $('#new_img_holder').append('<div id="img-col-id-' + uniqueId + '" class="col-3 p-1 position-relative min-col">' +
+                    '<img id="auto-img-' + uniqueId + '" class="h-100 w-100 border rounded" style="z-index: 999">' +
+                    '<button data-img-id="' + uniqueId + '" class="btn position-absolute top-0 end-0 rounded-circle bg-danger mb-3 remove-img-btn" style="z-index: 998"><i class="fa-solid fa-xmark text-light"></i></button>' +
+                    '</div>');
+                    $('#new_img_holder').append('<div id="new-add-img-btn" class="col-3 p-1 text-center d-flex min-col"><button class="btn w-100 h-100 my-auto border rounded add-img-btn" data-details-type="insert" style="font-size: 3rem;" type="button">+</button></div>');
+                } else {
+                    $('#add-img-btn').remove();
+                    $('#img_holder').append('<div id="img-col-id-' + uniqueId + '" class="col-3 p-1 position-relative min-col">' +
+                    '<img id="auto-img-' + uniqueId + '" class="h-100 w-100 border rounded" style="z-index: 999">' +
+                    '<button data-img-id="' + uniqueId + '" class="btn position-absolute top-0 end-0 rounded-circle bg-danger mb-3 remove-img-btn" style="z-index: 998"><i class="fa-solid fa-xmark text-light"></i></button>' +
+                    '</div>');
+                    $('#img_holder').append('<div id="add-img-btn" class="col-3 p-1 text-center d-flex"><button class="btn w-100 h-100 my-auto border rounded add-img-btn" style="font-size: 3rem;" type="button">+</button></div>');
+                }
                 $('#auto-img-' + uniqueId).attr('src', e.target.result);
-                $('#img_holder').append('<div id="add-img-btn" class="col-3 p-1 text-center d-flex"><button class="btn w-100 h-100 my-auto border rounded add-img-btn" style="font-size: 3rem;" type="button">+</button></div>');
             };
             reader.readAsDataURL($(this).prop('files')[0]);
         } else {

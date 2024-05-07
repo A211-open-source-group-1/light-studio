@@ -47,7 +47,6 @@ class MProductController extends Controller
             ->leftJoin('phone_os', 'phone_os.os_id', '=', 'phones.os_id')
             ->where('phones.phone_id', '=', $phone_id)
             ->first();
-
         $brands = Brand::all();
         $categories = PhoneCategory::all();
         $phoneos = PhoneOs::all();
@@ -191,7 +190,7 @@ class MProductController extends Controller
     public function addPhoneDetailsSubmit(Request $request)
     {
         try {
-
+            return response()->json($request);
         } catch (Exception $ex) {
             return response()->json(['isDetailsAdded' => false]);
         }
@@ -225,8 +224,4 @@ class MProductController extends Controller
             return response()->json(['isDeleteSpecsSucceed' => false, 'errorMsg' => $ex->getMessage()]);
         }
     }
-
-
-
-
 }
