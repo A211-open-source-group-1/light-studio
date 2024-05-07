@@ -15,6 +15,8 @@ use DOMDocument;
 use Exception;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\assertNotFalse;
+
 class MProductController extends Controller
 {
     public function index($type)
@@ -175,16 +177,24 @@ class MProductController extends Controller
 
     public function addSpecificSubmit(Request $request)
     {
-        $new_specs = new PhoneSpecs();
-        $new_specs->phone_id = $request->phone_id;
-        $new_specs->specific_name = $request->new_specs_name;
-        $new_specs->save();
-        return response()->json(['isSpecsAdded' => true]);
+        try {
+            $new_specs = new PhoneSpecs();
+            $new_specs->phone_id = $request->phone_id;
+            $new_specs->specific_name = $request->new_specs_name;
+            $new_specs->save();
+            return response()->json(['isSpecsAdded' => true]);
+        } catch (Exception $ex) {
+            return response()->json(['isSpecsAdded' => false]);
+        }
     }
 
     public function addPhoneDetailsSubmit(Request $request)
     {
+        try {
 
+        } catch (Exception $ex) {
+            return response()->json(['isDetailsAdded' => false]);
+        }
     }
 
     public function deleteDetails($detail_id)
