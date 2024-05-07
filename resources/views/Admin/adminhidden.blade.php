@@ -461,16 +461,16 @@
                             <input readonly disabled id="ed_phone_name" class="form-control" type="text">
                         </div>
                     </div>
-                    <form id="edit-selected-details-form" method="POST" class="form border-0 d-none">
+                    <form id="edit-selected-details-form" method="POST" action="/editSelectedDetailsSubmit" class="form border-0 d-none">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_id">Mã sản phẩm</label>
-                                <input id="ed_details_id" class="form-control" type="text" readonly>
+                                <input id="ed_details_id" class="form-control" type="text" name="details_id" readonly>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_color" class="mb-3">Màu sản phẩm</label>
-                                <select id="ed_color_select" class="form-select">
+                                <select id="ed_color_select" class="form-select" name="color_id">
                                     <option value="1">vcl</option>
                                     <option value="2">vcl</option>
                                     <option value="3">dcm</option>
@@ -478,7 +478,7 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_specs_select" class="mb-3">Phiên bản sản phẩm</label>
-                                <select id="ed_specs_select" class="form-select">
+                                <select id="ed_specs_select" class="form-select" name="specs_id">
                                     <option value="1">vcl</option>
                                     <option value="2">vcl</option>
                                     <option value="3">dcm</option>
@@ -486,39 +486,39 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_screen">Màn hình</label>
-                                <input id="ed_details_screen" class="form-control" type="text">
+                                <input id="ed_details_screen" class="form-control" type="text" name="screen">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_ram">Dung lượng RAM</label>
-                                <input id="ed_details_ram" class="form-control" type="text">
+                                <input id="ed_details_ram" class="form-control" type="text" name="ram">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_rom">Dung lượng bộ nhớ trong</label>
-                                <input id="ed_details_rom" class="form-control" type="text">
+                                <input id="ed_details_rom" class="form-control" type="text" name="rom">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_cpu">CPU</label>
-                                <input id="ed_details_cpu" class="form-control" type="text">
+                                <input id="ed_details_cpu" class="form-control" type="text" name="cpu">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_frontcam">Camera trước</label>
-                                <input id="ed_details_frontcam" class="form-control" type="text">
+                                <input id="ed_details_frontcam" class="form-control" type="text" name="front_cam">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_rearcam">Camera sau</label>
-                                <input id="ed_details_rearcam" class="form-control" type="text">
+                                <input id="ed_details_rearcam" class="form-control" type="text" name="rear_cam">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_bluetoothver">Bluetooth</label>
-                                <input id="ed_details_bluetoothver" class="form-control" type="text">
+                                <input id="ed_details_bluetoothver" class="form-control" type="text" name="bluetooth_ver">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_wifiver">WiFi</label>
-                                <input id="ed_details_wifiver" class="form-control" type="text">
+                                <input id="ed_details_wifiver" class="form-control" type="text" name="wifi_ver">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_nfc">NFC</label>
-                                <input id="ed_details_nfc" class="form-control" type="text">
+                                <input id="ed_details_nfc" class="form-control" type="text" name="nfc">
                             </div>
                             <div class="col-12">
                                 <label>Hình ảnh Thumbnail</label>
