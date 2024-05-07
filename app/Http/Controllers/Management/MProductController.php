@@ -184,7 +184,7 @@ class MProductController extends Controller
 
     public function addPhoneDetailsSubmit(Request $request)
     {
-
+        
     }
 
     public function deleteDetails($detail_id)

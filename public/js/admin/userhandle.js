@@ -120,6 +120,7 @@ $(document).ready(function () {
     $(document).on('click', '.remove-img-btn', function() {
         var imgId = $(this).data('img-id');
         $('#img-col-id-' + imgId).remove();
+        $('#file-' + imgId).remove();
     })
 
     $(document).on('click', '.add-img-btn', function() {
@@ -129,9 +130,9 @@ $(document).ready(function () {
         var uniqueId = Math.floor(Date.now() * Math.random());
         $('#img_holder').append('<input id="file-' + 
         uniqueId +
-        '" type="file" class="d-none input-img-added" name="' +
+        '" type="file" class="d-none input-img-added" name="file-' +
         uniqueId +
-        '">');
+        '" data-img-id="' + uniqueId + '">');
         $('#file-' + uniqueId).click();
     })
 
@@ -147,9 +148,8 @@ $(document).ready(function () {
 
     $(document).on('change', '.input-img-added', function() {
         if ($(this).prop('files') && $(this).prop('files')[0]) {
-            alert($(this).val())
             var reader = new FileReader();
-            var uniqueId = Math.floor(Date.now() * Math.random());
+            var uniqueId = $(this).data('img-id');
             var fileName = $(this).val().replace(/.*[\/\\]/, '');
             reader.onload = function(e) {
                 $('#add-img-btn').remove();
@@ -176,7 +176,7 @@ $(document).ready(function () {
             type: 'POST',
             data: form.serialize(),
             success: function(response) {
-                alert(response);
+                
             }
         })
     })
