@@ -461,7 +461,7 @@
                             <input readonly disabled id="ed_phone_name" class="form-control" type="text">
                         </div>
                     </div>
-                    <form id="edit-selected-details-form" method="POST" action="/editSelectedDetailsSubmit" class="form border-0 d-none">
+                    <form id="edit-selected-details-form" method="POST" action="/editSelectedDetailsSubmit" class="form border-0 d-none" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
@@ -550,7 +550,7 @@
                         </div>
                     </form>
                     <!-- Add Details Form Section -->
-                    <form id="add-details-form" method="POST" action="/addPhoneDetailsSubmit" class="form border-0 d-none">
+                    <form id="add-details-form" method="POST" action="/addPhoneDetailsSubmit" class="form border-0 d-none" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">

@@ -14,6 +14,7 @@ use App\Models\PhoneSpecs;
 use DOMDocument;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 use function PHPUnit\Framework\assertNotFalse;
 
@@ -189,16 +190,56 @@ class MProductController extends Controller
 
     public function addPhoneDetailsSubmit(Request $request)
     {
-        try {
+        
+            $newDetails = new PhoneDetails();
+            $newDetails->phone_id = 1;
+            $newDetails->color_id = $request->color_id;
+            $newDetails->specific_id = $request->specs_id;
+            $newDetails->screen = $request->screen;
+            $newDetails->ram = $request->ram;
+            $newDetails->rom = $request->rom;
+            $newDetails->front_cam = $request->front_cam;
+            $newDetails->rear_cam = $request->rear_cam;
+            $newDetails->bluetooth_ver = $request->bluetooth_ver;
+            $newDetails->wifi_ver = $request->wifi_ver;
+            $newDetails->nfc = $request->nfc;
+
+            $thumbnailFileName = 'no_image.png';
+            if ($request->file('thumbnail') != null) {
+                $thumbnailFileName = 'thumbnail_' . uniqId() . '.' . $request->file('thumbnail')->extension();
+                $request->file('thumbnail')->storeAs('image', $thumbnailFileName, 'imageUpload');
+            }
+            $newDetails->thumbnail_img = $thumbnailFileName;
+            $newDetails->save();
+            if ($request->file('file') != null) {
+                foreach ($request->file('file') as $file) {
+                    $fileName = 'img' . uniqId() . '.' . $file->extension();
+                    $file->storeAs('image', $fileName, 'imageUpload');
+                    $image = new Image();
+                    $image->phone_details_id = $newDetails->phone_details_id;
+                    $image->file_path = $fileName;
+                    $image->save();
+                }
+            }
+
             return response()->json($request);
-        } catch (Exception $ex) {
-            return response()->json(['isDetailsAdded' => false]);
-        }
+            // return response()->json(['isAddDetailsSucceed' => false]);
+        
+
     }
 
-    public function deleteDetails(Request $request)
+    public function deleteDetails($details_id)
     {
-        $delete_details = PhoneDetails::where('phone_details_id', '=', $request->details_id)->first();
+        $delete_details = PhoneDetails::where('phone_details_id', '=', $details_id)->first();
+        $images = $delete_details->childImages()->get();
+        foreach ($images as $image) {
+            $path = public_path() . '/image/' . $image->file_path;
+            if (file_exists($path)) {
+                File::delete($path);
+            }
+            $image->delete();
+        }
+        $delete_details->childImages()->delete();
         $delete_details->delete();
         return response()->json(['isDeleteDetailsSucceed' => true]);
     }

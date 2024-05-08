@@ -70,6 +70,13 @@ $(document).ready(function () {
         $('#new_thumbnail_holder').empty();
         $('#add-details-form').removeClass('d-none');
         $('#edit-selected-details-form').addClass('d-none');
+        $('#new_thumbnail_holder').append('<div class="col-3 p-1 position-relative">' +
+            '<img id="new_thumbnail_img" src="/image/' + 'no_image.png' + '" class="h-100 w-100 border rounded" style="z-index: 1001">' +
+            '<label for="new_thumbnail">' +
+            '<button class="btn position-absolute top-0 end-0 rounded-circle bg-dark mb-3 change-thumbnail-btn" data-thumbnail-type="insert" style="z-index: 998" type="button"><i class="fa-solid fa-rotate text-light"></i></button>' +
+            '<input type="file" class="form-control d-none" id="new_thumbnail" name="thumbnail">' +
+            '</label>' +
+            '</div>');
         $('#new_img_holder').append('<div id="new-add-img-btn" class="col-3 p-1 text-center d-flex min-col"><button class="btn w-100 h-100 my-auto border rounded add-img-btn" data-details-type="insert" style="font-size: 3rem;" type="button">+</button></div>');
         $('#new_color_select').select2({
             dropdownParent: $('#editDetails')
@@ -80,7 +87,7 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '#submit-add-details-form-btn', function () {
-
+        // code
     })
 
     $(document).on('click', '#close-add-details-form-btn', function () {
@@ -134,8 +141,12 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '.change-thumbnail-btn', function () {
-        $('#thumbnail').click();
-        var fileName = $('#thumbnail').val().replace(/.*[\/\\]/, '');
+        if ($(this).data('thumbnail-type') == 'insert') {
+            $('#new_thumbnail').click();
+        } else {
+            $('#thumbnail').click();
+        }
+        // var fileName = $('#thumbnail').val().replace(/.*[\/\\]/, '');
     })
 
     $(document).on('click', '.remove-img-btn', function () {
@@ -175,6 +186,16 @@ $(document).ready(function () {
         }
     })
 
+    $(document).on('change', '#new_thumbnail', function () {
+        if ($(this).prop('files') && $(this).prop('files')[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#new_thumbnail_img').attr('src', e.target.result);
+            };
+            reader.readAsDataURL($(this).prop('files')[0]);
+        }
+    })
+
     $(document).on('change', '.input-img-added', function () {
         if ($(this).prop('files') && $(this).prop('files')[0]) {
             var reader = new FileReader();
@@ -206,12 +227,19 @@ $(document).ready(function () {
     })
 
     $(document).on('submit', '#edit-selected-details-form', function (e) {
-
+        // code
     })
 
     $(document).on('click', '#close-edit-details-form-btn', function () {
         $('#edit-selected-details-form').addClass('d-none');
     })
+
+    function formatVND(num) {
+        var p = num.toFixed(0).split(".");
+        return p[0].split("").reverse().reduce(function (acc, num, i, orig) {
+            return num + (num != "-" && i && !(i % 3) ? "," : "") + acc;
+        }, "") + " VNĐ";
+    }
 
     function ajaxGetColors(phone_id) {
         $.ajax({
@@ -305,10 +333,10 @@ $(document).ready(function () {
                         response[0][i].color_name +
                         '</td>' +
                         '<td>' +
-                        response[0][i].price +
+                        formatVND(Number(response[0][i].price)) +
                         '</td>' +
                         '<td>' +
-                        response[0][i].discount_percent +
+                        response[0][i].discount +
                         '</td>' +
                         '<td>' +
                         '<button data-details-id="' + response[0][i].phone_details_id + '" class="btn btn-primary edit-selected-details-btn">Sửa</button>' +
@@ -319,10 +347,25 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('dcm');
+                alert('error');
             }
         })
     }
+
+    $(document).on('click', '.delete-selected-details-btn', function () {
+        var phoneId = $('#ed_phone_id').val();
+        var detailsId = $(this).data('details-id');
+        $.ajax({
+            url: '/deleteDetails/' + detailsId,
+            type: 'GET',
+            success: function (response) {
+                ajaxGetDetails(phoneId)
+            },
+            error: function (response) {
+                alert('error');
+            }
+        })
+    })
 
     $(document).on('click', '.edit-phone-details-btn', function () {
         var phoneId = $(this).data('phone-id');
@@ -445,7 +488,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('wtf dude')
+                alert('error')
             }
         })
     })
@@ -460,7 +503,7 @@ $(document).ready(function () {
                 ajaxGetSpecs(phoneId)
             },
             error: function () {
-
+                alert('error')
             }
         })
     })

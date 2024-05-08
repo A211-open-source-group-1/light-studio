@@ -10,6 +10,24 @@ use App\Models\Image;
 
 class PhoneDetails extends Model
 {
+    protected $fillable = [
+        'phone_id',
+        'specific_id',
+        'color_id',
+        'screen',
+        'ram',
+        'rom',
+        'cpu',
+        'front_cam',
+        'rear_cam',
+        'bluetooth_ver',
+        'wifi_ver',
+        'nfc',
+        'discount',
+        'quantity',
+        'thumbnail_img'
+    ];
+    
     protected $table = 'phone_details';
     protected $primaryKey = 'phone_details_id';
     public $timestamps = false;

@@ -56,6 +56,12 @@ return [
             'throw' => false,
         ],
 
+        'imageUpload' => [
+            'driver' => 'local',
+            'root'   => public_path(),
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+         ]
     ],
 
     /*
