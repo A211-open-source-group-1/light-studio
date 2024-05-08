@@ -78,11 +78,31 @@ $(document).ready(function () {
             '</label>' +
             '</div>');
         $('#new_img_holder').append('<div id="new-add-img-btn" class="col-3 p-1 text-center d-flex min-col"><button class="btn w-100 h-100 my-auto border rounded add-img-btn" data-details-type="insert" style="font-size: 3rem;" type="button">+</button></div>');
+        $('#new_color_select').empty();
+        $('#new_specs_select').empty();
         $('#new_color_select').select2({
             dropdownParent: $('#editDetails')
         });
         $('#new_specs_select').select2({
             dropdownParent: $('#editDetails')
+        })
+        var phoneId = $('#ed_phone_id').val();
+        $.ajax({
+            url: '/addDetails/' + phoneId,
+            type: 'GET',
+            success: function(response) {
+                for (let i = 0; i < response[0].length; ++i) {
+                    $('#new_color_select').append('<option value="' + response[0][i].color_id + '" >' +
+                        response[0][i].color_name +
+                        '</option>');
+                }
+        
+                for (let i = 0; i < response[1].length; ++i) {
+                    $('#new_specs_select').append('<option value="' + response[1][i].specific_id + '" >' +
+                        response[1][i].specific_name +
+                        '</option>')
+                }
+            }
         })
     })
 
