@@ -211,6 +211,7 @@ class MProductController extends Controller
         }
         $newDetails->thumbnail_img = $thumbnailFileName;
         $newDetails->save();
+        
         if ($request->file('file') != null) {
             foreach ($request->file('file') as $file) {
                 $fileName = 'img' . uniqId() . '.' . $file->extension();
@@ -232,6 +233,10 @@ class MProductController extends Controller
     {
         $delete_details = PhoneDetails::where('phone_details_id', '=', $details_id)->first();
         $images = $delete_details->childImages()->get();
+        $thumbnail_path = public_path() . '/image/' . $delete_details->thumbnail_img; 
+        if (file_exists($thumbnail_path) && $delete_details->thumbnail_img != 'no_image.png') {
+            File::delete($thumbnail_path);
+        }
         foreach ($images as $image) {
             $path = public_path() . '/image/' . $image->file_path;
             if (file_exists($path)) {
