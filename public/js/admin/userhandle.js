@@ -104,6 +104,8 @@ $(document).ready(function () {
                 $('#ed_details_id').val(response[0].phone_details_id);
                 $('#img_holder').empty();
                 $('#thumbnail_holder').empty();
+                $('#ed_color_select').empty();
+                $('#ed_specs_select').empty();
                 $('#ed_color_select').select2({
                     dropdownParent: $('#editDetails')
                 });
@@ -135,6 +137,19 @@ $(document).ready(function () {
                         '<button data-img-id="' + response[1][i].image_id + '" data-file-name="' + response[1][i].file_path + '" class="btn position-absolute top-0 end-0 rounded-circle bg-danger mb-3 remove-img-btn" style="z-index: 998"><i class="fa-solid fa-xmark text-light"></i></button>' +
                         '</div>');
                 }
+
+                for (let i = 0; i < response[2].length; ++i) {
+                    $('#ed_color_select').append('<option value="' + response[2][i].color_id + '" ' + (response[0].color_id == response[2][i].color_id ? ' selected ' : '') + '>' +
+                        response[2][i].color_name +
+                        '</option>');
+                }
+
+                for (let i = 0; i < response[3].length; ++i) {
+                    $('#ed_specs_select').append('<option value="' + response[3][i].specific_id + '" ' + (response[0].specific_id == response[3][i].specific_id ? ' selected ' : '') + '>' +
+                        response[3][i].specific_name +
+                        '</option>')
+                }
+
                 $('#img_holder').append('<div id="add-img-btn" class="col-3 p-1 text-center d-flex min-col"><button class="btn w-100 h-100 my-auto border rounded add-img-btn" style="font-size: 3rem;" type="button">+</button></div>');
             }
         });

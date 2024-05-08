@@ -124,6 +124,13 @@ class MProductController extends Controller
         return response()->json($specs);
     }
 
+    public function addDetails($phone_id) {
+        $phone = Phone::where('phone_id', '=', $phone_id)->first();
+        $colors = $phone->Colors()->get();
+        $specs = $phone->Specifics()->get();
+        return response()->json([$colors, $specs]);
+    }
+
     public function editSelectedDetails($detail_id)
     {
         $detail = PhoneDetails::select('*')
@@ -134,7 +141,10 @@ class MProductController extends Controller
             ->first();
         $image = Image::where('phone_details_id', '=', $detail_id)
             ->get();
-        return response()->json([$detail, $image]);
+        $phone = $detail->parentPhone()->first();
+        $colors = $phone->Colors()->get();
+        $specs = $phone->Specifics()->get();
+        return response()->json([$detail, $image, $colors, $specs]);
     }
 
     public function editSelectedColorSubmit(Request $request)
@@ -211,7 +221,7 @@ class MProductController extends Controller
         }
         $newDetails->thumbnail_img = $thumbnailFileName;
         $newDetails->save();
-        
+
         if ($request->file('file') != null) {
             foreach ($request->file('file') as $file) {
                 $fileName = 'img' . uniqId() . '.' . $file->extension();
@@ -233,7 +243,7 @@ class MProductController extends Controller
     {
         $delete_details = PhoneDetails::where('phone_details_id', '=', $details_id)->first();
         $images = $delete_details->childImages()->get();
-        $thumbnail_path = public_path() . '/image/' . $delete_details->thumbnail_img; 
+        $thumbnail_path = public_path() . '/image/' . $delete_details->thumbnail_img;
         if (file_exists($thumbnail_path) && $delete_details->thumbnail_img != 'no_image.png') {
             File::delete($thumbnail_path);
         }
