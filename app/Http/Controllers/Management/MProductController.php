@@ -190,41 +190,41 @@ class MProductController extends Controller
 
     public function addPhoneDetailsSubmit(Request $request)
     {
-        
-            $newDetails = new PhoneDetails();
-            $newDetails->phone_id = 1;
-            $newDetails->color_id = $request->color_id;
-            $newDetails->specific_id = $request->specs_id;
-            $newDetails->screen = $request->screen;
-            $newDetails->ram = $request->ram;
-            $newDetails->rom = $request->rom;
-            $newDetails->front_cam = $request->front_cam;
-            $newDetails->rear_cam = $request->rear_cam;
-            $newDetails->bluetooth_ver = $request->bluetooth_ver;
-            $newDetails->wifi_ver = $request->wifi_ver;
-            $newDetails->nfc = $request->nfc;
 
-            $thumbnailFileName = 'no_image.png';
-            if ($request->file('thumbnail') != null) {
-                $thumbnailFileName = 'thumbnail_' . uniqId() . '.' . $request->file('thumbnail')->extension();
-                $request->file('thumbnail')->storeAs('image', $thumbnailFileName, 'imageUpload');
-            }
-            $newDetails->thumbnail_img = $thumbnailFileName;
-            $newDetails->save();
-            if ($request->file('file') != null) {
-                foreach ($request->file('file') as $file) {
-                    $fileName = 'img' . uniqId() . '.' . $file->extension();
-                    $file->storeAs('image', $fileName, 'imageUpload');
-                    $image = new Image();
-                    $image->phone_details_id = $newDetails->phone_details_id;
-                    $image->file_path = $fileName;
-                    $image->save();
-                }
-            }
+        $newDetails = new PhoneDetails();
+        $newDetails->phone_id = 1;
+        $newDetails->color_id = $request->color_id;
+        $newDetails->specific_id = $request->specs_id;
+        $newDetails->screen = $request->screen;
+        $newDetails->ram = $request->ram;
+        $newDetails->rom = $request->rom;
+        $newDetails->front_cam = $request->front_cam;
+        $newDetails->rear_cam = $request->rear_cam;
+        $newDetails->bluetooth_ver = $request->bluetooth_ver;
+        $newDetails->wifi_ver = $request->wifi_ver;
+        $newDetails->nfc = $request->nfc;
 
-            return response()->json($request);
-            // return response()->json(['isAddDetailsSucceed' => false]);
-        
+        $thumbnailFileName = 'no_image.png';
+        if ($request->file('thumbnail') != null) {
+            $thumbnailFileName = 'thumbnail_' . uniqId() . '.' . $request->file('thumbnail')->extension();
+            $request->file('thumbnail')->storeAs('image', $thumbnailFileName, 'imageUpload');
+        }
+        $newDetails->thumbnail_img = $thumbnailFileName;
+        $newDetails->save();
+        if ($request->file('file') != null) {
+            foreach ($request->file('file') as $file) {
+                $fileName = 'img' . uniqId() . '.' . $file->extension();
+                $file->storeAs('image', $fileName, 'imageUpload');
+                $image = new Image();
+                $image->phone_details_id = $newDetails->phone_details_id;
+                $image->file_path = $fileName;
+                $image->save();
+            }
+        }
+
+        return response()->json($request);
+        // return response()->json(['isAddDetailsSucceed' => false]);
+
 
     }
 
