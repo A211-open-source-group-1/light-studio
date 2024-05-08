@@ -87,3 +87,4 @@ Route::get('/editSelectedDetails/{details_id}', [MProductController::class, 'edi
 Route::post('/editSelectedDetailsSubmit', [MProductController::class, 'editSelectedDetailsSubmit'])->name('editSelectedDetailsSubmit');
 Route::post('/addPhoneDetailsSubmit', [MProductController::class, 'addPhoneDetailsSubmit'])->name('addPhoneDetailsSubmit');
 Route::get('/deleteDetails/{details_id}', [MProductController::class, 'deleteDetails'])->name('deleteDetails');
+Route::get('/addDetails{phone_id}', [MProductController::class, 'addDetails'])->name('addDetails');
