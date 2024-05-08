@@ -88,3 +88,6 @@ Route::post('/editSelectedDetailsSubmit', [MProductController::class, 'editSelec
 Route::post('/addPhoneDetailsSubmit', [MProductController::class, 'addPhoneDetailsSubmit'])->name('addPhoneDetailsSubmit');
 Route::get('/deleteDetails/{details_id}', [MProductController::class, 'deleteDetails'])->name('deleteDetails');
 Route::get('/addDetails/{phone_id}', [MProductController::class, 'addDetails'])->name('addDetails');
+Route::post('/addPhoneSubmit', [MProductController::class, 'addPhoneSubmit'])->name('addPhoneSubmit');
+Route::get('/addPhone', [MProductController::class, 'addPhone'])->name('addPhone');
+Route::get('/deletePhone/{phone_id}', [MProductController::class, 'deletePhone'])->name('deletePhone');

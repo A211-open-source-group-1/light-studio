@@ -225,6 +225,92 @@
     </div>
 </div>
 
+<div class="modal fade" id="addPhone" tabindex="-1" aria-labelledby="addPhone" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form action="{{ route('addPhoneSubmit') }}" method="post">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">Chỉnh sửa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="container-fluid m-0 p-0">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="phone_id">Mã</label>
+                                                <input type="text" id="phone_id" name="phone_id"
+                                                    class="form-control disabled" readonly disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <label for="phone_name">Tên điện thoại</label>
+                                            <input type="text" id="phone_name" class="form-control"
+                                                name="phone_name">
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-xl-3">
+                                            <label for="new_brand_name" >Hãng</label>
+                                            <select id="new_brand_name" class="form-select" name="brand_id">
+
+                                            </select>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-xl-3">
+                                            <label for="new_category_name">Loại</label>
+                                            <select id="new_category_name" class="form-select" name="category_id">
+
+                                            </select>
+                                        </div>
+                                        <div class="col-12 col-lg-6 col-xl-3">
+                                            <label for="new_os_name">Hệ điều hành</label>
+                                            <select id="new_os_name" class="form-select" name="os_id">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <label for="new_description" class="mt-3">Mô tả</label>
+                                <textarea id="new_description" name="description">
+                                    
+                                </textarea>
+                                <script>
+                                    $(document).ready(function() {
+                                        $('#new_description').summernote({
+                                            placeholder: 'Type here...',
+                                            tabsize: 2,
+                                            height: 350
+                                        });
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(document).ready(function() {
+                            $('.summernote').summernote();
+                            var noteBar = $('.note-toolbar');
+                            noteBar.find('[data-toggle]').each(function() {
+                                $(this).attr('data-bs-toggle', $(this).attr('data-toggle')).removeAttr('data-toggle');
+                            });
+                        });
+                    </script>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Thêm</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="editPhoneColor" tabindex="-1" aria-labelledby="editPhoneColor" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -461,15 +547,17 @@
                             <input readonly disabled id="ed_phone_name" class="form-control" type="text">
                         </div>
                     </div>
-                    <form id="edit-selected-details-form" method="POST" action="/editSelectedDetailsSubmit" class="form border-0 d-none" enctype="multipart/form-data">
+                    <form id="edit-selected-details-form" method="POST" action="/editSelectedDetailsSubmit"
+                        class="form border-0 d-none" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_id">Mã sản phẩm</label>
-                                <input id="ed_details_id" class="form-control" type="text" name="details_id" readonly>
+                                <input id="ed_details_id" class="form-control" type="text" name="details_id"
+                                    readonly>
                             </div>
                             <div class="col-12 col-lg-6">
-                                <label for="ed_details_color" class="mb-3">Màu sản phẩm</label>
+                                <label for="ed_color_select" class="mb-3">Màu sản phẩm</label>
                                 <select id="ed_color_select" class="form-select" name="color_id">
                                     <option value="1">vcl</option>
                                     <option value="2">vcl</option>
@@ -502,7 +590,8 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_frontcam">Camera trước</label>
-                                <input id="ed_details_frontcam" class="form-control" type="text" name="front_cam">
+                                <input id="ed_details_frontcam" class="form-control" type="text"
+                                    name="front_cam">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_rearcam">Camera sau</label>
@@ -510,7 +599,8 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_bluetoothver">Bluetooth</label>
-                                <input id="ed_details_bluetoothver" class="form-control" type="text" name="bluetooth_ver">
+                                <input id="ed_details_bluetoothver" class="form-control" type="text"
+                                    name="bluetooth_ver">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_wifiver">WiFi</label>
@@ -550,12 +640,14 @@
                         </div>
                     </form>
                     <!-- Add Details Form Section -->
-                    <form id="add-details-form" method="POST" action="/addPhoneDetailsSubmit" class="form border-0 d-none" enctype="multipart/form-data">
+                    <form id="add-details-form" method="POST" action="/addPhoneDetailsSubmit"
+                        class="form border-0 d-none" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_id">Mã sản phẩm</label>
-                                <input id="new_details_id" class="form-control" type="text" name="details_id" readonly disabled>
+                                <input id="new_details_id" class="form-control" type="text" name="details_id"
+                                    readonly disabled>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_color_select" class="mb-3">Màu sản phẩm</label>
@@ -591,15 +683,18 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_frontcam">Camera trước</label>
-                                <input id="new_details_frontcam" class="form-control" type="text" name="front_cam">
+                                <input id="new_details_frontcam" class="form-control" type="text"
+                                    name="front_cam">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_frontcam">Camera sau</label>
-                                <input id="new_details_frontcam" class="form-control" type="text" name="rear_cam">
+                                <input id="new_details_frontcam" class="form-control" type="text"
+                                    name="rear_cam">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_bluetoothver">Bluetooth</label>
-                                <input id="new_details_bluetoothver" class="form-control" type="text" name="bluetooth_ver">
+                                <input id="new_details_bluetoothver" class="form-control" type="text"
+                                    name="bluetooth_ver">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_wifiver">WiFi</label>

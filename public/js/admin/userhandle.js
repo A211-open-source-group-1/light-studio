@@ -32,6 +32,45 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on('click', '#add-phone-btn', function () {
+        $('#new_brand_name').empty();
+        $('#new_category_name').empty();
+        $('#new_os_name').empty();
+        $('#new_brand_name').select2({
+            dropdownParent: $('#addPhone'),
+            width: '100%'
+        });
+        $('#new_category_name').select2({
+            dropdownParent: $('#addPhone'),
+            width: '100%'
+        });
+        $('#new_os_name').select2({
+            dropdownParent: $('#addPhone'),
+            width: '100%'
+        });
+        $.ajax({
+            url: '/addPhone',
+            type: 'GET',
+            success: function (response) {
+                for (let i = 0; i < response[0].length; ++i) {
+                    $('#new_brand_name').append('<option value="' + response[0][i].brand_id + '">' +
+                        response[0][i].brand_name +
+                        '</option>')
+                }
+                for (let i = 0; i < response[1].length; ++i) {
+                    $('#new_category_name').append('<option value="' + response[1][i].category_id + '">' +
+                        response[1][i].category_name +
+                        '</option>')
+                }
+                for (let i = 0; i < response[2].length; ++i) {
+                    $('#new_os_name').append('<option value="' + response[2][i].os_id + '">' +
+                        response[2][i].os_name +
+                        '</option>')
+                }
+            },
+        })
+    })
+
     $(document).on('click', '.phone-edit-btn', function () {
         var phoneId = $(this).data('phone-id');
         $.ajax({
@@ -90,13 +129,13 @@ $(document).ready(function () {
         $.ajax({
             url: '/addDetails/' + phoneId,
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 for (let i = 0; i < response[0].length; ++i) {
                     $('#new_color_select').append('<option value="' + response[0][i].color_id + '" >' +
                         response[0][i].color_name +
                         '</option>');
                 }
-        
+
                 for (let i = 0; i < response[1].length; ++i) {
                     $('#new_specs_select').append('<option value="' + response[1][i].specific_id + '" >' +
                         response[1][i].specific_name +
@@ -189,7 +228,7 @@ $(document).ready(function () {
         var fileName = $(this).data('file-name');
         $('#img-col-id-' + imgId).remove();
         $('#file-' + imgId).remove();
-        $('#img_holder').append('<input name="delete-details-img[]" class="d-none" type="text" value="' + imgId + '-' + fileName + '">');
+        $('#img_holder').append('<input name="delete-details-img[]" class="d-none" type="text" value="' + fileName + '">');
     })
 
     $(document).on('click', '.add-img-btn', function () {
@@ -400,6 +439,17 @@ $(document).ready(function () {
                 alert('error');
             }
         })
+    })
+
+    $(document).on('click', '.phone-delete-btn', function () {
+        var phoneId = $(this).data('phone-id');
+        $.ajax({
+            url: '/deletePhone/' + phoneId,
+            type: 'GET',
+            success: function(response) {
+                location.reload();
+            }
+        });
     })
 
     $(document).on('click', '.edit-phone-details-btn', function () {

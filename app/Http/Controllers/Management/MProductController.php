@@ -124,7 +124,8 @@ class MProductController extends Controller
         return response()->json($specs);
     }
 
-    public function addDetails($phone_id) {
+    public function addDetails($phone_id)
+    {
         $phone = Phone::where('phone_id', '=', $phone_id)->first();
         $colors = $phone->Colors()->get();
         $specs = $phone->Specifics()->get();
@@ -173,6 +174,56 @@ class MProductController extends Controller
 
     public function editSelectedDetailsSubmit(Request $request)
     {
+        $current_phone = PhoneDetails::where('phone_details_id', '=', $request->details_id)->first();
+        $current_phone->update([
+            'color_id' => $request->color_id,
+            'specs_id' => $request->specs_id,
+            'screen' => $request->screen,
+            'ram' => $request->ram,
+            'rom' => $request->rom,
+            'cpu' => $request->cpu,
+            'front_cam' => $request->front_cam,
+            'rear_cam' => $request->rear_cam,
+            'bluetooth_ver' => $request->bluetooth_ver,
+            'wifi_ver' => $request->wifi_ver,
+            'nfc' => $request->nfc
+        ]);
+
+        if ($request->has('thumbnail')) {
+            $thumbnail_path = public_path() . '/image/' . $current_phone->thumbnail_img;
+            if (file_exists($thumbnail_path) && $current_phone->thumbnail_img != 'no_image.png') {
+                File::delete($thumbnail_path);
+            }
+            $thumbnailFileName = 'thumbnail_' . uniqId() . '.' . $request->file('thumbnail')->extension();
+            $request->file('thumbnail')->storeAs('image', $thumbnailFileName, 'imageUpload');
+            $current_phone->update([
+                'thumbnail_img' => $thumbnailFileName
+            ]);
+        }
+
+        if ($request->has('delete-details-img')) {
+            foreach ($request->input('delete-details-img') as $deleteImage) {
+                $path = public_path() . '\\image\\' . $deleteImage;
+                if (file_exists($path)) {
+                    File::delete($path);
+                }
+                $cDeleteImage = Image::where('file_path', '=', $deleteImage)->first();
+                if ($cDeleteImage != null) {
+                    $cDeleteImage->delete();
+                }
+            }
+        }
+
+        if ($request->file('file') != null) {
+            foreach ($request->file('file') as $file) {
+                $fileName = 'img' . uniqId() . '.' . $file->extension();
+                $file->storeAs('image', $fileName, 'imageUpload');
+                $image = new Image();
+                $image->phone_details_id = $current_phone->phone_details_id;
+                $image->file_path = $fileName;
+                $image->save();
+            }
+        }
         return response()->json($request);
     }
 
@@ -200,7 +251,6 @@ class MProductController extends Controller
 
     public function addPhoneDetailsSubmit(Request $request)
     {
-
         $newDetails = new PhoneDetails();
         $newDetails->phone_id = 1;
         $newDetails->color_id = $request->color_id;
@@ -235,20 +285,64 @@ class MProductController extends Controller
 
         return response()->json($request);
         // return response()->json(['isAddDetailsSucceed' => false]);
+    }
 
+    public function addPhoneSubmit(Request $request)
+    {
+        try {
+            $new_phone = new Phone();
+            $new_phone->phone_name = $request->phone_name;
+            $new_phone->brand_id = $request->brand_id;
+            $new_phone->category_id = $request->category_id;
+            $new_phone->os_id = $request->os_id;
+            $description = $request->description;
+            if ($description == '') {
+                $description = '<p></p>';
+            }
+            $dom = new DOMDocument();
+            $dom->encoding = 'utf-8';
+            $dom->loadHTML(mb_convert_encoding($description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $description = $dom->saveHTML();
+            $new_phone->description = $description;
+            $new_phone->save();
+            return redirect()->back();
+        } catch (Exception $ex) {
+            return redirect()->back();
+        }
+    }
 
+    public function addPhone()
+    {
+        $os = PhoneOs::all();
+        $brands = Brand::all();
+        $categories = PhoneCategory::all();
+        return response()->json([$brands, $categories, $os]);
+    }
+
+    public function deletePhone($phone_id)
+    {
+        try {
+            $phone = Phone::where('phone_id', '=', $phone_id)->first();
+            $phone->PhoneDetails()->delete();
+            $phone->Specifics()->delete();
+            $phone->Colors()->delete();
+            $phone->delete();
+            return response()->json(['isDeletePhoneSucceed' => true]);
+        } catch (Exception $ex) {
+            return response()->json(['isDeletePhoneSucceed' => false]);
+        }
     }
 
     public function deleteDetails($details_id)
     {
         $delete_details = PhoneDetails::where('phone_details_id', '=', $details_id)->first();
         $images = $delete_details->childImages()->get();
-        $thumbnail_path = public_path() . '/image/' . $delete_details->thumbnail_img;
+        $thumbnail_path = public_path() . '\\image\\' . $delete_details->thumbnail_img;
         if (file_exists($thumbnail_path) && $delete_details->thumbnail_img != 'no_image.png') {
             File::delete($thumbnail_path);
         }
         foreach ($images as $image) {
-            $path = public_path() . '/image/' . $image->file_path;
+            $path = public_path() . '\\image\\' . $image->file_path;
             if (file_exists($path)) {
                 File::delete($path);
             }

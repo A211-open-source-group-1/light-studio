@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col-12 p-0 m-0">
-                <a href="#" class="btn btn-success mt-2 mb-2">Thêm mới</a>
+                <button id="add-phone-btn" data-bs-toggle="modal" data-bs-target="#addPhone" class="btn btn-success mt-2 mb-2">Thêm mới</button>
             </div>
         </div>
         <div class="row">
