@@ -188,9 +188,18 @@ class MProductController extends Controller
             'wifi_ver' => $request->wifi_ver,
             'nfc' => $request->nfc,
             'price' => $request->price,
-            'discount' => $request->discount,
             'quantity' => $request->quantity,
         ]);
+
+        if ($request->discount != null) {
+            $current_phone->update([
+                'discount' => $request->discount
+            ]);
+        } else {
+            $current_phone->update([
+                'discount' => 0
+            ]);
+        }
 
         if ($request->has('thumbnail')) {
             $thumbnail_path = public_path() . '/image/' . $current_phone->thumbnail_img;
@@ -267,8 +276,13 @@ class MProductController extends Controller
         $newDetails->wifi_ver = $request->wifi_ver;
         $newDetails->nfc = $request->nfc;
         $newDetails->price = $request->price;
-        $newDetails->discount = $request->discount;
         $newDetails->quantity = $request->quantity;
+        
+        if ($request->discount != null) {
+            $newDetails->discount = $request->discount;
+        } else {
+            $newDetails->discount = 0;
+        }
 
         $thumbnailFileName = 'no_image.png';
         if ($request->file('thumbnail') != null) {

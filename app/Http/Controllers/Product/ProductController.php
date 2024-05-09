@@ -40,6 +40,7 @@ class ProductController extends Controller
             $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
                 ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
                 ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+                ->where('phones.category_id', '=', 2)
                 ->paginate(16);
         } else {
             $brand = Brand::where('brand_id', '=', $brand_id)->first();
@@ -47,6 +48,25 @@ class ProductController extends Controller
             $products = $brand->PhoneDetails();
         }
         return view('product.products', compact('title', 'brands', 'products'));
+    }
+
+    public function tablet_products($brand_id)
+    {
+        session(['search' => null]);
+        $brands = Brand::all();
+        if ($brand_id == 0) {
+            $title = 'Tất cả sản phẩm';
+            $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+                ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+                ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+                ->where('phones.category_id', '=', 3)
+                ->paginate(16);
+        } else {
+            $brand = Brand::where('brand_id', '=', $brand_id)->first();
+            $title = $brand->brand_name;
+            $products = $brand->PhoneDetails();
+        }
+        return view('product.tablet_products', compact('title', 'brands', 'products'));
     }
 
     public function search(Request $request)
