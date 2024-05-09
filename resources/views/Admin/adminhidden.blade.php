@@ -651,7 +651,19 @@
                                 <label for="ed_details_nfc">NFC</label>
                                 <input id="ed_details_nfc" class="form-control" type="text" name="nfc">
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_price">Giá (VNĐ)</label>
+                                <input id="ed_details_price" class="form-control" type="number" name="price">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_discount">Giảm giá (VNĐ)</label>
+                                <input id="ed_details_discount" class="form-control" type="number" name="discount">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="ed_details_quantity">Số lượng</label>
+                                <input id="ed_details_quantity" class="form-control" type="number" name="quantity">
+                            </div>
+                            <div class="col-12 mt-3">
                                 <label>Hình ảnh Thumbnail</label>
                                 <div class="container-fluid">
                                     <div id="thumbnail_holder" class="row">
@@ -745,7 +757,19 @@
                                 <label for="new_details_nfc">NFC</label>
                                 <input id="new_details_nfc" class="form-control" type="text" name="nfc">
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_price">Giá (VNĐ)</label>
+                                <input id="new_details_price" class="form-control" type="number" name="price">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_discount">Giảm giá (VNĐ)</label>
+                                <input id="new_details_discount" class="form-control" type="number" name="discount">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="new_details_quantity">Số lượng</label>
+                                <input id="new_details_quantity" class="form-control" type="number" name="quantity">
+                            </div>
+                            <div class="col-12 mt-3">
                                 <label>Hình ảnh Thumbnail</label>
                                 <div class="container-fluid">
                                     <div id="new_thumbnail_holder" class="row">

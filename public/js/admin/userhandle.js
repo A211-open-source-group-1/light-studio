@@ -181,6 +181,9 @@ $(document).ready(function () {
                 $('#ed_details_bluetoothver').val(response[0].bluetooth_ver);
                 $('#ed_details_wifiver').val(response[0].wifi_ver);
                 $('#ed_details_nfc').val(response[0].nfc);
+                $('#ed_details_price').val(response[0].price);
+                $('#ed_details_discount').val(response[0].discount);
+                $('#ed_details_quantity').val(response[0].quantity);
 
                 $('#thumbnail_holder').append('<div class="col-3 p-1 position-relative">' +
                     '<img id="thumbnail_img" src="/image/' + response[0].thumbnail_img + '" class="h-100 w-100 border rounded" style="z-index: 1001">' +
