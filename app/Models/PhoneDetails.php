@@ -23,6 +23,7 @@ class PhoneDetails extends Model
         'bluetooth_ver',
         'wifi_ver',
         'nfc',
+        'price',
         'discount',
         'quantity',
         'thumbnail_img'

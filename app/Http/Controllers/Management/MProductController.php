@@ -186,7 +186,10 @@ class MProductController extends Controller
             'rear_cam' => $request->rear_cam,
             'bluetooth_ver' => $request->bluetooth_ver,
             'wifi_ver' => $request->wifi_ver,
-            'nfc' => $request->nfc
+            'nfc' => $request->nfc,
+            'price' => $request->price,
+            'discount' => $request->discount,
+            'quantity' => $request->quantity,
         ]);
 
         if ($request->has('thumbnail')) {
@@ -263,6 +266,9 @@ class MProductController extends Controller
         $newDetails->bluetooth_ver = $request->bluetooth_ver;
         $newDetails->wifi_ver = $request->wifi_ver;
         $newDetails->nfc = $request->nfc;
+        $newDetails->price = $request->price;
+        $newDetails->discount = $request->discount;
+        $newDetails->quantity = $request->quantity;
 
         $thumbnailFileName = 'no_image.png';
         if ($request->file('thumbnail') != null) {
