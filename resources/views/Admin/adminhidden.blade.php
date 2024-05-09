@@ -617,6 +617,18 @@
                             <label for="ed_phone_name">Tên điện thoại</label>
                             <input readonly disabled id="ed_phone_name" class="form-control" type="text">
                         </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div id="details_delete_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
+    
+                                </div>
+                                <div id="details_delete_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
+    
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <form id="edit-selected-details-form" method="POST" action="/editSelectedDetailsSubmit"
                         class="form border-0 d-none" enctype="multipart/form-data">
@@ -719,6 +731,18 @@
                                     type="submit">Lưu</button>
                                 <button id="close-edit-details-form-btn" class="btn btn-dark"
                                     type="button">Hủy</button>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div id="details_edit_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
+    
+                                </div>
+                                <div id="details_edit_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
+    
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -827,6 +851,18 @@
                                     type="submit">Thêm</button>
                                 <button id="close-add-details-form-btn" class="btn btn-dark"
                                     type="button">Hủy</button>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div id="details_add_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
+    
+                                </div>
+                                <div id="details_add_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
+    
+                                </div>
                             </div>
                         </div>
                     </form>

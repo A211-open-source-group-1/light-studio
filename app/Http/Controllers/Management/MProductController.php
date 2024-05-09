@@ -227,7 +227,7 @@ class MProductController extends Controller
                 $image->save();
             }
         }
-        return response()->json($request);
+        return response()->json(['isEditDetailsSucceed' => true]);
     }
 
     public function addColorSubmit(Request $request)
@@ -289,32 +289,27 @@ class MProductController extends Controller
             }
         }
 
-        return response()->json($request);
-        // return response()->json(['isAddDetailsSucceed' => false]);
+        return response()->json(['isAddDetailsSucceed' => true]);
     }
 
     public function addPhoneSubmit(Request $request)
     {
-        try {
-            $new_phone = new Phone();
-            $new_phone->phone_name = $request->phone_name;
-            $new_phone->brand_id = $request->brand_id;
-            $new_phone->category_id = $request->category_id;
-            $new_phone->os_id = $request->os_id;
-            $description = $request->description;
-            if ($description == '') {
-                $description = '<p></p>';
-            }
-            $dom = new DOMDocument();
-            $dom->encoding = 'utf-8';
-            $dom->loadHTML(mb_convert_encoding($description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-            $description = $dom->saveHTML();
-            $new_phone->description = $description;
-            $new_phone->save();
-            return redirect()->back();
-        } catch (Exception $ex) {
-            return redirect()->back();
+        $new_phone = new Phone();
+        $new_phone->phone_name = $request->phone_name;
+        $new_phone->brand_id = $request->brand_id;
+        $new_phone->category_id = $request->category_id;
+        $new_phone->os_id = $request->os_id;
+        $description = $request->description;
+        if ($description == '') {
+            $description = '<p></p>';
         }
+        $dom = new DOMDocument();
+        $dom->encoding = 'utf-8';
+        $dom->loadHTML(mb_convert_encoding($description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $description = $dom->saveHTML();
+        $new_phone->description = $description;
+        $new_phone->save();
+        return redirect()->back();
     }
 
     public function addPhone()

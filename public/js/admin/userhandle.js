@@ -145,10 +145,6 @@ $(document).ready(function () {
         })
     })
 
-    $(document).on('click', '#submit-add-details-form-btn', function () {
-        // code
-    })
-
     $(document).on('click', '#close-add-details-form-btn', function () {
         $('#add-details-form').addClass('d-none');
     })
@@ -305,7 +301,71 @@ $(document).ready(function () {
     })
 
     $(document).on('submit', '#edit-selected-details-form', function (e) {
-        // code
+        var phoneId = $('#ed_phone_id').val();
+        e.preventDefault();
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            url: '/editSelectedDetailsSubmit',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                ajaxGetDetails(phoneId)
+                $('#details_edit_notification').removeClass('d-none')
+                $('#details_edit_notification').addClass('show')
+                $('#details_edit_notification').empty();
+                $('#details_edit_notification').html('<p>Sửa thành công</p>')
+                setTimeout(function() {
+                    $('#details_edit_notification').alert('close')
+                    $('#details_edit_notification').addClass('d-none')
+                }, 4000)
+            },
+            error: function () {
+                $('#details_edit_notification_failed').removeClass('d-none')
+                $('#details_edit_notification_failed').addClass('show')
+                $('#details_edit_notification_failed').empty();
+                $('#details_edit_notification_failed').html('<p>Sửa thất bại</p>')
+                setTimeout(function() {
+                    $('#details_edit_notification_failed').alert('close')
+                    $('#details_edit_notification_failed').addClass('d-none')
+                }, 4000)
+            }
+        })
+    })
+
+    $(document).on('submit', '#add-details-form', function(e) {
+        var phoneId = $('#ed_phone_id').val();
+        e.preventDefault();
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            url: '/addPhoneDetailsSubmit',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                ajaxGetDetails(phoneId)
+                $('#details_add_notification').removeClass('d-none')
+                $('#details_add_notification').addClass('show')
+                $('#details_add_notification').empty();
+                $('#details_add_notification').html('<p>Thêm thành công</p>')
+                setTimeout(function() {
+                    $('#details_add_notification').alert('close')
+                    $('#details_add_notification').addClass('d-none')
+                }, 4000)
+            },
+            error: function () {
+                $('#details_add_notification_failed').removeClass('d-none')
+                $('#details_add_notification_failed').addClass('show')
+                $('#details_add_notification_failed').empty();
+                $('#details_add_notification_failed').html('<p>Thêm thất bại</p>')
+                setTimeout(function() {
+                    $('#details_add_notification_failed').alert('close')
+                    $('#details_add_notification_failed').addClass('d-none')
+                }, 4000)
+            }
+        })
     })
 
     $(document).on('click', '#close-edit-details-form-btn', function () {
@@ -442,9 +502,24 @@ $(document).ready(function () {
             type: 'GET',
             success: function (response) {
                 ajaxGetDetails(phoneId)
+                $('#details_delete_notification').removeClass('d-none')
+                $('#details_delete_notification').addClass('show')
+                $('#details_delete_notification').empty();
+                $('#details_delete_notification').html('<p>Xóa thành công</p>')
+                setTimeout(function() {
+                    $('#details_delete_notification').alert('close')
+                    $('#details_delete_notification').addClass('d-none')
+                }, 4000)
             },
-            error: function (response) {
-                alert('error');
+            error: function () {
+                $('#details_delete_notification_failed').removeClass('d-none')
+                $('#details_delete_notification_failed').addClass('show')
+                $('#details_delete_notification_failed').empty();
+                $('#details_delete_notification_failed').html('<p>Xóa thất bại</p>')
+                setTimeout(function() {
+                    $('#details_delete_notification_failed').alert('close')
+                    $('#details_delete_notification_failed').addClass('d-none')
+                }, 4000)
             }
         })
     })
@@ -796,7 +871,6 @@ $(document).ready(function () {
             }
         })
     })
-
 
     $(document).on('click', '.phone-edit-btn', function () {
         var id = $(this).data('phone-id');
