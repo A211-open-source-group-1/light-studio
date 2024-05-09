@@ -160,7 +160,7 @@
                                     <div class="container-fluid">
                                         <div class="row pt-1 border-bottom">
                                             <div class="col-6">
-                                                <h6>{{$row->parentUser->name}} <span class="lead fs-6">- 18/12/2023 12:52</span></h6>
+                                                <h6>{{$row->parentUser->name}} <span class="lead fs-6">- {{$row->time}}</span></h6>
                                             </div>
                                             <div class="col-6 text-nowrap text-end">
                                                 @for ($i = 0; $i < $row->rating; $i++)
@@ -318,12 +318,6 @@
     </div>
 </div>
 
-
-@if(session('mess'))
-<script>
-    alert("{{ session('mess') }}");
-</script>
-@endif
 <script>
     let max = <?php echo $reviews->count() ?>;
     let x = 5;

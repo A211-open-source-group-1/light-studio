@@ -14,7 +14,8 @@ class Review extends Model
         'phone_details_id',
         'user_id',
         'content',
-        'rating'
+        'rating',
+        'time'
     ];
     
     protected $table = 'review';

@@ -9,6 +9,7 @@ use App\Models\Phone;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Review;
+use Carbon\Carbon;
 use DOMDocument;
 use Exception;
 use Illuminate\Http\Request;
@@ -173,7 +174,8 @@ class ProductController extends Controller
         $review->user_id = $user->id;
         $review->content = $request->content;
         $review->rating = $request->number_rating;
+        $review->time = date('Y-m-d H:i:s');
         $review->save();
-        return redirect()->back()->with('mess', "Bình luận thành công");
+        return redirect()->back();
     }
 }

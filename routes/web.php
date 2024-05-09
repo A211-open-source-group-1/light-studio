@@ -54,7 +54,7 @@ Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
 Route::get('productsIndex/{type}', [MProductController::class, 'index'])->name('productsIndex');
 Route::get('/searchUser/{searchTerm}', [AuthController::class, 'searchUser'])->name('searchUser');
 Route::get('/orderedCart', [MOrderedCartController::class, 'index'])->name('orderedCart');
-Route::get('/proccedOrder/{paymentMethod}', [CartController::class, 'proccedOrder'])->name('proccedOrder');
+Route::post('/proceedOrder', [CartController::class, 'proceedOrder'])->name('proceedOrder');
 Route::get('index', [MPhoneCategoryController::class, 'index'])->name('indexCategory');
 Route::get('/listPhoneCategory/{id}', [MPhoneCategoryController::class, 'listPhoneCategory'])->name('listPhoneCategory');
 Route::get('/searchCategory/{searchItem}', [MPhoneCategoryController::class, 'searchCategory'])->name('searchCategory');

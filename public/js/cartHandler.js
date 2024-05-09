@@ -1,25 +1,3 @@
-$(document).ready(function () {
-    var formSubmissionAllowed = false;
-
-    $('#formCart').submit(function (e) {  
-            e.preventDefault(); 
-    });
-
-    $('#proccedOrder').click(function (){
-        var selectedPaymentMethod = getSelectedPaymentMethod();
-        $.ajax({
-            type: "get",
-            url: '/proccedOrder/'+selectedPaymentMethod,
-            success: function(response)
-            {
-                $('#data-body').empty()
-                $('#data-body').append(response)            }
-
-        })
-    });
-    
-});
-
 function getSelectedPaymentMethod() {
     var paymentMethods = document.getElementsByName('paymentMethod');
     for (var i = 0; i < paymentMethods.length; i++) {
@@ -91,3 +69,13 @@ function DecreaseFromCart(id) {
         }
     })
 }
+
+$(document).ready(function() {
+    $(document).on('change', '.add-type', function() {
+        if ($(this).val() == 'newAddress') {
+            $('#new_address').removeClass('d-none');
+        } else {
+            $('#new_address').addClass('d-none');
+        }
+    })
+})

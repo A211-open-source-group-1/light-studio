@@ -48,4 +48,8 @@ class User extends Authenticatable
     protected $gender = 'gender';
     protected $user_point = 'user_point';
     protected $role_id = 'role_id';
+
+    public function Carts() {
+        return $this->hasMany(Cart::class, 'user_id', 'id');
+    }
 }
