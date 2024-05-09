@@ -199,7 +199,16 @@
                                         $('#description').summernote({
                                             placeholder: 'Type here...',
                                             tabsize: 2,
-                                            height: 350
+                                            height: 350,
+                                            toolbar: [
+                                                // [groupName, [list of button]]
+                                                ['style', ['bold', 'italic', 'underline', 'clear']],
+                                                ['font', ['strikethrough', 'superscript', 'subscript']],
+                                                ['fontsize', ['fontsize']],
+                                                ['color', ['color']],
+                                                ['para', ['ul', 'ol', 'paragraph']],
+                                                ['height', ['height']]
+                                            ]
                                         });
                                     });
                                 </script>
@@ -257,7 +266,7 @@
                                                 name="phone_name">
                                         </div>
                                         <div class="col-12 col-lg-6 col-xl-3">
-                                            <label for="new_brand_name" >Hãng</label>
+                                            <label for="new_brand_name">Hãng</label>
                                             <select id="new_brand_name" class="form-select" name="brand_id">
 
                                             </select>
@@ -285,7 +294,16 @@
                                         $('#new_description').summernote({
                                             placeholder: 'Type here...',
                                             tabsize: 2,
-                                            height: 350
+                                            height: 350,
+                                            toolbar: [
+                                                // [groupName, [list of button]]
+                                                ['style', ['bold', 'italic', 'underline', 'clear']],
+                                                ['font', ['strikethrough', 'superscript', 'subscript']],
+                                                ['fontsize', ['fontsize']],
+                                                ['color', ['color']],
+                                                ['para', ['ul', 'ol', 'paragraph']],
+                                                ['height', ['height']]
+                                            ]
                                         });
                                     });
                                 </script>
@@ -359,11 +377,13 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="color_edit_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
-                                    
+                                <div id="color_edit_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
+
                                 </div>
-                                <div id="color_edit_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
-                                    
+                                <div id="color_edit_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
+
                                 </div>
                             </div>
                         </div>
@@ -392,22 +412,26 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="add_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
-                                    
+                                <div id="add_notification" class="alert alert-success alert-dismissible fade d-none"
+                                    role="alert">
+
                                 </div>
-                                <div id="add_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
-                                    
+                                <div id="add_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
+
                                 </div>
                             </div>
                         </div>
                     </form>
                     <div class="row">
                         <div class="col-12">
-                            <div id="delete_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
-                                    
+                            <div id="delete_notification" class="alert alert-success alert-dismissible fade d-none"
+                                role="alert">
+
                             </div>
-                            <div id="delete_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
-                                    
+                            <div id="delete_notification_failed"
+                                class="alert alert-warning alert-dismissible fade d-none" role="alert">
+
                             </div>
                         </div>
                     </div>
@@ -488,11 +512,13 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="specs_edit_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
-                                    
+                                <div id="specs_edit_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
+
                                 </div>
-                                <div id="specs_edit_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
-                                    
+                                <div id="specs_edit_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
+
                                 </div>
                             </div>
                         </div>
@@ -521,22 +547,26 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="specs_add_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
-                                    
+                                <div id="specs_add_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
+
                                 </div>
-                                <div id="specs_add_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
-                                    
+                                <div id="specs_add_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
+
                                 </div>
                             </div>
                         </div>
                     </form>
                     <div class="row mt-3">
                         <div class="col-12">
-                            <div id="specs_delete_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
-                                
+                            <div id="specs_delete_notification"
+                                class="alert alert-success alert-dismissible fade d-none" role="alert">
+
                             </div>
-                            <div id="specs_delete_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
-                                
+                            <div id="specs_delete_notification_failed"
+                                class="alert alert-warning alert-dismissible fade d-none" role="alert">
+
                             </div>
                         </div>
                     </div>
@@ -763,11 +793,13 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_discount">Giảm giá (VNĐ)</label>
-                                <input id="new_details_discount" class="form-control" type="number" name="discount">
+                                <input id="new_details_discount" class="form-control" type="number"
+                                    name="discount">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_quantity">Số lượng</label>
-                                <input id="new_details_quantity" class="form-control" type="number" name="quantity">
+                                <input id="new_details_quantity" class="form-control" type="number"
+                                    name="quantity">
                             </div>
                             <div class="col-12 mt-3">
                                 <label>Hình ảnh Thumbnail</label>
