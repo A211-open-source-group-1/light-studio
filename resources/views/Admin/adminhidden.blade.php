@@ -357,10 +357,18 @@
                                     type="button">Hủy</button>
                             </div>
                         </div>
-                        <div class="row" id="edit_notification" class="d-none">
-                            <p class="text-success text-end mt-3">Sửa thành công!</p>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div id="color_edit_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                    
+                                </div>
+                                <div id="color_edit_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                    
+                                </div>
+                            </div>
                         </div>
                     </form>
+                    <button id="add-color-form-btn" class="btn btn-success">Thêm</button>
                     <form id="add-color-form" method="POST" class="form border-0 d-none"
                         action="{{ route('addColorSubmit') }}">
                         @csrf
@@ -382,16 +390,29 @@
                                     type="button">Hủy</button>
                             </div>
                         </div>
-                        <div class="row" id="add_notification" class="d-none">
-                            <p class="text-success text-end mt-3">Thêm thành công!</p>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div id="add_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                    
+                                </div>
+                                <div id="add_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                    
+                                </div>
+                            </div>
                         </div>
                     </form>
                     <div class="row">
-                        <p id="delete_notification" class="text-success text-end mt-3 d-none">Xóa thành công!</p>
+                        <div class="col-12">
+                            <div id="delete_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                    
+                            </div>
+                            <div id="delete_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                    
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button id="add-color-form-btn" class="btn btn-success">Thêm</button>
                             <div class="container-fluid m-0 p-0">
                                 <table class="table table-light">
                                     <thead>
@@ -465,10 +486,18 @@
                                     type="button">Hủy</button>
                             </div>
                         </div>
-                        <div class="row" id="edit_specs_notification" class="d-none">
-                            <p class="text-success text-end mt-3">Sửa thành công!</p>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div id="specs_edit_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                    
+                                </div>
+                                <div id="specs_edit_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                    
+                                </div>
+                            </div>
                         </div>
                     </form>
+                    <button id="add-specs-form-btn" class="btn btn-success">Thêm</button>
                     <form id="add-specs-form" method="POST" class="form border-0 d-none"
                         action="{{ route('addSpecificSubmit') }}">
                         @csrf
@@ -490,17 +519,29 @@
                                     type="button">Hủy</button>
                             </div>
                         </div>
-                        <div class="row" id="add_specs_notification" class="d-none">
-                            <p class="text-success text-end mt-3">Thêm thành công!</p>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div id="specs_add_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                    
+                                </div>
+                                <div id="specs_add_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                    
+                                </div>
+                            </div>
                         </div>
                     </form>
-                    <div class="row">
-                        <p id="delete_specs_notification" class="text-success text-end mt-3 d-none">Xóa thành công!
-                        </p>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div id="specs_delete_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                
+                            </div>
+                            <div id="specs_delete_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button id="add-specs-form-btn" class="btn btn-success">Thêm</button>
                             <div class="container-fluid m-0 p-0">
                                 <table class="table table-light">
                                     <thead>
