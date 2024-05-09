@@ -9,6 +9,7 @@ use App\Http\Controllers\Management\MProductController;
 use App\Http\Controllers\Management\MOrderedCartController;
 use App\Http\Controllers\Management\MPhoneCategoryController;
 use App\Http\Controllers\Management\MBrandController;
+use App\Http\Controllers\Management\MProductImportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,3 +93,4 @@ Route::get('/addDetails/{phone_id}', [MProductController::class, 'addDetails'])-
 Route::post('/addPhoneSubmit', [MProductController::class, 'addPhoneSubmit'])->name('addPhoneSubmit');
 Route::get('/addPhone', [MProductController::class, 'addPhone'])->name('addPhone');
 Route::get('/deletePhone/{phone_id}', [MProductController::class, 'deletePhone'])->name('deletePhone');
+Route::get('/productImport', [MProductImportController::class, 'index'])->name('productImport');

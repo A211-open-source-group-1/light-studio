@@ -10,11 +10,16 @@
             <div class="col-12">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <button class="nav-link active" id="nav-processing-tab" data-bs-toggle="tab" data-bs-target="#nav-processing" type="button" role="tab" aria-controls="nav-processing" aria-selected="true">Chờ xác nhận</button>
-                      <button class="nav-link" id="nav-proceed-tab" data-bs-toggle="tab" data-bs-target="#nav-proceed" type="button" role="tab" aria-controls="nav-proceed" aria-selected="false">Đã xác nhận</button>
-                      <button class="nav-link" id="nav-delivering-tab" data-bs-toggle="tab" data-bs-target="#nav-delivering" type="button" role="tab" aria-controls="nav-delivering" aria-selected="false">Đang giao</button>
-                      <button class="nav-link" id="nav-delivered-tab" data-bs-toggle="tab" data-bs-target="#nav-delivered" type="button" role="tab" aria-controls="nav-delivered" aria-selected="false">Đã giao</button>
-                      <button class="nav-link" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="false">Tất cả</button>
+                      <button class="nav-link active position-relative" id="nav-processing-tab" data-bs-toggle="tab" data-bs-target="#nav-processing" type="button" role="tab" aria-controls="nav-processing" aria-selected="true">Chờ xác nhận
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {{$processingOrders->count()}}
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                      </button>
+                      <button class="nav-link position-relative" id="nav-proceed-tab" data-bs-toggle="tab" data-bs-target="#nav-proceed" type="button" role="tab" aria-controls="nav-proceed" aria-selected="false">Đã xác nhận</button>
+                      <button class="nav-link position-relative" id="nav-delivering-tab" data-bs-toggle="tab" data-bs-target="#nav-delivering" type="button" role="tab" aria-controls="nav-delivering" aria-selected="false">Đang giao</button>
+                      <button class="nav-link position-relative" id="nav-delivered-tab" data-bs-toggle="tab" data-bs-target="#nav-delivered" type="button" role="tab" aria-controls="nav-delivered" aria-selected="false">Đã giao</button>
+                      <button class="nav-link position-relative" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="false">Tất cả</button>
                     </div>
                   </nav>
                   
