@@ -1,35 +1,76 @@
 @extends('templates.appAdmin')
 @section('content')
-    <div class="container-fluid mt-3 border-top">
-        <div class="d-flex justify-content-between align-items-center">
-            <h1 class="h3 mb-0 text-gray-800">Đơn hàng</h1>
-            <select class="form-control w-auto" id="orderStatus">
-                <option value="delivered">Đã giao</option>
-                <option value="pending">Chờ xác nhận</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="container-fluid mt-2">
+    <div class="container-fluid m-0 p-0 border-top">
         <div class="row">
-            @for ($i = 0; $i < 10; $i++)
-                <div class="col-md-3 mb-4">
-                    <div class="card" style="width: 100%;">
-                        <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
+            <div class="col-12 mt-3 text-center border-bottom">
+                <h3>Đơn hàng</h3>
+            </div>
+        </div>
+        <div class="row mt-1">
+            <div class="col-12">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <button class="nav-link active" id="nav-processing-tab" data-bs-toggle="tab" data-bs-target="#nav-processing" type="button" role="tab" aria-controls="nav-processing" aria-selected="true">Chờ xác nhận</button>
+                      <button class="nav-link" id="nav-proceed-tab" data-bs-toggle="tab" data-bs-target="#nav-proceed" type="button" role="tab" aria-controls="nav-proceed" aria-selected="false">Đã xác nhận</button>
+                      <button class="nav-link" id="nav-delivering-tab" data-bs-toggle="tab" data-bs-target="#nav-delivering" type="button" role="tab" aria-controls="nav-delivering" aria-selected="false">Đang giao</button>
+                      <button class="nav-link" id="nav-delivered-tab" data-bs-toggle="tab" data-bs-target="#nav-delivered" type="button" role="tab" aria-controls="nav-delivered" aria-selected="false">Đã giao</button>
+                      <button class="nav-link" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="false">Tất cả</button>
+                    </div>
+                  </nav>
+                  
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-processing" role="tabpanel" aria-labelledby="nav-processing-tab">
+                        <div class="container-fluid mt-2">
+                            @foreach ($processingOrders as $order)
+                                <div class="col-12">
+                                    <p>{{$order->order_date}}</p>
+                                    <p>{{$order->name}}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-proceed" role="tabpanel" aria-labelledby="nav-proceed-tab">
+                        <div class="container-fluid mt-2">
+                            @foreach ($proceedOrders as $order)
+                                <div class="col-12">
+                                    <p>{{$order->order_date}}</p>
+                                    <p>{{$order->name}}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-delivering" role="tabpanel" aria-labelledby="nav-delivering-tab">
+                        <div class="container-fluid mt-2">
+                            @foreach ($deliveringOrders as $order)
+                                <div class="col-12">
+                                    <p>{{$order->order_date}}</p>
+                                    <p>{{$order->name}}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-delivered" role="tabpanel" aria-labelledby="nav-delivered-tab">
+                        <div class="container-fluid mt-2">
+                            @foreach ($deliveredOrders as $order)
+                                <div class="col-12">
+                                    <p>{{$order->order_date}}</p>
+                                    <p>{{$order->name}}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+                        <div class="container-fluid mt-2">
+                            @foreach ($allOrders as $order)
+                                <div class="col-12">
+                                    <p>{{$order->order_date}}</p>
+                                    <p>{{$order->name}}</p>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            @endfor
+            </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('orderStatus').addEventListener('change', function() {
-            // Add functionality to filter orders based on selected status
-            alert('Filter to: ' + this.value);
-        });
-    </script>
 @endsection

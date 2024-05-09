@@ -1,7 +1,7 @@
 @extends('templates.appAdmin')
 @section('content')
     <title>Điện thoại</title>
-    <div class="container-fluid mt-3 border-top " id="products">
+    <div class="container-fluid mt-3 border-top" id="products">
         <div class="row">
             <div class="col-12 mt-3 text-center border-bottom">
                 <h3>Điện thoại</h3>
