@@ -90,6 +90,56 @@
                                     <h6 class="text-danger fw-bold">{{ number_format($row->price, 0, ',', '.') }}
                                         VNĐ</h6>
                                 @endif
+
+                                @if ($row->reviews_count > 0)
+                                    <div class="text-center d-inline">
+                                        @if ($row->reviews_avg_rating >= 4.5)
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                        @elseif ($row->reviews_avg_rating >= 3.5)
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning rating"></i>
+                                        @elseif ($row->reviews_avg_rating >= 2.5)
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning rating"></i>
+                                            <i class="fa-regular fa-star text-warning rating"></i>
+                                        @elseif ($row->reviews_avg_rating >= 1.5)
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                        @elseif ($row->reviews_avg_rating >= 0.5)
+                                            <i class="fa-regular fa-star text-warning fa-solid"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                        @else
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                        @endif
+                                    </div>
+                                    <p class="p-0 m-0 d-inline"> ({{ $row->reviews_count }})</p>
+                                @else
+                                    <div class="text-center">
+                                        <p class="p-0 m-0 d-inline">Chưa có đánh giá</p>
+                                    </div>
+                                @endif
+                                <div class="text-start">
+                                    <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-code-compare"></i> So sánh</button>
+                                </div>
                             </div>
                         </div>
                     </div>

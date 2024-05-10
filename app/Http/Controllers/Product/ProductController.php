@@ -43,7 +43,10 @@ class ProductController extends Controller
         $brands = Brand::all();
         if ($brand_id == 0) {
             $title = 'Tất cả sản phẩm';
-            $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+            $products = PhoneDetails::select('*')
+                ->withAvg('Reviews', 'rating')
+                ->withCount('Reviews')
+                ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
                 ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
                 ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
                 ->where('phones.category_id', '=', 2)
@@ -199,7 +202,11 @@ class ProductController extends Controller
         $review->phone_details_id = $request->phone_details_id;
         $review->user_id = $user->id;
         $review->content = $request->content;
-        $review->rating = $request->number_rating;
+        if ($request->number_rating != null) {
+            $review->rating = $request->number_rating;
+        } else {
+            $review->rating = 1;
+        }
         $review->time = date('Y-m-d H:i:s');
         $review->save();
         return redirect()->back();
