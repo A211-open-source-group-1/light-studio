@@ -33,7 +33,12 @@
                             aria-selected="false">Tất cả</button>
                     </div>
                 </nav>
-
+                <form class="d-none" id="cancelOrderForm" method="post">
+                    @csrf
+                </form>
+                <form class="d-none" id="returnOrderForm" method="post">
+                    @csrf
+                </form>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-processing" role="tabpanel"
                         aria-labelledby="nav-processing-tab">
@@ -41,27 +46,28 @@
                             <form id="setProcessingOrderForm" method="post">
                                 @csrf
                             </form>
-                                @foreach ($processingOrders as $order)
-                                    <div class="col-12" id="processing-{{ $order->order_id }}">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <p>Ngày đặt hàng: {{ $order->order_date }}</p>
-                                                <p>Tên khách hàng: {{ $order->name }}</p>
-                                            </div>
-                                            <div class="card-footer">
-                                                <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#details_show" type="button"
-                                                    class="btn btn-success show-ordered-product-btn">Danh sách mặt
-                                                    hàng</button>
-                                                <button data-order-id="{{ $order->order_id }}" type="button"
-                                                    class="btn btn-primary btn-processing" type="submit">Xác nhận đơn
-                                                    hàng</button>
-                                                <button type="button" class="btn btn-danger">Hủy đơn hàng</button>
-                                            </div>
+                            @foreach ($processingOrders as $order)
+                                <div class="col-12" id="processing-{{ $order->order_id }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Ngày đặt hàng: {{ $order->order_date }}</p>
+                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
+                                                data-bs-target="#details_show" type="button"
+                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt
+                                                hàng</button>
+                                            <button data-order-id="{{ $order->order_id }}" type="button"
+                                                class="btn btn-primary btn-processing" type="button">Xác nhận đơn
+                                                hàng</button>
+                                            <button data-order-id="{{ $order->order_id }}" data-order-type="processing" type="button"
+                                                class="btn btn-danger btn-cancel-order">Hủy đơn hàng</button>
                                         </div>
                                     </div>
-                                @endforeach
-                            
+                                </div>
+                            @endforeach
+
                             <div class="w-100 text-center">
                                 {!! $processingOrders->links() !!}
                             </div>
@@ -69,29 +75,30 @@
                     </div>
                     <div class="tab-pane fade" id="nav-proceed" role="tabpanel" aria-labelledby="nav-proceed-tab">
                         <div class="container-fluid mt-2">
-                            <form id="setProceedOrderForm" method="post">
+                            <form class="d-none" id="setProceedOrderForm" method="post">
                                 @csrf
                             </form>
-                                @foreach ($proceedOrders as $order)
-                                    <div class="col-12" id="proceed-{{ $order->order_id }}">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <p>Thời gian xác nhận: {{ $order->order_date }}</p>
-                                                <p>Tên khách hàng: {{ $order->name }}</p>
-                                            </div>
-                                            <div class="card-footer">
-                                                <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#details_show" type="button"
-                                                    class="btn btn-success show-ordered-product-btn">Danh sách mặt
-                                                    hàng</button>
-                                                <button data-order-id="{{ $order->order_id }}" type="button"
-                                                    class="btn btn-primary btn-proceed">Xác nhận giao hàng</button>
-                                                <button type="button" class="btn btn-danger">Hủy đơn hàng</button>
-                                            </div>
+                            @foreach ($proceedOrders as $order)
+                                <div class="col-12" id="proceed-{{ $order->order_id }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Thời gian xác nhận: {{ $order->order_proceed_date }}</p>
+                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
+                                                data-bs-target="#details_show" type="button"
+                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt
+                                                hàng</button>
+                                            <button data-order-id="{{ $order->order_id }}" type="button"
+                                                class="btn btn-primary btn-proceed">Xác nhận giao hàng</button>
+                                            <button data-order-id="{{ $order->order_id }}" data-order-type="proceed" type="button"
+                                                class="btn btn-danger btn-cancel-order">Hủy đơn hàng</button>
                                         </div>
                                     </div>
-                                @endforeach
-                            
+                                </div>
+                            @endforeach
+
                             <div class="w-100 text-center">
                                 {!! $proceedOrders->links() !!}
                             </div>
@@ -102,27 +109,28 @@
                             <form id="setDeliveringOrderForm" method="post">
                                 @csrf
                             </form>
-                                @foreach ($deliveringOrders as $order)
-                                    <div class="col-12" id="delivering-{{ $order->order_id }}">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <p>Thời gian giao: {{ $order->order_date }}</p>
-                                                <p>Tên khách hàng: {{ $order->name }}</p>
-                                            </div>
-                                            <div class="card-footer">
-                                                <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
-                                                    data-bs-target="#details_show" type="button"
-                                                    class="btn btn-success show-ordered-product-btn">Danh sách mặt
-                                                    hàng</button>
-                                                <button data-order-id="{{ $order->order_id }}" type="button"
-                                                    class="btn btn-primary btn-delivering">Xác nhận nhận hàng</button>
-                                                <button data-order-id="{{ $order->order_id }}" type="button"
-                                                    class="btn btn-warning btn-return">Xác nhận trả hàng</button>
-                                            </div>
+                            @foreach ($deliveringOrders as $order)
+                                <div class="col-12" id="delivering-{{ $order->order_id }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Thời gian giao: {{ $order->order_delivering_date }}</p>
+                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
+                                                data-bs-target="#details_show" type="button"
+                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt
+                                                hàng</button>
+                                            <button data-order-id="{{ $order->order_id }}" type="button"
+                                                class="btn btn-primary btn-delivering">Xác nhận nhận hàng</button>
+                                            <button data-order-id="{{ $order->order_id }}" type="button"
+                                                class="btn btn-warning btn-return btn-return-order">Xác nhận trả
+                                                hàng</button>
                                         </div>
                                     </div>
-                                @endforeach
-                            
+                                </div>
+                            @endforeach
+
                             <div class="w-100 text-center">
                                 {!! $deliveringOrders->links() !!}
                             </div>
@@ -134,7 +142,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <p>Thời gian nhận: {{ $order->order_date }}</p>
+                                            <p>Thời gian nhận: {{ $order->order_delivered_date }}</p>
                                             <p>Tên khách hàng: {{ $order->name }}</p>
                                         </div>
                                         <div class="card-footer">

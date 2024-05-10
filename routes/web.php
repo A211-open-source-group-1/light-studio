@@ -98,3 +98,5 @@ Route::get('/showProduct/{order_id}', [MOrderedCartController::class, 'showProdu
 Route::post('/setProcessingOrder', [MOrderedCartController::class, 'setProcessingOrder'])->name('setProcessingOrder');
 Route::post('/setProceedOrder', [MOrderedCartController::class, 'setProceedOrder'])->name('setProceedOrder');
 Route::post('/setDeliveringOrder', [MOrderedCartController::class, 'setDeliveringOrder'])->name('setDeliveringOrder');
+Route::post('/setReturnOrder', [MOrderedCartController::class, 'setReturnOrder'])->name('setReturnOrder');
+Route::post('/cancelOrder', [MOrderedCartController::class, 'cancelOrder'])->name('cancelOrder');

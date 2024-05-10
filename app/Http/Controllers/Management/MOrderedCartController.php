@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\PhoneDetails;
 
 class MOrderedCartController extends Controller
 {
@@ -59,9 +60,10 @@ class MOrderedCartController extends Controller
         $order = Order::where('order_id', '=', $request->order_id)
             ->first();
         $order->update([
-            'status_id' => 2
+            'status_id' => 2,
+            'order_proceed_date' => date('Y-m-d H:i:s')
         ]);
-        return response()->json(['test' => true]);
+        return response()->json($order);
     }
 
     public function setProceedOrder(Request $request)
@@ -69,9 +71,10 @@ class MOrderedCartController extends Controller
         $order = Order::where('order_id', '=', $request->order_id)
             ->first();
         $order->update([
-            'status_id' => 3
+            'status_id' => 3,
+            'order_delivering_date' => date('Y-m-d H:i:s')
         ]);
-        return response()->json(['test' => true]);
+        return response()->json($request);
     }
 
     public function setDeliveringOrder(Request $request)
@@ -79,16 +82,43 @@ class MOrderedCartController extends Controller
         $order = Order::where('order_id', '=', $request->order_id)
             ->first();
         $order->update([
-            'status_id' => 4
+            'status_id' => 4,
+            'order_delivered_date' => date('Y-m-d H:i:s')
         ]);
         return response()->json($request);
     }
 
-    public function setReturnOrder(Request $request) {
-
+    public function setReturnOrder(Request $request)
+    {
+        $order = Order::where('order_id', '=', $request->order_id)
+            ->first();
+        $orderDetails = $order->OrderDetails();
+        foreach ($orderDetails as $details) {
+            $phoneDetails = PhoneDetails::where('phone_details_id', '=', $details->phone_details_id)
+                ->first();
+            $phoneDetails->update([
+                'quantity' => $phoneDetails->quantity + $details->order_quantity
+            ]);
+        }
+        $orderDetails->delete();
+        $order->delete();
+        return response()->json($request);
     }
 
-    public function cancelOrder(Request $request) {
-
+    public function cancelOrder(Request $request)
+    {
+        $order = Order::where('order_id', '=', $request->order_id)
+            ->first();
+        $orderDetails = $order->OrderDetails();
+        foreach ($orderDetails as $details) {
+            $phoneDetails = PhoneDetails::where('phone_details_id', '=', $details->phone_details_id)
+                ->first();
+            $phoneDetails->update([
+                'quantity' => $phoneDetails->quantity + $details->order_quantity
+            ]);
+        }
+        $orderDetails->delete();
+        $order->delete();
+        return response()->json($request);
     }
 }

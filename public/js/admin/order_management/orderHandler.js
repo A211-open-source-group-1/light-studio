@@ -80,6 +80,7 @@ $(document).ready(function () {
             type: 'POST',
             data: form.serialize() + '&order_id=' + order_id,
             success: function (response) {
+                alert(response.order_id);
                 const toastLive = document.getElementById('toastSetSucceed')
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
                 toastBootstrap.show();
@@ -101,6 +102,7 @@ $(document).ready(function () {
             type: 'POST',
             data: form.serialize() + '&order_id=' + order_id,
             success: function (response) {
+                alert(response.order_id);
                 const toastLive = document.getElementById('toastSetSucceed')
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
                 toastBootstrap.show();
@@ -165,6 +167,55 @@ $(document).ready(function () {
                         '</td>' +
                         '</tr>')
                 }
+            }
+        })
+    })
+
+    $(document).on('click', '.btn-cancel-order', function () {
+        var order_id = $(this).data('order-id');
+        var order_type = $(this).data('order-type');
+        var form = $('#cancelOrderForm');
+        $.ajax({
+            url: '/cancelOrder',
+            type: 'POST',
+            data: form.serialize() + '&order_id=' + order_id,
+            success: function (response) {
+                alert(response.order_id);
+                const toastLive = document.getElementById('toastCancelSucceed')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastBootstrap.show();
+                if (order_type == 'proceed') {
+                    $('#proceed-' + order_id).remove();
+                } else if (order_type = 'processing') {
+                    $('#processing-' + order_id).remove();
+                }
+            },
+            error: function (response) {
+                const toastLive = document.getElementById('toastSetFailed')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastBootstrap.show()
+            }
+        })
+    })
+
+    $(document).on('click', '.btn-return-order', function () {
+        var order_id = $(this).data('order-id');
+        var form = $('#returnOrderForm');
+        $.ajax({
+            url: '/setReturnOrder',
+            type: 'POST',
+            data: form.serialize() + '&order_id=' + order_id,
+            success: function (response) {
+                alert(response.order_id);
+                const toastLive = document.getElementById('toastReturnSucceed')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastBootstrap.show();
+                $('#delivering-' + order_id).remove();
+            },
+            error: function (response) {
+                const toastLive = document.getElementById('toastSetFailed')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastBootstrap.show()
             }
         })
     })
