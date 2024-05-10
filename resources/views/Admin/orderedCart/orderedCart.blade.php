@@ -40,7 +40,7 @@
                         <div class="container-fluid mt-2">
                             <form id="setProcessingOrderForm" method="post">
                                 @csrf
-
+                            </form>
                                 @foreach ($processingOrders as $order)
                                     <div class="col-12" id="processing-{{ $order->order_id }}">
                                         <div class="card">
@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                            </form>
+                            
                             <div class="w-100 text-center">
                                 {!! $processingOrders->links() !!}
                             </div>
@@ -71,6 +71,7 @@
                         <div class="container-fluid mt-2">
                             <form id="setProceedOrderForm" method="post">
                                 @csrf
+                            </form>
                                 @foreach ($proceedOrders as $order)
                                     <div class="col-12" id="proceed-{{ $order->order_id }}">
                                         <div class="card">
@@ -90,7 +91,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                            </form>
+                            
                             <div class="w-100 text-center">
                                 {!! $proceedOrders->links() !!}
                             </div>
@@ -100,6 +101,7 @@
                         <div class="container-fluid mt-2">
                             <form id="setDeliveringOrderForm" method="post">
                                 @csrf
+                            </form>
                                 @foreach ($deliveringOrders as $order)
                                     <div class="col-12" id="delivering-{{ $order->order_id }}">
                                         <div class="card">
@@ -120,7 +122,7 @@
                                         </div>
                                     </div>
                                 @endforeach
-                            </form>
+                            
                             <div class="w-100 text-center">
                                 {!! $deliveringOrders->links() !!}
                             </div>
