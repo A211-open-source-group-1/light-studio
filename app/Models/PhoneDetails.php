@@ -26,7 +26,8 @@ class PhoneDetails extends Model
         'price',
         'discount',
         'quantity',
-        'thumbnail_img'
+        'thumbnail_img',
+        'updated_at'
     ];
     
     protected $table = 'phone_details';

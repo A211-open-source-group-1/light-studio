@@ -188,7 +188,7 @@ class MProductController extends Controller
             'wifi_ver' => $request->wifi_ver,
             'nfc' => $request->nfc,
             'price' => $request->price,
-            'quantity' => $request->quantity,
+            'quantity' => $request->quantity
         ]);
 
         if ($request->discount != null) {
@@ -209,7 +209,8 @@ class MProductController extends Controller
             $thumbnailFileName = 'thumbnail_' . uniqId() . '.' . $request->file('thumbnail')->extension();
             $request->file('thumbnail')->storeAs('image', $thumbnailFileName, 'imageUpload');
             $current_phone->update([
-                'thumbnail_img' => $thumbnailFileName
+                'thumbnail_img' => $thumbnailFileName,
+                'updated_at' => date('Y-m-d H:i:s'),
             ]);
         }
 
@@ -223,6 +224,9 @@ class MProductController extends Controller
                 if ($cDeleteImage != null) {
                     $cDeleteImage->delete();
                 }
+                $current_phone->update([
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ]);
             }
         }
 
@@ -234,6 +238,9 @@ class MProductController extends Controller
                 $image->phone_details_id = $current_phone->phone_details_id;
                 $image->file_path = $fileName;
                 $image->save();
+                $current_phone->update([
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ]);
             }
         }
         return response()->json(['isEditDetailsSucceed' => true]);
