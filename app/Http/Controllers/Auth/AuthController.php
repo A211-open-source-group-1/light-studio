@@ -41,12 +41,10 @@ class AuthController extends Controller
                 }
             }
 
-            return redirect()->back();
+            return response()->json(['isLoginSucceed' => true]);
         } else {
-            return redirect()->back()->withErrors('Không tìm thấy tên đăng nhập');
+            return response()->json(['isLoginSucceed' => false]);
         }
-
-        return redirect()->back()->withErrors('Sai mật khẩu vui lòng thử lại');
     }
 
     public function User_info()

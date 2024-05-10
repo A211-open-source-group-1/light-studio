@@ -30,12 +30,12 @@ $password=Cookie::get('password');
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <form method="post" action="{{route('login')}}" id="loginForm">
+        @csrf
         <div class="modal-header">
           <h5 class="modal-title">Đăng nhập</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
         </div>
         <div class="modal-body">
-          {{ csrf_field() }}
           <div class="mb-2">
             <label class="form-label">Số điện thoại</label>
             <input class="form-control" id="phone_number" name="phone_number" type="tel" value="{{$phone_number??''}}">
@@ -47,9 +47,11 @@ $password=Cookie::get('password');
             <label class="text-danger" id="errorPasswordLogin"></label>
           </div>
           <div class="mb-3 form-check">
-
             <input type="checkbox" name="remember" class="form-check-input" {{ $rem == 1 ? 'checked' : '' }}>
             <label class="form-check-label">Ghi nhớ đăng nhập</label>
+          </div>
+          <div id="loginFailed" class="d-none text-end">
+            <p class="fw-bold text-danger">Đăng nhập thất bại</p>
           </div>
         </div>
         <div class="modal-footer">
@@ -58,13 +60,6 @@ $password=Cookie::get('password');
           <a type="button" class="btn btn-warning" href="/identify">Quên mật khẩu</a>
         </div>
       </form>
-      @foreach ($errors->all() as $error)
-      <script>
-        alert("{{ $error }}");
-      </script>
-      @endforeach
-
-
     </div>
   </div>
 </div>

@@ -186,10 +186,23 @@ function check_Login() {
         document.getElementById('errorPasswordLogin').innerHTML = "Vui lòng nhập mật khẩu";
         flag = false;
     }
-
     if (flag === true) {
-        document.getElementById('loginForm').submit();
+        var form = $('#loginForm');
+        $.ajax({
+            url: '/login',
+            type: 'POST',
+            data: form.serialize(),
+            success: function(response) {
+                if (response.isLoginSucceed == true) {
+                    location.reload();
+                } else {
+                    $('#loginFailed').removeClass('d-none');
+                }
+            },
+            error: function() {
+                alert('dcm')
+            }
+        })
     }
-
 }
 
