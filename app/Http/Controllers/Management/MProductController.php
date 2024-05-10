@@ -62,7 +62,7 @@ class MProductController extends Controller
         $description = $request->description;
         $dom = new DOMDocument();
         $dom->encoding = 'utf-8';
-        $dom->loadHTML(mb_convert_encoding($description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        @$dom->loadHTML(mb_convert_encoding($description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $description = $dom->saveHTML();
         $phone->update([
             'phone_name' => $request->phone_name,
@@ -328,7 +328,7 @@ class MProductController extends Controller
         }
         $dom = new DOMDocument();
         $dom->encoding = 'utf-8';
-        $dom->loadHTML(mb_convert_encoding($description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        @$dom->loadHTML(mb_convert_encoding($description, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $description = $dom->saveHTML();
         $new_phone->description = $description;
         $new_phone->save();
