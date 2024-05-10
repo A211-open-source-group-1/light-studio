@@ -16,7 +16,7 @@
                             aria-selected="true">Chờ xác nhận
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 {{ $processingOrdersCount }}
-                                <span class="visually-hidden">unread messages</span>
+                                <span class="visually-hidden">Tổng số đơn hàng chờ xác nhận</span>
                             </span>
                         </button>
                         <button class="nav-link position-relative" id="nav-proceed-tab" data-bs-toggle="tab"
@@ -38,22 +38,30 @@
                     <div class="tab-pane fade show active" id="nav-processing" role="tabpanel"
                         aria-labelledby="nav-processing-tab">
                         <div class="container-fluid mt-2">
-                            @foreach ($processingOrders as $order)
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <p>Ngày đặt hàng: {{ $order->order_date }}</p>
-                                            <p>Tên khách hàng: {{ $order->name }}</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal" data-bs-target="#details_show" type="button"
-                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt hàng</button>
-                                            <button type="button" class="btn btn-primary">Xác nhận đơn hàng</button>
-                                            <button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+                            <form id="setProcessingOrderForm" method="post">
+                                @csrf
+
+                                @foreach ($processingOrders as $order)
+                                    <div class="col-12" id="processing-{{ $order->order_id }}">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <p>Ngày đặt hàng: {{ $order->order_date }}</p>
+                                                <p>Tên khách hàng: {{ $order->name }}</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#details_show" type="button"
+                                                    class="btn btn-success show-ordered-product-btn">Danh sách mặt
+                                                    hàng</button>
+                                                <button data-order-id="{{ $order->order_id }}" type="button"
+                                                    class="btn btn-primary btn-processing" type="submit">Xác nhận đơn
+                                                    hàng</button>
+                                                <button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </form>
                             <div class="w-100 text-center">
                                 {!! $processingOrders->links() !!}
                             </div>
@@ -61,22 +69,28 @@
                     </div>
                     <div class="tab-pane fade" id="nav-proceed" role="tabpanel" aria-labelledby="nav-proceed-tab">
                         <div class="container-fluid mt-2">
-                            @foreach ($proceedOrders as $order)
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <p>Thời gian xác nhận: {{ $order->order_date }}</p>
-                                            <p>Tên khách hàng: {{ $order->name }}</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button data-order-id="{{ $order->order_id }}" type="button"
-                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt hàng</button>
-                                            <button type="button" class="btn btn-primary">Xác nhận giao hàng</button>
-                                            <button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+                            <form id="setProceedOrderForm" method="post">
+                                @csrf
+                                @foreach ($proceedOrders as $order)
+                                    <div class="col-12" id="proceed-{{ $order->order_id }}">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <p>Thời gian xác nhận: {{ $order->order_date }}</p>
+                                                <p>Tên khách hàng: {{ $order->name }}</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#details_show" type="button"
+                                                    class="btn btn-success show-ordered-product-btn">Danh sách mặt
+                                                    hàng</button>
+                                                <button data-order-id="{{ $order->order_id }}" type="button"
+                                                    class="btn btn-primary btn-proceed">Xác nhận giao hàng</button>
+                                                <button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </form>
                             <div class="w-100 text-center">
                                 {!! $proceedOrders->links() !!}
                             </div>
@@ -84,21 +98,29 @@
                     </div>
                     <div class="tab-pane fade" id="nav-delivering" role="tabpanel" aria-labelledby="nav-delivering-tab">
                         <div class="container-fluid mt-2">
-                            @foreach ($deliveringOrders as $order)
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <p>Thời gian giao: {{ $order->order_date }}</p>
-                                            <p>Tên khách hàng: {{ $order->name }}</p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <button data-order-id="{{ $order->order_id }}" type="button"
-                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt hàng</button>
-                                            <button type="button" class="btn btn-primary">Xác nhận nhận hàng</button>
+                            <form id="setDeliveringOrderForm" method="post">
+                                @csrf
+                                @foreach ($deliveringOrders as $order)
+                                    <div class="col-12" id="delivering-{{ $order->order_id }}">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <p>Thời gian giao: {{ $order->order_date }}</p>
+                                                <p>Tên khách hàng: {{ $order->name }}</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
+                                                    data-bs-target="#details_show" type="button"
+                                                    class="btn btn-success show-ordered-product-btn">Danh sách mặt
+                                                    hàng</button>
+                                                <button data-order-id="{{ $order->order_id }}" type="button"
+                                                    class="btn btn-primary btn-delivering">Xác nhận nhận hàng</button>
+                                                <button data-order-id="{{ $order->order_id }}" type="button"
+                                                    class="btn btn-warning btn-return">Xác nhận trả hàng</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </form>
                             <div class="w-100 text-center">
                                 {!! $deliveringOrders->links() !!}
                             </div>
@@ -114,9 +136,10 @@
                                             <p>Tên khách hàng: {{ $order->name }}</p>
                                         </div>
                                         <div class="card-footer">
-                                            <button data-order-id="{{ $order->order_id }}" type="button"
-                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt hàng</button>
-                                            <button type="button" class="btn btn-primary">Xác nhận đơn hàng</button>
+                                            <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
+                                                data-bs-target="#details_show" type="button"
+                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt
+                                                hàng</button>
                                         </div>
                                     </div>
                                 </div>
@@ -136,8 +159,10 @@
                                             <p>Tên khách hàng: {{ $order->name }}</p>
                                         </div>
                                         <div class="card-footer">
-                                            <button data-order-id="{{ $order->order_id }}" type="button"
-                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt hàng</button>
+                                            <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
+                                                data-bs-target="#details_show" type="button"
+                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt
+                                                hàng</button>
                                         </div>
                                     </div>
                                 </div>
@@ -155,34 +180,34 @@
     <div class="modal fade" id="details_show" tabindex="-1" aria-labelledby="details_show_label" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Danh sách mặt hàng</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid p-0 m-0">
-                            <div class="row" >
-                                <table class="table table-striped" >
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Hình ảnh</th>
-                                            <th scope="col">Mã sản phẩm</th>
-                                            <th scope="col">Giá</th>
-                                            <th scope="col">Giảm giá</th>
-                                            <th scope="col">Số lượng</th>
-                                            <th scope="col">Tổng trả</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="details_show_body">
+                <div class="modal-header">
+                    <h5 class="modal-title">Danh sách mặt hàng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid p-0 m-0">
+                        <div class="row">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Hình ảnh</th>
+                                        <th scope="col">Mã sản phẩm</th>
+                                        <th scope="col">Giá</th>
+                                        <th scope="col">Giảm giá</th>
+                                        <th scope="col">Số lượng</th>
+                                        <th scope="col">Tổng trả</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="details_show_body">
 
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                </div>
             </div>
         </div>
     </div>

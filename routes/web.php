@@ -95,3 +95,6 @@ Route::get('/addPhone', [MProductController::class, 'addPhone'])->name('addPhone
 Route::get('/deletePhone/{phone_id}', [MProductController::class, 'deletePhone'])->name('deletePhone');
 Route::get('/importProduct', [MProductImportController::class, 'index'])->name('importProduct');
 Route::get('/showProduct/{order_id}', [MOrderedCartController::class, 'showProduct'])->name('showProduct');
+Route::post('/setProcessingOrder', [MOrderedCartController::class, 'setProcessingOrder'])->name('setProcessingOrder');
+Route::post('/setProceedOrder', [MOrderedCartController::class, 'setProceedOrder'])->name('setProceedOrder');
+Route::post('/setDeliveringOrder', [MOrderedCartController::class, 'setDeliveringOrder'])->name('setDeliveringOrder');

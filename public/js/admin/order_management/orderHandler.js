@@ -72,34 +72,97 @@ $(document).ready(function () {
         })
     }
 
+    $(document).on('click', '.btn-processing', function () {
+        var order_id = $(this).data('order-id');
+        var form = $('#setProcessingOrderForm');
+        $.ajax({
+            url: '/setProcessingOrder',
+            type: 'POST',
+            data: form.serialize() + '&order_id=' + order_id,
+            success: function (response) {
+                const toastLive = document.getElementById('toastSetSucceed')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastBootstrap.show();
+                $('#processing-' + order_id).remove();
+            },
+            error: function (response) {
+                const toastLive = document.getElementById('toastSetFailed')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastBootstrap.show()
+            }
+        })
+    })
+
+    $(document).on('click', '.btn-proceed', function () {
+        var order_id = $(this).data('order-id');
+        var form = $('#setProceedOrderForm');
+        $.ajax({
+            url: '/setProceedOrder',
+            type: 'POST',
+            data: form.serialize() + '&order_id=' + order_id,
+            success: function (response) {
+                const toastLive = document.getElementById('toastSetSucceed')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastBootstrap.show();
+                $('#proceed-' + order_id).remove();
+            },
+            error: function (response) {
+                const toastLive = document.getElementById('toastSetFailed')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastBootstrap.show()
+            }
+        })
+    })
+
+    $(document).on('click', '.btn-delivering', function () {
+        var order_id = $(this).data('order-id');
+        var form = $('#setDeliveringOrderForm');
+        $.ajax({
+            url: '/setDeliveringOrder',
+            type: 'POST',
+            data: form.serialize() + '&order_id=' + order_id,
+            success: function (response) {
+                const toastLive = document.getElementById('toastSetSucceed')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastBootstrap.show();
+                $('#delivering-' + order_id).remove();
+            },
+            error: function (response) {
+                const toastLive = document.getElementById('toastSetFailed')
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
+                toastBootstrap.show()
+            }
+        })
+    })
+
     $(document).on('click', '.show-ordered-product-btn', function () {
         var order_id = $(this).data('order-id');
         $('#details_show_body').empty();
         $.ajax({
             url: '/showProduct/' + order_id,
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 for (let i = 0; i < response.length; ++i) {
-                    $('#details_show_body').append('<tr>' + 
-                    '<td>' +
-                    '<img style="width: 12rem" src="image/' + response[i].thumbnail_img + '">' +
-                    '</td>' +
-                    '<td>' +
-                    '<p>' + response[i].phone_details_id + ' </p>' +
-                    '</td>' +
-                    '<td>' +
-                    '<p>' + response[i].price + ' VNĐ</p>' +
-                    '</td>' +
-                    '<td>' +
-                    '<p>' + response[i].discount + ' VNĐ</p>' +
-                    '</td>' +
-                    '<td>' +
-                    '<p>' + response[i].order_quantity + '</p>' +
-                    '</td>' +
-                    '<td>' +
-                    '<p>' + (response[i].price - response[i].discount) * response[i].order_quantity + ' VNĐ </p>' +
-                    '</td>' +
-                    '</tr>')
+                    $('#details_show_body').append('<tr>' +
+                        '<td>' +
+                        '<img style="width: 12rem" src="image/' + response[i].thumbnail_img + '">' +
+                        '</td>' +
+                        '<td>' +
+                        '<p>' + response[i].phone_details_id + ' </p>' +
+                        '</td>' +
+                        '<td>' +
+                        '<p>' + response[i].price + ' VNĐ</p>' +
+                        '</td>' +
+                        '<td>' +
+                        '<p>' + response[i].discount + ' VNĐ</p>' +
+                        '</td>' +
+                        '<td>' +
+                        '<p>' + response[i].order_quantity + '</p>' +
+                        '</td>' +
+                        '<td>' +
+                        '<p>' + (response[i].price - response[i].discount) * response[i].order_quantity + ' VNĐ </p>' +
+                        '</td>' +
+                        '</tr>')
                 }
             }
         })

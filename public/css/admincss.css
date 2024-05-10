@@ -186,3 +186,11 @@ a {
 .min-col {
   height: 13rem
 }
+
+.bg-toast-success {
+  background-color: #DDFFD7;
+}
+
+.bg-toast-alert {
+  background-color: #FF8B8B;
+}

@@ -52,4 +52,16 @@ class MOrderedCartController extends Controller
         ->get();
         return response()->json($orderDetails);
     }
+
+    public function setProcessingOrder(Request $request) {
+        return response()->json(['test' => true]);
+    }
+
+    public function setProceedOrder(Request $request) {
+        
+    }
+
+    public function setDeliveringOrder(Request $request) {
+        
+    }
 }
