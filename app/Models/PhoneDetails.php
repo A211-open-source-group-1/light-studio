@@ -62,4 +62,12 @@ class PhoneDetails extends Model
         return $this->hasMany(Review::class, 'phone_details_id', 'phone_details_id');
     }
 
+    public function OrderDetails() {
+        return $this->hasMany(OrderDetails::class, 'phone_details_id', 'phone_details_id');
+    }
+
+    public function Carts() {
+        return $this->hasMany(Cart::class, 'phone_details_id', 'phone_details_id');
+    }
+
 }

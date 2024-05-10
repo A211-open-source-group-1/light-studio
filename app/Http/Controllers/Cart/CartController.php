@@ -138,7 +138,6 @@ class CartController extends Controller
                 ]);
             }
         }
-
     }
     public function proceedOrder(Request $request)
     {
@@ -178,8 +177,8 @@ class CartController extends Controller
                 $new_order_details->order_id = $new_order->order_id;
                 $new_order_details->phone_details_id = $item->phone_details_id;
                 $new_order_details->quantity = $item->quantity;
-                $new_order_details->total_price = $item->phone_details_id * $item->quantity;
-                $total_price = $total_price + $item->phone_details_id * $item->quantity;
+                $new_order_details->total_price = ($item->price - $item->discount) * $item->quantity;
+                $total_price = $total_price + ($item->price - $item->discount) * $item->quantity;
                 $new_order_details->save();
             }
             $new_order->update([

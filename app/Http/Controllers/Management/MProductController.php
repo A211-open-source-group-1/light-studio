@@ -364,6 +364,9 @@ class MProductController extends Controller
             $image->delete();
         }
         $delete_details->childImages()->delete();
+        $delete_details->OrderDetails()->delete();
+        $delete_details->Reviews()->delete();
+        $delete_details->Carts()->delete();
         $delete_details->delete();
         return response()->json(['isDeleteDetailsSucceed' => true]);
     }

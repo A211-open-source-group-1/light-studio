@@ -212,8 +212,9 @@
                                                         @endfor
 
                                                         @if ($row->rating < 5)
-                                                            @php$count = 5 - $row->rating;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @endphp ?> ?> ?> ?> ?> ?> ?>
+                                                            @php
+                                                            $count = 5 - $row->rating;
+                                                            @endphp
                                                             @for ($i = 0; $i < $count; $i++)
                                                                 <i class="fa-regular fa-star text-warning"></i>
                                                             @endfor
@@ -282,7 +283,7 @@
                                 alt="Card image cap">
                         </div>
                         <div class="text-center ">
-                            <i class="fa-regular fa-star text-warning rating"></i>
+                            <i class="fa-regular fa-star text-warning fa-solid rating" data-index="1"></i>
                             <i class="fa-regular fa-star text-warning rating" data-index="2"></i>
                             <i class="fa-regular fa-star text-warning rating" data-index="3"></i>
                             <i class="fa-regular fa-star text-warning rating" data-index="4"></i>
