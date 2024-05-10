@@ -13,7 +13,6 @@ class Color extends Model
     ];
     protected $table = 'phone_colors';
     protected $primaryKey = 'color_id';
-    public $timestamps = false;
 
     public function parentPhone() {
         return $this->belongsTo(Phone::class, 'phone_id', 'phone_id');

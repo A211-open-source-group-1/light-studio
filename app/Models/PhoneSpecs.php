@@ -14,7 +14,6 @@ class PhoneSpecs extends Model
     protected $fillable = [
         'specific_name'
     ];
-    public $timestamps = false;
 
     public function parentPhone() {
         return $this->belongsTo(Phone::class, 'phone_id', 'phone_id');
