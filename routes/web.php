@@ -93,4 +93,5 @@ Route::get('/addDetails/{phone_id}', [MProductController::class, 'addDetails'])-
 Route::post('/addPhoneSubmit', [MProductController::class, 'addPhoneSubmit'])->name('addPhoneSubmit');
 Route::get('/addPhone', [MProductController::class, 'addPhone'])->name('addPhone');
 Route::get('/deletePhone/{phone_id}', [MProductController::class, 'deletePhone'])->name('deletePhone');
-Route::get('/productImport', [MProductImportController::class, 'index'])->name('productImport');
+Route::get('/importProduct', [MProductImportController::class, 'index'])->name('importProduct');
+Route::get('/showProduct/{order_id}', [MOrderedCartController::class, 'showProduct'])->name('showProduct');

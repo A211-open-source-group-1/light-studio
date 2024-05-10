@@ -174,7 +174,7 @@
                             <h5 style="text-left">Video giới thiệu sản phẩm</h5>
                             <div class="w-100 text-center mt-3">
                                 <iframe width="650" height="430"
-                                    src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
+                                    src="{{$current_details->parentPhone->youtube_url}}">
                                 </iframe>
                             </div>
                         </div>

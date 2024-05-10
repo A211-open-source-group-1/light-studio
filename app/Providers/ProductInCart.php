@@ -40,7 +40,7 @@ class ProductInCart {
     }
 
     public function GetFinalPrice() {
-        return ($this->price * $this->quantity) - ($this->discount * $this->price * $this->quantity / 100);
+        return ($this->price - $this->discount) * $this->quantity;
     }
 
     public function DecreaseQuantity($value) {

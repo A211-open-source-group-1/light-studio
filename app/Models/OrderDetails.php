@@ -12,7 +12,7 @@ class OrderDetails extends Model
         ' order_details_id',
         'order_id',
         'phone_details_id',
-        'quantity',
+        'order_quantity',
         'total_price'
     ];
 

@@ -15,7 +15,7 @@ function backCart()
         success: function(response)
         {
             $('#data-body').empty()
-            $('#data-body').append(response)            
+            $('#data-body').html($(response).find('#data-body').html());
         }
     })
 }
@@ -43,7 +43,7 @@ function DeleteFromCart(id) {
         url: '/onActionProduct/' + id + '/delete',
         success: function (response) {
             $('#data-body').empty()
-            $('#data-body').append(response)
+            $('#data-body').html($(response).find('#data-body').html());
         }
     })
 }
@@ -54,7 +54,7 @@ function IncreaseFromCart(id) {
         url: '/onActionProduct/' + id + '/increase',
         success: function (response) {
             $('#data-body').empty()
-            $('#data-body').append(response)
+            $('#data-body').html($(response).find('#data-body').html());
         }
     })
 }
@@ -65,7 +65,7 @@ function DecreaseFromCart(id) {
         url: '/onActionProduct/' + id + '/decrease',
         success: function (response) {
             $('#data-body').empty()
-            $('#data-body').append(response)
+            $('#data-body').html($(response).find('#data-body').html());
         }
     })
 }

@@ -1,6 +1,7 @@
 @extends('templates.appAdmin')
 @section('content')
-    <div class="container-fluid m-0 p-0 border-top">
+    <title>Đơn hàng</title>
+    <div class="container-fluid mt-3 border-top" id="orderedCart">
         <div class="row">
             <div class="col-12 mt-3 text-center border-bottom">
                 <h3>Đơn hàng</h3>
@@ -14,7 +15,7 @@
                             data-bs-target="#nav-processing" type="button" role="tab" aria-controls="nav-processing"
                             aria-selected="true">Chờ xác nhận
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                {{ $processingOrders->count() }}
+                                {{ $processingOrdersCount }}
                                 <span class="visually-hidden">unread messages</span>
                             </span>
                         </button>
@@ -39,8 +40,18 @@
                         <div class="container-fluid mt-2">
                             @foreach ($processingOrders as $order)
                                 <div class="col-12">
-                                    <p>{{ $order->order_date }}</p>
-                                    <p>{{ $order->name }}</p>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Ngày đặt hàng: {{ $order->order_date }}</p>
+                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal" data-bs-target="#details_show" type="button"
+                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt hàng</button>
+                                            <button type="button" class="btn btn-primary">Xác nhận đơn hàng</button>
+                                            <button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                             <div class="w-100 text-center">
@@ -52,8 +63,18 @@
                         <div class="container-fluid mt-2">
                             @foreach ($proceedOrders as $order)
                                 <div class="col-12">
-                                    <p>{{ $order->order_date }}</p>
-                                    <p>{{ $order->name }}</p>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Thời gian xác nhận: {{ $order->order_date }}</p>
+                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button data-order-id="{{ $order->order_id }}" type="button"
+                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt hàng</button>
+                                            <button type="button" class="btn btn-primary">Xác nhận giao hàng</button>
+                                            <button type="button" class="btn btn-danger">Hủy đơn hàng</button>
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                             <div class="w-100 text-center">
@@ -65,8 +86,17 @@
                         <div class="container-fluid mt-2">
                             @foreach ($deliveringOrders as $order)
                                 <div class="col-12">
-                                    <p>{{ $order->order_date }}</p>
-                                    <p>{{ $order->name }}</p>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Thời gian giao: {{ $order->order_date }}</p>
+                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button data-order-id="{{ $order->order_id }}" type="button"
+                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt hàng</button>
+                                            <button type="button" class="btn btn-primary">Xác nhận nhận hàng</button>
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                             <div class="w-100 text-center">
@@ -78,8 +108,17 @@
                         <div class="container-fluid mt-2">
                             @foreach ($deliveredOrders as $order)
                                 <div class="col-12">
-                                    <p>{{ $order->order_date }}</p>
-                                    <p>{{ $order->name }}</p>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Thời gian nhận: {{ $order->order_date }}</p>
+                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button data-order-id="{{ $order->order_id }}" type="button"
+                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt hàng</button>
+                                            <button type="button" class="btn btn-primary">Xác nhận đơn hàng</button>
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                             <div class="w-100 text-center">
@@ -91,8 +130,16 @@
                         <div class="container-fluid mt-2">
                             @foreach ($allOrders as $order)
                                 <div class="col-12">
-                                    <p>{{ $order->order_date }}</p>
-                                    <p>{{ $order->name }}</p>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Ngày đặt hàng: {{ $order->order_date }}</p>
+                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button data-order-id="{{ $order->order_id }}" type="button"
+                                                class="btn btn-success show-ordered-product-btn">Danh sách mặt hàng</button>
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                             <div class="w-100 text-center">
@@ -104,5 +151,41 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="details_show" tabindex="-1" aria-labelledby="details_show_label" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Danh sách mặt hàng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid p-0 m-0">
+                            <div class="row" >
+                                <table class="table table-striped" >
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Hình ảnh</th>
+                                            <th scope="col">Mã sản phẩm</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Giảm giá</th>
+                                            <th scope="col">Số lượng</th>
+                                            <th scope="col">Tổng trả</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="details_show_body">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('js/admin/order_management/orderHandler.js') }}"></script>
 @endsection

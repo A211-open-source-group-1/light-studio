@@ -69,7 +69,8 @@ class MProductController extends Controller
             'os_id' => $request->os_id,
             'category_id' => $request->category_id,
             'brand_id' => $request->brand_id,
-            'description' => $description
+            'description' => $description,
+            'youtube_url' => $request->youtube_url
         ]);
         return redirect()->back();
     }
@@ -320,6 +321,7 @@ class MProductController extends Controller
         $new_phone->brand_id = $request->brand_id;
         $new_phone->category_id = $request->category_id;
         $new_phone->os_id = $request->os_id;
+        $new_phone->youtube_url = $request->youtube_url;
         $description = $request->description;
         if ($description == '') {
             $description = '<p></p>';

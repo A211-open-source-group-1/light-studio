@@ -12,7 +12,8 @@ class Phone extends Model
         'description',
         'os_id',
         'category_id',
-        'brand_id'
+        'brand_id',
+        'youtube_url'
     ];
     protected $table = 'phones';
     protected $primaryKey = 'phone_id';

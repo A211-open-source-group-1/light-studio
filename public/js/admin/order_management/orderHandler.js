@@ -4,7 +4,7 @@ $(document).ready(function () {
         e.preventDefault();
         if ($(this).attr('href').indexOf('all=') >= 0) {
             var page = $(this).attr('href').split('all=')[1];
-            getAll(page); 
+            getAll(page);
         } else if ($(this).attr('href').indexOf('processing=') >= 0) {
             var page = $(this).attr('href').split('processing=')[1];
             getProcessing(page);
@@ -26,17 +26,17 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             url: '?all=' + page,
-            success: function(response) {
+            success: function (response) {
                 $('#nav-all').html($(response).find('#nav-all').html());
             }
         })
     }
-    
+
     function getProcessing(page) {
         $.ajax({
             type: 'GET',
             url: '?processing=' + page,
-            success: function(response) {
+            success: function (response) {
                 $('#nav-processing').html($(response).find('#nav-processing').html());
             }
         })
@@ -46,7 +46,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             url: '?proceed=' + page,
-            success: function(response) {
+            success: function (response) {
                 $('#nav-proceed').html($(response).find('#nav-proceed').html());
             }
         })
@@ -56,7 +56,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             url: '?delivering=' + page,
-            success: function(response) {
+            success: function (response) {
                 $('#nav-delivering').html($(response).find('#nav-delivering').html());
             }
         })
@@ -66,9 +66,42 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             url: '?delivered=' + page,
-            success: function(response) {
+            success: function (response) {
                 $('#nav-delivered').html($(response).find('#nav-delivered').html());
             }
         })
     }
+
+    $(document).on('click', '.show-ordered-product-btn', function () {
+        var order_id = $(this).data('order-id');
+        $('#details_show_body').empty();
+        $.ajax({
+            url: '/showProduct/' + order_id,
+            type: 'GET',
+            success: function(response) {
+                for (let i = 0; i < response.length; ++i) {
+                    $('#details_show_body').append('<tr>' + 
+                    '<td>' +
+                    '<img style="width: 12rem" src="image/' + response[i].thumbnail_img + '">' +
+                    '</td>' +
+                    '<td>' +
+                    '<p>' + response[i].phone_details_id + ' </p>' +
+                    '</td>' +
+                    '<td>' +
+                    '<p>' + response[i].price + ' VNĐ</p>' +
+                    '</td>' +
+                    '<td>' +
+                    '<p>' + response[i].discount + ' VNĐ</p>' +
+                    '</td>' +
+                    '<td>' +
+                    '<p>' + response[i].order_quantity + '</p>' +
+                    '</td>' +
+                    '<td>' +
+                    '<p>' + (response[i].price - response[i].discount) * response[i].order_quantity + ' VNĐ </p>' +
+                    '</td>' +
+                    '</tr>')
+                }
+            }
+        })
+    })
 })

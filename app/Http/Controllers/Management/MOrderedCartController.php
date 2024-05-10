@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Management;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderDetails;
 
 class MOrderedCartController extends Controller
 {
@@ -40,6 +41,15 @@ class MOrderedCartController extends Controller
             ->join('order_status', 'order_status.status_id', '=', 'order.status_id')
             ->where('order_status.status_id', '=', 4)
             ->paginate(1, ['*'], 'delivered');
-        return view('admin.orderedCart.orderedCart', compact('processingOrders', 'proceedOrders', 'deliveringOrders', 'deliveredOrders', 'allOrders'));
+        $processingOrdersCount = Order::select('*')->where('status_id', '=', 1)->count();
+        return view('admin.orderedCart.orderedCart', compact('processingOrders', 'proceedOrders', 'deliveringOrders', 'deliveredOrders', 'allOrders', 'processingOrdersCount'));
+    }
+
+    public function showProduct($order_id) {
+        $orderDetails = OrderDetails::select('*')
+        ->join('phone_details', 'order_details.phone_details_id', '=', 'phone_details.phone_details_id')
+        ->where('order_details.order_id', '=', $order_id)
+        ->get();
+        return response()->json($orderDetails);
     }
 }

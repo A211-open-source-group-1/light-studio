@@ -188,6 +188,13 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-12 mt-3">
+                                            <div class="form-group">
+                                                <label for="youtube_url">Youtube URL</label>
+                                                <input type="text" id="youtube_url" class="form-control"
+                                                    name="youtube_url">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <label for="description" class="mt-3">Mô tả</label>
@@ -282,6 +289,13 @@
                                             <select id="new_os_name" class="form-select" name="os_id">
 
                                             </select>
+                                        </div>
+                                        <div class="col-12 mt-3">
+                                            <div class="form-group">
+                                                <label for="new_youtube_url">Youtube URL</label>
+                                                <input type="text" id="new_youtube_url" class="form-control"
+                                                    name="youtube_url">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

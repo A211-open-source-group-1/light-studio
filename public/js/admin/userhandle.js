@@ -80,6 +80,7 @@ $(document).ready(function () {
                 $('#phone_id').val(response[0].phone_id);
                 $('#phone_name').val(response[0].phone_name);
                 $('#description').summernote('code', response[0].description);
+                $('#youtube_url').val(response[0].youtube_url)
                 $('#brand_name').empty();
                 $('#category_name').empty();
                 $('#os_name').empty();

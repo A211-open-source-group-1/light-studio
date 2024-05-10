@@ -75,7 +75,7 @@ class CartController extends Controller
                             ]); 
                         }
                     }
-                } else if ($action == 'decrease') {
+                } else if ($action == 'decrease' && $item->GetQuantity() > 1) {
                     $details->update([
                         'quantity' => $details->quantity + 1
                     ]);
@@ -97,7 +97,7 @@ class CartController extends Controller
             }
         }
         $prodsInCart = $currentCart->GetProducts();
-        return response(view('ajax.cartdata', compact('prodsInCart'))->render());
+        return response(view('cart.cart', compact('prodsInCart'))->render());
     }
 
     public function addToCart($details_id)
@@ -176,7 +176,7 @@ class CartController extends Controller
                 $new_order_details = new OrderDetails();
                 $new_order_details->order_id = $new_order->order_id;
                 $new_order_details->phone_details_id = $item->phone_details_id;
-                $new_order_details->quantity = $item->quantity;
+                $new_order_details->order_quantity = $item->quantity;
                 $new_order_details->total_price = ($item->price - $item->discount) * $item->quantity;
                 $total_price = $total_price + ($item->price - $item->discount) * $item->quantity;
                 $new_order_details->save();
