@@ -174,7 +174,7 @@
                             <h5 style="text-left">Video giới thiệu sản phẩm</h5>
                             <div class="w-100 text-center mt-3">
                                 <iframe width="650" height="430"
-                                    src="{{$current_details->parentPhone->youtube_url}}">
+                                    src="{{ $current_details->parentPhone->youtube_url }}">
                                 </iframe>
                             </div>
                         </div>
@@ -213,7 +213,7 @@
 
                                                         @if ($row->rating < 5)
                                                             @php
-                                                            $count = 5 - $row->rating;
+                                                                $count = 5 - $row->rating;
                                                             @endphp
                                                             @for ($i = 0; $i < $count; $i++)
                                                                 <i class="fa-regular fa-star text-warning"></i>
@@ -252,9 +252,65 @@
                         </div>
                         <div class="col-12 border-top mt-3 p-0">
                             <h5>Xem thêm sản phẩm khác</h5>
-                            <div class="container-fluid" style="height: 180px">
+                            <div class="container-fluid">
                                 <div class="row text-center">
-                                    <h1>Đang cập nhật...</h1>
+                                    <div id="carouselOtherProduct" class="carousel slide">
+                                        <div class="carousel-inner">
+                                            <div id="carouselExampleControls" class="carousel">
+                                                <div class="carousel-inner op-inner">
+                                                    @foreach ($other_phone_details as $row)
+                                                    <div class="carousel-item op-item active">
+                                                        <div class="card zoom-on position-relative" style="width: 300px">
+                                                            <div class="position-absolute top-0 start-0 ms-5 mt-3">
+                                                                @if ($row->discount != 0)
+                                                                    <span class="translate-middle badge bg-warning">
+                                                                        GIẢM GIÁ
+                                                                    </span>
+                                                                @endif
+                                                                @if ($row->quantity <= 0)
+                                                                    <span class="translate-middle badge bg-danger">
+                                                                        HẾT HÀNG
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                            <img class="card-img-top card-img-product w-100 h-100"
+                                                                src="{{ asset('/image/' . $row->thumbnail_img) }}">
+                                                            <div class="card-body text-center">
+                                                                <a class="text-decoration-none"
+                                                                    href="{{ URL::to('/phone/' . $row->parentPhone->phone_id . '/detail/' . $row->phone_details_id) . '/specs/0' }}">
+                                                                    <h6 class="card-title fw-bold truncate-text">
+                                                                        {{ ($row->parentPhone->phone_name ?? 'null') . ' ' . ($row->parentSpecific->specific_name ?? 'null') . ' ' . ($row->parentColor->color_name ?? 'null') }}
+                                                                    </h6>
+                                                                </a>
+                                                                @if ($row->discount != 0)
+                                                                    <h6 class="text-danger fw-bold text-decoration-line-through">
+                                                                        {{ number_format($row->price, 0, ',', '.') }}
+                                                                        VNĐ</h6>
+                                                                    <h6 class="text-danger fw-bold">
+                                                                        {{ number_format($row->price - $row->discount, 0, ',', '.') }}
+                                                                        VNĐ</h6>
+                                                                @else
+                                                                    <h6 class="text-danger fw-bold">{{ number_format($row->price, 0, ',', '.') }}
+                                                                        VNĐ</h6>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                                <button class="carousel-control-prev op-next" type="button"
+                                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next op-prev" type="button"
+                                                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -391,5 +447,37 @@
                 $("#" + i.toString()).removeClass("hiddenComp");
             }
         });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var carouselWidth = $(".op-inner")[0].scrollWidth;
+            var cardWidth = $(".op-item").width();
+            var scrollPosition = 0;
+            $(".op-prev").on("click", function() {
+                if (scrollPosition < (carouselWidth - cardWidth * 4)) { //check if you can go any further
+                    scrollPosition += cardWidth; //update scroll position
+                    $(".op-inner").animate({
+                        scrollLeft: scrollPosition
+                    }, 600); //scroll left
+                }
+            });
+            $(".op-next").on("click", function() {
+                if (scrollPosition > 0) {
+                    scrollPosition -= cardWidth;
+                    $(".op-inner").animate({
+                            scrollLeft: scrollPosition
+                        },
+                        600
+                    );
+                }
+            });
+            var multipleCardCarousel = document.querySelector(
+                "#carouselExampleControls"
+            );
+            var carousel = new bootstrap.Carousel(multipleCardCarousel, {
+                interval: false,
+                wrap: false,
+            });
+        })
     </script>
 @endsection
