@@ -276,6 +276,7 @@ class MProductController extends Controller
         $newDetails->color_id = $request->color_id;
         $newDetails->specific_id = $request->specs_id;
         $newDetails->screen = $request->screen;
+        $newDetails->cpu = $request->cpu;
         $newDetails->ram = $request->ram;
         $newDetails->rom = $request->rom;
         $newDetails->front_cam = $request->front_cam;
@@ -424,6 +425,7 @@ class MProductController extends Controller
         $newDetails->color_id = $basedOnDetails->color_id;
         $newDetails->specific_id = $request->specs_id;
         $newDetails->screen = $request->screen;
+        $newDetails->cpu = $request->cpu;
         $newDetails->ram = $request->ram;
         $newDetails->rom = $request->rom;
         $newDetails->front_cam = $request->front_cam;
