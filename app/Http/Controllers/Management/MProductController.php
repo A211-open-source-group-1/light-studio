@@ -272,7 +272,7 @@ class MProductController extends Controller
     public function addPhoneDetailsSubmit(Request $request)
     {
         $newDetails = new PhoneDetails();
-        $newDetails->phone_id = 1;
+        $newDetails->phone_id = $request->phone_id;
         $newDetails->color_id = $request->color_id;
         $newDetails->specific_id = $request->specs_id;
         $newDetails->screen = $request->screen;
@@ -422,7 +422,7 @@ class MProductController extends Controller
         $basedOnDetails = PhoneDetails::where('phone_details_id', '=', $request->based_on_details_id)
             ->first();
         $newDetails = new PhoneDetails();
-        $newDetails->phone_id = 1;
+        $newDetails->phone_id = $request->phone_id;
         $newDetails->color_id = $basedOnDetails->color_id;
         $newDetails->specific_id = $request->specs_id;
         $newDetails->screen = $request->screen;

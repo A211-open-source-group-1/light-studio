@@ -764,6 +764,7 @@
                     <form id="add-details-form" method="POST" action="/addPhoneDetailsSubmit"
                         class="form border-0 d-none" enctype="multipart/form-data">
                         @csrf
+                        <input id="new_phone_id" class="d-none" name="phone_id">
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_id">Mã sản phẩm</label>
@@ -886,6 +887,7 @@
                         class="form border-0 d-none" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
+                            <input id="bo_phone_id" class="d-none" name="phone_id">
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_id">Mã sản phẩm</label>
                                 <input id="bo_new_details_id" class="form-control" type="text" name="details_id"

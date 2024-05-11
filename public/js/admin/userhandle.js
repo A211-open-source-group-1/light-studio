@@ -106,6 +106,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#add-details-form-btn', function () {
+        $('#new_phone_id').val($('#ed_phone_id').val());
         $('#new_img_holder').empty();
         $('#new_thumbnail_holder').empty();
         $('#add-details-form').removeClass('d-none');
@@ -793,6 +794,7 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '#add-bo-details-form-btn', function () {
+        $('#bo_phone_id').val($('#ed_phone_id').val());
         $('#add-details-form').addClass('d-none');
         $('#edit-selected-details-form').addClass('d-none');
         $('#add-details-form-based-on-color').removeClass('d-none');
