@@ -157,7 +157,9 @@ class ProductController extends Controller
         $preFilter6 = 'phone_details.';
 
         if ($request->brand) {
-            $products = $products->where('brand.brand_name', '=', $request->brand);
+            $products = $products->where(function ($query) use ($request) {
+                return $query->where('brand.brand_name', '=', $request->brand);
+            });
         }
 
         switch ($request->os) {
@@ -179,15 +181,25 @@ class ProductController extends Controller
         }
 
         if ($request->priceRange == 'range-1') { // below 2mils VND
-            $products = $products->where($preFilter2 . 'price', '<', 2000000);
+            $products = $products->where(function($query) use ($preFilter2) {
+               return $query->whereBetween($preFilter2 . 'price', [0, 1999999]);
+            });
         } else if ($request->priceRange == 'range-2') { // from 2mils to 4mils VND
-            $products = $products->where($preFilter2 . 'price', '<', 4000000);
+            $products = $products->where(function($query) use ($preFilter2) {
+                return $query->whereBetween($preFilter2 . 'price', [2000000, 3999999]);
+             });
         } else if ($request->priceRange == 'range-3') { // from 4mils to 8mils VND
-            $products = $products->where($preFilter2 . 'price', '<', 8000000);
+            $products = $products->where(function($query) use ($preFilter2) {
+                return $query->whereBetween($preFilter2 . 'price', [4000000, 7999999]);
+             });
         } else if ($request->priceRange == 'range-4') { // from 8mils to 15mils VND
-            $products = $products->where($preFilter2 . 'price', '<', 15000000);
+            $products = $products->where(function($query) use ($preFilter2) {
+                return $query->whereBetween($preFilter2 . 'price', [800000, 14999999]);
+             });
         } else if ($request->priceRange == 'range-5') { // above 15 mils VND
-            $products = $products->where($preFilter2 . 'price', '>=', 15000000);
+            $products = $products->where(function($query) use ($preFilter2) {
+                return $query->where($preFilter2 . 'price', '>=', 15000000);
+             });
         }
 
 
@@ -209,11 +221,11 @@ class ProductController extends Controller
                 break;
             }
             case 'review_asc': {
-                ;
+                $products = $products->orderBy('reviews_avg_rating', 'desc');
                 break;
             }
             case 'review_desc': {
-                ;
+                $products = $products->orderBy('reviews_avg_rating', 'asc');
                 break;
             }
             default:
