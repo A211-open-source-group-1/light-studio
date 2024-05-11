@@ -29,13 +29,14 @@
     </div>
 
     <div class="container-fluid mt-3 border-top border-bottom">
-        <div class="row">
-            <div class="col-12 mt-3">
-                <h3>IPHONE MỚI NHẤT!</h3>
+        @if ($productsType1)
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <h3>IPHONE MỚI NHẤT!</h3>
+                </div>
             </div>
-        </div>
-        <div class="row mb-3 align-items-md-stretch">
-            @foreach ($productsType1 as $row)
+            <div class="row mb-3 align-items-md-stretch">
+                @foreach ($productsType1 as $row)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
                         <div class="card zoom-on w-100 h-100 position-relative" style="">
                             <div class="position-absolute top-0 start-0 ms-5 mt-3" style="width: 100%">
@@ -118,20 +119,25 @@
                                     </div>
                                 @endif
                                 <div class="text-start">
-                                    <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-code-compare"></i> So sánh</button>
+                                    <button class="btn btn-sm btn-outline-primary"><i
+                                            class="fa-solid fa-code-compare"></i> So
+                                        sánh</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
-        </div>
-        <div class="row">
-            <div class="col-12 mt-3">
-                <h3>SAMSUNG MỚI NHẤT!</h3>
             </div>
-        </div>
-        <div class="row mb-3 align-items-md-stretch">
-            @foreach ($productsType2 as $row)
+        @endif
+        @if ($productsType2)
+            <div class="row">
+
+                <div class="col-12 mt-3">
+                    <h3>SAMSUNG MỚI NHẤT!</h3>
+                </div>
+            </div>
+            <div class="row mb-3 align-items-md-stretch">
+                @foreach ($productsType2 as $row)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
                         <div class="card zoom-on w-100 h-100 position-relative" style="">
                             <div class="position-absolute top-0 start-0 ms-5 mt-3" style="width: 100%">
@@ -214,20 +220,23 @@
                                     </div>
                                 @endif
                                 <div class="text-start">
-                                    <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-code-compare"></i> So sánh</button>
+                                    <button class="btn btn-sm btn-outline-primary"><i
+                                            class="fa-solid fa-code-compare"></i> So sánh</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
-        </div>
-        <div class="row">
-            <div class="col-12 mt-3">
-                <h3>ĐIỆN THOẠI GIẢM GIÁ HOT!</h3>
             </div>
-        </div>
-        <div class="row mb-3 align-items-md-stretch">
-            @foreach ($productsType3 as $row)
+        @endif
+        @if ($productsType3)
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <h3>ĐIỆN THOẠI GIẢM GIÁ HOT!</h3>
+                </div>
+            </div>
+            <div class="row mb-3 align-items-md-stretch">
+                @foreach ($productsType3 as $row)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
                         <div class="card zoom-on w-100 h-100 position-relative" style="">
                             <div class="position-absolute top-0 start-0 ms-5 mt-3" style="width: 100%">
@@ -310,12 +319,14 @@
                                     </div>
                                 @endif
                                 <div class="text-start">
-                                    <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-code-compare"></i> So sánh</button>
+                                    <button class="btn btn-sm btn-outline-primary"><i
+                                            class="fa-solid fa-code-compare"></i> So sánh</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
-        </div>
+            </div>
+        @endif
     </div>
 @endsection

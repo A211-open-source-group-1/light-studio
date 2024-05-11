@@ -16,32 +16,38 @@ class PageController extends Controller
      */
     public function index()
     {
+        $productsType1 = null;
         $brandType1 = Brand::where('brand_name', '=', 'Apple')->first();
-        $productsType1 = PhoneDetails::select('*')
-            ->withAvg('Reviews', 'rating')
-            ->withCount('Reviews')
-            ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
-            ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
-            ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
-            ->where('phones.category_id', '=', 2)
-            ->where(function ($query) use ($brandType1) {
-                return $query->where('phones.brand_id', '=', $brandType1->brand_id);
-            })
-            ->orderBy('phone_details.created_at', 'desc')
-            ->paginate(8);
+        if ($brandType1 != null) {
+            $productsType1 = PhoneDetails::select('*')
+                ->withAvg('Reviews', 'rating')
+                ->withCount('Reviews')
+                ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+                ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+                ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+                ->where('phones.category_id', '=', 2)
+                ->where(function ($query) use ($brandType1) {
+                    return $query->where('phones.brand_id', '=', $brandType1->brand_id);
+                })
+                ->orderBy('phone_details.created_at', 'desc')
+                ->paginate(8);
+        }
         $brandType2 = Brand::where('brand_name', '=', 'Samsung')->first();
-        $productsType2 = PhoneDetails::select('*')
-            ->withAvg('Reviews', 'rating')
-            ->withCount('Reviews')
-            ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
-            ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
-            ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
-            ->where('phones.category_id', '=', 2)
-            ->where(function ($query) use ($brandType2) {
-                return $query->where('phones.brand_id', '=', $brandType2->brand_id);
-            })
-            ->orderBy('phone_details.created_at', 'desc')
-            ->paginate(8);
+        $productsType2 = null;
+        if ($brandType2 != null) {
+            $productsType2 = PhoneDetails::select('*')
+                ->withAvg('Reviews', 'rating')
+                ->withCount('Reviews')
+                ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+                ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+                ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+                ->where('phones.category_id', '=', 2)
+                ->where(function ($query) use ($brandType2) {
+                    return $query->where('phones.brand_id', '=', $brandType2->brand_id);
+                })
+                ->orderBy('phone_details.created_at', 'desc')
+                ->paginate(8);
+        }
         $productsType3 = PhoneDetails::select('*')
             ->withAvg('Reviews', 'rating')
             ->withCount('Reviews')

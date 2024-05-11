@@ -16,7 +16,6 @@
                         @foreach ($brands as $row)
                             <option value="{{ $row->brand_name }}">{{ $row->brand_name }}</option>
                         @endforeach
-                        <option value="2">2 value</option>
                     </select>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 pe-0">
