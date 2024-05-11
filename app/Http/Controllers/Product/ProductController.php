@@ -50,6 +50,7 @@ class ProductController extends Controller
                 ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
                 ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
                 ->where('phones.category_id', '=', 2)
+                ->orderBy('phone_details.created_at', 'desc')
                 ->paginate(16);
         } else {
             $brand = Brand::where('brand_id', '=', $brand_id)->first();
@@ -61,7 +62,8 @@ class ProductController extends Controller
                 ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
                 ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
                 ->where('phones.category_id', '=', 2)
-                ->where(function($query) use ($brand_id) {
+                ->orderBy('phone_details.created_at', 'desc')
+                ->where(function ($query) use ($brand_id) {
                     return $query->where('phones.brand_id', '=', $brand_id);
                 })
                 ->paginate(16);
@@ -82,6 +84,7 @@ class ProductController extends Controller
                 ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
                 ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
                 ->where('phones.category_id', '=', 3)
+                ->orderBy('phone_details.created_at', 'desc')
                 ->paginate(16);
         } else {
             $brand = Brand::where('brand_id', '=', $brand_id)->first();
@@ -93,9 +96,10 @@ class ProductController extends Controller
                 ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
                 ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
                 ->where('phones.category_id', '=', 3)
-                ->where(function($query) use ($brand_id) {
+                ->where(function ($query) use ($brand_id) {
                     return $query->where('phones.brand_id', '=', $brand_id);
                 })
+                ->orderBy('phone_details.created_at', 'desc')
                 ->paginate(16);
         }
         return view('product.tablet_products', compact('title', 'brands', 'products'));
@@ -116,7 +120,9 @@ class ProductController extends Controller
             ->where(function ($query) use ($search_string) {
                 $query->where('phones.phone_name', 'like', '%' . $search_string . '%')
                     ->orWhere('phone_specifics.specific_name', 'like', '%' . $search_string . '%');
-            })->paginate(16);
+            })
+            ->orderBy('phone_details.created_at', 'desc')
+            ->paginate(16);
         $title = 'Tìm thấy ' . $products->total() . ' kết quả khớp với từ khóa "' . $request->search_string . '".';
         session(['search' => $request->search_string]);
         return view('product.products', compact('title', 'brands', 'products'));
@@ -214,7 +220,7 @@ class ProductController extends Controller
                 ;
                 break;
         }
-
+        $products = $products->orderBy('phone_details.created_at', 'desc');
         $products = $products->paginate(16);
 
         return response(view('product.products', compact('brands', 'products'))->render());

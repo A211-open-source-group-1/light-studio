@@ -332,7 +332,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
                 </div>
                 <form action="{{ route('userRatingProduct') }}" method="post">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="modal-body card">
                         <div class="text-center">
                             <img class="card-img-top w-50" src="{{ asset('/image/' . $current_details->thumbnail_img) }}"
