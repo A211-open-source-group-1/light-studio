@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('/js/bootstrap.bundle.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/admincss.css') }}">
     <script src="{{ asset('/js/userHiddenHandler.js') }}"></script>
-
 </head>
 @php
     $rem = Cookie::get('rem');
@@ -24,7 +24,7 @@
 @endforeach
 
 <body>
-    <form action="{{ route('authAdmin') }}" method="post" id="loginForm">
+    <form action="{{ route('authAdmin') }}" method="post" id="loginAdminForm">
         @csrf
         <div class="imgcontainer">
             <img src="{{ asset('/image/logo-banner.png') }}" alt="Avatar" class="avatar">
@@ -42,7 +42,7 @@
                 <input type="password" placeholder="Nhập mật khẩu" name="password" id="password">
                 <label class="text-danger" id="errorPasswordLogin"></label>
             </div>
-            <button type="button" onclick="check_Login()" class="btn-login">Đăng nhập</button>
+            <button type="button" onclick="check_LoginAdmin()" class="btn-login">Đăng nhập</button>
             <div class="row">
                 <div class="row">
                     <label>

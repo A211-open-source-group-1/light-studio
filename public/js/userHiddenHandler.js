@@ -206,3 +206,20 @@ function check_Login() {
     }
 }
 
+function check_LoginAdmin() {
+    var phone_number = document.getElementById('phone_number').value;
+    var password = document.getElementById('password').value;
+    var flag = true;
+    if (phone_number.length == 0) {
+        document.getElementById('errorPhoneNumberLogin').innerHTML = "Vui lòng nhập thông tin đăng nhập";
+        flag = false;
+    }
+    if (password.length == 0) {
+        document.getElementById('errorPasswordLogin').innerHTML = "Vui lòng nhập mật khẩu";
+        flag = false;
+    }
+    if (flag === true) {
+        var form = $('#loginAdminForm');
+        form.submit();
+    }
+}

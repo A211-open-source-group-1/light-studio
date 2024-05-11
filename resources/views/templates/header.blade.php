@@ -85,10 +85,12 @@
                     <div class="d-flex mt-3 me-2">
                         <a class="link-dark text-nowrap position-relative" href="{{ route('cart') }}"><i
                                 class="fa-solid fa-cart-shopping"></i> Giỏ hàng
-                                @if (Auth::user()->Carts->count() > 0)
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {{Auth::user()->Carts->count()}}
-                                </span>
+                                @if (Auth::check())
+                                    @if (Auth::user()->Carts->count() > 0)
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {{Auth::user()->Carts->count()}}
+                                    </span>
+                                    @endif
                                 @endif
                             </a>
                         <ul style="list-style: none">
