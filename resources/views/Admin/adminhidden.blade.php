@@ -635,11 +635,11 @@
                             <div class="col-12">
                                 <div id="details_delete_notification"
                                     class="alert alert-success alert-dismissible fade d-none" role="alert">
-    
+
                                 </div>
                                 <div id="details_delete_notification_failed"
                                     class="alert alert-warning alert-dismissible fade d-none" role="alert">
-    
+
                                 </div>
                             </div>
                         </div>
@@ -751,11 +751,11 @@
                             <div class="col-12">
                                 <div id="details_edit_notification"
                                     class="alert alert-success alert-dismissible fade d-none" role="alert">
-    
+
                                 </div>
                                 <div id="details_edit_notification_failed"
                                     class="alert alert-warning alert-dismissible fade d-none" role="alert">
-    
+
                                 </div>
                             </div>
                         </div>
@@ -856,7 +856,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-3">
                             <div class="col-8">
 
                             </div>
@@ -867,15 +867,127 @@
                                     type="button">Hủy</button>
                             </div>
                         </div>
+
                         <div class="row mt-3">
                             <div class="col-12">
                                 <div id="details_add_notification"
                                     class="alert alert-success alert-dismissible fade d-none" role="alert">
-    
+
                                 </div>
                                 <div id="details_add_notification_failed"
                                     class="alert alert-warning alert-dismissible fade d-none" role="alert">
-    
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    </form>
+                    <form id="add-details-form-based-on-color" method="POST" action="/addDetailsByCurrentColor"
+                        class="form border-0 d-none" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_id">Mã sản phẩm</label>
+                                <input id="bo_new_details_id" class="form-control" type="text" name="details_id"
+                                    readonly disabled>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_color_select" class="mb-3">CHỌN SẢN PHẨM DỰA THEO</label>
+                                <select id="bo_new_color_select" class="form-select" name="based_on_details_id">
+                                    <option value="1">vcl</option>
+                                    <option value="2">vcl</option>
+                                    <option value="3">dcm</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_specs_select" class="mb-3">Phiên bản sản phẩm</label>
+                                <select id="bo_new_specs_select" class="form-select" name="specs_id">
+                                    <option value="1">vcl</option>
+                                    <option value="2">vcl</option>
+                                    <option value="3">dcm</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_screen">Màn hình</label>
+                                <input id="bo_new_details_screen" class="form-control" type="text"
+                                    name="screen">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_ram">Dung lượng RAM</label>
+                                <input id="bo_new_details_ram" class="form-control" type="text" name="ram">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_rom">Dung lượng bộ nhớ trong</label>
+                                <input id="bo_new_details_rom" class="form-control" type="text" name="rom"
+                                    required>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_cpu">CPU</label>
+                                <input id="bo_new_details_cpu" class="form-control" type="text" name="cpu"
+                                    required>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_frontcam">Camera trước</label>
+                                <input id="bo_new_details_frontcam" class="form-control" type="text"
+                                    name="front_cam" required>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_frontcam">Camera sau</label>
+                                <input id="bo_new_details_frontcam" class="form-control" type="text"
+                                    name="rear_cam" required>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_bluetoothver">Bluetooth</label>
+                                <input id="bo_new_details_bluetoothver" class="form-control" type="text"
+                                    name="bluetooth_ver" required>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_wifiver">WiFi</label>
+                                <input id="bo_new_details_wifiver" class="form-control" type="text"
+                                    name="wifi_ver" required>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_nfc">NFC</label>
+                                <input id="bo_new_details_nfc" class="form-control" type="text" name="nfc"
+                                    required>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_price">Giá (VNĐ)</label>
+                                <input id="bo_new_details_price" class="form-control" type="number" name="price"
+                                    required min="0">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_discount">Giảm giá (VNĐ)</label>
+                                <input id="bo_new_details_discount" class="form-control" type="number"
+                                    value="0" name="discount" required min="0">
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label for="bo_new_details_quantity">Số lượng</label>
+                                <input id="bo_new_details_quantity" class="form-control" type="number"
+                                    name="quantity" required min="0">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-8">
+
+                            </div>
+                            <div class="col-4 text-end">
+                                <button id="submit-add-bo-details-form-btn" class="btn btn-success"
+                                    type="submit">Thêm</button>
+                                <button id="close-add-bo-details-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div id="details_bo_add_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
+
+                                </div>
+                                <div id="details_bo_add_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
+
                                 </div>
                             </div>
                         </div>
@@ -883,6 +995,8 @@
                     <div class="row">
                         <div class="col-12">
                             <button id="add-details-form-btn" class="btn btn-success">Thêm</button>
+                            <button id="add-bo-details-form-btn" class="btn btn-secondary no-wrap">Thêm dựa trên màu
+                                đã có</button>
                             <div class="container-fluid m-0 p-0">
                                 <table class="table table-light">
                                     <thead>
@@ -914,50 +1028,50 @@
     </div>
 </div>
 
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div class="toast bg-toast-alert" id="toastSetFailed">
-      <div class="toast-header">
-        <strong class="me-auto">Thông báo</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-      </div>
-      <div class="toast-body">
-        <p>Có lỗi!</p>
-      </div>
+        <div class="toast-header">
+            <strong class="me-auto">Thông báo</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            <p>Có lỗi!</p>
+        </div>
     </div>
-  </div>
+</div>
 
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div class="toast bg-toast-success" id="toastSetSucceed">
-      <div class="toast-header">
-        <strong class="me-auto">Thông báo</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-      </div>
-      <div class="toast-body">
-        <p>Cập nhật trạng thái đơn hàng thành công!</p>
-      </div>
+        <div class="toast-header">
+            <strong class="me-auto">Thông báo</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            <p>Cập nhật trạng thái đơn hàng thành công!</p>
+        </div>
     </div>
-  </div>
+</div>
 
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div class="toast bg-toast-success" id="toastCancelSucceed">
-      <div class="toast-header">
-        <strong class="me-auto">Thông báo</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-      </div>
-      <div class="toast-body">
-        <p>Hủy đơn hàng thành công!</p>
-      </div>
+        <div class="toast-header">
+            <strong class="me-auto">Thông báo</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            <p>Hủy đơn hàng thành công!</p>
+        </div>
     </div>
-  </div>
+</div>
 
-  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div class="toast bg-toast-success" id="toastReturnSucceed">
-      <div class="toast-header">
-        <strong class="me-auto">Thông báo</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-      </div>
-      <div class="toast-body">
-        <p>Xác nhận trả hàng thành công!</p>
-      </div>
+        <div class="toast-header">
+            <strong class="me-auto">Thông báo</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            <p>Xác nhận trả hàng thành công!</p>
+        </div>
     </div>
-  </div>
+</div>

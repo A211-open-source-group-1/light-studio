@@ -110,6 +110,7 @@ $(document).ready(function () {
         $('#new_thumbnail_holder').empty();
         $('#add-details-form').removeClass('d-none');
         $('#edit-selected-details-form').addClass('d-none');
+        $('#add-details-form-based-on-color').addClass('d-none');
         $('#new_thumbnail_holder').append('<div class="col-3 p-1 position-relative">' +
             '<img id="new_thumbnail_img" src="/image/' + 'no_image.png' + '" class="h-100 w-100 border rounded" style="z-index: 1001">' +
             '<label for="new_thumbnail">' +
@@ -150,9 +151,14 @@ $(document).ready(function () {
         $('#add-details-form').addClass('d-none');
     })
 
+    $(document).on('click', '#close-add-bo-details-form-btn', function () {
+        $('#add-details-form-based-on-color').addClass('d-none');
+    })
+
     $(document).on('click', '.edit-selected-details-btn', function () {
         var detailsId = $(this).data('details-id');
         $('#add-details-form').addClass('d-none');
+        $('#add-details-form-based-on-color').addClass('d-none');
         $.ajax({
             url: '/editSelectedDetails/' + detailsId,
             type: 'GET',
@@ -317,7 +323,7 @@ $(document).ready(function () {
                 $('#details_edit_notification').addClass('show')
                 $('#details_edit_notification').empty();
                 $('#details_edit_notification').html('<p>Sửa thành công</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#details_edit_notification').alert('close')
                     $('#details_edit_notification').addClass('d-none')
                 }, 4000)
@@ -327,7 +333,7 @@ $(document).ready(function () {
                 $('#details_edit_notification_failed').addClass('show')
                 $('#details_edit_notification_failed').empty();
                 $('#details_edit_notification_failed').html('<p>Sửa thất bại</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#details_edit_notification_failed').alert('close')
                     $('#details_edit_notification_failed').addClass('d-none')
                 }, 4000)
@@ -335,7 +341,7 @@ $(document).ready(function () {
         })
     })
 
-    $(document).on('submit', '#add-details-form', function(e) {
+    $(document).on('submit', '#add-details-form', function (e) {
         var phoneId = $('#ed_phone_id').val();
         e.preventDefault();
         var formData = new FormData($(this)[0]);
@@ -351,7 +357,7 @@ $(document).ready(function () {
                 $('#details_add_notification').addClass('show')
                 $('#details_add_notification').empty();
                 $('#details_add_notification').html('<p>Thêm thành công</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#details_add_notification').alert('close')
                     $('#details_add_notification').addClass('d-none')
                 }, 4000)
@@ -361,7 +367,7 @@ $(document).ready(function () {
                 $('#details_add_notification_failed').addClass('show')
                 $('#details_add_notification_failed').empty();
                 $('#details_add_notification_failed').html('<p>Thêm thất bại</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#details_add_notification_failed').alert('close')
                     $('#details_add_notification_failed').addClass('d-none')
                 }, 4000)
@@ -385,7 +391,7 @@ $(document).ready(function () {
             url: '/editColors/' + phone_id,
             type: 'GET',
             success: function (response) {
-                
+
                 $('#ec_phone_name').val(response[1].phone_name);
                 $('#ec_phone_id').val(response[1].phone_id);
                 $('#color-board').empty();
@@ -410,7 +416,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                
+
             }
         })
     }
@@ -443,7 +449,7 @@ $(document).ready(function () {
                     )
                 }
             },
-            error: function() {
+            error: function () {
 
             }
         })
@@ -507,7 +513,7 @@ $(document).ready(function () {
                 $('#details_delete_notification').addClass('show')
                 $('#details_delete_notification').empty();
                 $('#details_delete_notification').html('<p>Xóa thành công</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#details_delete_notification').alert('close')
                     $('#details_delete_notification').addClass('d-none')
                 }, 4000)
@@ -517,7 +523,7 @@ $(document).ready(function () {
                 $('#details_delete_notification_failed').addClass('show')
                 $('#details_delete_notification_failed').empty();
                 $('#details_delete_notification_failed').html('<p>Xóa thất bại</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#details_delete_notification_failed').alert('close')
                     $('#details_delete_notification_failed').addClass('d-none')
                 }, 4000)
@@ -530,7 +536,7 @@ $(document).ready(function () {
         $.ajax({
             url: '/deletePhone/' + phoneId,
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 location.reload();
             }
         });
@@ -611,7 +617,7 @@ $(document).ready(function () {
                 $('#specs_edit_notification').addClass('show')
                 $('#specs_edit_notification').empty();
                 $('#specs_edit_notification').append('<p>Sửa thành công</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#specs_edit_notification').alert('close')
                     $('#specs_edit_notification').addClass('d-none')
                 }, 4000)
@@ -621,7 +627,7 @@ $(document).ready(function () {
                 $('#specs_edit_notification_failed').addClass('show')
                 $('#specs_edit_notification_failed').empty();
                 $('#specs_edit_notification_failed').append('<p>Sửa thất bại</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#specs_edit_notification_failed').alert('close')
                     $('#specs_edit_notification_failed').addClass('d-none')
                 }, 4000)
@@ -643,7 +649,7 @@ $(document).ready(function () {
                 $('#color_edit_notification').addClass('show')
                 $('#color_edit_notification').empty();
                 $('#color_edit_notification').append('<p>Sửa thành công</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#color_edit_notification').alert('close')
                     $('#color_edit_notification').addClass('d-none')
                 }, 4000)
@@ -653,7 +659,7 @@ $(document).ready(function () {
                 $('#color_edit_notification_failed').addClass('show')
                 $('#color_edit_notification_failed').empty();
                 $('#color_edit_notification_failed').append('<p>Sửa thất bại</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#color_edit_notification_failed').alert('close')
                     $('#color_edit_notification_failed').addClass('d-none')
                 }, 4000)
@@ -690,7 +696,7 @@ $(document).ready(function () {
                 $('#specs_add_notification').addClass('show')
                 $('#specs_add_notification').empty();
                 $('#specs_add_notification').html('<p>Thêm thành công</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#specs_add_notification').alert('close')
                     $('#specs_add_notification').addClass('d-none')
                 }, 4000)
@@ -700,7 +706,7 @@ $(document).ready(function () {
                 $('#specs_add_notification_failed').addClass('show')
                 $('#specs_add_notification_failed').empty();
                 $('#specs_add_notification_failed').html('<p>Thêm thất bại</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#specs_add_notification_failed').alert('close')
                     $('#specs_add_notification_failed').addClass('d-none')
                 }, 4000)
@@ -720,7 +726,7 @@ $(document).ready(function () {
                 $('#specs_delete_notification').addClass('show')
                 $('#specs_delete_notification').empty();
                 $('#specs_delete_notification').html('<p>Xóa thành công</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#specs_delete_notification').alert('close')
                     $('#specs_delete_notification').addClass('d-none')
                 }, 4000)
@@ -730,7 +736,7 @@ $(document).ready(function () {
                 $('#specs_delete_notification_failed').addClass('show')
                 $('#specs_delete_notification_failed').empty();
                 $('#specs_delete_notification_failed').html('<p>Xóa thất bại</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#specs_delete_notification_failed').alert('close')
                     $('#specs_delete_notification_failed').addClass('d-none')
                 }, 4000)
@@ -768,7 +774,7 @@ $(document).ready(function () {
                 $('#add_notification').addClass('show')
                 $('#add_notification').empty();
                 $('#add_notification').html('<p>Thêm thành công</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#add_notification').alert('close')
                     $('#add_notification').addClass('d-none')
                 }, 4000)
@@ -778,9 +784,78 @@ $(document).ready(function () {
                 $('#add_notification_failed').addClass('show')
                 $('#add_notification_failed').empty();
                 $('#add_notification_failed').html('<p>Thêm thất bại</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#add_notification_failed').alert('close')
                     $('#add_notification_failed').addClass('d-none')
+                }, 4000)
+            }
+        })
+    })
+
+    $(document).on('click', '#add-bo-details-form-btn', function () {
+        $('#add-details-form').addClass('d-none');
+        $('#edit-selected-details-form').addClass('d-none');
+        $('#add-details-form-based-on-color').removeClass('d-none');
+        $('#bo_new_color_select').empty();
+        $('#bo_new_specs_select').empty();
+        $('#bo_new_color_select').select2({
+            dropdownParent: $('#editDetails'),
+            width: '100%'
+        });
+        $('#bo_new_specs_select').select2({
+            dropdownParent: $('#editDetails'),
+            width: '100%'
+        });
+
+        var phone_id = $('#ed_phone_id').val();
+        $.ajax({
+            url: '/getDetailsList/' + phone_id,
+            type: 'GET',
+            success: function(response) {
+                for (let i = 0; i < response[0].length; ++i) {
+                    $('#bo_new_color_select').append('<option value="' + response[0][i].phone_details_id + '">' + 
+                    '[' + response[0][i].phone_details_id + '] ' +response[0][i].phone_name + ' ' + response[0][i].specific_name + ' ' + response[0][i].color_name +
+                    '</option>')
+                }
+
+                for (let i = 0; i < response[1].length; ++i) {
+                    $('#bo_new_specs_select').append('<option value="' + response[1][i].specific_id + '">' + 
+                    response[1][i].specific_name +
+                    '</option>')
+                }
+            }
+        })
+    })
+
+    $(document).on('submit', '#add-details-form-based-on-color', function (e) {
+        e.preventDefault();
+        var phoneId = $('#ed_phone_id').val();
+        var formData = new FormData($(this)[0]);
+        $.ajax({
+            url: '/addDetailsByCurrentColor',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                ajaxGetDetails(phoneId)
+                $('#details_bo_add_notification').removeClass('d-none')
+                $('#details_bo_add_notification').addClass('show')
+                $('#details_bo_add_notification').empty();
+                $('#details_bo_add_notification').html('<p>Thêm thành công</p>')
+                setTimeout(function () {
+                    $('#details_bo_add_notification').alert('close')
+                    $('#details_bo_add_notification').addClass('d-none')
+                }, 4000)
+            },
+            error: function () {
+                $('#details_bo_add_notification_failed').removeClass('d-none')
+                $('#details_bo_add_notification_failed').addClass('show')
+                $('#details_bo_add_notification_failed').empty();
+                $('#details_bo_add_notification_failed').html('<p>Thêm thất bại</p>')
+                setTimeout(function () {
+                    $('#details_add_notification_failed').alert('close')
+                    $('#details_add_notification_failed').addClass('d-none')
                 }, 4000)
             }
         })
@@ -798,7 +873,7 @@ $(document).ready(function () {
                 $('#delete_notification').addClass('show')
                 $('#delete_notification').empty();
                 $('#delete_notification').html('<p>Xóa thành công</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#delete_notification').alert('close')
                     $('#delete_notification').addClass('d-none')
                 }, 4000)
@@ -808,7 +883,7 @@ $(document).ready(function () {
                 $('#delete_notification_failed').addClass('show')
                 $('#delete_notification_failed').empty();
                 $('#delete_notification_failed').html('<p>Xóa thất bại</p>')
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#delete_notification_failed').alert('close')
                     $('#delete_notification_failed').addClass('d-none')
                 }, 4000)

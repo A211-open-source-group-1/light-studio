@@ -100,3 +100,5 @@ Route::post('/setProceedOrder', [MOrderedCartController::class, 'setProceedOrder
 Route::post('/setDeliveringOrder', [MOrderedCartController::class, 'setDeliveringOrder'])->name('setDeliveringOrder');
 Route::post('/setReturnOrder', [MOrderedCartController::class, 'setReturnOrder'])->name('setReturnOrder');
 Route::post('/cancelOrder', [MOrderedCartController::class, 'cancelOrder'])->name('cancelOrder');
+Route::post('/addDetailsByCurrentColor', [MProductController::class, 'addDetailsByCurrentColor'])->name('addDetailsByCurrentColor');
+Route::get('/getDetailsList/{phone_id}', [MProductController::class, 'getDetailsList'])->name('getDetailsList');

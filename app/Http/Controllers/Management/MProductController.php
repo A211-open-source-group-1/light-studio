@@ -285,7 +285,7 @@ class MProductController extends Controller
         $newDetails->nfc = $request->nfc;
         $newDetails->price = $request->price;
         $newDetails->quantity = $request->quantity;
-        
+
         if ($request->discount != null) {
             $newDetails->discount = $request->discount;
         } else {
@@ -402,10 +402,26 @@ class MProductController extends Controller
         }
     }
 
-    public function addDetailsByCurrentColor(Request $request) {
+    public function getDetailsList($phone_id)
+    {
+        $phone = Phone::where('phone_id', '=', $phone_id)
+            ->first();
+        $details = PhoneDetails::select('*')
+        ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+        ->join('phone_specifics', 'phone_details.specific_id', '=', 'phone_specifics.specific_id')
+        ->join('phone_colors', 'phone_details.color_id', '=', 'phone_colors.color_id')
+        ->get();
+        $specs = $phone->Specifics()->get();
+        return response()->json([$details, $specs]);
+    }
+
+    public function addDetailsByCurrentColor(Request $request)
+    {
+        $basedOnDetails = PhoneDetails::where('phone_details_id', '=', $request->based_on_details_id)
+            ->first();
         $newDetails = new PhoneDetails();
         $newDetails->phone_id = 1;
-        $newDetails->color_id = $request->color_id;
+        $newDetails->color_id = $basedOnDetails->color_id;
         $newDetails->specific_id = $request->specs_id;
         $newDetails->screen = $request->screen;
         $newDetails->ram = $request->ram;
@@ -417,32 +433,31 @@ class MProductController extends Controller
         $newDetails->nfc = $request->nfc;
         $newDetails->price = $request->price;
         $newDetails->quantity = $request->quantity;
-        
+
         if ($request->discount != null) {
             $newDetails->discount = $request->discount;
         } else {
             $newDetails->discount = 0;
         }
 
-        $thumbnailFileName = 'no_image.png';
-        if ($request->file('thumbnail') != null) {
-            $thumbnailFileName = 'thumbnail_' . uniqId() . '.' . $request->file('thumbnail')->extension();
-            $request->file('thumbnail')->storeAs('image', $thumbnailFileName, 'imageUpload');
-        }
+        $fileName = $basedOnDetails->thumbnail_img;
+        $extension = explode('.', $fileName)[1];
+        $thumbnailFileName = 'thumbnail-' . uniqId() . '.' . $extension;
+        File::copy(public_path() . '/image/' . $fileName, public_path() . '/image/' . $thumbnailFileName);
         $newDetails->thumbnail_img = $thumbnailFileName;
         $newDetails->save();
 
-        if ($request->file('file') != null) {
-            foreach ($request->file('file') as $file) {
-                $fileName = 'img' . uniqId() . '.' . $file->extension();
-                $file->storeAs('image', $fileName, 'imageUpload');
-                $image = new Image();
-                $image->phone_details_id = $newDetails->phone_details_id;
-                $image->file_path = $fileName;
-                $image->save();
-            }
+        $images = $basedOnDetails->childImages()->get();
+        foreach ($images as $image) {
+            $fileName = $image->file_path;
+            $extension = explode('.', $fileName)[1];
+            $imageFileName = 'img-' . uniqId() . '.' . $extension;
+            File::copy(public_path() . '/image/' . $fileName, public_path() . '/image/' . $imageFileName);
+            $image = new Image();
+            $image->phone_details_id = $newDetails->phone_details_id;
+            $image->file_path = $imageFileName;
+            $image->save();
         }
-
-        return response()->json(['isAddDetailsSucceed' => true]);
+        return response()->json(['isAddBoDetailsSucceed' => true]);
     }
 }
