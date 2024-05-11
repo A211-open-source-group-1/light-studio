@@ -30,9 +30,9 @@ class ProductController extends Controller
         $reviews = $current_details->Reviews()->get();
 
         $other_phone_details = PhoneDetails::
-        take(10)
-        ->get()
-        ->sortByDesc('created_at');
+            take(10)
+            ->get()
+            ->sortByDesc('created_at');
 
         return view('product.detail', compact('phone_id', 'detail_id', 'current_details', 'other_details_colors', 'other_details_specs', 'images', 'reviews', 'other_phone_details'));
     }
@@ -54,7 +54,17 @@ class ProductController extends Controller
         } else {
             $brand = Brand::where('brand_id', '=', $brand_id)->first();
             $title = $brand->brand_name;
-            $products = $brand->PhoneDetails();
+            $products = PhoneDetails::select('*')
+                ->withAvg('Reviews', 'rating')
+                ->withCount('Reviews')
+                ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+                ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+                ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+                ->where('phones.category_id', '=', 2)
+                ->where(function($query) use ($brand_id) {
+                    return $query->where('phones.brand_id', '=', $brand_id);
+                })
+                ->paginate(16);
         }
         return view('product.products', compact('title', 'brands', 'products'));
     }
@@ -65,7 +75,10 @@ class ProductController extends Controller
         $brands = Brand::all();
         if ($brand_id == 0) {
             $title = 'Tất cả sản phẩm';
-            $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+            $products = PhoneDetails::select('*')
+                ->withAvg('Reviews', 'rating')
+                ->withCount('Reviews')
+                ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
                 ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
                 ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
                 ->where('phones.category_id', '=', 3)
@@ -73,7 +86,17 @@ class ProductController extends Controller
         } else {
             $brand = Brand::where('brand_id', '=', $brand_id)->first();
             $title = $brand->brand_name;
-            $products = $brand->PhoneDetails();
+            $products = PhoneDetails::select('*')
+                ->withAvg('Reviews', 'rating')
+                ->withCount('Reviews')
+                ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+                ->join('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
+                ->join('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
+                ->where('phones.category_id', '=', 3)
+                ->where(function($query) use ($brand_id) {
+                    return $query->where('phones.brand_id', '=', $brand_id);
+                })
+                ->paginate(16);
         }
         return view('product.tablet_products', compact('title', 'brands', 'products'));
     }
@@ -82,7 +105,10 @@ class ProductController extends Controller
     {
         $search_string = $request->search_string;
         $brands = Brand::all();
-        $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+        $products = PhoneDetails::select('*')
+            ->withAvg('Reviews', 'rating')
+            ->withCount('Reviews')
+            ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
             ->leftJoin('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
             ->leftJoin('phone_colors', 'phone_colors.color_id', 'phone_details.color_id')
             ->leftJoin('brand', 'phones.brand_id', '=', 'brand.brand_id')
@@ -100,7 +126,10 @@ class ProductController extends Controller
     {
         $brands = Brand::all();
         $products = new PhoneDetails();
-        $products = $products->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+        $products = $products->select('*')
+            ->withAvg('Reviews', 'rating')
+            ->withCount('Reviews')
+            ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
             ->leftJoin('phone_specifics', 'phone_specifics.specific_id', '=', 'phone_details.specific_id')
             ->leftJoin('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id')
             ->leftJoin('brand', 'phones.brand_id', '=', 'brand.brand_id')

@@ -11,8 +11,7 @@
             @csrf
             <div id="filterDiv" class="row border-bottom mb-3 mt-1 pb-1">
                 <div class="col-lg-3 col-md-4 col-6 pe-0">
-                    <select class="form-select" name="brand" onchange="defaultSubmit()">
-                        <option selected disabled>Thương hiệu</option>
+                    <select class="form-select" id="select-brand" name="brand" onchange="defaultSubmit()">
                         <option value="">Tất cả</option>
                         @foreach ($brands as $row)
                             <option value="{{ $row->brand_name }}">{{ $row->brand_name }}</option>
@@ -21,8 +20,7 @@
                     </select>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 pe-0">
-                    <select class="form-select" name="priceRange" onchange="defaultSubmit()">
-                        <option selected disabled>Khoảng giá</option>
+                    <select class="form-select" id="select-price-range" name="priceRange" onchange="defaultSubmit()">
                         <option value="">Mặc định</option>
                         <option value="range-1">Dưới 2 triệu</option>
                         <option value="range-2">Từ 2 - 4 triệu</option>
@@ -32,17 +30,15 @@
                     </select>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 pe-0">
-                    <select class="form-select" name="os" onchange="defaultSubmit()">
-                        <option selected disabled>Hệ điều hành</option>
+                    <select class="form-select" id="select-os" name="os" onchange="defaultSubmit()">
+                        <option value="">Mặc định</option>
                         <option value="1">iOS</option>
                         <option value="2">Android</option>
-                        <option>Khác</option>
                     </select>
                 </div>
                 <div class="col-lg-3 col-md-4 col-6 pe-0">
-                    <select class="form-select" name="sort" onchange="defaultSubmit()">
-                        <option selected disabled>Sắp xếp</option>
-                        <option>Mặc định</option>
+                    <select class="form-select" id="select-sort" name="sort" onchange="defaultSubmit()">
+                        <option value="">Mặc định</option>
                         <option value="name_asc">Tên giảm dần</option>
                         <option value="name_desc">Tên tăng dần</option>
                         <option value="price_asc">Giá tăng dần</option>
@@ -53,6 +49,24 @@
                 </div>
             </div>
         </form>
+        <script>
+            $('#select-brand').select2({
+                placeholder: 'Thương hiệu',
+                allowClear: true
+            });
+            $('#select-price-range').select2({
+                placeholder: 'Khoảng giá',
+                allowClear: true
+            });
+            $('#select-os').select2({
+                placeholder: 'Hệ điều hành',
+                allowClear: true
+            });
+            $('#select-sort').select2({
+                placeholder: 'Sắp xếp',
+                allowClear: true
+            });
+        </script>
         <section id="product-section">
             <div class="row mb-3 align-items-md-stretch">
                 @foreach ($products as $row)
