@@ -70,7 +70,7 @@
             <div class="row mb-3 align-items-md-stretch">
                 @foreach ($products as $row)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">
-                        <div class="card zoom-on w-100 h-100 position-relative" style="">
+                        <div class="card zoom-on w-100 h-100 position-relative">
                             <div class="position-absolute top-0 start-0 ms-5 mt-3" style="width: 100%">
                                 @if ($row->discount != 0)
                                     <span class="translate-middle badge bg-warning">
@@ -83,7 +83,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <img class="card-img-top card-img-product w-100 h-100"
+                            <img class="card-img-top card-img-product" style="height: 335px"
                                 src="{{ asset('/image/' . $row->thumbnail_img) }}">
                             <div class="card-body text-center">
                                 <a class="text-decoration-none"

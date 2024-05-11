@@ -51,7 +51,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <img class="card-img-top card-img-product w-100 h-100"
+                            <img class="card-img-top card-img-product" style="height: 335px"
                                 src="{{ asset('/image/' . $row->thumbnail_img) }}">
                             <div class="card-body text-center">
                                 <a class="text-decoration-none"

@@ -260,7 +260,7 @@
                                                 <div class="carousel-inner op-inner">
                                                     @foreach ($other_phone_details as $row)
                                                     <div class="carousel-item op-item active">
-                                                        <div class="card zoom-on position-relative" style="width: 300px">
+                                                        <div class="card zoom-on position-relative" style="width: 300px; height: 400px;">
                                                             <div class="position-absolute top-0 start-0 ms-5 mt-3">
                                                                 @if ($row->discount != 0)
                                                                     <span class="translate-middle badge bg-warning">
@@ -273,7 +273,7 @@
                                                                     </span>
                                                                 @endif
                                                             </div>
-                                                            <img class="card-img-top card-img-product w-100 h-100"
+                                                            <img class="card-img-top card-img-product w-100" style="height: 300px"
                                                                 src="{{ asset('/image/' . $row->thumbnail_img) }}">
                                                             <div class="card-body text-center">
                                                                 <a class="text-decoration-none"
