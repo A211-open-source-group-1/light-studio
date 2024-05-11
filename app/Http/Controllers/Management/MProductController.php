@@ -411,6 +411,7 @@ class MProductController extends Controller
         ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
         ->join('phone_specifics', 'phone_details.specific_id', '=', 'phone_specifics.specific_id')
         ->join('phone_colors', 'phone_details.color_id', '=', 'phone_colors.color_id')
+        ->where('phone_details.phone_id', '=', $phone->phone_id)
         ->get();
         $specs = $phone->Specifics()->get();
         return response()->json([$details, $specs]);

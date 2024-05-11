@@ -53,6 +53,7 @@ Route::get('indexAdmin', [AuthController::class, 'indexAdmin'])->name('indexAdmi
 Route::post('deleteUser', [AuthController::class, 'deleteUser'])->name('deleteUser');
 Route::get('/get-user/{id}', [AuthController::class, 'getUser'])->name('getUser');
 Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
+
 Route::get('productsIndex/{type}', [MProductController::class, 'index'])->name('productsIndex');
 Route::get('/searchUser/{searchTerm}', [AuthController::class, 'searchUser'])->name('searchUser');
 Route::get('/orderedCart', [MOrderedCartController::class, 'index'])->name('orderedCart');
@@ -70,7 +71,6 @@ Route::get('loadModalCategory/{id}', [MPhoneCategoryController::class, 'loadModa
 Route::get('loadModalBrand/{id}', [MBrandController::class, 'loadModalBrand'])->name('loadModalBrand');
 Route::get('editBrand', [MBrandController::class, 'editBrand'])->name('editBrand');
 Route::post('deleteBrand', [MBrandController::class, 'deleteBrand'])->name('deleteBrand');
-
 Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
 Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');
 Route::get('/editColors/{phone_id}', [MProductController::class, 'editColors'])->name('editColors');
