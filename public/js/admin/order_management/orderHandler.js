@@ -80,7 +80,6 @@ $(document).ready(function () {
             type: 'POST',
             data: form.serialize() + '&order_id=' + order_id,
             success: function (response) {
-                alert(response.order_id);
                 const toastLive = document.getElementById('toastSetSucceed')
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
                 toastBootstrap.show();
@@ -102,7 +101,6 @@ $(document).ready(function () {
             type: 'POST',
             data: form.serialize() + '&order_id=' + order_id,
             success: function (response) {
-                alert(response.order_id);
                 const toastLive = document.getElementById('toastSetSucceed')
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
                 toastBootstrap.show();
@@ -124,7 +122,6 @@ $(document).ready(function () {
             type: 'POST',
             data: form.serialize() + '&order_id=' + order_id,
             success: function (response) {
-                alert(response.order_id);
                 const toastLive = document.getElementById('toastSetSucceed')
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
                 toastBootstrap.show();
@@ -180,7 +177,6 @@ $(document).ready(function () {
             type: 'POST',
             data: form.serialize() + '&order_id=' + order_id,
             success: function (response) {
-                alert(response.order_id);
                 const toastLive = document.getElementById('toastCancelSucceed')
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
                 toastBootstrap.show();
@@ -206,7 +202,6 @@ $(document).ready(function () {
             type: 'POST',
             data: form.serialize() + '&order_id=' + order_id,
             success: function (response) {
-                alert(response.order_id);
                 const toastLive = document.getElementById('toastReturnSucceed')
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLive)
                 toastBootstrap.show();

@@ -170,7 +170,7 @@ class CartController extends Controller
             }
             $new_order->save();
             $user = User::where('id', '=', Auth::user()->id)->first();
-            $carts = $user->Carts();
+            $carts = $user->Carts()->get();
             $total_price = 0;
             foreach ($carts as $item) {
                 $new_order_details = new OrderDetails();
@@ -184,7 +184,7 @@ class CartController extends Controller
             $new_order->update([
                 'order_total_price' => $total_price
             ]);
-            $carts->delete();
+            $user->Carts()->delete();
         }
         return view('cart.thankyou');
     }
