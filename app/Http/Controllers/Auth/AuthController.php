@@ -196,11 +196,6 @@ class AuthController extends Controller
         }
     }
 
-    public function indexAdmin()
-    {
-        return view('admin.index');
-    }
-
     public function customer()
     {
         $user = User::all();

@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Session;
 use App\Exception;
 use App\Models\User;
 use ExceptionTest;
+use PHPMailer\PHPMailer\PHPMailer;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class CartController extends Controller
 {
@@ -64,7 +66,7 @@ class CartController extends Controller
                     $cart = Cart::where('user_id', '=', Auth::user()->id)->where('phone_details_id', '=', $details_id)->first();
                 }
                 if ($action == 'increase') {
-                    if ($details->quantity > 1) {
+                    if ($details->quantity > 0) {
                         $details->update([
                             'quantity' => $details->quantity - 1
                         ]);
@@ -72,7 +74,7 @@ class CartController extends Controller
                         if ($cart != null) {
                             $cart->update([
                                 'quantity' => $item->GetQuantity()
-                            ]); 
+                            ]);
                         }
                     }
                 } else if ($action == 'decrease' && $item->GetQuantity() > 1) {
@@ -83,7 +85,7 @@ class CartController extends Controller
                     if ($cart != null) {
                         $cart->update([
                             'quantity' => $item->GetQuantity()
-                        ]); 
+                        ]);
                     }
                 } else if ($action == 'delete') {
                     $details->update([
@@ -139,6 +141,20 @@ class CartController extends Controller
             }
         }
     }
+    public function thanks($order_id) {
+        $new_order = Order::where('order_id', '=', $order_id)
+            ->first();
+        $new_order->update([
+            'status_id' => 2,
+            'order_proceed_date' => date('Y-m-d H:i:s')
+        ]);
+        return view('cart.thankyou');
+    }
+
+    public function errors() {
+        return 'dcmm';
+    }
+
     public function proceedOrder(Request $request)
     {
         if (!Auth::check()) {
@@ -156,6 +172,7 @@ class CartController extends Controller
                     break;
                 }
                 case 'paypal': {
+                    $new_order->payment_method_id = 3;
                     break;
                 }
                 case 'vnpay': {
@@ -170,7 +187,10 @@ class CartController extends Controller
             }
             $new_order->save();
             $user = User::where('id', '=', Auth::user()->id)->first();
-            $carts = $user->Carts()->get();
+            $carts = $user->Carts()
+                ->select(['cart.*', 'phone_details.price', 'phone_details.discount'])
+                ->join('phone_details', 'phone_details.phone_details_id', '=', 'cart.phone_details_id')
+                ->get();
             $total_price = 0;
             foreach ($carts as $item) {
                 $new_order_details = new OrderDetails();
@@ -184,7 +204,74 @@ class CartController extends Controller
             $new_order->update([
                 'order_total_price' => $total_price
             ]);
+
+            $valuesToMailBody = OrderDetails::select('*')
+                ->join('phone_details', 'phone_details.phone_details_id', '=', 'order_details.phone_details_id')
+                ->join('phones', 'phone_details.phone_id', '=', 'phones.phone_id')
+                ->join('phone_colors', 'phone_details.color_id', '=', 'phone_colors.color_id')
+                ->join('phone_specifics', 'phone_details.specific_id', '=', 'phone_specifics.specific_id')
+                ->where('order_details.order_id', '=', $new_order->order_id)
+                ->get();
+
             $user->Carts()->delete();
+
+            $name = Auth::user()->name;
+
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->Host = "smtp.gmail.com";
+
+            $mail->SMTPAuth = true;
+
+            $mail->Username = 'duongdeptrai102x@gmail.com';
+            $mail->Password = 'fgpzcuoltcpzbecy';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            $mail->CharSet = 'utf-8';
+
+            $mail->setFrom('cskh@light-studio.io', 'Light Studio CSKH');
+            $mail->addAddress(Auth::user()->email, Auth::user()->name);
+
+            $mail->isHTML(true);
+            $mail->Subject = '[LIGHT-STUDIO] Đơn hàng của bạn đã được đặt thành công!';
+            $mail->Body = view('cart.mailtemplate', compact('valuesToMailBody', 'name'))->render();
+
+            $mail->send();
+
+            $money = strval(round($total_price / 25455, 2));
+
+            if ($request->paymentMethod == 'paypal') {
+                $provider = new PayPalClient;
+                $provider->setApiCredentials(config('paypal'));
+                $payPalToken = $provider->getAccessToken();
+                $response = $provider->createOrder(
+                    [
+                        "intent" => "CAPTURE",
+                        "application_context" => [
+                            "return_url" => route('thanks', ['order_id' => $new_order->order_id]),
+                            "cancel_url" => route('errors')
+                        ],
+                        "purchase_units" => [
+                            [
+                                "amount" => [
+                                    "currency_code" => "USD",
+                                    "value" => $money
+                                ]
+                            ]
+                        ]
+                    ]
+                );
+                if (isset($response['id']) && $response['id'] != null) {
+                    foreach ($response['links'] as $link) {
+                        if ($link['rel'] == 'approve') {
+                            return redirect()->away($link['href']);
+                        }
+                    }
+                } else {
+                    return redirect()->route('errors');
+                }
+            }
         }
         return view('cart.thankyou');
     }

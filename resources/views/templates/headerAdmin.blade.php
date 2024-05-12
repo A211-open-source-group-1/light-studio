@@ -15,6 +15,7 @@
     <script src="{{ asset('/summernote/summernote-bs4.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('/css/select2.min.css') }}">
     <script src="/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.umd.js"></script>
 </head>
 
 <body>

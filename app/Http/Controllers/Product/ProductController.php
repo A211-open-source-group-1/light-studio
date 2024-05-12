@@ -19,6 +19,7 @@ class ProductController extends Controller
     //
     public function detail($phone_id, $detail_id, $spec_id = 0)
     {
+        $current_details = null;
         if ($spec_id != 0) {
             $current_details = PhoneDetails::where('specific_id', '=', $spec_id)->first();
         } else {
@@ -29,8 +30,8 @@ class ProductController extends Controller
         $images = $current_details->childImages()->get();
         $reviews = $current_details->Reviews()->get();
 
-        $other_phone_details = PhoneDetails::
-            take(10)
+        $other_phone_details = PhoneDetails::where('phone_details_id', '!=', $current_details->phone_details_id)
+            ->take(10)
             ->get()
             ->sortByDesc('created_at');
 
@@ -107,7 +108,10 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $search_string = $request->search_string;
+        $search_string = session('search', '');
+        if ($request->search_string != null) {
+            $search_string = $request->search_string;
+        }
         $brands = Brand::all();
         $products = PhoneDetails::select('*')
             ->withAvg('Reviews', 'rating')
@@ -123,8 +127,12 @@ class ProductController extends Controller
             })
             ->orderBy('phone_details.created_at', 'desc')
             ->paginate(16);
-        $title = 'Tìm thấy ' . $products->total() . ' kết quả khớp với từ khóa "' . $request->search_string . '".';
-        session(['search' => $request->search_string]);
+
+        $data = json_decode($products->toJSON());
+        if ($data->current_page == 1) {
+            session(['search' => $request->search_string]);
+        }
+        $title = 'Tìm thấy ' . $products->total() . ' kết quả khớp với từ khóa "' . session('search', '') . '".';
         return view('product.products', compact('title', 'brands', 'products'));
     }
 
@@ -181,25 +189,25 @@ class ProductController extends Controller
         }
 
         if ($request->priceRange == 'range-1') { // below 2mils VND
-            $products = $products->where(function($query) use ($preFilter2) {
-               return $query->whereBetween($preFilter2 . 'price', [0, 1999999]);
+            $products = $products->where(function ($query) use ($preFilter2) {
+                return $query->whereBetween($preFilter2 . 'price', [0, 1999999]);
             });
         } else if ($request->priceRange == 'range-2') { // from 2mils to 4mils VND
-            $products = $products->where(function($query) use ($preFilter2) {
+            $products = $products->where(function ($query) use ($preFilter2) {
                 return $query->whereBetween($preFilter2 . 'price', [2000000, 3999999]);
-             });
+            });
         } else if ($request->priceRange == 'range-3') { // from 4mils to 8mils VND
-            $products = $products->where(function($query) use ($preFilter2) {
+            $products = $products->where(function ($query) use ($preFilter2) {
                 return $query->whereBetween($preFilter2 . 'price', [4000000, 7999999]);
-             });
+            });
         } else if ($request->priceRange == 'range-4') { // from 8mils to 15mils VND
-            $products = $products->where(function($query) use ($preFilter2) {
+            $products = $products->where(function ($query) use ($preFilter2) {
                 return $query->whereBetween($preFilter2 . 'price', [800000, 14999999]);
-             });
+            });
         } else if ($request->priceRange == 'range-5') { // above 15 mils VND
-            $products = $products->where(function($query) use ($preFilter2) {
+            $products = $products->where(function ($query) use ($preFilter2) {
                 return $query->where($preFilter2 . 'price', '>=', 15000000);
-             });
+            });
         }
 
 

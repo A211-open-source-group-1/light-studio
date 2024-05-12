@@ -45,13 +45,19 @@
                                     <a class="link-dark" href="{{ URL::to('/product/brand/0') }}">Tất cả</a>
                                 </li>
                                 <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="#">Apple</a>
+                                </li>
+                                <li class="dropdown-item border-bottom">
                                     <a class="link-dark" href="#">Samsung</a>
                                 </li>
                                 <li class="dropdown-item border-bottom">
-                                    <a class="link-dark" href="#">iPhone</a>
+                                    <a class="link-dark" href="#">Xiaomi</a>
                                 </li>
                                 <li class="dropdown-item border-bottom">
-                                    <a class="link-dark" href="#">Xiaomi</a>
+                                    <a class="link-dark" href="#">Oppo</a>
+                                </li>
+                                <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="#">Vivo</a>
                                 </li>
                             </ul>
                         </li>
@@ -63,13 +69,10 @@
                                     <a class="link-dark" href="{{ URL::to('/product/brand/0') }}">Tất cả</a>
                                 </li>
                                 <li class="dropdown-item border-bottom">
+                                    <a class="link-dark" href="#">Apple</a>
+                                </li>
+                                <li class="dropdown-item border-bottom">
                                     <a class="link-dark" href="#">Samsung</a>
-                                </li>
-                                <li class="dropdown-item border-bottom">
-                                    <a class="link-dark" href="#">iPhone</a>
-                                </li>
-                                <li class="dropdown-item border-bottom">
-                                    <a class="link-dark" href="#">Xiaomi</a>
                                 </li>
                             </ul>
                         </li>

@@ -1,6 +1,7 @@
 @extends('templates.app')
 <title>
-    Điện thoại {{ $current_details->parentPhone->phone_name . ' ' . $current_details->parentSpecific->specific_name . ' ' . $current_details->parentColor->color_name }}
+    Điện thoại
+    {{ $current_details->parentPhone->phone_name . ' ' . $current_details->parentSpecific->specific_name . ' ' . $current_details->parentColor->color_name }}
 </title>
 @section('content')
     <script>
@@ -254,68 +255,77 @@
                             </div>
                         </div>
                         <div class="col-12 border-top mt-3 p-0">
-                            <h5>Xem thêm sản phẩm khác</h5>
-                            <div class="container-fluid">
-                                <div class="row text-center">
-                                    <div id="carouselOtherProduct" class="carousel slide">
-                                        <div class="carousel-inner">
-                                            <div id="carouselExampleControls" class="carousel">
-                                                <div class="carousel-inner op-inner">
-                                                    @foreach ($other_phone_details as $row)
-                                                    <div class="carousel-item op-item active">
-                                                        <div class="card zoom-on position-relative" style="width: 300px; height: 400px;">
-                                                            <div class="position-absolute top-0 start-0 ms-5 mt-3">
-                                                                @if ($row->discount != 0)
-                                                                    <span class="translate-middle badge bg-warning">
-                                                                        GIẢM GIÁ
-                                                                    </span>
-                                                                @endif
-                                                                @if ($row->quantity <= 0)
-                                                                    <span class="translate-middle badge bg-danger">
-                                                                        HẾT HÀNG
-                                                                    </span>
-                                                                @endif
+                            @if ($other_phone_details->count() > 0)
+                                <h5>Xem thêm sản phẩm khác</h5>
+                                <div class="container-fluid">
+                                    <div class="row text-center">
+                                        <div id="carouselOtherProduct" class="carousel slide">
+                                            <div class="carousel-inner">
+                                                <div id="carouselExampleControls" class="carousel">
+                                                    <div class="carousel-inner op-inner">
+                                                        @foreach ($other_phone_details as $row)
+                                                            <div class="carousel-item op-item active">
+                                                                <div class="card zoom-on position-relative"
+                                                                    style="width: 300px; height: 400px;">
+                                                                    <div class="position-absolute top-0 start-0 ms-5 mt-3">
+                                                                        @if ($row->discount != 0)
+                                                                            <span
+                                                                                class="translate-middle badge bg-warning">
+                                                                                GIẢM GIÁ
+                                                                            </span>
+                                                                        @endif
+                                                                        @if ($row->quantity <= 0)
+                                                                            <span class="translate-middle badge bg-danger">
+                                                                                HẾT HÀNG
+                                                                            </span>
+                                                                        @endif
+                                                                    </div>
+                                                                    <img class="card-img-top card-img-product w-100"
+                                                                        style="height: 300px"
+                                                                        src="{{ asset('/image/' . $row->thumbnail_img) }}">
+                                                                    <div class="card-body text-center">
+                                                                        <a class="text-decoration-none"
+                                                                            href="{{ URL::to('/phone/' . $row->parentPhone->phone_id . '/detail/' . $row->phone_details_id) . '/specs/0' }}">
+                                                                            <h6 class="card-title fw-bold truncate-text">
+                                                                                {{ ($row->parentPhone->phone_name ?? 'null') . ' ' . ($row->parentSpecific->specific_name ?? 'null') . ' ' . ($row->parentColor->color_name ?? 'null') }}
+                                                                            </h6>
+                                                                        </a>
+                                                                        @if ($row->discount != 0)
+                                                                            <h6
+                                                                                class="text-danger fw-bold text-decoration-line-through">
+                                                                                {{ number_format($row->price, 0, ',', '.') }}
+                                                                                VNĐ</h6>
+                                                                            <h6 class="text-danger fw-bold">
+                                                                                {{ number_format($row->price - $row->discount, 0, ',', '.') }}
+                                                                                VNĐ</h6>
+                                                                        @else
+                                                                            <h6 class="text-danger fw-bold">
+                                                                                {{ number_format($row->price, 0, ',', '.') }}
+                                                                                VNĐ</h6>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <img class="card-img-top card-img-product w-100" style="height: 300px"
-                                                                src="{{ asset('/image/' . $row->thumbnail_img) }}">
-                                                            <div class="card-body text-center">
-                                                                <a class="text-decoration-none"
-                                                                    href="{{ URL::to('/phone/' . $row->parentPhone->phone_id . '/detail/' . $row->phone_details_id) . '/specs/0' }}">
-                                                                    <h6 class="card-title fw-bold truncate-text">
-                                                                        {{ ($row->parentPhone->phone_name ?? 'null') . ' ' . ($row->parentSpecific->specific_name ?? 'null') . ' ' . ($row->parentColor->color_name ?? 'null') }}
-                                                                    </h6>
-                                                                </a>
-                                                                @if ($row->discount != 0)
-                                                                    <h6 class="text-danger fw-bold text-decoration-line-through">
-                                                                        {{ number_format($row->price, 0, ',', '.') }}
-                                                                        VNĐ</h6>
-                                                                    <h6 class="text-danger fw-bold">
-                                                                        {{ number_format($row->price - $row->discount, 0, ',', '.') }}
-                                                                        VNĐ</h6>
-                                                                @else
-                                                                    <h6 class="text-danger fw-bold">{{ number_format($row->price, 0, ',', '.') }}
-                                                                        VNĐ</h6>
-                                                                @endif
-                                                            </div>
-                                                        </div>
+                                                        @endforeach
                                                     </div>
-                                                    @endforeach
+                                                    <button class="carousel-control-prev op-next" type="button"
+                                                        data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                        <span class="carousel-control-prev-icon"
+                                                            aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Previous</span>
+                                                    </button>
+                                                    <button class="carousel-control-next op-prev" type="button"
+                                                        data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                                        <span class="carousel-control-next-icon"
+                                                            aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Next</span>
+                                                    </button>
                                                 </div>
-                                                <button class="carousel-control-prev op-next" type="button"
-                                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </button>
-                                                <button class="carousel-control-next op-prev" type="button"
-                                                    data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

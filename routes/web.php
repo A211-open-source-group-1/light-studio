@@ -9,6 +9,7 @@ use App\Http\Controllers\Management\MProductController;
 use App\Http\Controllers\Management\MOrderedCartController;
 use App\Http\Controllers\Management\MPhoneCategoryController;
 use App\Http\Controllers\Management\MBrandController;
+use App\Http\Controllers\Management\MChartController;
 use App\Http\Controllers\Management\MProductImportController;
 
 /*
@@ -49,7 +50,7 @@ Route::get('admin', [AuthController::class, 'admin'])->name('adminLogins');
 Route::post('authAdmin', [AuthController::class, 'authAdmin'])->name('authAdmin');
 Route::get('logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
 Route::get('customer', [AuthController::class, 'customer'])->name('customer');
-Route::get('indexAdmin', [AuthController::class, 'indexAdmin'])->name('indexAdmin');
+Route::get('indexAdmin', [MChartController::class, 'index'])->name('indexAdmin');
 Route::post('deleteUser', [AuthController::class, 'deleteUser'])->name('deleteUser');
 Route::get('/get-user/{id}', [AuthController::class, 'getUser'])->name('getUser');
 Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
@@ -107,3 +108,10 @@ Route::get('/getAllDetailsList', [MProductImportController::class, 'getAllDetail
 Route::post('/addImportReceiptSubmit', [MProductImportController::class, 'addImportReceiptSubmit'])->name('addImportReceiptSubmit');
 Route::post('/deleteImportReceiptSubmit', [MProductImportController::class, 'deleteImportReceiptSubmit'])->name('deleteImportReceiptSubmit');
 Route::get('/printImportReceiptPdf/{receipt_id}', [MProductImportController::class, 'printImportReceiptPdf'])->name('printImportReceiptPdf');
+
+Route::get('/getRevenueInYear', [MChartController::class, 'getRevenueInYear'])->name('getRevenueInYear');
+Route::get('/getNewAccountsInYear', [MChartController::class, 'getNewAccountsInYear'])->name('getNewAccountsInYear');
+Route::get('/getOrdersInYear', [MChartController::class, 'getOrdersInYear'])->name('getOrdersInYear');
+Route::get('/getOrderReturnedRatioInYear', [MChartController::class, 'getOrderReturnedRatioInYear'])->name('getOrderReturnedRatioInYear');
+Route::get('/thankyouforyourorder/{order_id}', [CartController::class, 'thanks'])->name('thanks');
+Route::get('/errors', [CartController::class, 'errors'])->name('errors');
