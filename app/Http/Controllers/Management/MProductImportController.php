@@ -15,31 +15,25 @@ class MProductImportController extends Controller
 {
     public function index()
     {
-        $receiptsType1 = ImportReceipt::select('*')
+        $receiptsType1 = ImportReceipt::select(['import_receipts.*', 'users.name'])
             ->join('users', 'users.id', '=', 'import_receipts.user_id')
             ->where('import_receipts.receipt_status', '=', 'temp')
             ->withSum('ImportReceiptDetails', 'total_price')
             ->orderBy('import_receipts.created_at', 'desc')
             ->get();
-        $receiptsType2 = ImportReceipt::select('*')
+        $receiptsType2 = ImportReceipt::select(['import_receipts.*', 'users.name'])
             ->withSum('ImportReceiptDetails', 'total_price')
             ->join('users', 'users.id', '=', 'import_receipts.user_id')
             ->where('import_receipts.receipt_status', '=', 'saved')
             ->orderBy('import_receipts.created_at', 'desc')
             ->get();
-        $receiptsType3 = ImportReceipt::select('*')
-            ->withSum('ImportReceiptDetails', 'total_price')
-            ->join('users', 'users.id', '=', 'import_receipts.user_id')
-            ->where('import_receipts.receipt_status', '=', 'completed')
-            ->orderBy('import_receipts.created_at', 'desc')
-            ->get();
-        $receiptsType4 = ImportReceipt::select('*')
+        $receiptsType4 = ImportReceipt::select(['import_receipts.*', 'users.name'])
             ->withSum('ImportReceiptDetails', 'total_price')
             ->join('users', 'users.id', '=', 'import_receipts.user_id')
             ->orderBy('import_receipts.created_at', 'desc')
             ->get();
         // return response()->json([$receiptsType1, $receiptsType2, $receiptsType3, $receiptsType4]);
-        return view('admin.productimport.index', compact('receiptsType1', 'receiptsType2', 'receiptsType3', 'receiptsType4'));
+        return view('admin.productimport.index', compact('receiptsType1', 'receiptsType2', 'receiptsType4'));
     }
 
     public function setCompletedImportReceipts(Request $request)
