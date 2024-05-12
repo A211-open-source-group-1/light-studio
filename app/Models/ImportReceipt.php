@@ -21,6 +21,6 @@ class ImportReceipt extends Model
     protected $primaryKey = 'id';
 
     public function ImportReceiptDetails() {
-        return $this->hasMany(ImportReceiptDetails::class, 'id', 'import_receipt_id');
+        return $this->hasMany(ImportReceiptDetails::class, 'import_receipt_id', 'id');
     }
 }
