@@ -1,4 +1,7 @@
 @extends('templates.app')
+<title>
+    Điện thoại {{ $current_details->parentPhone->phone_name . ' ' . $current_details->parentSpecific->specific_name . ' ' . $current_details->parentColor->color_name }}
+</title>
 @section('content')
     <script>
         function loadMore() {
@@ -435,7 +438,6 @@
             </div>
         </div>
     </div>
-
     <script>
         let max = <?php echo $reviews->count(); ?>;
         let x = 5;
