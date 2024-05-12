@@ -5,6 +5,7 @@ use App\Http\Controllers\Page\PageController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Cart\CartController;
+use App\Http\Controllers\Cart\OrderController;
 use App\Http\Controllers\Management\MProductController;
 use App\Http\Controllers\Management\MOrderedCartController;
 use App\Http\Controllers\Management\MPhoneCategoryController;
@@ -115,3 +116,5 @@ Route::get('/getOrdersInYear', [MChartController::class, 'getOrdersInYear'])->na
 Route::get('/getOrderReturnedRatioInYear', [MChartController::class, 'getOrderReturnedRatioInYear'])->name('getOrderReturnedRatioInYear');
 Route::get('/thankyouforyourorder/{order_id}', [CartController::class, 'thanks'])->name('thanks');
 Route::get('/errors', [CartController::class, 'errors'])->name('errors');
+
+Route::get('/yourOrders', [OrderController::class, 'index'])->name('userOrders');

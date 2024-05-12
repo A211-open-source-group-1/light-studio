@@ -90,14 +90,15 @@
                     <div class="d-flex mt-3 me-2">
                         <a class="link-dark text-nowrap position-relative" href="{{ route('cart') }}"><i
                                 class="fa-solid fa-cart-shopping"></i> Giỏ hàng
-                                @if (Auth::check())
-                                    @if (Auth::user()->Carts->count() > 0)
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        {{Auth::user()->Carts->count()}}
+                            @if (Auth::check())
+                                @if (Auth::user()->Carts->count() > 0)
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {{ Auth::user()->Carts->count() }}
                                     </span>
-                                    @endif
                                 @endif
-                            </a>
+                            @endif
+                        </a>
                         <ul style="list-style: none">
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
@@ -111,11 +112,13 @@
                                 <ul class="dropdown-menu">
                                     @if (Auth::check())
                                         <li class="dropdown-item border-bottom">
-                                            <a class="link-dark text-nowrap" href="{{ route('user.info') }}">Thông tin
+                                            <a class="link-dark text-nowrap" href="{{ route('user.info') }}">Thông
+                                                tin
                                                 cá nhân</a>
                                         </li>
                                         <li class="dropdown-item border-bottom">
-                                            <a class="link-dark text-nowrap" href="#">Tra cứu đơn hàng</a>
+                                            <a class="link-dark text-nowrap" href="{{ route('userOrders') }}">Tra cứu
+                                                đơn hàng</a>
                                         </li>
 
                                         <li class="dropdown-item border-bottom">
