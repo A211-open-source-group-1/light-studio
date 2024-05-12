@@ -49,12 +49,34 @@
             <p>
         </div>
     </div>
-    <div style="margin-top: 25px">
-        <div align="center">
-            <h1 style="margin-bottom: 10px">PHIẾU NHẬP KHO</h1>
+    <div style="margin-top: 10px; padding: 10px">
+        <div style="margin-left: 12cm">
+            <p>Mã phiếu nhập: {{ $receipt->id }}</p>
+            <p>Trạng thái phiếu: 
+                @if ($receipt->receipt_status == 'temp')
+                Phiếu tạm
+                @elseif ($receipt->receipt_status == 'saved')
+                Phiếu lưu
+                @else
+                Hoàn thành
+                @endif
+            </p>
+            <p>
+                Thanh toán: 
+                @if ($receipt->payment_status == 'paid')
+                Trả trước
+                @else
+                Nợ
+                @endif
+            </p>
+        </div>
+    </div>
+    <div style="margin-top: 5px">
+        <div align="center" style="margin-top: 0">
+            <h1 style="margin-bottom: 10px; margin-top: 0">PHIẾU NHẬP KHO</h1>
             <p>Ngày {{ $day }} tháng {{ $month }} năm 20{{ $year }}</p>
         </div>
-        <div style="padding: 10px">
+        <div style="padding: 10px;">
             @php
                 $index = 1;
                 $totalPrice = 0;
@@ -62,7 +84,7 @@
 
             <p>Đơn vị giao: {{ $receipt->provider_name }}</p>
             <p>Nhập tại kho: Tổng kho công ty TNHH Light-Studio</p>
-            <table border="1px">
+            <table border="1px" style="margin-top: 10px">
                 <thead>
                     <tr>
                         <th scope="col">
@@ -93,26 +115,26 @@
                 <tbody>
                     @foreach ($details as $detail)
                         <tr>
-                            <td>
+                            <td align="center">
                                 <p>{{ $index++ }}</p>
                             </td>
                             <td>
                                 <p>{{ $detail->phone_name . ' ' . $detail->specific_name . ' ' . $detail->color_name }}
                                 </p>
                             </td>
-                            <td>
+                            <td align="center">
                                 <p>{{ $detail->phone_details_id }}</p>
                             </td>
-                            <td>
+                            <td align="center">
                                 <p>{{ $detail->import_quantity }}</p>
                             </td>
-                            <td>
+                            <td align="center">
                                 <p>{{ $detail->unit_name }}</p>
                             </td>
-                            <td>
+                            <td align="center">
                                 <p>{{ $detail->import_price }} VNĐ</p>
                             </td>
-                            <td>
+                            <td align="center">
                                 <p>{{ $detail->import_quantity * $detail->import_price }} VNĐ</p>
                                 @php
                                     $totalPrice = $totalPrice + $detail->import_quantity * $detail->import_price;
@@ -121,16 +143,16 @@
                         </tr>
                     @endforeach
                     <tr>
-                        <td colspan="6" align="right">
+                        <td colspan="6" align="left">
                             <p>Tổng:</p>
                         </td>
-                        <td>
+                        <td align="center">
                             <p>{{$totalPrice}} VNĐ</p>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <p>Số chứng từ gốc kèm theo:
+            <p style="margin-top: 10px">Số chứng từ gốc kèm theo:
                 ..................................................................................</p>
         </div>
         <div style="width: 660px">
@@ -144,7 +166,7 @@
                     <td align="center">
                         <p style="font-weight: bold">Người lập phiếu</p>
                         <p style="font-style: italic">(Ký, họ tên)</p>
-                        <p>{{$receipt->name}}</p>
+                        
                     </td>
                     <td align="center">
                         <p style="font-weight: bold">Người giao hàng</p>
@@ -157,6 +179,20 @@
                     <td align="center">
                         <p style="font-weight: bold">Kế toán trưởng</p>
                         <p style="font-style: italic">(Ký, họ tên)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <p>{{$receipt->name}}</p>
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+
                     </td>
                 </tr>
             </table>

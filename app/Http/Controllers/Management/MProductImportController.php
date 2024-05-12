@@ -30,7 +30,7 @@ class MProductImportController extends Controller
         $receiptsType3 = ImportReceipt::select('*')
             ->withSum('ImportReceiptDetails', 'total_price')
             ->join('users', 'users.id', '=', 'import_receipts.user_id')
-            ->where('import_receipts.receipt_status', '=', '0')
+            ->where('import_receipts.receipt_status', '=', 'completed')
             ->orderBy('import_receipts.created_at', 'desc')
             ->get();
         $receiptsType4 = ImportReceipt::select('*')
@@ -42,7 +42,7 @@ class MProductImportController extends Controller
         return view('admin.productimport.index', compact('receiptsType1', 'receiptsType2', 'receiptsType3', 'receiptsType4'));
     }
 
-    public function getImportReceiptsDetails($import_receipt_id)
+    public function setCompletedImportReceipts(Request $request)
     {
 
     }
@@ -78,11 +78,6 @@ class MProductImportController extends Controller
             $newImportReceiptDetails->save();
         }
         return response()->json(['isAddImportReceiptSucceed' => true]);
-    }
-
-    public function deleteImportReceiptSubmit(Request $request)
-    {
-
     }
 
     public function printImportReceiptPdf($receipt_id)

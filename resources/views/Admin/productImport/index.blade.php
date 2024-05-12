@@ -23,9 +23,6 @@
                         <button class="nav-link position-relative" id="nav-import-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-import" type="button" role="tab" aria-controls="nav-import"
                             aria-selected="false">Phiếu nhập lưu</button>
-                        <button class="nav-link position-relative" id="nav-completed-tab" data-bs-toggle="tab"
-                            data-bs-target="#nav-completed" type="button" role="tab" aria-controls="nav-completed"
-                            aria-selected="false">Phiếu nhập đã nhận</button>
                         <button class="nav-link position-relative" id="nav-total-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-total" type="button" role="tab" aria-controls="nav-total"
                             aria-selected="true">Tất cả
@@ -33,85 +30,66 @@
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-import-tab">
-                    <div class="tab-pane fade show active" id="nav-temp-import" role="tabpanel" aria-labelledby="nav-temp-import-tab">
+                    <div class="tab-pane fade show active" id="nav-temp-import" role="tabpanel"
+                        aria-labelledby="nav-temp-import-tab">
                         <div class="container-fluid mt-2">
                             @foreach ($receiptsType1 as $receipt)
-                            <div class="col-12" id="receipt-{{ $receipt->id }}">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>Mã phiếu: {{ $receipt->id }}</p>
-                                        <p>Thời gian: {{ $receipt->created_at }}</p>
-                                        <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button data-receipt-id="{{ $receipt->id }}" type="button"
-                                            class="btn btn-primary">Xác nhận đã nhận</button>
-                                        <button data-receipt-id="{{ $receipt->id }}" type="button"
-                                            class="btn btn-warning">Xem chi tiết & In phiếu</button>
+                                <div class="col-12" id="receipt-{{ $receipt->id }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Mã phiếu: {{ $receipt->id }}</p>
+                                            <p>Thời gian: {{ $receipt->created_at }}</p>
+                                            <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button data-receipt-id="{{ $receipt->id }}" type="button"
+                                                class="btn btn-primary">Xác nhận</button>
+                                                <a target="blank" href="/printImportReceiptPdf/{{ $receipt->id }}"
+                                                    data-receipt-id="{{ $receipt->id }}" class="btn btn-warning">Xem chi
+                                                    tiết & In phiếu</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-import" role="tabpanel" aria-labelledby="nav-import-tab">
                         <div class="container-fluid mt-2">
                             @foreach ($receiptsType2 as $receipt)
-                            <div class="col-12" id="receipt-{{ $receipt->id }}">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>Mã phiếu: {{ $receipt->id }}</p>
-                                        <p>Thời gian: {{ $receipt->created_at }}</p>
-                                        <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button data-receipt-id="{{ $receipt->id }}" type="button"
-                                            class="btn btn-primary">Xác nhận đã nhận</button>
-                                        <button data-receipt-id="{{ $receipt->id }}" type="button"
-                                            class="btn btn-warning">Xem chi tiết & In phiếu</button>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="nav-completed" role="tabpanel" aria-labelledby="nav-completed-tab">
-                        <div class="container-fluid mt-2">
-                            @foreach ($receiptsType3 as $receipt)
-                            <div class="col-12" id="receipt-{{ $receipt->id }}">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>Mã phiếu: {{ $receipt->id }}</p>
-                                        <p>Thời gian: {{ $receipt->created_at }}</p>
-                                        <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button data-receipt-id="{{ $receipt->id }}" type="button"
-                                            class="btn btn-primary">Xác nhận đã nhận</button>
-                                        <button data-receipt-id="{{ $receipt->id }}" type="button"
-                                            class="btn btn-warning">Xem chi tiết & In phiếu</button>
+                                <div class="col-12" id="receipt-{{ $receipt->id }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Mã phiếu: {{ $receipt->id }}</p>
+                                            <p>Thời gian: {{ $receipt->created_at }}</p>
+                                            <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                                <a target="blank" href="/printImportReceiptPdf/{{ $receipt->id }}"
+                                                    data-receipt-id="{{ $receipt->id }}" class="btn btn-warning">Xem chi
+                                                    tiết & In phiếu</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
                     <div class="tab-pane fade" id="nav-total" role="tabpanel" aria-labelledby="nav-total-tab">
                         <div class="container-fluid mt-2">
                             @foreach ($receiptsType4 as $receipt)
-                            <div class="col-12" id="receipt-{{ $receipt->id }}">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>Mã phiếu: {{ $receipt->id }}</p>
-                                        <p>Thời gian: {{ $receipt->created_at }}</p>
-                                        <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button data-receipt-id="{{ $receipt->id }}" type="button"
-                                            class="btn btn-warning">Xem chi tiết & In phiếu</button>
+                                <div class="col-12" id="receipt-{{ $receipt->id }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p>Mã phiếu: {{ $receipt->id }}</p>
+                                            <p>Thời gian: {{ $receipt->created_at }}</p>
+                                            <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a target="blank" href="/printImportReceiptPdf/{{ $receipt->id }}"
+                                                data-receipt-id="{{ $receipt->id }}" class="btn btn-warning">Xem chi
+                                                tiết & In phiếu</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -120,7 +98,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addImportReceipt" tabindex="-1" aria-labelledby="addImportReceiptLabel" aria-hidden="true">
+    <div class="modal fade" id="addImportReceipt" tabindex="-1" aria-labelledby="addImportReceiptLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form action="/addImportReceiptSubmit" method="post">
