@@ -106,3 +106,4 @@ Route::get('/getDetailsList/{phone_id}', [MProductController::class, 'getDetails
 Route::get('/getAllDetailsList', [MProductImportController::class, 'getAllDetailsList'])->name('getAllDetailsList');
 Route::post('/addImportReceiptSubmit', [MProductImportController::class, 'addImportReceiptSubmit'])->name('addImportReceiptSubmit');
 Route::post('/deleteImportReceiptSubmit', [MProductImportController::class, 'deleteImportReceiptSubmit'])->name('deleteImportReceiptSubmit');
+Route::get('/printImportReceiptPdf/{receipt_id}', [MProductImportController::class, 'printImportReceiptPdf'])->name('printImportReceiptPdf');

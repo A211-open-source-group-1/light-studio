@@ -7,66 +7,66 @@
             </div>
         </div>
         <script src="{{ asset('/js/productHandler.js') }}"></script>
-        <form id="filterForm">
-            @csrf
-            <div id="filterDiv" class="row border-bottom mb-3 mt-1 pb-1">
-                <div class="col-lg-3 col-md-4 col-6 pe-0">
-                    <select class="form-select" id="select-brand" name="brand" onchange="defaultSubmit()">
-                        <option value="">Tất cả</option>
-                        @foreach ($brands as $row)
-                            <option value="{{ $row->brand_name }}">{{ $row->brand_name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6 pe-0">
-                    <select class="form-select" id="select-price-range" name="priceRange" onchange="defaultSubmit()">
-                        <option value="">Mặc định</option>
-                        <option value="range-1">Dưới 2 triệu</option>
-                        <option value="range-2">Từ 2 - 4 triệu</option>
-                        <option value="range-3">Từ 4 - 8 triệu</option>
-                        <option value="range-4">Từ 8 - 15 triệu</option>
-                        <option value="range-5">Trên 15 triệu</option>
-                    </select>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6 pe-0">
-                    <select class="form-select" id="select-os" name="os" onchange="defaultSubmit()">
-                        <option value="">Mặc định</option>
-                        <option value="1">iOS</option>
-                        <option value="2">Android</option>
-                    </select>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6 pe-0">
-                    <select class="form-select" id="select-sort" name="sort" onchange="defaultSubmit()">
-                        <option value="">Mặc định</option>
-                        <option value="name_asc">Tên giảm dần</option>
-                        <option value="name_desc">Tên tăng dần</option>
-                        <option value="price_asc">Giá tăng dần</option>
-                        <option value="price_desc">Giá giảm dần</option>
-                        <option value="review_asc">Đánh giá cao nhất</option>
-                        <option value="review_desc">Đánh giá tệ nhất</option>
-                    </select>
-                </div>
-            </div>
-        </form>
-        <script>
-            $('#select-brand').select2({
-                placeholder: 'Thương hiệu',
-                allowClear: true
-            });
-            $('#select-price-range').select2({
-                placeholder: 'Khoảng giá',
-                allowClear: true
-            });
-            $('#select-os').select2({
-                placeholder: 'Hệ điều hành',
-                allowClear: true
-            });
-            $('#select-sort').select2({
-                placeholder: 'Sắp xếp',
-                allowClear: true
-            });
-        </script>
         <section id="product-section">
+            <form id="filterForm">
+                @csrf
+                <div id="filterDiv" class="row border-bottom mb-3 mt-1 pb-1">
+                    <div class="col-lg-3 col-md-4 col-6 pe-0">
+                        <select class="form-select" id="select-brand" name="brand" onchange="defaultSubmit()">
+                            <option value="">Tất cả</option>
+                            @foreach ($brands as $row)
+                                <option value="{{ $row->brand_name }}">{{ $row->brand_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-6 pe-0">
+                        <select class="form-select" id="select-price-range" name="priceRange" onchange="defaultSubmit()">
+                            <option value="">Mặc định</option>
+                            <option value="range-1">Dưới 2 triệu</option>
+                            <option value="range-2">Từ 2 - 4 triệu</option>
+                            <option value="range-3">Từ 4 - 8 triệu</option>
+                            <option value="range-4">Từ 8 - 15 triệu</option>
+                            <option value="range-5">Trên 15 triệu</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-6 pe-0">
+                        <select class="form-select" id="select-os" name="os" onchange="defaultSubmit()">
+                            <option value="">Mặc định</option>
+                            <option value="1">iOS</option>
+                            <option value="2">Android</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-6 pe-0">
+                        <select class="form-select" id="select-sort" name="sort" onchange="defaultSubmit()">
+                            <option value="">Mặc định</option>
+                            <option value="name_asc">Tên giảm dần</option>
+                            <option value="name_desc">Tên tăng dần</option>
+                            <option value="price_asc">Giá tăng dần</option>
+                            <option value="price_desc">Giá giảm dần</option>
+                            <option value="review_asc">Đánh giá cao nhất</option>
+                            <option value="review_desc">Đánh giá tệ nhất</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <script>
+                $('#select-brand').select2({
+                    placeholder: 'Thương hiệu',
+                    allowClear: true
+                });
+                $('#select-price-range').select2({
+                    placeholder: 'Khoảng giá',
+                    allowClear: true
+                });
+                $('#select-os').select2({
+                    placeholder: 'Hệ điều hành',
+                    allowClear: true
+                });
+                $('#select-sort').select2({
+                    placeholder: 'Sắp xếp',
+                    allowClear: true
+                });
+            </script>
             <div class="row mb-3 align-items-md-stretch">
                 @foreach ($products as $row)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3 d-flex align-items-stretch">

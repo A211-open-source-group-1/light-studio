@@ -11,7 +11,7 @@ class ImportReceiptDetails extends Model
         'import_receipt_id',
         'phone_details_id',
         'import_quantity',
-        'price',
+        'import_price',
         'unit_name',
         'total_price',
         'created_at',

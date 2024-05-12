@@ -44,13 +44,10 @@
                                         <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
                                     </div>
                                     <div class="card-footer">
-                                        <button data-receipt-id="{{ $receipt->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#" type="button"
-                                            class="btn btn-success show-receipt-product-btn">Xem chi tiết</button>
                                         <button data-receipt-id="{{ $receipt->id }}" type="button"
                                             class="btn btn-primary">Xác nhận đã nhận</button>
-                                        <button data-receipt-id="{{ $receipt->id }}" data-order-type="proceed" type="button"
-                                            class="btn btn-warning">In phiếu</button>
+                                        <button data-receipt-id="{{ $receipt->id }}" type="button"
+                                            class="btn btn-warning">Xem chi tiết & In phiếu</button>
                                     </div>
                                 </div>
                             </div>
@@ -68,13 +65,10 @@
                                         <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
                                     </div>
                                     <div class="card-footer">
-                                        <button data-receipt-id="{{ $receipt->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#" type="button"
-                                            class="btn btn-success show-receipt-product-btn">Xem chi tiết</button>
                                         <button data-receipt-id="{{ $receipt->id }}" type="button"
                                             class="btn btn-primary">Xác nhận đã nhận</button>
-                                        <button data-receipt-id="{{ $receipt->id }}" data-order-type="proceed" type="button"
-                                            class="btn btn-warning">In phiếu</button>
+                                        <button data-receipt-id="{{ $receipt->id }}" type="button"
+                                            class="btn btn-warning">Xem chi tiết & In phiếu</button>
                                     </div>
                                 </div>
                             </div>
@@ -92,13 +86,10 @@
                                         <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
                                     </div>
                                     <div class="card-footer">
-                                        <button data-receipt-id="{{ $receipt->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#" type="button"
-                                            class="btn btn-success show-receipt-product-btn">Xem chi tiết</button>
                                         <button data-receipt-id="{{ $receipt->id }}" type="button"
                                             class="btn btn-primary">Xác nhận đã nhận</button>
-                                        <button data-receipt-id="{{ $receipt->id }}" data-order-type="proceed" type="button"
-                                            class="btn btn-warning">In phiếu</button>
+                                        <button data-receipt-id="{{ $receipt->id }}" type="button"
+                                            class="btn btn-warning">Xem chi tiết & In phiếu</button>
                                     </div>
                                 </div>
                             </div>
@@ -116,13 +107,8 @@
                                         <p>Tên nhân viên nhập: {{ $receipt->name }}</p>
                                     </div>
                                     <div class="card-footer">
-                                        <button data-receipt-id="{{ $receipt->id }}" data-bs-toggle="modal"
-                                            data-bs-target="#" type="button"
-                                            class="btn btn-success show-receipt-product-btn">Xem chi tiết</button>
                                         <button data-receipt-id="{{ $receipt->id }}" type="button"
-                                            class="btn btn-primary">Xác nhận đã nhận</button>
-                                        <button data-receipt-id="{{ $receipt->id }}" data-order-type="proceed" type="button"
-                                            class="btn btn-warning">In phiếu</button>
+                                            class="btn btn-warning">Xem chi tiết & In phiếu</button>
                                     </div>
                                 </div>
                             </div>

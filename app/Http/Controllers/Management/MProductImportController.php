@@ -6,41 +6,44 @@ use App\Http\Controllers\Controller;
 use App\Models\ImportReceipt;
 use App\Models\ImportReceiptDetails;
 use App\Models\PhoneDetails;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
 class MProductImportController extends Controller
 {
     public function index()
     {
         $receiptsType1 = ImportReceipt::select('*')
-        ->join('users', 'users.id', '=', 'import_receipts.user_id')
-        ->where('import_receipts.receipt_status', '=', 'temp')
-        ->withSum('ImportReceiptDetails', 'total_price')
-        ->orderBy('import_receipts.created_at', 'desc')
-        ->get();
+            ->join('users', 'users.id', '=', 'import_receipts.user_id')
+            ->where('import_receipts.receipt_status', '=', 'temp')
+            ->withSum('ImportReceiptDetails', 'total_price')
+            ->orderBy('import_receipts.created_at', 'desc')
+            ->get();
         $receiptsType2 = ImportReceipt::select('*')
-        ->withSum('ImportReceiptDetails', 'total_price')
-        ->join('users', 'users.id', '=', 'import_receipts.user_id')
-        ->where('import_receipts.receipt_status', '=', 'saved')
-        ->orderBy('import_receipts.created_at', 'desc')
-        ->get();
+            ->withSum('ImportReceiptDetails', 'total_price')
+            ->join('users', 'users.id', '=', 'import_receipts.user_id')
+            ->where('import_receipts.receipt_status', '=', 'saved')
+            ->orderBy('import_receipts.created_at', 'desc')
+            ->get();
         $receiptsType3 = ImportReceipt::select('*')
-        ->withSum('ImportReceiptDetails', 'total_price')
-        ->join('users', 'users.id', '=', 'import_receipts.user_id')
-        ->where('import_receipts.receipt_status', '=', '0')
-        ->orderBy('import_receipts.created_at', 'desc')
-        ->get();
+            ->withSum('ImportReceiptDetails', 'total_price')
+            ->join('users', 'users.id', '=', 'import_receipts.user_id')
+            ->where('import_receipts.receipt_status', '=', '0')
+            ->orderBy('import_receipts.created_at', 'desc')
+            ->get();
         $receiptsType4 = ImportReceipt::select('*')
-        ->withSum('ImportReceiptDetails', 'total_price')
-        ->join('users', 'users.id', '=', 'import_receipts.user_id')
-        ->orderBy('import_receipts.created_at', 'desc')
-        ->get();
+            ->withSum('ImportReceiptDetails', 'total_price')
+            ->join('users', 'users.id', '=', 'import_receipts.user_id')
+            ->orderBy('import_receipts.created_at', 'desc')
+            ->get();
         // return response()->json([$receiptsType1, $receiptsType2, $receiptsType3, $receiptsType4]);
         return view('admin.productimport.index', compact('receiptsType1', 'receiptsType2', 'receiptsType3', 'receiptsType4'));
     }
 
-    public function getImportReceiptsDetails($import_receipt_id) {
+    public function getImportReceiptsDetails($import_receipt_id)
+    {
 
     }
 
@@ -69,7 +72,7 @@ class MProductImportController extends Controller
             $newImportReceiptDetails->import_receipt_id = $newImportReceipt->id;
             $newImportReceiptDetails->phone_details_id = $request->input('details_id')[$i];
             $newImportReceiptDetails->import_quantity = $request->input('import_quantity')[$i];
-            $newImportReceiptDetails->price = $request->input('price')[$i];
+            $newImportReceiptDetails->import_price = $request->input('price')[$i];
             $newImportReceiptDetails->unit_name = $request->input('unit_name')[$i];
             $newImportReceiptDetails->total_price = $newImportReceiptDetails->import_quantity * $newImportReceiptDetails->price;
             $newImportReceiptDetails->save();
@@ -80,5 +83,42 @@ class MProductImportController extends Controller
     public function deleteImportReceiptSubmit(Request $request)
     {
 
+    }
+
+    public function printImportReceiptPdf($receipt_id)
+    {
+        $receipt = ImportReceipt::select(['import_receipts.*', 'users.name'])
+            ->join('users', 'users.id', '=', 'import_receipts.user_id')
+            ->where('import_receipts.id', '=', $receipt_id)
+            ->first();
+        $details = ImportReceiptDetails::
+            join('phone_details', 'phone_details.phone_details_id', '=', 'import_receipts_details.phone_details_id')
+            ->join('phones', 'phone_details.phone_id', '=', 'phones.phone_id')
+            ->join('phone_colors', 'phone_details.color_id', '=', 'phone_colors.color_id')
+            ->join('phone_specifics', 'phone_details.specific_id', '=', 'phone_specifics.specific_id')
+            ->where('import_receipts_details.import_receipt_id', '=', $receipt->id)
+            ->get();
+        $timestamp = strtotime($receipt->created_at);
+        $day = date('d', $timestamp);
+        $month = date('m', $timestamp);
+        $year = date('y', $timestamp);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('admin.productimport.pdfPrintingTemplate', compact('receipt', 'details', 'day', 'month', 'year'));
+        return $pdf->stream();
+    }
+
+    public function downloadImportReceiptPdf($receipt_id)
+    {
+        $receipt = ImportReceipt::where('id', '=', $receipt_id)
+            ->first();
+        $details = $receipt->ImportReceiptDetails()
+            ->get();
+        $timestamp = strtotime($receipt->created_at);
+        $day = date('d', $timestamp);
+        $month = date('m', $timestamp);
+        $year = date('y', $timestamp);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('admin.productimport.pdfPrintingTemplate', compact('receipt', 'details', 'day', 'month', 'year'));
+        return $pdf->download();
     }
 }

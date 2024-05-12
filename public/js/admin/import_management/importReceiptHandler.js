@@ -52,7 +52,6 @@ $(document).ready(function () {
             placeholder: 'Tìm kiếm sản phẩm con theo tên hoặc mã',
             width: '100%'
         })
-
         ajaxGetDetailsList('select-' + uniqueId);
     })
 
