@@ -141,7 +141,8 @@ class CartController extends Controller
             }
         }
     }
-    public function thanks($order_id) {
+    public function thanks($order_id)
+    {
         $new_order = Order::where('order_id', '=', $order_id)
             ->first();
         $new_order->update([
@@ -151,7 +152,8 @@ class CartController extends Controller
         return view('cart.thankyou');
     }
 
-    public function errors() {
+    public function errors()
+    {
         return 'dcmm';
     }
 

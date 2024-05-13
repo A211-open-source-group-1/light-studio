@@ -116,11 +116,10 @@ class AuthController extends Controller
                 $user->phone_number = $request->input('phoneNumber');
                 $user->name = $request->input('fullname');
                 $user->gender = $request->input('gender');
+                $user->address = $request->input('address');
                 $user->user_point = 0;
                 $user->email = $request->input('email');
                 $user->password = bcrypt($request->input('password'));
-                $user->created_at = now();
-                $user->updated_at = now();
                 $user->save();
                 return redirect()->back()->with('successful', "Đăng ký thành công");
             } catch (\Illuminate\Database\QueryException $e) {

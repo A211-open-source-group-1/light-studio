@@ -45,19 +45,19 @@
                                     <a class="link-dark" href="{{ URL::to('/product/brand/0') }}">Tất cả</a>
                                 </li>
                                 <li class="dropdown-item border-bottom">
-                                    <a class="link-dark" href="#">Apple</a>
+                                    <a class="link-dark" href="{{ URL::to('/product/brand/5') }}">Apple</a>
                                 </li>
                                 <li class="dropdown-item border-bottom">
-                                    <a class="link-dark" href="#">Samsung</a>
+                                    <a class="link-dark" href="{{ URL::to('/product/brand/8') }}">Samsung</a>
                                 </li>
                                 <li class="dropdown-item border-bottom">
-                                    <a class="link-dark" href="#">Xiaomi</a>
+                                    <a class="link-dark" href="{{ URL::to('/product/brand/9') }}">Xiaomi</a>
                                 </li>
                                 <li class="dropdown-item border-bottom">
-                                    <a class="link-dark" href="#">Oppo</a>
+                                    <a class="link-dark" href="{{ URL::to('/product/brand/6') }}">Oppo</a>
                                 </li>
                                 <li class="dropdown-item border-bottom">
-                                    <a class="link-dark" href="#">Vivo</a>
+                                    <a class="link-dark" href="{{ URL::to('/product/brand/7') }}">Vivo</a>
                                 </li>
                             </ul>
                         </li>

@@ -91,6 +91,11 @@ $password=Cookie::get('password');
             <label class="text-danger" id="errorFullname"></label>
           </div>
           <div class="mb-2">
+            <label class="form-label">Địa chỉ</label>
+            <input class="form-control" name="address" id="address" type="text" required>
+            <label class="text-danger" id="errorAdress"></label>
+          </div>
+          <div class="mb-2">
             <label class="form-label">Giới tính</label>
             <div class="container-fluid">
               <div class="row">

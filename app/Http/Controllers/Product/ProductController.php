@@ -31,6 +31,9 @@ class ProductController extends Controller
         $reviews = $current_details->Reviews()->get();
 
         $other_phone_details = PhoneDetails::where('phone_details_id', '!=', $current_details->phone_details_id)
+            ->where(function ($query) use ($current_details) {
+                return $query->whereBetween('price', [$current_details->price - 3000000, $current_details->price + 3000000]);
+            })
             ->take(10)
             ->get()
             ->sortByDesc('created_at');

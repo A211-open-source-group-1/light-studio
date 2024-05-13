@@ -88,7 +88,8 @@ class MChartController extends Controller
                     return $query->whereYear('order_delivering_date', $currentYear);
                 })
                 ->count();
-            if ($countm == 0) $countm = 1;
+            if ($countm == 0)
+                $countm = 1;
             array_push($counts, [
                 'month' => $i,
                 'count' => (float) Order::whereMonth('order_delivering_date', $i)

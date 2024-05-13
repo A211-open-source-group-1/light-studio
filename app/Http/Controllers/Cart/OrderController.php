@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $allOrders = Order::select('*')
             ->join('users', 'users.id', '=', 'order.user_id')
             ->join('payment_method', 'payment_method.payment_method_id', '=', 'order.payment_method_id')
