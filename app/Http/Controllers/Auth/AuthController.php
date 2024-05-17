@@ -42,7 +42,6 @@ class AuthController extends Controller
                         ->withCookie(cookie()->forget('password'));
                 }
             }
-
             return response()->json(['isLoginSucceed' => true]);
         } else {
             return response()->json(['isLoginSucceed' => false]);
@@ -141,33 +140,33 @@ class AuthController extends Controller
         }
     }
 
-
     public function logout()
     {
         Session::flush();
         Auth::logout();
         return redirect()->back();
     }
+
     public function identify()
     {
         return view('Auth.identify');
     }
+
     public function findNumberPhone(Request $request)
     {
         $phone_number = $request->input('phone_number');
         $user = User::where('phone_number', $phone_number)->first();
-
         if ($user) {
             return view("auth.ResetPassword", compact('user'));
         } else {
             return redirect()->back()->withErrors('Không tìm thấy số điện thoại này!');
         }
     }
+
     public function resetPassword(Request $request)
     {
         $phone_number = $request->phone_number;
         $user = User::where('phone_number', $phone_number)->first();
-
         if ($user) {
             if ($request->newPassword === $request->rePassword) {
                 $user->update(['password' => bcrypt($request->newPassword)]);
@@ -182,7 +181,6 @@ class AuthController extends Controller
     {
         return view('auth.loginAdmin');
     }
-
     public function authAdmin(Request $request)
     {
         $request->validate([
@@ -200,13 +198,11 @@ class AuthController extends Controller
             return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
         }
     }
-
     public function customer()
     {
         $user = User::all();
         return view('Admin.customer.customer', compact('user'));
     }
-
     public function deleteUser(Request $request)
     {
         try {
@@ -223,7 +219,6 @@ class AuthController extends Controller
             return redirect()->back()->with('mess', $message);
         }
     }
-
     public function getUser($id)
     {
         $user = User::find($id);
@@ -234,7 +229,6 @@ class AuthController extends Controller
             return response()->json(['message' => 'Không tìm thấy'], 404);
         }
     }
-
     public function editUser(Request $request)
     {
         $id = $request->only('id');
@@ -266,19 +260,16 @@ class AuthController extends Controller
         Auth::logout();
         return redirect('/admin');
     }
-
     public function getAllProvinces()
     {
         Address::setSchema(['name', 'type']);
         return response()->json(Address::getProvinces());
     }
-
     public function getDistricts($province_id)
     {
         Address::setSchema(['name', 'type']);
         return response()->json(Address::getDistrictsByProvinceId($province_id));
     }
-
     public function getWards($district_id)
     {
         Address::setSchema(['name', 'type']);
