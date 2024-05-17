@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Cookie;
+use NguyenAry\VietnamAddressAPI\Address;
 
 class AuthController extends Controller
 {
@@ -59,7 +61,10 @@ class AuthController extends Controller
     {
         $id = $request->only('id');
         $user = User::where('id', $id)->update([
-            'name' => $request->input('fullname'), 'address' => $request->input('address'), 'gender' => $request->input('gender'), 'email' => $request->input('email')
+            'name' => $request->input('fullname'),
+            'address' => $request->input('address'),
+            'gender' => $request->input('gender'),
+            'email' => $request->input('email')
         ]);
         return redirect()->back();
     }
@@ -105,34 +110,35 @@ class AuthController extends Controller
             'gender' => 'required',
             'password' => 'required',
             'repassword' => 'required',
+            'province' => 'required',
+            'district' => 'required',
+            'ward' => 'required',
+            'address' => 'required'
         ]);
+
+        Address::setSchema(['name']);
+
+        $province = Address::getProvince($request->input('province'));
+        $district = Address::getDistrict($request->input('district'));
+        $ward = Address::getWard($request->input('district'), $request->input('ward'));
 
         $password = $request->input('password');
         $repassword = $request->input('repassword');
 
         if ($password === $repassword) {
-            try {
-                $user = new User();
-                $user->phone_number = $request->input('phoneNumber');
-                $user->name = $request->input('fullname');
-                $user->gender = $request->input('gender');
-                $user->address = $request->input('address');
-                $user->user_point = 0;
-                $user->email = $request->input('email');
-                $user->password = bcrypt($request->input('password'));
-                $user->save();
-                return redirect()->back()->with('successful', "Đăng ký thành công");
-            } catch (\Illuminate\Database\QueryException $e) {
-                if ($e->errorInfo[1] == 1062) {
-                    return redirect()->back()->withErrors('Số điện thoại đã tồn tại');
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
-                }
-            }
+            $user = new User();
+            $user->phone_number = $request->input('phoneNumber');
+            $user->name = $request->input('fullname');
+            $user->gender = $request->input('gender');
+            $user->address = $province['name'] . ', ' . $district['name'] . ', ' . $ward['name'] . ', ' . $request->input('address');
+            $user->user_point = 0;
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+            return redirect()->back()->with('successful', "Đăng ký thành công");
         } else {
             return redirect()->back()->withErrors('Mật khẩu không chính xác');
         }
-        return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
     }
 
 
@@ -160,7 +166,7 @@ class AuthController extends Controller
     public function resetPassword(Request $request)
     {
         $phone_number = $request->phone_number;
-        $user  = User::where('phone_number', $phone_number)->first();
+        $user = User::where('phone_number', $phone_number)->first();
 
         if ($user) {
             if ($request->newPassword === $request->rePassword) {
@@ -233,7 +239,10 @@ class AuthController extends Controller
     {
         $id = $request->only('id');
         $user = User::where('id', $id)->update([
-            'name' => $request->input('fullname'), 'address' => $request->input('address'), 'gender' => $request->input('gender'), 'email' => $request->input('email')
+            'name' => $request->input('fullname'),
+            'address' => $request->input('address'),
+            'gender' => $request->input('gender'),
+            'email' => $request->input('email')
         ]);
         return redirect()->back();
     }
@@ -256,5 +265,23 @@ class AuthController extends Controller
         Session::flush();
         Auth::logout();
         return redirect('/admin');
+    }
+
+    public function getAllProvinces()
+    {
+        Address::setSchema(['name', 'type']);
+        return response()->json(Address::getProvinces());
+    }
+
+    public function getDistricts($province_id)
+    {
+        Address::setSchema(['name', 'type']);
+        return response()->json(Address::getDistrictsByProvinceId($province_id));
+    }
+
+    public function getWards($district_id)
+    {
+        Address::setSchema(['name', 'type']);
+        return response()->json(Address::getWardsByDistrictId($district_id));
     }
 }

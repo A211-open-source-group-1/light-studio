@@ -37,15 +37,15 @@ $(document).ready(function () {
         $('#new_category_name').empty();
         $('#new_os_name').empty();
         $('#new_brand_name').select2({
-            dropdownParent: $('#addPhone'),
+            dropdownParent: $('#addPhone .modal-content'),
             width: '100%'
         });
         $('#new_category_name').select2({
-            dropdownParent: $('#addPhone'),
+            dropdownParent: $('#addPhone .modal-content'),
             width: '100%'
         });
         $('#new_os_name').select2({
-            dropdownParent: $('#addPhone'),
+            dropdownParent: $('#addPhone .modal-content'),
             width: '100%'
         });
         $.ajax({
@@ -123,10 +123,10 @@ $(document).ready(function () {
         $('#new_color_select').empty();
         $('#new_specs_select').empty();
         $('#new_color_select').select2({
-            dropdownParent: $('#editDetails')
+            dropdownParent: $('#editDetails .modal-content')
         });
         $('#new_specs_select').select2({
-            dropdownParent: $('#editDetails')
+            dropdownParent: $('#editDetails .modal-content')
         })
         var phoneId = $('#ed_phone_id').val();
         $.ajax({
@@ -171,10 +171,10 @@ $(document).ready(function () {
                 $('#ed_color_select').empty();
                 $('#ed_specs_select').empty();
                 $('#ed_color_select').select2({
-                    dropdownParent: $('#editDetails')
+                    dropdownParent: $('#editDetails .modal-content')
                 });
                 $('#ed_specs_select').select2({
-                    dropdownParent: $('#editDetails')
+                    dropdownParent: $('#editDetails .modal-content')
                 })
                 $('#ed_details_screen').val(response[0].screen);
                 $('#ed_details_ram').val(response[0].ram);
@@ -801,11 +801,11 @@ $(document).ready(function () {
         $('#bo_new_color_select').empty();
         $('#bo_new_specs_select').empty();
         $('#bo_new_color_select').select2({
-            dropdownParent: $('#editDetails'),
+            dropdownParent: $('#editDetails .modal-content'),
             width: '100%'
         });
         $('#bo_new_specs_select').select2({
-            dropdownParent: $('#editDetails'),
+            dropdownParent: $('#editDetails .modal-content'),
             width: '100%'
         });
 

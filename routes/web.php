@@ -118,3 +118,8 @@ Route::get('/thankyouforyourorder/{order_id}', [CartController::class, 'thanks']
 Route::get('/errors', [CartController::class, 'errors'])->name('errors');
 
 Route::get('/yourOrders', [OrderController::class, 'index'])->name('userOrders');
+
+// Address API
+Route::get('/getAllProvinces', [AuthController::class, 'getAllProvinces'])->name('getAllProvinces');
+Route::get('/getDistricts/{province_id}', [AuthController::class, 'getDistricts'])->name('getDistricts');
+Route::get('/getWards/{district_id}', [AuthController::class, 'getWards'])->name('getWards');

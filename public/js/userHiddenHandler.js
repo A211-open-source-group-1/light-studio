@@ -118,7 +118,6 @@ function check_fullname() {
 
 function check_password() {
     let passwordRegex = /^(?=.*[!@#$%^&*()])[A-Z].{9,}$/;
-
     var password = document.getElementById("password1").value;
     var repassword = document.getElementById('repassword').value;
     if (password === "") {
@@ -142,6 +141,21 @@ function check_password() {
     return true;
 }
 
+function check_province() {
+
+}
+
+function check_district() {
+
+}
+
+function check_ward() {
+
+}
+
+function check_address() {
+
+}
 
 function handle_validate() {
     var isFormValid = true; // Biến này sẽ chỉ đến xem tất cả các điều kiện kiểm tra đã qua hay không
@@ -164,8 +178,6 @@ function handle_validate() {
     if (!check_fullname()) {
         isFormValid = false;
     }
-
-
 
     // Nếu tất cả các điều kiện kiểm tra đều đã qua, gửi biểu mẫu đi
     if (isFormValid) {

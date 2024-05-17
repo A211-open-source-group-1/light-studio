@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6ab9e4a1f37e1c94e51211e848ded71",
+    "content-hash": "16bb932b07c4cc12ca50a0e406e2b97b",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -2455,6 +2455,49 @@
                 "source": "https://github.com/nette/utils/tree/v4.0.4"
             },
             "time": "2024-01-17T16:50:36+00:00"
+        },
+        {
+            "name": "nguyenary/vietnam-address-api",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nguyenary/VietnamAddressAPI.git",
+                "reference": "f63d1174ba15ecfb63e54cdc3dec47ec43ea7d4f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nguyenary/VietnamAddressAPI/zipball/f63d1174ba15ecfb63e54cdc3dec47ec43ea7d4f",
+                "reference": "f63d1174ba15ecfb63e54cdc3dec47ec43ea7d4f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "suggest": {
+                "ext-json": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NguyenAry\\VietnamAddressAPI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "nguyenary",
+                    "email": "nguyenary.dev@gmail.com"
+                }
+            ],
+            "description": "Một thư viện được viết bằng PHP để lấy thông tin các đơn vị hành chính Việt Nam (Tỉnh, Thành Phố, Quận, Huyện, Xã, Phường, Thị Trấn...)",
+            "support": {
+                "issues": "https://github.com/nguyenary/VietnamAddressAPI/issues",
+                "source": "https://github.com/nguyenary/VietnamAddressAPI/tree/v1.1"
+            },
+            "time": "2021-08-21T16:37:07+00:00"
         },
         {
             "name": "nikic/php-parser",
