@@ -338,18 +338,18 @@ class AuthController extends Controller
             $decode = base64_decode($token);
             $pos = strpos($decode, '-');
             $result = substr($decode, 0, $pos);
-            User::where('id','=',$result)->first()->update([
-                'email_verified_at' =>date('Y-m-d H:i:s')
+            User::where('id', '=', $result)->first()->update([
+                'email_verified_at' => date('Y-m-d H:i:s')
             ]);
             $user = User::where('id', $result)->first();
             $c_token->delete();
-            return view('Auth.ResetPassword',compact('user'));   
+            return view('Auth.ResetPassword', compact('user'));
         } else {
             return view('auth.verified_results.error_verified');
         }
     }
 
-    public function user_verify($token) 
+    public function user_verify($token)
     {
         $c_token = Token::where('token', '=', $token)->first();
         if ($c_token != null) {

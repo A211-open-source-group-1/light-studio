@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Providers;
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -59,7 +60,8 @@ class Mailer
         $mail->send();
     }
 
-    public static function sendResetPasswordEmail($email, $name, $token) {
+    public static function sendResetPasswordEmail($email, $name, $token)
+    {
         $valuesToMailBody = '0';
         $mail = new PHPMailer();
         $mail->isSMTP();
@@ -84,4 +86,3 @@ class Mailer
         $mail->send();
     }
 }
-?>
