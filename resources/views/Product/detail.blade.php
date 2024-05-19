@@ -180,7 +180,7 @@
                             </table>
                         </div>
                         <div class="col-12 border-top mt-3 p-0">
-                            <h5 style="text-left">Video giới thiệu sản phẩm</h5>
+                            <h5 class="text-left mt-3">Video giới thiệu sản phẩm</h5>
                             <div class="w-100 text-center mt-3">
                                 <iframe width="650" height="430"
                                     src="{{ $current_details->parentPhone->youtube_url }}">
@@ -188,7 +188,7 @@
                             </div>
                         </div>
                         <div class="col-12 border-top mt-3 p-0">
-                            <h5>Thông tin sản phẩm</h5>
+                            <h5 class="text-left mt-3">Thông tin sản phẩm</h5>
                             <div class="container-fluid">
                                 <div class="row">
                                     <div>
@@ -200,7 +200,7 @@
                             </div>
                         </div>
                         <div class="col-12 border-top mt-3 p-0">
-                            <h5>Đánh giá sản phẩm</h5>
+                            <h5 class="mt-3">Đánh giá sản phẩm</h5>
                             <div class="container-fluid">
                                 <?php
                                 $num = 1;
@@ -260,8 +260,11 @@
                             </div>
                         </div>
                         <div class="col-12 border-top mt-3 p-0">
+                            <h5 class="mt-3">Xem thêm sản phẩm khác</h5>
+                        </div>
+                        <div class="col-lg-2 col-0"></div>
+                        <div class="col-lg-8 col-12">
                             @if ($other_phone_details->count() > 0)
-                                <h5>Xem thêm sản phẩm khác</h5>
                                 <div class="container-fluid">
                                     <div class="row text-center">
                                         <div id="carouselOtherProduct" class="carousel slide">
@@ -332,6 +335,7 @@
                                 </div>
                             @endif
                         </div>
+                        <div class="col-lg-2 col-0"></div>
                     </div>
                 </div>
             </div>
