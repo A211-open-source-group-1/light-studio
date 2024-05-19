@@ -3,13 +3,15 @@
 @section('content')
     <div class="container-fluid">
         <div class="row" style="height: 230px">
+
         </div>
         <div class="row">
-            <div class="col-3">
-            </div>
-            <div class="col-6">
+            <div class="col-12">
                 <h3>
-                    Xác nhận Email thành công! Hãy tiến hành đăng nhập!
+                    Xin chào quý khách hàng, Email xác nhận đã được gửi tới email: {{ $email }}
+                </h3>
+                <h3>
+                    Hãy xác nhận Email để hoàn tất quá quên mật khẩu!
                 </h3>
             </div>
         </div>

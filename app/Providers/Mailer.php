@@ -60,7 +60,28 @@ class Mailer
     }
 
     public static function sendResetPasswordEmail($email, $name, $token) {
-        
+        $valuesToMailBody = '0';
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = "smtp.gmail.com";
+
+        $mail->SMTPAuth = true;
+
+        $mail->Username = 'duongdeptrai102x@gmail.com';
+        $mail->Password = 'fgpzcuoltcpzbecy';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        $mail->CharSet = 'utf-8';
+
+        $mail->setFrom('cskh@light-studio.io', 'Light Studio CSKH');
+        $mail->addAddress($email, $name);
+
+        $mail->isHTML(true);
+        $mail->Subject = '[LIGHT-STUDIO] Vui lòng xác nhận Email của bạn';
+        $mail->Body = view('Auth.forgot_password_template', compact('name', 'token'))->render();
+
+        $mail->send();
     }
 }
 ?>

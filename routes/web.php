@@ -44,7 +44,7 @@ Route::get('resetPassword', [AuthController::class, 'resetPassword'])->name('res
 Route::get('/user_verify/{token}', [AuthController::class, 'user_verify'])->name('user_verify');
 Route::get('/user_verify_request', [AuthController::class, 'user_verify_request'])->name('user_verify_request');
 Route::get('/user_reset_password/{token}', [AuthController::class, 'user_reset_password'])->name('user_reset_password');
-Route::get('/user_forgot_password_request', [AuthController::class, 'user_forgot_password_request'])->name('user_forgot_password_requests');
+Route::get('/user_forgot_password_request/{user_id}', [AuthController::class, 'user_forgot_password_request'])->name('user_forgot_password_requests');
 
 Route::post('search', [ProductController::class, 'search'])->name('search');
 Route::get('search', [ProductController::class, 'search'])->name('search');

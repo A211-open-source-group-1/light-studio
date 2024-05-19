@@ -145,7 +145,7 @@ class AuthController extends Controller
             $new_token = new Token();
             $new_token->token = $token;
             $new_token->save();
-            
+
             $email = $user->email;
             $name = $user->name;
 
@@ -173,11 +173,7 @@ class AuthController extends Controller
     {
         $phone_number = $request->input('phone_number');
         $user = User::where('phone_number', $phone_number)->first();
-        if ($user) {
-            return view("auth.ResetPassword", compact('user'));
-        } else {
-            return redirect()->back()->withErrors('Không tìm thấy số điện thoại này!');
-        }
+        return view("Auth.ResultIdentify", compact('user'));
     }
 
     public function resetPassword(Request $request)
@@ -293,7 +289,8 @@ class AuthController extends Controller
         return response()->json(Address::getWardsByDistrictId($district_id));
     }
 
-    public function user_verify_request() {
+    public function user_verify_request()
+    {
         if (Auth::check()) {
             $token = base64_encode(Auth::user()->email);
 
@@ -302,7 +299,7 @@ class AuthController extends Controller
             $new_token = new Token();
             $new_token->token = $token;
             $new_token->save();
-            
+
             $email = Auth::user()->email;
             $name = Auth::user()->name;
 
@@ -313,18 +310,46 @@ class AuthController extends Controller
         return response()->back();
     }
 
-    public function user_forgot_password_request() {
-        if (Auth::check()) {
-            // code
+    public function user_forgot_password_request($user_id)
+    {
+        if ($user_id) {
+            // code gi ke tao nha - Vinh said
+
+            $user = User::where('id', $user_id)->first();
+            $token = base64_encode($user->id . '-' . date('Y-m-d H:i:s'));
+            $new_token = new Token();
+            $new_token->token = $token;
+            $new_token->save();
+
+            $email = $user->email;
+            $name = $user->name;
+
+            Mailer::sendResetPasswordEmail($email, $name, $token);
+            return view('Auth.verified_email_forgot_password', compact('email'));
         }
-        return response()->back();
+        return redirect()->route('identify');
     }
 
-    public function user_reset_password($token) {
-        // code
+    public function user_reset_password($token)
+    {
+        // code này đỉnh - Vinh dep trai
+        $c_token = Token::where('token', '=', $token)->first();
+        if ($c_token != null) {
+            $decode = base64_decode($token);
+            $pos = strpos($decode, '-');
+            $result = substr($decode, 0, $pos);
+            User::where('id','=',$result)->first()->update([
+                'email_verified_at' =>date('Y-m-d H:i:s')
+            ]);
+            $user = User::where('id', $result)->first();
+            $c_token->delete();
+            return view('Auth.ResetPassword',compact('user'));   
+        } else {
+            return view('auth.verified_results.error_verified');
+        }
     }
 
-    public function user_verify($token)
+    public function user_verify($token) 
     {
         $c_token = Token::where('token', '=', $token)->first();
         if ($c_token != null) {
