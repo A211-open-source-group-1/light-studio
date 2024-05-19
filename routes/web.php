@@ -12,6 +12,7 @@ use App\Http\Controllers\Management\MPhoneCategoryController;
 use App\Http\Controllers\Management\MBrandController;
 use App\Http\Controllers\Management\MChartController;
 use App\Http\Controllers\Management\MProductImportController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ use App\Http\Controllers\Management\MProductImportController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Auth::routes(['verify' => true]);
+
 Route::get('', [PageController::class, 'index']);
 Route::get('page/AboutUs', [PageController::class, 'aboutus'])->name('aboutus');
 Route::get('phone/{phone_id}/detail/{detail_id}/specs/{specs_id}', [ProductController::class, 'detail']);
@@ -38,10 +41,8 @@ Route::post('/handleChangePassword', [AuthController::class, 'handleChangePasswo
 Route::get('identify', [AuthController::class, 'identify'])->name('identify');
 Route::post('findNumberPhone', [AuthController::class, 'findNumberPhone'])->name('findNumberPhone');
 Route::get('resetPassword', [AuthController::class, 'resetPassword'])->name('resetPassword');
+Route::get('/user_verify/{token}', [AuthController::class, 'user_verify'])->name('user_verify');
 
-Route::get('cart', [CartController::class, 'index'])->name('cart');
-Route::get('/addToCart/{details_id}', [CartController::class, 'addToCart'])->name('addToCart');
-Route::get('/onActionProduct/{id}/{action}', [CartController::class, 'onActionProduct'])->name('onActionProduct');
 Route::post('search', [ProductController::class, 'search'])->name('search');
 Route::get('search', [ProductController::class, 'search'])->name('search');
 Route::post('filter', [ProductController::class, 'filter'])->name('filter');
@@ -58,8 +59,15 @@ Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
 
 Route::get('productsIndex/{type}', [MProductController::class, 'index'])->name('productsIndex');
 Route::get('/searchUser/{searchTerm}', [AuthController::class, 'searchUser'])->name('searchUser');
-Route::get('/orderedCart', [MOrderedCartController::class, 'index'])->name('orderedCart');
-Route::post('/proceedOrder', [CartController::class, 'proceedOrder'])->name('proceedOrder');
+
+Route::middleware('email.verified')->group(function() {
+    Route::get('/orderedCart', [MOrderedCartController::class, 'index'])->name('orderedCart');
+    Route::post('/proceedOrder', [CartController::class, 'proceedOrder'])->name('proceedOrder');
+    Route::get('cart', [CartController::class, 'index'])->name('cart');
+    Route::get('/addToCart/{details_id}', [CartController::class, 'addToCart'])->name('addToCart');
+    Route::get('/onActionProduct/{id}/{action}', [CartController::class, 'onActionProduct'])->name('onActionProduct');
+});
+
 Route::get('index', [MPhoneCategoryController::class, 'index'])->name('indexCategory');
 Route::get('/listPhoneCategory/{id}', [MPhoneCategoryController::class, 'listPhoneCategory'])->name('listPhoneCategory');
 Route::get('/searchCategory/{searchItem}', [MPhoneCategoryController::class, 'searchCategory'])->name('searchCategory');

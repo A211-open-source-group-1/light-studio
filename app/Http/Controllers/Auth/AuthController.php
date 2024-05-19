@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use App\Models\Token;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use App\Providers\Mailer;
 use Exception;
 use Illuminate\Support\Facades\Cookie;
 use NguyenAry\VietnamAddressAPI\Address;
@@ -56,6 +58,7 @@ class AuthController extends Controller
         }
         return redirect("/");
     }
+
     public function update(Request $request)
     {
         $id = $request->only('id');
@@ -107,19 +110,15 @@ class AuthController extends Controller
             'email' => 'required',
             'fullname' => 'required',
             'gender' => 'required',
+            'province_id' => 'required',
+            'district_id' => 'required',
+            'ward_id' => 'required',
             'password' => 'required',
             'repassword' => 'required',
-            'province' => 'required',
-            'district' => 'required',
-            'ward' => 'required',
             'address' => 'required'
         ]);
 
         Address::setSchema(['name']);
-
-        $province = Address::getProvince($request->input('province'));
-        $district = Address::getDistrict($request->input('district'));
-        $ward = Address::getWard($request->input('district'), $request->input('ward'));
 
         $password = $request->input('password');
         $repassword = $request->input('repassword');
@@ -129,12 +128,26 @@ class AuthController extends Controller
             $user->phone_number = $request->input('phoneNumber');
             $user->name = $request->input('fullname');
             $user->gender = $request->input('gender');
-            $user->address = $province['name'] . ', ' . $district['name'] . ', ' . $ward['name'] . ', ' . $request->input('address');
+            $user->province_id = $request->input('province_id');
+            $user->district_id = $request->input('district_id');
+            $user->ward_id = $request->input('ward_id');
+            $user->address = $request->input('address');
             $user->user_point = 0;
             $user->email = $request->input('email');
             $user->password = bcrypt($request->input('password'));
             $user->save();
-            return redirect()->back()->with('successful', "Đăng ký thành công");
+
+            $token = base64_encode($user->email);
+            $new_token = new Token();
+            $new_token->token = $token;
+            $new_token->save();
+            
+            $email = $user->email;
+            $name = $user->name;
+
+            Mailer::sendVerifyEmail($email, $name, $token);
+
+            return view('auth.verified_email', compact('email'));
         } else {
             return redirect()->back()->withErrors('Mật khẩu không chính xác');
         }
@@ -209,12 +222,12 @@ class AuthController extends Controller
 
             $user = User::find($request->deleteUserId);
             if (!$user) {
-                throw new \Exception('User not found' . $request->deleteUserId);
+                throw new Exception('User not found' . $request->deleteUserId);
             }
             $user->delete();
             $message = "Xóa thành công " . $user->id;
             return redirect()->back()->with('mess', $message);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $message = "Xóa không thành công: " . $e->getMessage();
             return redirect()->back()->with('mess', $message);
         }
@@ -274,5 +287,19 @@ class AuthController extends Controller
     {
         Address::setSchema(['name', 'type']);
         return response()->json(Address::getWardsByDistrictId($district_id));
+    }
+
+    public function user_verify($token)
+    {
+        $c_token = Token::where('token', '=', $token)->first();
+        if ($c_token != null) {
+            User::where('email', '=', base64_decode($token))->first()->update([
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ]);
+            $c_token->delete();
+            return view('auth.verified_results.successful_verified');
+        } else {
+            return view('auth.verified_results.error_verified');
+        }
     }
 }

@@ -76,7 +76,7 @@
             </div>
             <div class="modal-body">
                 <form action="{{ route('register') }}" method="post" id="registerForm">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="mb-2">
                         <label class="form-label">Số điện thoại</label>
                         <input class="form-control" name="phoneNumber" id="phoneNumber" type="tel">
@@ -97,18 +97,18 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label class="form-label">Tỉnh/Thành phố</label>
-                                    <select class="form-select" id="province" name="province" required>
+                                    <select class="form-select" id="province" name="province_id" required>
                                         <option></option>
                                     </select>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label">Quận/Huyện/Thành phố/Thị xã</label>
-                                    <select class="form-select" id="district" name="district" required>
+                                    <select class="form-select" id="district" name="district_id" required>
                                     </select>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label">Phường/xã</label>
-                                    <select class="form-select" id="ward" name="ward" required>
+                                    <select class="form-select" id="ward" name="ward_id" required>
                                     </select>
                                 </div>
                                 <div class="col-12 mt-2">

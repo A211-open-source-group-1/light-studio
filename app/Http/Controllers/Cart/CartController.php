@@ -8,15 +8,11 @@ use App\Models\Cart;
 use App\Models\PhoneDetails;
 use App\Models\Order;
 use App\Models\OrderDetails;
-use App\Models\OrderStatus;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\CurrentCart;
 use App\Providers\ProductInCart;
-use Illuminate\Support\Facades\Session;
-use App\Exception;
 use App\Models\User;
-use ExceptionTest;
-use PHPMailer\PHPMailer\PHPMailer;
+use App\Providers\Mailer;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class CartController extends Controller
@@ -193,7 +189,9 @@ class CartController extends Controller
                 ->select(['cart.*', 'phone_details.price', 'phone_details.discount'])
                 ->join('phone_details', 'phone_details.phone_details_id', '=', 'cart.phone_details_id')
                 ->get();
+
             $total_price = 0;
+
             foreach ($carts as $item) {
                 $new_order_details = new OrderDetails();
                 $new_order_details->order_id = $new_order->order_id;
@@ -217,29 +215,10 @@ class CartController extends Controller
 
             $user->Carts()->delete();
 
+            $email = Auth::user()->email;
             $name = Auth::user()->name;
 
-            $mail = new PHPMailer();
-            $mail->isSMTP();
-            $mail->Host = "smtp.gmail.com";
-
-            $mail->SMTPAuth = true;
-
-            $mail->Username = 'duongdeptrai102x@gmail.com';
-            $mail->Password = 'fgpzcuoltcpzbecy';
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
-
-            $mail->CharSet = 'utf-8';
-
-            $mail->setFrom('cskh@light-studio.io', 'Light Studio CSKH');
-            $mail->addAddress(Auth::user()->email, Auth::user()->name);
-
-            $mail->isHTML(true);
-            $mail->Subject = '[LIGHT-STUDIO] Đơn hàng của bạn đã được đặt thành công!';
-            $mail->Body = view('cart.mailtemplate', compact('valuesToMailBody', 'name'))->render();
-
-            $mail->send();
+            Mailer::sendOrderedEmail($email, $name, $valuesToMailBody);
 
             $money = strval(round($total_price / 25455, 2));
 

@@ -35,7 +35,7 @@
 @endphp
 <body>
     <div style="width: 100%">
-        <h3>Xin chào quý hành hàng {{ $name }}, hiện tại đơn hàng của bạn đã được xác nhận rồi nhé! Vui lòng chờ từ 15 - 30
+        <h3>Xin chào quý khách hàng {{ $name }}, hiện tại đơn hàng của bạn đã được xác nhận rồi nhé! Vui lòng chờ từ 15 - 30
             phút để nhân viên cửa hàng gọi điện xác nhận lại với bạn!</h3>
         <p>Chi tiết đơn hàng của bạn: </p>
         <table style="width: 100%">

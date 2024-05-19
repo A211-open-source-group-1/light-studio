@@ -1,7 +1,7 @@
 @extends('templates.app')
 @section('content')
 <div class="container-fluid p-0 m-0">
-    <div style="height:100px">
+    <div class="row" style="height: 230px">
 
     </div>
     <div class="row">
@@ -12,9 +12,9 @@
         <div class="col-12 text-center">
             <p>Hãy kiểm tra Email và Zalo (nếu có) để kiểm tra thông báo mới nhất về đơn hàng của bạn nhé!</p>
         </div>
-        <div class="col-12" style="height: 300px">
+    </div>
+    <div class="row" style="height: 230px">
 
-        </div>
     </div>
 </div>
 @endsection

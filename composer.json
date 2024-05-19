@@ -7,10 +7,12 @@
     "require": {
         "php": "^8.1",
         "barryvdh/laravel-dompdf": "^2.1",
+        "davejamesmiller/laravel-breadcrumbs": "5.x",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "laravel/ui": "^4.5",
         "nguyenary/vietnam-address-api": "^1.1",
         "phpmailer/phpmailer": "^6.9",
         "srmklive/paypal": "~3.0"
