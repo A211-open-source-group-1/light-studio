@@ -95,10 +95,37 @@
                                             <input id="r6" type="radio" name="addressType"
                                                 class="form-check-input me-2 add-type" value="newAddress">
                                             <label for="r6">Địa chỉ mới</label>
-                                            <div class="container-fluid m-0 p-0">
+                                            <div class="container-fluid m-0 p-0 d-none" id="new_address">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <input id="new_address" name="new_address" type="text" class="form-control d-none mt-1" placeholder="Nhập địa chỉ mới...">
+                                                        <div class="container-fluid m-0 p-0">
+                                                            <div class="row">
+                                                                <div class="col-12 mt-1">
+                                                                    <input class="form-control" name="receiver_name" placeholder="Tên người nhận hàng">
+                                                                </div>
+                                                                <div class="col-12 mt-1">
+                                                                    <input class="form-control" name="receiver_phone" placeholder="Số điện thoại người nhận">
+                                                                </div>
+                                                                <div class="col-12 mt-1">
+                                                                    <select id="nad-province" name="province_id">
+
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-12 mt-1">
+                                                                    <select id="nad-district" name="district_id">
+
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-12 mt-1">
+                                                                    <select id="nad-ward" name="ward_id">
+
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-12 mt-1">
+                                                                    <input class="form-control" name="address" placeholder="Số nhà,tên đường, thôn/xã">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,4 +149,5 @@
             </div>
         </div>
     </div>
+    <script src="{{asset('/js/user/orderAddress.js')}}"></script>
 @endsection

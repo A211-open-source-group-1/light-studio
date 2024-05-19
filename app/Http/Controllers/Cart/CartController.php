@@ -13,6 +13,7 @@ use App\Providers\CurrentCart;
 use App\Providers\ProductInCart;
 use App\Models\User;
 use App\Providers\Mailer;
+use NguyenAry\VietnamAddressAPI\Address;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class CartController extends Controller
@@ -156,7 +157,7 @@ class CartController extends Controller
     public function proceedOrder(Request $request)
     {
         if (!Auth::check()) {
-            return "đăng nhập vô cu ơi";
+            return "ĐĂNG NHẬP VÀO!";
         } else {
             $new_order = new Order();
             $new_order->user_id = Auth::user()->id;
@@ -179,10 +180,25 @@ class CartController extends Controller
             }
             $new_order->order_date = date('Y-m-d H:i:s');
             if ($request->addressType == 'currentAddress') {
-                $new_order->order_address = Auth::user()->address;
+                Address::setSchema(['name', 'type']);
+
+                $province = Address::getProvince(Auth::user()->province_id);
+                $district = Address::getDistrict(Auth::user()->district_id);
+                $ward = Address::getWard(Auth::user()->district_id, Auth::user()->ward_id);
+
+                $new_order->order_address = $province['name'] . ', ' . $district['name'] . ', ' . $ward['name'] . ', ' . Auth::user()->address;
+                $new_order->receiver_name = Auth::user()->name;
+                $new_order->receiver_phone = Auth::user()->phone_number;
             } else {
-                $new_order->order_address = $request->new_address;
+                $province = Address::getProvince($request->province_id);
+                $district = Address::getDistrict($request->district_id);
+                $ward = Address::getWard($request->district_id, $request->ward_id);
+
+                $new_order->receiver_name = $request->receiver_name;
+                $new_order->receiver_phone = $request->receiver_phone;
+                $new_order->order_address = $province['name'] . ', ' . $district['name'] . ', ' . $ward['name'] . ', ' . $request->address;
             }
+
             $new_order->save();
             $user = User::where('id', '=', Auth::user()->id)->first();
             $carts = $user->Carts()
