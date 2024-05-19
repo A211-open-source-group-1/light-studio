@@ -60,7 +60,8 @@ class PageController extends Controller
             })
             ->orderBy('phone_details.created_at', 'desc')
             ->paginate(8);
-        return view('home', compact('productsType1', 'productsType2', 'productsType3'));
+        $title = 'Light Studio - Trang chủ';
+        return view('home', compact('productsType1', 'productsType2', 'productsType3', 'title'));
     }
 
     public function login()
