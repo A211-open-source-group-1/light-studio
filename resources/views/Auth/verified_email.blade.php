@@ -10,10 +10,10 @@
             </div>
             <div class="col-6">
                 <h3>
-                    Đăng ký thành công! Email xác nhận đã được gửi tới email: {{ $email }}.
+                    Xin chào quý khách hàng, Email xác nhận đã được gửi tới email: {{ $email }}.
                 </h3>
                 <h3>
-                    Hãy xác nhận Email để hoàn tất đăng ký!
+                    Hãy xác nhận Email để hoàn tất quá trình đăng ký!
                 </h3>
             </div>
         </div>

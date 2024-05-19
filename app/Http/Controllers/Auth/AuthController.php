@@ -54,7 +54,8 @@ class AuthController extends Controller
     {
         if (Auth::id()) {
             $user = Auth::user(); // Lấy thông tin của người dùng hiện tại
-            return view('Auth.info', compact('user'));
+            $isVerified = Auth::user()->email_verified_at;
+            return view('Auth.info', compact('user', 'isVerified'));
         }
         return redirect("/");
     }
@@ -287,6 +288,37 @@ class AuthController extends Controller
     {
         Address::setSchema(['name', 'type']);
         return response()->json(Address::getWardsByDistrictId($district_id));
+    }
+
+    public function user_verify_request() {
+        if (Auth::check()) {
+            $token = base64_encode(Auth::user()->email);
+
+            Token::where('token', '=', $token)->delete();
+
+            $new_token = new Token();
+            $new_token->token = $token;
+            $new_token->save();
+            
+            $email = Auth::user()->email;
+            $name = Auth::user()->name;
+
+            Mailer::sendVerifyEmail($email, $name, $token);
+
+            return view('auth.verified_email', compact('email'));
+        }
+        return response()->back();
+    }
+
+    public function user_forgot_password_request() {
+        if (Auth::check()) {
+            
+        }
+        return response()->back();
+    }
+
+    public function user_reset_password() {
+        
     }
 
     public function user_verify($token)

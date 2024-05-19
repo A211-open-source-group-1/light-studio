@@ -42,6 +42,7 @@ Route::get('identify', [AuthController::class, 'identify'])->name('identify');
 Route::post('findNumberPhone', [AuthController::class, 'findNumberPhone'])->name('findNumberPhone');
 Route::get('resetPassword', [AuthController::class, 'resetPassword'])->name('resetPassword');
 Route::get('/user_verify/{token}', [AuthController::class, 'user_verify'])->name('user_verify');
+Route::get('/user_verify_request', [AuthController::class, 'user_verify_request'])->name('user_verify_request');
 
 Route::post('search', [ProductController::class, 'search'])->name('search');
 Route::get('search', [ProductController::class, 'search'])->name('search');

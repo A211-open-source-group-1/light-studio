@@ -17,7 +17,7 @@
             <div class="col-6">
                 <div class="form">
                     <div class="form-group">
-                        <label>Số điện thoại</label>
+                        <label>Email</label>
                         <input name="phone_number" class="form-control" value="{{$user->phone_number}}" readonly/>
                     </div>
                     <div class="form-group">
