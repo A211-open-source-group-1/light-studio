@@ -7,7 +7,7 @@
     "require": {
         "php": "^8.1",
         "barryvdh/laravel-dompdf": "^2.1",
-        "davejamesmiller/laravel-breadcrumbs": "5.x",
+        "diglactic/laravel-breadcrumbs": "^9.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",

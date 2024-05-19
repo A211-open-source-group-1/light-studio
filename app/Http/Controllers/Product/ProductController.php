@@ -38,7 +38,8 @@ class ProductController extends Controller
             ->get()
             ->sortByDesc('created_at');
 
-        return view('product.detail', compact('phone_id', 'detail_id', 'current_details', 'other_details_colors', 'other_details_specs', 'images', 'reviews', 'other_phone_details'));
+        $title = $current_details->parentPhone->phone_name . ' ' . $current_details->parentSpecific->specific_name . ' ' . $current_details->parentColor->color_name;
+        return view('product.detail', compact('phone_id', 'detail_id', 'current_details', 'other_details_colors', 'other_details_specs', 'images', 'reviews', 'other_phone_details', 'title'));
     }
 
     public function products($brand_id)
@@ -72,7 +73,7 @@ class ProductController extends Controller
                 })
                 ->paginate(16);
         }
-        return view('product.products', compact('title', 'brands', 'products'));
+        return view('product.products', compact('title', 'brands', 'products', 'brand_id'));
     }
 
     public function tablet_products($brand_id)
@@ -106,7 +107,7 @@ class ProductController extends Controller
                 ->orderBy('phone_details.created_at', 'desc')
                 ->paginate(16);
         }
-        return view('product.tablet_products', compact('title', 'brands', 'products'));
+        return view('product.tablet_products', compact('title', 'brands', 'products', 'brand_id'));
     }
 
     public function search(Request $request)
@@ -116,6 +117,7 @@ class ProductController extends Controller
             $search_string = $request->search_string;
         }
         $brands = Brand::all();
+        $brand_id = 0;
         $products = PhoneDetails::select('*')
             ->withAvg('Reviews', 'rating')
             ->withCount('Reviews')
@@ -136,7 +138,7 @@ class ProductController extends Controller
             session(['search' => $request->search_string]);
         }
         $title = 'Tìm thấy ' . $products->total() . ' kết quả khớp với từ khóa "' . session('search', '') . '".';
-        return view('product.products', compact('title', 'brands', 'products'));
+        return view('product.products', compact('title', 'brands', 'products', 'brand_id'));
     }
 
     public function filter(Request $request)
@@ -245,8 +247,9 @@ class ProductController extends Controller
         }
         $products = $products->orderBy('phone_details.created_at', 'desc');
         $products = $products->paginate(16);
+        $brand_id = 0;
 
-        return response(view('product.products', compact('brands', 'products'))->render());
+        return response(view('product.products', compact('brands', 'products', 'brand_id'))->render());
     }
 
     public function userRatingProduct(Request $request)

@@ -4,6 +4,15 @@
         <div class="row">
             <div class="col-0 col-lg-1 col-xl-1">
             </div>
+            <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                {{ Breadcrumbs::render('cart') }}
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid p-0 m-0">
+        <div class="row">
+            <div class="col-0 col-lg-1 col-xl-1">
+            </div>
             <div class="col-12 col-lg-10 col-xl-10" id="data-body">
                 <form id="formCart" method="post" action="proceedOrder">
                     @csrf
@@ -41,8 +50,8 @@
                                                     onclick="IncreaseFromCart({{ $row->GetId() }})" type="button"><span
                                                         class="text-dark">+</span></button>
                                                 <button class="btn btn-outline-light align-middle border-0"
-                                                    onclick="DeleteFromCart({{ $row->GetId() }})" type="button"><span class="text-dark"><i
-                                                            class="fa-solid fa-trash"></i></span></button>
+                                                    onclick="DeleteFromCart({{ $row->GetId() }})" type="button"><span
+                                                        class="text-dark"><i class="fa-solid fa-trash"></i></span></button>
                                             </div>
                                             <div class="col-2 border-bottom d-flex align-items-center">
                                                 <?php
@@ -101,10 +110,12 @@
                                                         <div class="container-fluid m-0 p-0">
                                                             <div class="row">
                                                                 <div class="col-12 mt-1">
-                                                                    <input class="form-control" name="receiver_name" placeholder="Tên người nhận hàng">
+                                                                    <input class="form-control" name="receiver_name"
+                                                                        placeholder="Tên người nhận hàng">
                                                                 </div>
                                                                 <div class="col-12 mt-1">
-                                                                    <input class="form-control" name="receiver_phone" placeholder="Số điện thoại người nhận">
+                                                                    <input class="form-control" name="receiver_phone"
+                                                                        placeholder="Số điện thoại người nhận">
                                                                 </div>
                                                                 <div class="col-12 mt-1">
                                                                     <select id="nad-province" name="province_id">
@@ -122,7 +133,8 @@
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-12 mt-1">
-                                                                    <input class="form-control" name="address" placeholder="Số nhà,tên đường, thôn/xã">
+                                                                    <input class="form-control" name="address"
+                                                                        placeholder="Số nhà,tên đường, thôn/xã">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -132,10 +144,10 @@
                                         </div>
                                         <div class="col-12 text-center">
                                             @php
-                                            if ($sumQuantity > 0) {
-                                                echo '<input type="submit" class="btn btn-light mb-2 mt-2" id="proccedOrder"
+                                                if ($sumQuantity > 0) {
+                                                    echo '<input type="submit" class="btn btn-light mb-2 mt-2" id="proccedOrder"
                                                 value="TIẾN HÀNH THANH TOÁN">';
-                                            }
+                                                }
                                             @endphp
                                         </div>
                                     </div>
@@ -149,5 +161,5 @@
             </div>
         </div>
     </div>
-    <script src="{{asset('/js/user/orderAddress.js')}}"></script>
+    <script src="{{ asset('/js/user/orderAddress.js') }}"></script>
 @endsection

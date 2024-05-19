@@ -1,6 +1,15 @@
 @extends('templates.app')
 @section('content')
     <title>Đơn hàng</title>
+    <div class="container-fluid p-0 m-0">
+        <div class="row">
+            <div class="col-0 col-lg-1 col-xl-1">
+            </div>
+            <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                {{ Breadcrumbs::render('orderedCart') }}
+            </div>
+        </div>
+    </div>
     <div class="container-fluid mt-3 border-top" id="orderedCart">
         <div class="row">
             <div class="col-12 mt-3 text-center border-bottom">

@@ -1,5 +1,14 @@
 @extends('templates.app')
 @section('content')
+    <div class="container-fluid p-0 m-0">
+        <div class="row">
+            <div class="col-0 col-lg-1 col-xl-1">
+            </div>
+            <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                {{ Breadcrumbs::render('user.info') }}
+            </div>
+        </div>
+    </div>
     <!-- -- -->
     <form method="post" action="/update">
         @csrf
@@ -38,13 +47,15 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <label>Tỉnh/thành phô</label>
-                                        <select id="user_province" name="province_id" data-current-id="{{ $user->province_id }}">
+                                        <select id="user_province" name="province_id"
+                                            data-current-id="{{ $user->province_id }}">
 
                                         </select>
                                     </div>
                                     <div class="col-12">
                                         <label>Quận/huyện/thị xã</label>
-                                        <select id="user_district" name="district_id" data-current-id="{{ $user->district_id }}">
+                                        <select id="user_district" name="district_id"
+                                            data-current-id="{{ $user->district_id }}">
 
                                         </select>
                                     </div>
@@ -57,14 +68,14 @@
                                     <div class="col-12">
                                         <label>Số nhà, tên đường, thôn/ấp</label>
                                         <input id="user_address" name="address" class="form-control" type="text"
-                                        value="{{ $user->address }}" />
+                                            value="{{ $user->address }}" />
                                     </div>
                                 </div>
                             </div>
-                            
-                           
-                            
-                            
+
+
+
+
                         </div>
                         <div class="form-group">
                             <label>Số điện thoại</label>

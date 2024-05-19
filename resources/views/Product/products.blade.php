@@ -1,5 +1,12 @@
 @extends('templates.app')
 @section('content')
+    <div class="container-fluid p-0 m-0">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                {{ Breadcrumbs::render('products', $brand_id) }}
+            </div>
+        </div>
+    </div>
     <div class="container-fluid p-0">
         <div class="row border-bottom">
             <div class="col-12">
@@ -151,7 +158,8 @@
                                     </div>
                                 @endif
                                 <div class="text-start">
-                                    <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-code-compare"></i>
+                                    <button class="btn btn-sm btn-outline-primary"><i
+                                            class="fa-solid fa-code-compare"></i>
                                         So sánh</button>
                                 </div>
                             </div>

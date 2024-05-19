@@ -26,9 +26,9 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes(['verify' => true]);
 
-Route::get('', [PageController::class, 'index']);
+Route::get('', [PageController::class, 'index'])->name('home');
 Route::get('page/AboutUs', [PageController::class, 'aboutus'])->name('aboutus');
-Route::get('phone/{phone_id}/detail/{detail_id}/specs/{specs_id}', [ProductController::class, 'detail']);
+Route::get('phone/{phone_id}/detail/{detail_id}/specs/{specs_id}', [ProductController::class, 'detail'])->name('detail');
 Route::get('product/brand/{brand_id}', [ProductController::class, 'products'])->name('products');
 Route::get('product/tablet/brand/{brand_id}', [ProductController::class, 'tablet_products'])->name('tablet_products');
 Route::post('login', [AuthController::class, 'login'])->name('login');
