@@ -67,7 +67,10 @@ class AuthController extends Controller
             'name' => $request->input('fullname'),
             'address' => $request->input('address'),
             'gender' => $request->input('gender'),
-            'email' => $request->input('email')
+            'email' => $request->input('email'),
+            'province_id' => $request->input('province_id'),
+            'district_id' => $request->input('district_id'),
+            'ward_id' => $request->input('ward_id')
         ]);
         return redirect()->back();
     }
@@ -312,13 +315,13 @@ class AuthController extends Controller
 
     public function user_forgot_password_request() {
         if (Auth::check()) {
-            
+            // code
         }
         return response()->back();
     }
 
-    public function user_reset_password() {
-        
+    public function user_reset_password($token) {
+        // code
     }
 
     public function user_verify($token)

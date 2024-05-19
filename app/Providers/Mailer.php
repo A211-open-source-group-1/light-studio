@@ -58,5 +58,9 @@ class Mailer
 
         $mail->send();
     }
+
+    public static function sendResetPasswordEmail($email, $name, $token) {
+        
+    }
 }
 ?>

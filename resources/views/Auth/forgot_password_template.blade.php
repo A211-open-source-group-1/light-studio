@@ -34,7 +34,7 @@
     <div style="width: 100%">
         <h3>Xin chào quý khách hàng {{ $name }}, Hãy click vào đường link dưới đây để tiến hành reset mật khẩu!</h3>
         <div style="width: 100%" align="center">
-            <a href="light-studio.test/user_verify/{{$token}}"><span style="font-size: 20px">ẤN VÀO ĐƯỜNG LINK NÀY</span></a>
+            <a href="light-studio.test/user_reset_password/{{$token}}"><span style="font-size: 20px">ẤN VÀO ĐƯỜNG LINK NÀY</span></a>
         </div>
     </div>
 </body>

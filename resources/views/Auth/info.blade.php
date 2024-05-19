@@ -34,8 +34,37 @@
                         </div>
                         <div class="form-group">
                             <label>Địa chỉ</label>
-                            <input id="user_address" name="address" class="form-control" type="text"
-                                value="{{ $user->address }}" />
+                            <div class="container-fluid m-0 p-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>Tỉnh/thành phô</label>
+                                        <select id="user_province" name="province_id" data-current-id="{{ $user->province_id }}">
+
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label>Quận/huyện/thị xã</label>
+                                        <select id="user_district" name="district_id" data-current-id="{{ $user->district_id }}">
+
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label>Xã/phường</label>
+                                        <select id="user_ward" name="ward_id" data-current-id="{{ $user->ward_id }}">
+
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label>Số nhà, tên đường, thôn/ấp</label>
+                                        <input id="user_address" name="address" class="form-control" type="text"
+                                        value="{{ $user->address }}" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           
+                            
+                            
                         </div>
                         <div class="form-group">
                             <label>Số điện thoại</label>
@@ -81,4 +110,5 @@
             </div>
         </div>
     </form>
+    <script src="{{ asset('/js/user/editUserInfo.js') }}"></script>
 @endsection
