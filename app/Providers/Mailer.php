@@ -77,7 +77,7 @@ class Mailer
         $mail->CharSet = 'utf-8';
 
         $mail->setFrom('cskh@light-studio.io', 'Light Studio CSKH');
-        $mail->addAddress($email, $name);
+        $mail->addAddress($email, $name);   
 
         $mail->isHTML(true);
         $mail->Subject = '[LIGHT-STUDIO] Vui lòng xác nhận Email của bạn';
