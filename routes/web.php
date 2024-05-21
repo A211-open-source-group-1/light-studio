@@ -144,6 +144,10 @@ Route::get('/management/employee', [MEmployeeController::class, 'index'])->name(
 
 // MPost
 Route::get('/management/post', [MPostController::class, 'index'])->name('management_post');
+Route::get('/management/getpost/{post_id}', [MPostController::class, 'getPost'])->name('management_add_new_post');
+Route::post('/management/addnewpost', [MPostController::class, 'addNewPost'])->name('management_add_new_post');
+Route::post('/management/editpost', [MPostController::class, 'editPost'])->name('management_edit_post');
+Route::post('/management/deletepost', [MPostController::class, 'deletePost'])->name('management_delete_post');
 
 // MReview
 Route::get('/management/review', [MReviewController::class, 'index'])->name('management_review');
