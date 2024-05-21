@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Auth::routes(['verify' => true]);
 
 Route::get('', [PageController::class, 'index'])->name('home');
@@ -141,7 +142,10 @@ Route::get('/getWards/{district_id}', [AuthController::class, 'getWards'])->name
 
 // MEmployee
 Route::get('/management/employee', [MEmployeeController::class, 'index'])->name('management_employee');
-
+Route::get('/get-employee/{id}', [MEmployeeController::class, 'getEmployee'])->name('getEmployee');
+Route::post('editEmployee', [MEmployeeController::class, 'editEmployee'])->name('editEmployee');
+Route::get('/searchEmployee/{searchTerm}', [MEmployeeController::class, 'searchEmployee'])->name('searchEmployee');
+Route::post('deleteEmployee', [MEmployeeController::class, 'deleteEmployee'])->name('deleteEmployee');
 // MPost
 Route::get('/management/post', [MPostController::class, 'index'])->name('management_post');
 Route::get('/management/getpost/{post_id}', [MPostController::class, 'getPost'])->name('management_add_new_post');
