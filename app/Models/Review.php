@@ -15,7 +15,8 @@ class Review extends Model
         'user_id',
         'content',
         'rating',
-        'time'
+        'time',
+        'status'
     ];
     
     protected $table = 'review';

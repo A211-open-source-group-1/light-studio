@@ -15,6 +15,7 @@ use App\Http\Controllers\Management\MEmployeeController;
 use App\Http\Controllers\Management\MPostController;
 use App\Http\Controllers\Management\MProductImportController;
 use App\Http\Controllers\Management\MReviewController;
+use App\Http\Controllers\Management\MSliderController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -146,3 +147,6 @@ Route::get('/management/post', [MPostController::class, 'index'])->name('managem
 
 // MReview
 Route::get('/management/review', [MReviewController::class, 'index'])->name('management_review');
+
+// MSlider
+Route::get('/management/slider', [MSliderController::class, 'index'])->name('management_slider');

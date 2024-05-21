@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MPostController extends Controller
+class MSliderController extends Controller
 {
     public function index()
     {
-        return view('admin.post.post');
+        return view('admin.slider.slider');
     }
 }
