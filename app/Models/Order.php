@@ -33,11 +33,11 @@ class Order extends Model
     }
     public function OrderStatus()
     {
-        return $this->hasMany(OrderStatus::class, 'status_id', 'status_id');
+        return $this->belongsTo(OrderStatus::class, 'status_id', 'status_id');
     }
     public function PaymentMeThod()
     {
-        return $this->hasMany(PaymentMeThod::class, 'payment_method_id', 'payment_method_id');
+        return $this->belongsTo(PaymentMeThod::class, 'payment_method_id', 'payment_method_id');
     }
 
     public function OrderDetails() {

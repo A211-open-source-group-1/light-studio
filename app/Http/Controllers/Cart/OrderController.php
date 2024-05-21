@@ -19,4 +19,14 @@ class OrderController extends Controller
             ->paginate(8, ['*'], 'all');
         return view('cart.orders', compact('allOrders'));
     }
+
+    public function cancelOrder($order_id) {
+        if (Auth::check()) {
+            $order = Order::where('order_id', '=', $order_id)
+            ->first();
+            $order->OrderDetails()->delete();
+            $order->delete();
+        }
+        return redirect()->back();
+    }
 }

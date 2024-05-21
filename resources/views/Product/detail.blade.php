@@ -262,8 +262,7 @@
                         <div class="col-12 border-top mt-3 p-0">
                             <h5 class="mt-3">Xem thêm sản phẩm khác</h5>
                         </div>
-                        <div class="col-lg-2 col-0"></div>
-                        <div class="col-lg-8 col-12">
+                        <div class="col-lg-12 col-12">
                             @if ($other_phone_details->count() > 0)
                                 <div class="container-fluid">
                                     <div class="row text-center">
@@ -335,7 +334,6 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="col-lg-2 col-0"></div>
                     </div>
                 </div>
             </div>
@@ -459,12 +457,12 @@
     </div>
     <script>
         let max = <?php echo $reviews->count(); ?>;
-        let x = 5;
+        let x = 10;
         $(document).ready(function() {
-            if (5 >= max - 1) {
+            if (10 >= max - 1) {
                 $("#btnLoad").addClass("hiddenComp");
             }
-            for (let i = 1; i <= 5; ++i) {
+            for (let i = 1; i <= 10; ++i) {
                 $("#" + i.toString()).removeClass("hiddenComp");
             }
         });
@@ -479,7 +477,7 @@
                     scrollPosition += cardWidth; //update scroll position
                     $(".op-inner").animate({
                         scrollLeft: scrollPosition
-                    }, 600); //scroll left
+                    }, 450); //scroll left
                 }
             });
             $(".op-next").on("click", function() {
@@ -488,7 +486,7 @@
                     $(".op-inner").animate({
                             scrollLeft: scrollPosition
                         },
-                        600
+                        450
                     );
                 }
             });

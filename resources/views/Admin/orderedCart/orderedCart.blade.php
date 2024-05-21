@@ -51,7 +51,13 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <p>Ngày đặt hàng: {{ $order->order_date }}</p>
-                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                            <p>Tên người nhận hàng: {{ $order->receiver_name }}</p>
+                                            <p>Số điện thoại người nhận: {{ $order->receiver_phone }}</p>
+                                            <p>Địa chỉ đặt hàng: {{ $order->address }}</p>
+                                            <p>Hình thức thanh toán: {{ $order->PaymentMeThod->payment_method_name }}</p>
+                                            <p>Tổng tiền thanh toán:
+                                                {{ number_format($order->order_total_price, 0, ',', '.') }} VNĐ </p>
+                                            <p>Trạng thái: {{ $order->status_name }}</p>
                                         </div>
                                         <div class="card-footer">
                                             <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
@@ -61,8 +67,8 @@
                                             <button data-order-id="{{ $order->order_id }}" type="button"
                                                 class="btn btn-primary btn-processing" type="button">Xác nhận đơn
                                                 hàng</button>
-                                            <button data-order-id="{{ $order->order_id }}" data-order-type="processing" type="button"
-                                                class="btn btn-danger btn-cancel-order">Hủy đơn hàng</button>
+                                            <button data-order-id="{{ $order->order_id }}" data-order-type="processing"
+                                                type="button" class="btn btn-danger btn-cancel-order">Hủy đơn hàng</button>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +89,13 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <p>Thời gian xác nhận: {{ $order->order_proceed_date }}</p>
-                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                            <p>Tên người nhận hàng: {{ $order->receiver_name }}</p>
+                                            <p>Số điện thoại người nhận: {{ $order->receiver_phone }}</p>
+                                            <p>Địa chỉ đặt hàng: {{ $order->address }}</p>
+                                            <p>Hình thức thanh toán: {{ $order->PaymentMeThod->payment_method_name }}</p>
+                                            <p>Tổng tiền thanh toán:
+                                                {{ number_format($order->order_total_price, 0, ',', '.') }} VNĐ </p>
+                                            <p>Trạng thái: {{ $order->status_name }}</p>
                                         </div>
                                         <div class="card-footer">
                                             <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
@@ -92,8 +104,9 @@
                                                 hàng</button>
                                             <button data-order-id="{{ $order->order_id }}" type="button"
                                                 class="btn btn-primary btn-proceed">Xác nhận giao hàng</button>
-                                            <button data-order-id="{{ $order->order_id }}" data-order-type="proceed" type="button"
-                                                class="btn btn-danger btn-cancel-order">Hủy đơn hàng</button>
+                                            <button data-order-id="{{ $order->order_id }}" data-order-type="proceed"
+                                                type="button" class="btn btn-danger btn-cancel-order">Hủy đơn
+                                                hàng</button>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +127,13 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <p>Thời gian giao: {{ $order->order_delivering_date }}</p>
-                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                            <p>Tên người nhận hàng: {{ $order->receiver_name }}</p>
+                                            <p>Số điện thoại người nhận: {{ $order->receiver_phone }}</p>
+                                            <p>Địa chỉ đặt hàng: {{ $order->address }}</p>
+                                            <p>Hình thức thanh toán: {{ $order->PaymentMeThod->payment_method_name }}</p>
+                                            <p>Tổng tiền thanh toán:
+                                                {{ number_format($order->order_total_price, 0, ',', '.') }} VNĐ </p>
+                                            <p>Trạng thái: {{ $order->status_name }}</p>
                                         </div>
                                         <div class="card-footer">
                                             <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
@@ -143,7 +162,13 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <p>Thời gian nhận: {{ $order->order_delivered_date }}</p>
-                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                            <p>Tên người nhận hàng: {{ $order->receiver_name }}</p>
+                                            <p>Số điện thoại người nhận: {{ $order->receiver_phone }}</p>
+                                            <p>Địa chỉ đặt hàng: {{ $order->address }}</p>
+                                            <p>Hình thức thanh toán: {{ $order->PaymentMeThod->payment_method_name }}</p>
+                                            <p>Tổng tiền thanh toán:
+                                                {{ number_format($order->order_total_price, 0, ',', '.') }} VNĐ </p>
+                                            <p>Trạng thái: {{ $order->status_name }}</p>
                                         </div>
                                         <div class="card-footer">
                                             <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"
@@ -166,7 +191,13 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <p>Ngày đặt hàng: {{ $order->order_date }}</p>
-                                            <p>Tên khách hàng: {{ $order->name }}</p>
+                                            <p>Tên người nhận hàng: {{ $order->receiver_name }}</p>
+                                            <p>Số điện thoại người nhận: {{ $order->receiver_phone }}</p>
+                                            <p>Địa chỉ đặt hàng: {{ $order->address }}</p>
+                                            <p>Hình thức thanh toán: {{ $order->PaymentMeThod->payment_method_name }}</p>
+                                            <p>Tổng tiền thanh toán:
+                                                {{ number_format($order->order_total_price, 0, ',', '.') }} VNĐ </p>
+                                            <p>Trạng thái: {{ $order->status_name }}</p>
                                         </div>
                                         <div class="card-footer">
                                             <button data-order-id="{{ $order->order_id }}" data-bs-toggle="modal"

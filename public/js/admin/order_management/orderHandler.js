@@ -214,4 +214,19 @@ $(document).ready(function () {
             }
         })
     })
+
+    $(document).on('click', '.btn-cancel-order', function() {
+        $('#cancel-order-submit-btn').data('order-id', $(this).data('order-id'));
+    })
+
+    $(document).on('click', '#cancel-order-submit-btn', function() {
+        var order_id = $(this).data('order-id');
+        $.ajax({
+            url: '/cancelOrder/' + order_id,
+            type: 'GET',
+            success: function() {
+                location.reload();
+            }
+        })
+    })
 })

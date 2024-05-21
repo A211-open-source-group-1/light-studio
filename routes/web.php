@@ -63,12 +63,14 @@ Route::post('edit-user', [AuthController::class, 'editUser'])->name('editUser');
 Route::get('productsIndex/{type}', [MProductController::class, 'index'])->name('productsIndex');
 Route::get('/searchUser/{searchTerm}', [AuthController::class, 'searchUser'])->name('searchUser');
 
-Route::middleware('email.verified')->group(function() {
+Route::middleware('email.verified')->group(function () {
     Route::get('/orderedCart', [MOrderedCartController::class, 'index'])->name('orderedCart');
     Route::post('/proceedOrder', [CartController::class, 'proceedOrder'])->name('proceedOrder');
     Route::get('cart', [CartController::class, 'index'])->name('cart');
     Route::get('/addToCart/{details_id}', [CartController::class, 'addToCart'])->name('addToCart');
     Route::get('/onActionProduct/{id}/{action}', [CartController::class, 'onActionProduct'])->name('onActionProduct');
+    Route::get('/yourOrders', [OrderController::class, 'index'])->name('userOrders');
+    Route::get('/cancelOrder/{order_id}', [OrderController::class, 'cancelOrder'])->name('cancelOrder');
 });
 
 Route::get('index', [MPhoneCategoryController::class, 'index'])->name('indexCategory');
@@ -127,8 +129,6 @@ Route::get('/getOrdersInYear', [MChartController::class, 'getOrdersInYear'])->na
 Route::get('/getOrderReturnedRatioInYear', [MChartController::class, 'getOrderReturnedRatioInYear'])->name('getOrderReturnedRatioInYear');
 Route::get('/thankyouforyourorder/{order_id}', [CartController::class, 'thanks'])->name('thanks');
 Route::get('/errors', [CartController::class, 'errors'])->name('errors');
-
-Route::get('/yourOrders', [OrderController::class, 'index'])->name('userOrders');
 
 // Address API
 Route::get('/getAllProvinces', [AuthController::class, 'getAllProvinces'])->name('getAllProvinces');
