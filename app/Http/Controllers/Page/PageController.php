@@ -64,37 +64,6 @@ class PageController extends Controller
         return view('home', compact('productsType1', 'productsType2', 'productsType3', 'title'));
     }
 
-    public function login()
-    {
-
-    }
-
-    public function register()
-    {
-
-    }
-
-    public function aboutus()
-    {
-        return view('aboutus');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      */

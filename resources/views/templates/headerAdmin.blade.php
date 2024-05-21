@@ -35,9 +35,12 @@
             </div>
         </div>
         <a href="{{ route('indexAdmin') }}" id="home">Trang chủ</a>
+        <a href="{{ route('management_post') }}" id="post">Bài viết</a>
+        <a href="{{ route('management_review') }}" id="review">Nhận xét sản phẩm</a>
         <a href="{{ route('customer') }}" id="customer">Khách hàng</a>
+        <a href="{{ route('management_employee') }}" id="employee">Nhân viên</a>
         <a href="{{ route('brandIndex') }}" id="brand">Thương hiệu</a>
-        <a href="{{ route('indexCategory') }}" id="category">Loại điện thoại</a>
+        <a href="{{ route('indexCategory') }}" id="category" class="d-none">Loại điện thoại</a>
         <a href="{{ route('productsIndex', ['type' => 2]) }}" id="products">Điện thoại</a>
         <a href="{{ route('orderedCart') }}" id="orderedCart">Đơn hàng</a>
         <a href="{{ route('importProduct') }}" id="importProduct">Nhập hàng</a>

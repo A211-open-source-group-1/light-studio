@@ -11,7 +11,10 @@ use App\Http\Controllers\Management\MOrderedCartController;
 use App\Http\Controllers\Management\MPhoneCategoryController;
 use App\Http\Controllers\Management\MBrandController;
 use App\Http\Controllers\Management\MChartController;
+use App\Http\Controllers\Management\MEmployeeController;
+use App\Http\Controllers\Management\MPostController;
 use App\Http\Controllers\Management\MProductImportController;
+use App\Http\Controllers\Management\MReviewController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -134,3 +137,12 @@ Route::get('/errors', [CartController::class, 'errors'])->name('errors');
 Route::get('/getAllProvinces', [AuthController::class, 'getAllProvinces'])->name('getAllProvinces');
 Route::get('/getDistricts/{province_id}', [AuthController::class, 'getDistricts'])->name('getDistricts');
 Route::get('/getWards/{district_id}', [AuthController::class, 'getWards'])->name('getWards');
+
+// MEmployee
+Route::get('/management/employee', [MEmployeeController::class, 'index'])->name('management_employee');
+
+// MPost
+Route::get('/management/post', [MPostController::class, 'index'])->name('management_post');
+
+// MReview
+Route::get('/management/review', [MReviewController::class, 'index'])->name('management_review');
