@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
     <div class="sidebar">
         <div>
             <div class="card">
