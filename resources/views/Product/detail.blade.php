@@ -191,10 +191,14 @@
                             <h5 class="text-left mt-3">Thông tin sản phẩm</h5>
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div>
+                                    <div id="description" style="height: 400px; overflow: hidden">
                                         @php
                                             echo $current_details->parentPhone->description;
                                         @endphp
+                                    </div>
+                                    <div class="col-12 text-center mt-3">
+                                        <button class="btn btn-outline-dark" data-bs-target="#description-modal"
+                                            data-bs-toggle="modal">Xem thêm</button>
                                     </div>
                                 </div>
                             </div>
@@ -342,6 +346,29 @@
 
         </div>
     </div>
+    </div>
+
+    <div class="modal fade hide" id="description-modal" tabindex="-1" aria-labelledby="description-modal_label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thông tin sản phẩm</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="more_description">
+                        @php
+                            echo $current_details->parentPhone->description;
+                        @endphp
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade hide" id="ratingModal" tabindex="-1" aria-labelledby="ratingModal" aria-hidden="true">
