@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\PageModel;
 use App\Models\Phone;
 use App\Models\PhoneDetails;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -61,7 +62,13 @@ class PageController extends Controller
             ->orderBy('phone_details.created_at', 'desc')
             ->paginate(8);
         $title = 'Light Studio - Trang chủ';
-        return view('home', compact('productsType1', 'productsType2', 'productsType3', 'title'));
+
+        $posts = Post::select(['posts.*', 'users.name'])
+        ->join('users', 'users.id', '=', 'posts.user_id')
+        ->orderBy('posts.created_at', 'desc')
+        ->take(8)
+        ->get();
+        return view('home', compact('productsType1', 'productsType2', 'productsType3', 'posts', 'title'));
     }
 
     /**

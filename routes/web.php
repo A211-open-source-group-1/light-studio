@@ -16,6 +16,7 @@ use App\Http\Controllers\Management\MPostController;
 use App\Http\Controllers\Management\MProductImportController;
 use App\Http\Controllers\Management\MReviewController;
 use App\Http\Controllers\Management\MSliderController;
+use App\Http\Controllers\Page\PostController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -134,6 +135,10 @@ Route::get('/getOrdersInYear', [MChartController::class, 'getOrdersInYear'])->na
 Route::get('/getOrderReturnedRatioInYear', [MChartController::class, 'getOrderReturnedRatioInYear'])->name('getOrderReturnedRatioInYear');
 Route::get('/thankyouforyourorder/{order_id}', [CartController::class, 'thanks'])->name('thanks');
 Route::get('/errors', [CartController::class, 'errors'])->name('errors');
+
+// PostPage
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/post/{id}', [PostController::class, 'post'])->name('post');
 
 // Address API
 Route::get('/getAllProvinces', [AuthController::class, 'getAllProvinces'])->name('getAllProvinces');

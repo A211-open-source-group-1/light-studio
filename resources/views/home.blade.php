@@ -28,6 +28,123 @@
         </button>
     </div>
 
+    <div class="container-fluid">
+        <div class="row mt-3 border-top">
+            <div class="col-12 mt-3">
+                <h3>TIN TỨC</h3>
+            </div>
+            @if (isset($posts[0]))
+                <div class="col-12 col-xl-6 mt-3">
+                    <div class="container-fluid">
+                        <a href="{{route('post', $posts[0]['id'])}}" class="text-dark">
+                            <div class="row border p-3 rounded">
+                                <div class="col-6 w-50">
+                                    <img src="/image/{{ $posts[0]['thumbnail'] }}" class="w-100 rounded" style="height: 360px">
+                                </div>
+                                <div class="col-6 w-50">
+                                    <h4 class="text-truncate-xl">{{ $posts[0]['title'] }}</h4>
+                                    <p class="fst-italic m-0 p-0"> - {{ $posts[0]['name'] }}</p>
+                                                <p class="fst-italic m-0 p-0">
+                                                    {{ date('d-m-Y', strtotime($posts[0]['created_at'])) }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            @endif
+            <div class="col-12 col-xl-6 mt-3">
+                <div class="container-fluid">
+                    <div class="row m-0 p-0">
+                        <div class="col-12">
+                            <p class="m-0 p-0 fw-bold border-bottom text-end"> <a href="{{ route('posts') }}" class="text-dark">> XEM
+                                    THÊM</a></p>
+                        </div>
+                        @if (isset($posts[1]))
+                            <div class="col-12 col-xl-6 mt-3">
+                                <div class="container-fluid h-100">
+                                    <a href="{{route('post', $posts[1]['id'])}}" class="text-dark">
+                                        <div class="row border p-2 rounded">
+                                            <div class="col-6 w-50">
+                                                <img src="/image/{{ $posts[1]['thumbnail'] }}" class="w-100 rounded"
+                                                    style="height: 150px">
+                                            </div>
+                                            <div class="col-6 w-50">
+                                                <p class="text-truncate-x">{{ $posts[1]['title'] }}</p>
+                                                <p class="fst-italic m-0 p-0"> - {{ $posts[1]['name'] }}</p>
+                                                <p class="fst-italic m-0 p-0">
+                                                    {{ date('d-m-Y', strtotime($posts[1]['created_at'])) }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+                        @if (isset($posts[2]))
+                            <div class="col-12 col-xl-6 mt-3">
+                                <div class="container-fluid h-100">
+                                    <a href="{{route('post', $posts[2]['id'])}}" class="text-dark">
+                                        <div class="row border p-2 rounded">
+                                            <div class="col-6 w-50">
+                                                <img src="/image/{{ $posts[2]['thumbnail'] }}" class="w-100 rounded"
+                                                    style="height: 150px">
+                                            </div>
+                                            <div class="col-6 w-50">
+                                                <p class="text-truncate-x">{{ $posts[2]['title'] }}</p>
+                                                <p class="fst-italic m-0 p-0"> - {{ $posts[2]['name'] }}</p>
+                                                <p class="fst-italic m-0 p-0">
+                                                    {{ date('d-m-Y', strtotime($posts[2]['created_at'])) }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+                        @if (isset($posts[3]))
+                            <div class="col-12 col-xl-6 mt-3">
+                                <div class="container-fluid h-100">
+                                    <a href="{{route('post', $posts[3]['id'])}}" class="text-dark">
+                                        <div class="row border p-2 rounded">
+                                            <div class="col-6 w-50">
+                                                <img src="/image/{{ $posts[3]['thumbnail'] }}" class="w-100 rounded"
+                                                    style="height: 150px">
+                                            </div>
+                                            <div class="col-6 w-50">
+                                                <p class="text-truncate-x">{{ $posts[3]['title'] }}</p>
+                                                <p class="fst-italic m-0 p-0"> - {{ $posts[3]['name'] }}</p>
+                                                <p class="fst-italic m-0 p-0">
+                                                    {{ date('d-m-Y', strtotime($posts[3]['created_at'])) }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+                        @if (isset($posts[4]))
+                            <div class="col-12 col-xl-6 mt-3">
+                                <div class="container-fluid h-100">
+                                    <a href="{{route('post', $posts[4]['id'])}}" class="text-dark">
+                                        <div class="row border p-2 rounded">
+                                            <div class="col-6 w-50">
+                                                <img src="/image/{{ $posts[4]['thumbnail'] }}" class="w-100 rounded"
+                                                    style="height: 150px">
+                                            </div>
+                                            <div class="col-6 w-50">
+                                                <p class="text-truncate-x">{{ $posts[4]['title'] }}</p>
+                                                <p class="fst-italic m-0 p-0"> - {{ $posts[4]['name'] }}</p>
+                                                <p class="fst-italic m-0 p-0">
+                                                    {{ date('d-m-Y', strtotime($posts[4]['created_at'])) }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid mt-3 border-top border-bottom">
         @if ($productsType1)
             <div class="row">

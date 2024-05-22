@@ -273,3 +273,17 @@ input[type=number] {
 #carouselExampleControls img {
   max-height: 100%;
 }
+
+.text-truncate-x {
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.text-truncate-xl {
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

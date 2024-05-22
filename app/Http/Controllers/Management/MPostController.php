@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use DOMDocument;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MPostController extends Controller
 {
@@ -26,6 +27,7 @@ class MPostController extends Controller
 
         $newPost->title = $request->title;
         $newPost->thumbnail = $thumbnailFileName;
+        $newPost->user_id = Auth::user()->id;
 
         $content = $request->content;
         if ($content == '') {
