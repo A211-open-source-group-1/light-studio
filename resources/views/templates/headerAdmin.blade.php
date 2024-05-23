@@ -34,7 +34,7 @@
             </div>
         </div>
         <a href="{{ route('indexAdmin') }}" id="home">Trang chủ</a>
-        <a href="{{ route('management_slider') }}" id="slider">Slider</a>
+        <a href="{{ route('management_slider') }}" id="slider" class="d-none">Slider</a>
         <a href="{{ route('management_post') }}" id="post">Bài viết</a>
         <a href="{{ route('management_review') }}" id="review">Nhận xét sản phẩm</a>
         <a href="{{ route('customer') }}" id="customer">Khách hàng</a>
