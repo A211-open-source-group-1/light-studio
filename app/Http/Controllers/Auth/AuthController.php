@@ -213,7 +213,7 @@ class AuthController extends Controller
     }
     public function customer()
     {
-        $user = User::all();
+        $user = User::where('role_id', '=', null)->get();
         return view('Admin.customer.customer', compact('user'));
     }
     public function deleteUser(Request $request)
