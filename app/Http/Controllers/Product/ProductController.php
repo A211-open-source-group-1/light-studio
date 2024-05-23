@@ -28,7 +28,7 @@ class ProductController extends Controller
         $other_details_specs = $current_details->parentPhone()->first()->Specifics()->get();
         $other_details_colors = $current_details->parentSpecific()->first()->detailsColorsOfThisSpecs();
         $images = $current_details->childImages()->get();
-        $reviews = $current_details->Reviews()->get();
+        $reviews = $current_details->Reviews()->where('status', '=', 'accepted')->get();
 
         $other_phone_details = PhoneDetails::where('phone_details_id', '!=', $current_details->phone_details_id)
             ->where(function ($query) use ($current_details) {
@@ -263,6 +263,7 @@ class ProductController extends Controller
         $review->phone_details_id = $request->phone_details_id;
         $review->user_id = $user->id;
         $review->content = $request->content;
+        $review->status = 'pending';
         if ($request->number_rating != null) {
             $review->rating = $request->number_rating;
         } else {

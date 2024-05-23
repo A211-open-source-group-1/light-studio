@@ -160,6 +160,8 @@ Route::post('/management/deletepost', [MPostController::class, 'deletePost'])->n
 
 // MReview
 Route::get('/management/review', [MReviewController::class, 'index'])->name('management_review');
+Route::post('/management/review/accept', [MReviewController::class, 'acceptReview'])->name('management_accept_review');
+Route::post('/management/review/decline', [MReviewController::class, 'declineReview'])->name('management_decline_review');
 
 // MSlider
 Route::get('/management/slider', [MSliderController::class, 'index'])->name('management_slider');
