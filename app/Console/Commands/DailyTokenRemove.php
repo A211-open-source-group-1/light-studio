@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Token;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class DailyTokenRemove extends Command
@@ -18,13 +20,13 @@ class DailyTokenRemove extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Run task DailyTokenRemove';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        //
+        Token::where('created_at', '<=', Carbon::now()->subHours(24))->delete();
     }
 }

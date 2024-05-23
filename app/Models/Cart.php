@@ -16,7 +16,6 @@ class Cart extends Model
     ];
     protected $table = 'cart';
     protected $primaryKey = 'cart_id';
-    public $timestamps = false;
 
     public function parentUser() {
         return $this->belongsTo(User::class, 'user_id', 'id');
