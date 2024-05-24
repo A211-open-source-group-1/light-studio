@@ -19,9 +19,15 @@
                 </div>
             </div>
             <div class="row">
+
                 <div class="col-3">
                 </div>
                 <div class="col-6">
+                    @if (Session::has('msg'))
+                        <div class="alert alert-success w-100 mt-1" role="alert">
+                            <p class="fw-bold">{{ Session::get('msg') }}</p>
+                        </div>
+                    @endif
                     <div class="form">
                         <div class="form-group">
                             <label>ID tài khoản</label>

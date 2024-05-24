@@ -72,7 +72,7 @@ class AuthController extends Controller
             'district_id' => $request->input('district_id'),
             'ward_id' => $request->input('ward_id')
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('msg', 'Chỉnh sửa tài khoản thành công!');
     }
     public function changePassword()
     {
@@ -251,7 +251,7 @@ class AuthController extends Controller
             'gender' => $request->input('gender'),
             'email' => $request->input('email')
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('msg', 'Chỉnh sửa thông tin thành công!');
     }
     public function searchUser($searchTerm)
     {
