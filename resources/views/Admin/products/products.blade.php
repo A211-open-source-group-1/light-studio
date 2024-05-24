@@ -61,7 +61,9 @@
                     @endforeach
                 </tbody>
             </table>
-
+            <div class="col-12 text-center">
+                {!! $jPhones->links() !!}
+            </div>
         </div>
     </div>
 @endsection

@@ -32,7 +32,7 @@ class MProductController extends Controller
                 ->leftJoin('phone_category', 'phone_category.category_id', '=', 'phones.category_id')
                 ->leftJoin('phone_os', 'phone_os.os_id', '=', 'phones.os_id')
                 ->where('phones.category_id', '=', $type)
-                ->get();
+                ->paginate(10);
             return view('admin.products.products', compact('jPhones'));
         } catch (Exception $ex) {
             return $ex;
