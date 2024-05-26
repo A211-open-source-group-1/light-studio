@@ -51,6 +51,7 @@ Route::get('/user_verify/{token}', [AuthController::class, 'user_verify'])->name
 Route::get('/user_verify_request', [AuthController::class, 'user_verify_request'])->name('user_verify_request');
 Route::get('/user_reset_password/{token}', [AuthController::class, 'user_reset_password'])->name('user_reset_password');
 Route::get('/user_forgot_password_request/{user_id}', [AuthController::class, 'user_forgot_password_request'])->name('user_forgot_password_requests');
+Route::get('identify', [AuthController::class, 'identify'])->name('identify');
 
 Route::middleware('user.logged_in')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
@@ -58,10 +59,8 @@ Route::middleware('user.logged_in')->group(function () {
     Route::post('/update', [AuthController::class, 'update'])->name('update');
     Route::get('Change/Password', [AuthController::class, 'ChangePassword'])->name('ChangePassword');
     Route::post('/handleChangePassword', [AuthController::class, 'handleChangePassword'])->name('handleChangePassword');
-    Route::get('identify', [AuthController::class, 'identify'])->name('identify');
     Route::post('findNumberPhone', [AuthController::class, 'findNumberPhone'])->name('findNumberPhone');
     Route::get('resetPassword', [AuthController::class, 'resetPassword'])->name('resetPassword');
-
     Route::get('/thankyouforyourorder/{order_id}', [CartController::class, 'thanks'])->name('thanks');
     Route::get('/errors', [CartController::class, 'errors'])->name('errors');
 });
