@@ -47,6 +47,11 @@ Route::get('search', [ProductController::class, 'search'])->name('search');
 Route::post('filter', [ProductController::class, 'filter'])->name('filter');
 Route::get('filter', [ProductController::class, 'filter'])->name('filter');
 
+Route::get('/user_verify/{token}', [AuthController::class, 'user_verify'])->name('user_verify');
+Route::get('/user_verify_request', [AuthController::class, 'user_verify_request'])->name('user_verify_request');
+Route::get('/user_reset_password/{token}', [AuthController::class, 'user_reset_password'])->name('user_reset_password');
+Route::get('/user_forgot_password_request/{user_id}', [AuthController::class, 'user_forgot_password_request'])->name('user_forgot_password_requests');
+
 Route::middleware('user.logged_in')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('Auth/info', [AuthController::class, 'User_info'])->name('user.info');
@@ -56,11 +61,7 @@ Route::middleware('user.logged_in')->group(function () {
     Route::get('identify', [AuthController::class, 'identify'])->name('identify');
     Route::post('findNumberPhone', [AuthController::class, 'findNumberPhone'])->name('findNumberPhone');
     Route::get('resetPassword', [AuthController::class, 'resetPassword'])->name('resetPassword');
-    Route::get('/user_verify/{token}', [AuthController::class, 'user_verify'])->name('user_verify');
-    Route::get('/user_verify_request', [AuthController::class, 'user_verify_request'])->name('user_verify_request');
-    Route::get('/user_reset_password/{token}', [AuthController::class, 'user_reset_password'])->name('user_reset_password');
-    Route::get('/user_forgot_password_request/{user_id}', [AuthController::class, 'user_forgot_password_request'])->name('user_forgot_password_requests');
-    
+
     Route::get('/thankyouforyourorder/{order_id}', [CartController::class, 'thanks'])->name('thanks');
     Route::get('/errors', [CartController::class, 'errors'])->name('errors');
 });
