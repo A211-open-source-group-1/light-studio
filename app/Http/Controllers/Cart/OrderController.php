@@ -16,6 +16,7 @@ class OrderController extends Controller
             ->join('payment_method', 'payment_method.payment_method_id', '=', 'order.payment_method_id')
             ->join('order_status', 'order_status.status_id', '=', 'order.status_id')
             ->where('users.id', '=', Auth::user()->id)
+            ->orderBy('created_at', 'desc')
             ->paginate(8, ['*'], 'all');
         return view('cart.orders', compact('allOrders'));
     }
