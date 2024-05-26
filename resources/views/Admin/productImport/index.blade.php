@@ -155,7 +155,7 @@
                                             <div class="col-12 col-lg-6 mt-2">
                                                 <label>Giá nhập (VNĐ)</label>
                                                 <input class="form-control" name="price[]" value="0" min="0"
-                                                    required>
+                                                    required type="number">
                                             </div>
                                         </div>
                                     </div>
