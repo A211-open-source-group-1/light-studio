@@ -44,8 +44,8 @@
                                                 <button class="btn btn-outline-light align-middle border-0"
                                                     onclick="DecreaseFromCart({{ $row->GetId() }})" type="button"><span
                                                         class="text-dark">-</span></button>
-                                                <input type="number" class="form-control align-middle" min="1"
-                                                    value="{{ $currentQuantity }}">
+                                                <input type="number" class="form-control align-middle " min="1"
+                                                    value="{{ $currentQuantity }}" disabled>
                                                 <button class="btn btn-outline-light align-middle border-0"
                                                     onclick="IncreaseFromCart({{ $row->GetId() }})" type="button"><span
                                                         class="text-dark">+</span></button>
