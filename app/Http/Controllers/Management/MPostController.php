@@ -80,7 +80,7 @@ class MPostController extends Controller
 
     public function getPost($post_id)
     {
-        $post = Post::where('id', '=', $post_id)->first()->get();
+        $post = Post::where('id', '=', $post_id)->first();
         return response()->json($post);
     }
 }

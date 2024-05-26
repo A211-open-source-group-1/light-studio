@@ -89,16 +89,16 @@ $(document).ready(function () {
             type: 'GET',
             success: function (response) {
                 $('#edit_thumbnail_holder').append('<div class="col-3 p-1 position-relative">' +
-                    '<img id="new_thumbnail_img" src="/image/' + response[0].thumbnail + '" class="h-100 w-100 border rounded" style="z-index: 1001">' +
+                    '<img id="new_thumbnail_img" src="/image/' + response.thumbnail + '" class="h-100 w-100 border rounded" style="z-index: 1001">' +
                     '<label for="new_thumbnail">' +
                     '<button class="btn position-absolute top-0 end-0 rounded-circle bg-dark mb-3 change-thumbnail-btn" style="z-index: 998" type="button" data-thumbnail-type="insert"><i class="fa-solid fa-rotate text-light"></i></button>' +
                     '<input type="file" class="form-control d-none" id="new_thumbnail" name="thumbnail">' +
                     '</label>' +
                     '</div>'
                 )
-                $('#id').val(response[0].id);
-                $('#title').val(response[0].title);
-                $('#edit_content').summernote('code', response[0].content);
+                $('#id').val(response.id);
+                $('#title').val(response.title);
+                $('#edit_content').summernote('code', response.content);
             }
         })
     })
