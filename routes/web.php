@@ -63,6 +63,7 @@ Route::middleware('user.logged_in')->group(function () {
     Route::post('/handleChangePassword', [AuthController::class, 'handleChangePassword'])->name('handleChangePassword');
     Route::get('/thankyouforyourorder/{order_id}', [CartController::class, 'thanks'])->name('thanks');
     Route::get('/errors', [CartController::class, 'errors'])->name('errors');
+    Route::post('/userRatingProduct', [ProductController::class, 'userRatingProduct'])->name('userRatingProduct');
 });
 
 Route::middleware('email.verified')->group(function () {
@@ -105,7 +106,7 @@ Route::middleware('employee.verified')->group(function () {
     Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
     Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');
     Route::get('/editColors/{phone_id}', [MProductController::class, 'editColors'])->name('editColors');
-    Route::post('/userRatingProduct', [ProductController::class, 'userRatingProduct'])->name('userRatingProduct');
+    
     Route::get('/editSelectedColor/{color_id}', [MProductController::class, 'editSelectedColor'])->name('editSelectedColor');
     Route::POST('/editSelectedColorSubmit', [MProductController::class, 'editSelectedColorSubmit'])->name('editSelectedColorSubmit');
     Route::post('/addColorSubmit', [MProductController::class, 'addColorSubmit'])->name('addColorSubmit');
