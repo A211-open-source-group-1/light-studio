@@ -19,7 +19,7 @@ class CheckVerifiedUser
         if (Auth::check() && Auth::user()->email_verified_at != null) {
             return $next($request);
         } else {
-            return redirect()->back();
+            return redirect('/')->with('msg', 'Vui lòng xác thực tài khoản để xử dụng chức năng này!');;
         }
     }
 }

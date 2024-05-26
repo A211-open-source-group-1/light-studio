@@ -19,6 +19,6 @@ class IsEmployee
         if (Auth::check() && Auth::user()->role_id != null) {
             return $next($request);
         }
-        return redirect()->back();
+        return redirect('/admin')->with('msg', 'Có lỗi xảy ra!');
     }
 }
