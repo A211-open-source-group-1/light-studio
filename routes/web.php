@@ -76,9 +76,9 @@ Route::middleware('email.verified')->group(function () {
 });
 
 
+Route::post('authAdmin', [AuthController::class, 'authAdmin'])->name('authAdmin');
 
 Route::middleware('employee.verified')->group(function () {
-    Route::post('authAdmin', [AuthController::class, 'authAdmin'])->name('authAdmin');
     Route::get('logoutAdmin', [AuthController::class, 'logoutAdmin'])->name('logoutAdmin');
     Route::get('customer', [AuthController::class, 'customer'])->name('customer');
     Route::get('indexAdmin', [MChartController::class, 'index'])->name('indexAdmin');

@@ -206,10 +206,12 @@ class AuthController extends Controller
 
         $credentials = $request->only('phone_number', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->route('indexAdmin');
-        } else {
-            return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
+            if (Auth::user()->role_id != null)
+                return redirect()->route('indexAdmin');
         }
+        Session::flush();
+        Auth::logout();
+        return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
     }
     public function customer()
     {

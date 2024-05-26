@@ -15,7 +15,7 @@
         "laravel/ui": "^4.5",
         "nguyenary/vietnam-address-api": "^1.1",
         "phpmailer/phpmailer": "^6.9",
-        "srmklive/paypal": "~3.0"
+        "   ": "~3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
