@@ -76,7 +76,6 @@ Route::middleware('email.verified')->group(function () {
     Route::get('/cancelOrder/{order_id}', [OrderController::class, 'cancelOrder'])->name('cancelOrder');
 });
 
-
 Route::post('authAdmin', [AuthController::class, 'authAdmin'])->name('authAdmin');
 
 Route::middleware('employee.verified')->group(function () {
@@ -106,7 +105,7 @@ Route::middleware('employee.verified')->group(function () {
     Route::get('/editPhone/{phone_id}', [MProductController::class, 'editPhone'])->name('editPhone');
     Route::post('/editPhoneSubmit', [MProductController::class, 'editPhoneSubmit'])->name('editPhoneSubmit');
     Route::get('/editColors/{phone_id}', [MProductController::class, 'editColors'])->name('editColors');
-    
+
     Route::get('/editSelectedColor/{color_id}', [MProductController::class, 'editSelectedColor'])->name('editSelectedColor');
     Route::POST('/editSelectedColorSubmit', [MProductController::class, 'editSelectedColorSubmit'])->name('editSelectedColorSubmit');
     Route::post('/addColorSubmit', [MProductController::class, 'addColorSubmit'])->name('addColorSubmit');

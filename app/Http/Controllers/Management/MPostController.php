@@ -53,7 +53,7 @@ class MPostController extends Controller
     public function editPost(Request $request)
     {
         $editedPost = Post::where('id', '=', $request->post_id)->first();
-        $thumbnailFileName = 'no_image.png';
+        $thumbnailFileName = $editedPost->thumbnail;
         if ($request->file('thumbnail') != null) {
             $thumbnailFileName = 'thumbnail_' . uniqId() . '.' . $request->file('thumbnail')->extension();
             $request->file('thumbnail')->storeAs('image', $thumbnailFileName, 'imageUpload');
