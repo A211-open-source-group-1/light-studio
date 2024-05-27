@@ -37,15 +37,15 @@ $(document).ready(function () {
         $('#new_category_name').empty();
         $('#new_os_name').empty();
         $('#new_brand_name').select2({
-            dropdownParent: $('#addPhone .modal-content'),
+            dropdownParent: $('#addPhoneHolder'),
             width: '100%'
         });
         $('#new_category_name').select2({
-            dropdownParent: $('#addPhone .modal-content'),
+            dropdownParent: $('#addPhoneHolder'),
             width: '100%'
         });
         $('#new_os_name').select2({
-            dropdownParent: $('#addPhone .modal-content'),
+            dropdownParent: $('#addPhoneHolder'),
             width: '100%'
         });
         $.ajax({

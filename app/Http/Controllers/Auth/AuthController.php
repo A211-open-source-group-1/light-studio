@@ -126,34 +126,37 @@ class AuthController extends Controller
 
         $password = $request->input('password');
         $repassword = $request->input('repassword');
-
-        if ($password === $repassword) {
-            $user = new User();
-            $user->phone_number = $request->input('phoneNumber');
-            $user->name = $request->input('fullname');
-            $user->gender = $request->input('gender');
-            $user->province_id = $request->input('province_id');
-            $user->district_id = $request->input('district_id');
-            $user->ward_id = $request->input('ward_id');
-            $user->address = $request->input('address');
-            $user->user_point = 0;
-            $user->email = $request->input('email');
-            $user->password = bcrypt($request->input('password'));
-            $user->save();
-
-            $token = base64_encode($user->email);
-            $new_token = new Token();
-            $new_token->token = $token;
-            $new_token->save();
-
-            $email = $user->email;
-            $name = $user->name;
-
-            Mailer::sendVerifyEmail($email, $name, $token);
-
-            return view('auth.verified_email', compact('email'));
-        } else {
-            return redirect()->back()->withErrors('Mật khẩu không chính xác');
+        try {
+            if ($password === $repassword) {
+                $user = new User();
+                $user->phone_number = $request->input('phoneNumber');
+                $user->name = $request->input('fullname');
+                $user->gender = $request->input('gender');
+                $user->province_id = $request->input('province_id');
+                $user->district_id = $request->input('district_id');
+                $user->ward_id = $request->input('ward_id');
+                $user->address = $request->input('address');
+                $user->user_point = 0;
+                $user->email = $request->input('email');
+                $user->password = bcrypt($request->input('password'));
+                $user->save();
+    
+                $token = base64_encode($user->email);
+                $new_token = new Token();
+                $new_token->token = $token;
+                $new_token->save();
+    
+                $email = $user->email;
+                $name = $user->name;
+    
+                Mailer::sendVerifyEmail($email, $name, $token);
+    
+                return view('auth.verified_email', compact('email'));
+            } else {
+                return redirect()->back()->withErrors('Mật khẩu không chính xác');
+            }
+        } catch (Exception $exception) {
+            return redirect()->back()->with('msg', 'Đăng ký không thành công!');
         }
     }
 
