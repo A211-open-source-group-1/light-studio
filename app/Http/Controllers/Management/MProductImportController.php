@@ -71,7 +71,7 @@ class MProductImportController extends Controller
             $newImportReceiptDetails->total_price = $newImportReceiptDetails->import_quantity * $newImportReceiptDetails->price;
             $newImportReceiptDetails->save();
         }
-        return response()->back();
+        return redirect()->back();
     }
 
     public function printImportReceiptPdf($receipt_id)
