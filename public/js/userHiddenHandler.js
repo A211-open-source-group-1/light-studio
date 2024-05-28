@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     const stars = document.querySelectorAll('.rating');
-    let ratingValue = 0; 
+    let ratingValue = 0;
     stars.forEach(star => {
         star.addEventListener('click', function () {
             const index = this.getAttribute('data-index');
             updateStars(index);
-            ratingValue = index; 
-            console.log('Current rating:', ratingValue); 
+            ratingValue = index;
+            console.log('Current rating:', ratingValue);
             document.querySelector('.number_rating').value = ratingValue;
         });
     });
@@ -204,14 +204,14 @@ function check_Login() {
             url: '/login',
             type: 'POST',
             data: form.serialize(),
-            success: function(response) {
+            success: function (response) {
                 if (response.isLoginSucceed == true) {
                     location.reload();
                 } else {
                     $('#loginFailed').removeClass('d-none');
                 }
             },
-            error: function() {
+            error: function () {
                 alert('dcm')
             }
         })

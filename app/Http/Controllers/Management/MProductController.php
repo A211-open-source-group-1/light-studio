@@ -408,11 +408,11 @@ class MProductController extends Controller
         $phone = Phone::where('phone_id', '=', $phone_id)
             ->first();
         $details = PhoneDetails::select('*')
-        ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
-        ->join('phone_specifics', 'phone_details.specific_id', '=', 'phone_specifics.specific_id')
-        ->join('phone_colors', 'phone_details.color_id', '=', 'phone_colors.color_id')
-        ->where('phone_details.phone_id', '=', $phone->phone_id)
-        ->get();
+            ->join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
+            ->join('phone_specifics', 'phone_details.specific_id', '=', 'phone_specifics.specific_id')
+            ->join('phone_colors', 'phone_details.color_id', '=', 'phone_colors.color_id')
+            ->where('phone_details.phone_id', '=', $phone->phone_id)
+            ->get();
         $specs = $phone->Specifics()->get();
         return response()->json([$details, $specs]);
     }

@@ -11,7 +11,8 @@ class PhoneOs extends Model
     protected $primaryKey = 'os_id';
     public $timestamps = false;
 
-    public function Phones() {
+    public function Phones()
+    {
         return $this->hasMany(Phone::class, 'os_id', 'os_id');
     }
 }

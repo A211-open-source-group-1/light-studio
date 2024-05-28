@@ -813,17 +813,17 @@ $(document).ready(function () {
         $.ajax({
             url: '/getDetailsList/' + phone_id,
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 for (let i = 0; i < response[0].length; ++i) {
-                    $('#bo_new_color_select').append('<option value="' + response[0][i].phone_details_id + '">' + 
-                    '[' + response[0][i].phone_details_id + '] ' +response[0][i].phone_name + ' ' + response[0][i].specific_name + ' ' + response[0][i].color_name +
-                    '</option>')
+                    $('#bo_new_color_select').append('<option value="' + response[0][i].phone_details_id + '">' +
+                        '[' + response[0][i].phone_details_id + '] ' + response[0][i].phone_name + ' ' + response[0][i].specific_name + ' ' + response[0][i].color_name +
+                        '</option>')
                 }
 
                 for (let i = 0; i < response[1].length; ++i) {
-                    $('#bo_new_specs_select').append('<option value="' + response[1][i].specific_id + '">' + 
-                    response[1][i].specific_name +
-                    '</option>')
+                    $('#bo_new_specs_select').append('<option value="' + response[1][i].specific_id + '">' +
+                        response[1][i].specific_name +
+                        '</option>')
                 }
             }
         })

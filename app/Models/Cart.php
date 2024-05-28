@@ -17,11 +17,13 @@ class Cart extends Model
     protected $table = 'cart';
     protected $primaryKey = 'cart_id';
 
-    public function parentUser() {
+    public function parentUser()
+    {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function parentPhoneDetails() {
+    public function parentPhoneDetails()
+    {
         return $this->belongsTo(PhoneDetails::class, 'phone_details_id', 'phone_details_id');
     }
 }

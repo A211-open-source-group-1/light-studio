@@ -64,10 +64,10 @@ class PageController extends Controller
         $title = 'Light Studio - Trang chủ';
 
         $posts = Post::select(['posts.*', 'users.name'])
-        ->join('users', 'users.id', '=', 'posts.user_id')
-        ->orderBy('posts.created_at', 'desc')
-        ->take(8)
-        ->get();
+            ->join('users', 'users.id', '=', 'posts.user_id')
+            ->orderBy('posts.created_at', 'desc')
+            ->take(8)
+            ->get();
         return view('home', compact('productsType1', 'productsType2', 'productsType3', 'posts', 'title'));
     }
 

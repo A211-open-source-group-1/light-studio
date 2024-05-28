@@ -20,11 +20,13 @@ class ImportReceiptDetails extends Model
     protected $table = 'import_receipts_details';
     protected $primaryKey = 'id';
 
-    public function ImportReceipt() {
+    public function ImportReceipt()
+    {
         return $this->belongsTo(ImportReceipt::class, 'import_receipt_id');
     }
 
-    public function PhoneDetails() {
+    public function PhoneDetails()
+    {
         return $this->belongsTo(PhoneDetails::class, 'phone_details_id', 'phone_details_id');
     }
 }

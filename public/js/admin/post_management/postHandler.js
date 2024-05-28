@@ -47,17 +47,17 @@ $(document).ready(function () {
         }
     })
 
-    $(document).on('click', '.delete-post-btn', function() {
+    $(document).on('click', '.delete-post-btn', function () {
         var post_id = $(this).data('post-id');
         $('#post_id').val(post_id);
     })
 
-    $(document).on('click', '#confirmDelete', function() {
+    $(document).on('click', '#confirmDelete', function () {
         $.ajax({
             url: '/management/deletepost',
             type: 'POST',
             data: $('#deletePostForm').serialize(),
-            success: function() {
+            success: function () {
                 location.reload();
             }
         })

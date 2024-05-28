@@ -140,17 +140,17 @@ class AuthController extends Controller
                 $user->email = $request->input('email');
                 $user->password = bcrypt($request->input('password'));
                 $user->save();
-    
+
                 $token = base64_encode($user->email);
                 $new_token = new Token();
                 $new_token->token = $token;
                 $new_token->save();
-    
+
                 $email = $user->email;
                 $name = $user->name;
-    
+
                 Mailer::sendVerifyEmail($email, $name, $token);
-    
+
                 return view('auth.verified_email', compact('email'));
             } else {
                 return redirect()->back()->withErrors('Mật khẩu không chính xác');

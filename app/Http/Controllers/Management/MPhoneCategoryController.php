@@ -36,7 +36,7 @@ class MPhoneCategoryController extends Controller
             ->orWhere('category_id', 'like', '%' . $searchItem . '%')
             ->orWhere('category_description', 'like', '%' . $searchItem . '%')
             ->get();
-       if ($phoneCategorys->isEmpty()) {
+        if ($phoneCategorys->isEmpty()) {
             $phoneCategorys = PhoneCategory::all();
             return response()->json($phoneCategorys);
         }
@@ -68,7 +68,7 @@ class MPhoneCategoryController extends Controller
         }
         return response()->json(['message' => 'Không tìm thấy'], 404);
     }
-    
+
     public function editCategory(Request $request)
     {
         $request->validate([
@@ -77,14 +77,14 @@ class MPhoneCategoryController extends Controller
             'CategoryName.required' => 'Vui lòng nhập tên loại sản phẩm.',
         ]);
         try {
-            $phoneCategory = PhoneCategory::where('category_id','=',$request->category_id)->first();
+            $phoneCategory = PhoneCategory::where('category_id', '=', $request->category_id)->first();
             $phoneCategory->category_name = $request->CategoryName;
             $phoneCategory->category_description = $request->descriptionCategory;
             $phoneCategory->save();
             return redirect()->back()->with('successful', 'Sửa thành công');
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
-        } 
+        }
     }
     // public function deleteCategory()
 

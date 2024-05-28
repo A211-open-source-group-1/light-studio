@@ -12,7 +12,8 @@ class MSliderController extends Controller
         return view('admin.slider.slider');
     }
 
-    public function imageUpload(Request $request) {
+    public function imageUpload(Request $request)
+    {
         return response()->json(['wtf' => true]);
     }
 }

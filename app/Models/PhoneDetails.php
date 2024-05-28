@@ -29,7 +29,7 @@ class PhoneDetails extends Model
         'thumbnail_img',
         'updated_at'
     ];
-    
+
     protected $table = 'phone_details';
     protected $primaryKey = 'phone_details_id';
     public function parentPhone()
@@ -41,7 +41,7 @@ class PhoneDetails extends Model
     {
         return $this->belongsTo(Color::class, 'color_id', 'color_id');
     }
-    
+
     public function parentSpecific()
     {
         return $this->belongsTo(PhoneSpecs::class, 'specific_id', 'specific_id');
@@ -63,11 +63,13 @@ class PhoneDetails extends Model
         return $this->hasMany(Review::class, 'phone_details_id', 'phone_details_id');
     }
 
-    public function OrderDetails() {
+    public function OrderDetails()
+    {
         return $this->hasMany(OrderDetails::class, 'phone_details_id', 'phone_details_id');
     }
 
-    public function Carts() {
+    public function Carts()
+    {
         return $this->hasMany(Cart::class, 'phone_details_id', 'phone_details_id');
     }
 

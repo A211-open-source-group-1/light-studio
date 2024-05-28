@@ -12,11 +12,13 @@ class Brand extends Model
     protected $primaryKey = 'brand_id';
     public $timestamps = false;
 
-    public function Phones() {
+    public function Phones()
+    {
         return $this->hasMany(Phone::class, 'brand_id', 'brand_id');
     }
 
-    public function PhoneDetails() {
+    public function PhoneDetails()
+    {
         $phones = Brand::where('brand_id', '=', $this->brand_id)->first()->Phones;
         // $products = collect();
         // foreach($phones as $phone) {
@@ -26,10 +28,10 @@ class Brand extends Model
         //     }
         // }
         $products = PhoneDetails::join('phones', 'phones.phone_id', '=', 'phone_details.phone_id')
-        ->join('brand', 'brand.brand_id', '=', 'phones.brand_id')
-        ->join('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id')
-        ->where('brand.brand_id', '=', $this->brand_id);
+            ->join('brand', 'brand.brand_id', '=', 'phones.brand_id')
+            ->join('phone_colors', 'phone_colors.color_id', '=', 'phone_details.color_id')
+            ->where('brand.brand_id', '=', $this->brand_id);
         return $products;
     }
-    
+
 }

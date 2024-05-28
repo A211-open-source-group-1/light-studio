@@ -44,7 +44,8 @@ class MPostController extends Controller
         return redirect()->back();
     }
 
-    public function deletePost(Request $request) {
+    public function deletePost(Request $request)
+    {
         $post = Post::where('id', '=', $request->post_id)->first();
         $post->delete();
         return redirect()->back();

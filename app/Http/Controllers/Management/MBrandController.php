@@ -77,9 +77,8 @@ class MBrandController extends Controller
 
     public function loadModalBrand($id)
     {
-        $brand= Brand::where('brand_id','=',$id)->first();
-        if($brand)
-        {
+        $brand = Brand::where('brand_id', '=', $id)->first();
+        if ($brand) {
             return response()->json($brand);
         }
         return response()->json('loi');
@@ -93,15 +92,15 @@ class MBrandController extends Controller
             'brandName.required' => 'Vui lòng nhập tên loại sản phẩm.',
         ]);
         try {
-            $brandItems = Brand::where('brand_id','=',$request->brand_id)->first();
+            $brandItems = Brand::where('brand_id', '=', $request->brand_id)->first();
             $brandItems->brand_name = $request->brandName;
             $brandItems->brand_description = $request->brandDescription;
             $brandItems->save();
             return redirect()->back()->with('successful', 'Sửa thành công');
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->back()->withErrors('Có lỗi xảy ra. Vui lòng thử lại sau');
-        }     
-    
+        }
+
 
     }
 
@@ -126,11 +125,11 @@ class MBrandController extends Controller
                 throw new \Exception('Brand không tìm thấy' . $request->deleteBrandID);
             }
             $brand->delete();
-            $message = "Xóa thành công ".$brand->brand_id;    
-            return redirect()->back()->with('mess',$message);
+            $message = "Xóa thành công " . $brand->brand_id;
+            return redirect()->back()->with('mess', $message);
         } catch (\Exception $e) {
             $message = "Xóa không thành công: " . $e->getMessage();
-            return redirect()->back()->with('mess',$message);
+            return redirect()->back()->with('mess', $message);
         }
     }
 }

@@ -2,9 +2,9 @@
 <script src="{{ asset('/js/admin/userhandle.js') }}"></script>
 
 @if (session('auth'))
-<script>
-    alert("{{ session('auth') }}");
-</script>
+    <script>
+        alert("{{ session('auth') }}");
+    </script>
 @endif
 
 <div class="modal fade" id="logoutAdmin" tabindex="-1" aria-labelledby="logoutAdminLabel" aria-hidden="true">
@@ -85,7 +85,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại</label>
-                                <input id="phonenumber" name="phonenumber" class="form-control" type="tel" readonly required minlength="10" />
+                                <input id="phonenumber" name="phonenumber" class="form-control" type="tel" readonly
+                                    required minlength="10" />
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
@@ -129,13 +130,15 @@
                                         <div class="col-3">
                                             <div class="form-group">
                                                 <label for="phone_id">Mã</label>
-                                                <input type="text" id="phone_id" name="phone_id" class="form-control disabled" readonly>
+                                                <input type="text" id="phone_id" name="phone_id"
+                                                    class="form-control disabled" readonly>
                                             </div>
                                         </div>
                                         <div class="col-9">
                                             <div class="form-group">
                                                 <label for="phone_name">Tên điện thoại</label>
-                                                <input type="text" id="phone_name" class="form-control" name="phone_name">
+                                                <input type="text" id="phone_name" class="form-control"
+                                                    name="phone_name">
                                             </div>
                                         </div>
                                         <div class="col-3">
@@ -165,7 +168,8 @@
                                         <div class="col-12 mt-3">
                                             <div class="form-group">
                                                 <label for="youtube_url">Youtube URL</label>
-                                                <input type="text" id="youtube_url" class="form-control" name="youtube_url">
+                                                <input type="text" id="youtube_url" class="form-control"
+                                                    name="youtube_url">
                                             </div>
                                         </div>
                                     </div>
@@ -236,12 +240,14 @@
                                         <div class="col-3">
                                             <div class="form-group">
                                                 <label for="phone_id">Mã</label>
-                                                <input type="text" id="phone_id" name="phone_id" class="form-control disabled" readonly disabled>
+                                                <input type="text" id="phone_id" name="phone_id"
+                                                    class="form-control disabled" readonly disabled>
                                             </div>
                                         </div>
                                         <div class="col-9">
                                             <label for="phone_name">Tên điện thoại</label>
-                                            <input type="text" id="phone_name" class="form-control" name="phone_name">
+                                            <input type="text" id="phone_name" class="form-control"
+                                                name="phone_name">
                                         </div>
                                         <div class="col-12 col-lg-6 col-xl-3">
                                             <label for="new_brand_name">Hãng</label>
@@ -264,7 +270,8 @@
                                         <div class="col-12 mt-3">
                                             <div class="form-group">
                                                 <label for="new_youtube_url">Youtube URL</label>
-                                                <input type="text" id="new_youtube_url" class="form-control" name="youtube_url">
+                                                <input type="text" id="new_youtube_url" class="form-control"
+                                                    name="youtube_url">
                                             </div>
                                         </div>
                                     </div>
@@ -333,16 +340,19 @@
                             <input readonly id="ec_phone_name" class="form-control" type="text">
                         </div>
                     </div>
-                    <form id="edit-color-form" method="POST" class="form border-0 d-none" action="{{ route('editSelectedColorSubmit') }}">
+                    <form id="edit-color-form" method="POST" class="form border-0 d-none"
+                        action="{{ route('editSelectedColorSubmit') }}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="ec_color_id">Mã màu</label>
-                                <input readonly id="ec_color_id" name="current_color_id" class="form-control" type="text">
+                                <input readonly id="ec_color_id" name="current_color_id" class="form-control"
+                                    type="text">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ec_color_name">Tên màu</label>
-                                <input id="ec_color_name" name="current_color_name" class="form-control" type="text">
+                                <input id="ec_color_name" name="current_color_name" class="form-control"
+                                    type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -350,28 +360,34 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-edit-color-form-btn" class="btn btn-success" type="submit">Lưu</button>
-                                <button id="close-edit-color-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-edit-color-form-btn" class="btn btn-success"
+                                    type="submit">Lưu</button>
+                                <button id="close-edit-color-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="color_edit_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                <div id="color_edit_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
 
                                 </div>
-                                <div id="color_edit_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                <div id="color_edit_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
 
                                 </div>
                             </div>
                         </div>
                     </form>
                     <button id="add-color-form-btn" class="btn btn-success">Thêm</button>
-                    <form id="add-color-form" method="POST" class="form border-0 d-none" action="{{ route('addColorSubmit') }}">
+                    <form id="add-color-form" method="POST" class="form border-0 d-none"
+                        action="{{ route('addColorSubmit') }}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="new_color_id">Tên màu</label>
-                                <input id="new_color_id" name="new_color_name" class="form-control" type="text" required>
+                                <input id="new_color_id" name="new_color_name" class="form-control" type="text"
+                                    required>
                             </div>
                         </div>
                         <div class="row">
@@ -379,16 +395,20 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-add-color-form-btn" class="btn btn-success" type="submit">Thêm</button>
-                                <button id="close-add-color-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-add-color-form-btn" class="btn btn-success"
+                                    type="submit">Thêm</button>
+                                <button id="close-add-color-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="add_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                <div id="add_notification" class="alert alert-success alert-dismissible fade d-none"
+                                    role="alert">
 
                                 </div>
-                                <div id="add_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                <div id="add_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
 
                                 </div>
                             </div>
@@ -396,10 +416,12 @@
                     </form>
                     <div class="row">
                         <div class="col-12">
-                            <div id="delete_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                            <div id="delete_notification" class="alert alert-success alert-dismissible fade d-none"
+                                role="alert">
 
                             </div>
-                            <div id="delete_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                            <div id="delete_notification_failed"
+                                class="alert alert-warning alert-dismissible fade d-none" role="alert">
 
                             </div>
                         </div>
@@ -433,7 +455,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="editPhoneSpecifics" tabindex="-1" aria-labelledby="editPhoneSpecifics" aria-hidden="true">
+<div class="modal fade" id="editPhoneSpecifics" tabindex="-1" aria-labelledby="editPhoneSpecifics"
+    aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -452,16 +475,19 @@
                             <input readonly id="es_phone_name" class="form-control" type="text">
                         </div>
                     </div>
-                    <form id="edit-specs-form" method="POST" class="form border-0 d-none" action="{{ route('editSelectedSpecificSubmit') }}">
+                    <form id="edit-specs-form" method="POST" class="form border-0 d-none"
+                        action="{{ route('editSelectedSpecificSubmit') }}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="es_specs_id">Mã phiên bản</label>
-                                <input readonly id="es_specs_id" name="current_specs_id" class="form-control" type="text">
+                                <input readonly id="es_specs_id" name="current_specs_id" class="form-control"
+                                    type="text">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="es_specs_name">Tên phiên bản</label>
-                                <input id="es_specs_name" name="current_specs_name" class="form-control" type="text">
+                                <input id="es_specs_name" name="current_specs_name" class="form-control"
+                                    type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -469,28 +495,34 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-edit-specs-form-btn" class="btn btn-success" type="submit">Lưu</button>
-                                <button id="close-edit-specs-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-edit-specs-form-btn" class="btn btn-success"
+                                    type="submit">Lưu</button>
+                                <button id="close-edit-specs-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="specs_edit_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                <div id="specs_edit_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
 
                                 </div>
-                                <div id="specs_edit_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                <div id="specs_edit_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
 
                                 </div>
                             </div>
                         </div>
                     </form>
                     <button id="add-specs-form-btn" class="btn btn-success">Thêm</button>
-                    <form id="add-specs-form" method="POST" class="form border-0 d-none" action="{{ route('addSpecificSubmit') }}">
+                    <form id="add-specs-form" method="POST" class="form border-0 d-none"
+                        action="{{ route('addSpecificSubmit') }}">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="new_specs_name">Tên phiên bản</label>
-                                <input id="new_specs_name" name="new_specs_name" class="form-control" type="text" required>
+                                <input id="new_specs_name" name="new_specs_name" class="form-control" type="text"
+                                    required>
                             </div>
                         </div>
                         <div class="row">
@@ -498,16 +530,20 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-add-specs-form-btn" class="btn btn-success" type="submit">Thêm</button>
-                                <button id="close-add-specs-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-add-specs-form-btn" class="btn btn-success"
+                                    type="submit">Thêm</button>
+                                <button id="close-add-specs-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="specs_add_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                <div id="specs_add_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
 
                                 </div>
-                                <div id="specs_add_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                <div id="specs_add_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
 
                                 </div>
                             </div>
@@ -515,10 +551,12 @@
                     </form>
                     <div class="row mt-3">
                         <div class="col-12">
-                            <div id="specs_delete_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                            <div id="specs_delete_notification"
+                                class="alert alert-success alert-dismissible fade d-none" role="alert">
 
                             </div>
-                            <div id="specs_delete_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                            <div id="specs_delete_notification_failed"
+                                class="alert alert-warning alert-dismissible fade d-none" role="alert">
 
                             </div>
                         </div>
@@ -572,21 +610,25 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="details_delete_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                <div id="details_delete_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
 
                                 </div>
-                                <div id="details_delete_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                <div id="details_delete_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <form id="edit-selected-details-form" method="POST" action="/editSelectedDetailsSubmit" class="form border-0 d-none" enctype="multipart/form-data">
+                    <form id="edit-selected-details-form" method="POST" action="/editSelectedDetailsSubmit"
+                        class="form border-0 d-none" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_id">Mã sản phẩm</label>
-                                <input id="ed_details_id" class="form-control" type="text" name="details_id" readonly>
+                                <input id="ed_details_id" class="form-control" type="text" name="details_id"
+                                    readonly>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_color_select" class="mb-3">Màu sản phẩm</label>
@@ -622,7 +664,8 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_frontcam">Camera trước</label>
-                                <input id="ed_details_frontcam" class="form-control" type="text" name="front_cam">
+                                <input id="ed_details_frontcam" class="form-control" type="text"
+                                    name="front_cam">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_rearcam">Camera sau</label>
@@ -630,7 +673,8 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_bluetoothver">Bluetooth</label>
-                                <input id="ed_details_bluetoothver" class="form-control" type="text" name="bluetooth_ver">
+                                <input id="ed_details_bluetoothver" class="form-control" type="text"
+                                    name="bluetooth_ver">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="ed_details_wifiver">WiFi</label>
@@ -674,29 +718,35 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-edit-details-form-btn" class="btn btn-success" type="submit">Lưu</button>
-                                <button id="close-edit-details-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-edit-details-form-btn" class="btn btn-success"
+                                    type="submit">Lưu</button>
+                                <button id="close-edit-details-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="details_edit_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                <div id="details_edit_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
 
                                 </div>
-                                <div id="details_edit_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                <div id="details_edit_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
 
                                 </div>
                             </div>
                         </div>
                     </form>
                     <!-- Add Details Form Section -->
-                    <form id="add-details-form" method="POST" action="/addPhoneDetailsSubmit" class="form border-0 d-none" enctype="multipart/form-data">
+                    <form id="add-details-form" method="POST" action="/addPhoneDetailsSubmit"
+                        class="form border-0 d-none" enctype="multipart/form-data">
                         @csrf
                         <input id="new_phone_id" class="d-none" name="phone_id">
                         <div class="row">
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_id">Mã sản phẩm</label>
-                                <input id="new_details_id" class="form-control" type="text" name="details_id" readonly disabled>
+                                <input id="new_details_id" class="form-control" type="text" name="details_id"
+                                    readonly disabled>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_color_select" class="mb-3">Màu sản phẩm</label>
@@ -732,15 +782,18 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_frontcam">Camera trước</label>
-                                <input id="new_details_frontcam" class="form-control" type="text" name="front_cam">
+                                <input id="new_details_frontcam" class="form-control" type="text"
+                                    name="front_cam">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_frontcam">Camera sau</label>
-                                <input id="new_details_frontcam" class="form-control" type="text" name="rear_cam">
+                                <input id="new_details_frontcam" class="form-control" type="text"
+                                    name="rear_cam">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_bluetoothver">Bluetooth</label>
-                                <input id="new_details_bluetoothver" class="form-control" type="text" name="bluetooth_ver">
+                                <input id="new_details_bluetoothver" class="form-control" type="text"
+                                    name="bluetooth_ver">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_wifiver">WiFi</label>
@@ -756,11 +809,13 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_discount">Giảm giá (VNĐ)</label>
-                                <input id="new_details_discount" class="form-control" type="number" name="discount">
+                                <input id="new_details_discount" class="form-control" type="number"
+                                    name="discount">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="new_details_quantity">Số lượng</label>
-                                <input id="new_details_quantity" class="form-control" type="number" name="quantity">
+                                <input id="new_details_quantity" class="form-control" type="number"
+                                    name="quantity">
                             </div>
                             <div class="col-12 mt-3">
                                 <label>Hình ảnh Thumbnail</label>
@@ -784,30 +839,36 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-add-details-form-btn" class="btn btn-success" type="submit">Thêm</button>
-                                <button id="close-add-details-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-add-details-form-btn" class="btn btn-success"
+                                    type="submit">Thêm</button>
+                                <button id="close-add-details-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="details_add_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                <div id="details_add_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
 
                                 </div>
-                                <div id="details_add_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                <div id="details_add_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
 
                                 </div>
                             </div>
                         </div>
                     </form>
                     </form>
-                    <form id="add-details-form-based-on-color" method="POST" action="/addDetailsByCurrentColor" class="form border-0 d-none" enctype="multipart/form-data">
+                    <form id="add-details-form-based-on-color" method="POST" action="/addDetailsByCurrentColor"
+                        class="form border-0 d-none" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <input id="bo_phone_id" class="d-none" name="phone_id">
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_id">Mã sản phẩm</label>
-                                <input id="bo_new_details_id" class="form-control" type="text" name="details_id" readonly disabled>
+                                <input id="bo_new_details_id" class="form-control" type="text" name="details_id"
+                                    readonly disabled>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_color_select" class="mb-3">CHỌN SẢN PHẨM DỰA THEO</label>
@@ -827,7 +888,8 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_screen">Màn hình</label>
-                                <input id="bo_new_details_screen" class="form-control" type="text" name="screen">
+                                <input id="bo_new_details_screen" class="form-control" type="text"
+                                    name="screen">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_ram">Dung lượng RAM</label>
@@ -835,43 +897,53 @@
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_rom">Dung lượng bộ nhớ trong</label>
-                                <input id="bo_new_details_rom" class="form-control" type="text" name="rom" required>
+                                <input id="bo_new_details_rom" class="form-control" type="text" name="rom"
+                                    required>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_cpu">CPU</label>
-                                <input id="bo_new_details_cpu" class="form-control" type="text" name="cpu" required>
+                                <input id="bo_new_details_cpu" class="form-control" type="text" name="cpu"
+                                    required>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_frontcam">Camera trước</label>
-                                <input id="bo_new_details_frontcam" class="form-control" type="text" name="front_cam" required>
+                                <input id="bo_new_details_frontcam" class="form-control" type="text"
+                                    name="front_cam" required>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_frontcam">Camera sau</label>
-                                <input id="bo_new_details_frontcam" class="form-control" type="text" name="rear_cam" required>
+                                <input id="bo_new_details_frontcam" class="form-control" type="text"
+                                    name="rear_cam" required>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_bluetoothver">Bluetooth</label>
-                                <input id="bo_new_details_bluetoothver" class="form-control" type="text" name="bluetooth_ver" required>
+                                <input id="bo_new_details_bluetoothver" class="form-control" type="text"
+                                    name="bluetooth_ver" required>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_wifiver">WiFi</label>
-                                <input id="bo_new_details_wifiver" class="form-control" type="text" name="wifi_ver" required>
+                                <input id="bo_new_details_wifiver" class="form-control" type="text"
+                                    name="wifi_ver" required>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_nfc">NFC</label>
-                                <input id="bo_new_details_nfc" class="form-control" type="text" name="nfc" required>
+                                <input id="bo_new_details_nfc" class="form-control" type="text" name="nfc"
+                                    required>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_price">Giá (VNĐ)</label>
-                                <input id="bo_new_details_price" class="form-control" type="number" name="price" required min="0">
+                                <input id="bo_new_details_price" class="form-control" type="number" name="price"
+                                    required min="0">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_discount">Giảm giá (VNĐ)</label>
-                                <input id="bo_new_details_discount" class="form-control" type="number" value="0" name="discount" required min="0">
+                                <input id="bo_new_details_discount" class="form-control" type="number"
+                                    value="0" name="discount" required min="0">
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label for="bo_new_details_quantity">Số lượng</label>
-                                <input id="bo_new_details_quantity" class="form-control" type="number" name="quantity" required min="0">
+                                <input id="bo_new_details_quantity" class="form-control" type="number"
+                                    name="quantity" required min="0">
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -879,17 +951,21 @@
 
                             </div>
                             <div class="col-4 text-end">
-                                <button id="submit-add-bo-details-form-btn" class="btn btn-success" type="submit">Thêm</button>
-                                <button id="close-add-bo-details-form-btn" class="btn btn-dark" type="button">Hủy</button>
+                                <button id="submit-add-bo-details-form-btn" class="btn btn-success"
+                                    type="submit">Thêm</button>
+                                <button id="close-add-bo-details-form-btn" class="btn btn-dark"
+                                    type="button">Hủy</button>
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <div class="col-12">
-                                <div id="details_bo_add_notification" class="alert alert-success alert-dismissible fade d-none" role="alert">
+                                <div id="details_bo_add_notification"
+                                    class="alert alert-success alert-dismissible fade d-none" role="alert">
 
                                 </div>
-                                <div id="details_bo_add_notification_failed" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+                                <div id="details_bo_add_notification_failed"
+                                    class="alert alert-warning alert-dismissible fade d-none" role="alert">
 
                                 </div>
                             </div>
@@ -983,7 +1059,7 @@
 <div class="modal fade" id="editEmployee" tabindex="-1" aria-labelledby="editEmployee" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{route('editEmployee')}}" method="post">
+            <form action="{{ route('editEmployee') }}" method="post">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="EditEmployeeLabel">Thông tin nhân viên</h5>
@@ -998,7 +1074,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Họ và tên</label>
-                                <input id="employee_fullname" name="employee_fullname" class="form-control" type="text" required />
+                                <input id="employee_fullname" name="employee_fullname" class="form-control"
+                                    type="text" required />
                             </div>
                             <div class="form-group">
                                 <label>Giới tính</label>
@@ -1010,15 +1087,18 @@
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ</label>
-                                <input id="employee_address" name="employee_address" class="form-control" type="text" />
+                                <input id="employee_address" name="employee_address" class="form-control"
+                                    type="text" />
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại</label>
-                                <input id="employee_phonenumber" name="employee_phonenumber" class="form-control" type="tel" readonly required minlength="10" />
+                                <input id="employee_phonenumber" name="employee_phonenumber" class="form-control"
+                                    type="tel" readonly required minlength="10" />
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input id="employee_email" name="employee_email" class="form-control" type="email" required />
+                                <input id="employee_email" name="employee_email" class="form-control" type="email"
+                                    required />
                             </div>
                         </div>
                     </div>
@@ -1031,14 +1111,16 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="deleteEmployee" tabindex="-1" aria-labelledby="deleteEmployeeLabel" aria-hidden="true">
+<div class="modal fade" id="deleteEmployee" tabindex="-1" aria-labelledby="deleteEmployeeLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <form action="{{ route('deleteEmployee') }}" method="post">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteEmployeeLabel">Xóa nhân viên</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="deleteEmployeeId" name="deleteEmployeeId">

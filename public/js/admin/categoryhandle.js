@@ -100,7 +100,7 @@ $(document).ready(function () {
             }
         });
     });
-   
+
     $('#searchCategory').on('input', function () {
         var searchTerm = $(this).val().trim();
         $.ajax({
@@ -144,7 +144,7 @@ $(document).ready('click', '.editCategory-btn', function () {
 $(document).on('click', '.editCategory-btn', function () {
     var id = $(this).data('category-id');
     console.log(id);
-        $.ajax({
+    $.ajax({
         url: '/loadModalCategory/' + id,
         type: 'get',
         success: function (data) {

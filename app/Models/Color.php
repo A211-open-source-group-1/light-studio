@@ -14,11 +14,13 @@ class Color extends Model
     protected $table = 'phone_colors';
     protected $primaryKey = 'color_id';
 
-    public function parentPhone() {
+    public function parentPhone()
+    {
         return $this->belongsTo(Phone::class, 'phone_id', 'phone_id');
     }
 
-    public function PhoneDetails() {
+    public function PhoneDetails()
+    {
         return $this->hasMany(PhoneDetails::class, 'color_id', 'color_id');
     }
 }

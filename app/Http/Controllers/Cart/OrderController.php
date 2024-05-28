@@ -21,10 +21,11 @@ class OrderController extends Controller
         return view('cart.orders', compact('allOrders'));
     }
 
-    public function cancelOrder($order_id) {
+    public function cancelOrder($order_id)
+    {
         if (Auth::check()) {
             $order = Order::where('order_id', '=', $order_id)
-            ->first();
+                ->first();
             $order->OrderDetails()->delete();
             $order->delete();
         }

@@ -66,5 +66,5 @@ class MEmployeeController extends Controller
             return redirect()->back()->with('mess', $message);
         }
     }
-    
+
 }
