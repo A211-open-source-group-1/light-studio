@@ -49,11 +49,6 @@
         <td>Phan Ngọc Bảo Vinh</td>
         <td>Co-Team Leader</td>
     </tr>
-    <tr>
-        <td>2033210453</td>
-        <td>Hoàng Quốc Phong</td>
-        <td>Member</td>
-    </tr>
 </table>
 
 ## Tiến độ dự án
