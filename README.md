@@ -54,7 +54,7 @@
 ## Tiến độ dự án
 
 :kissing_smiling_eyes: Đã hoàn thành (gần như là thế :D)
-Báo cáo rùi, cả nhóm được 9đ, cảm ơn cô Mai ;D
+<br>Báo cáo rùi, cả nhóm được 9đ, cảm ơn cô Mai ;D
 
 ## License
 
