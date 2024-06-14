@@ -24,7 +24,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (response) {
                 for (const key in response) {
-                    $('#user_province').append('<option value="' + key + '" ' + (key == current_id ? 'selected' : '') + ' >' + response[key].name + '</option>');
+                    $('#user_province').append('<option value="' + key + '" ' + (key == current_id ? ' selected' : '') + ' >' + response[key].name + '</option>');
                 }
             }
         })
@@ -52,7 +52,7 @@ $(document).ready(function () {
             type: 'GET',
             success: function (response) {
                 for (const key in response) {
-                    $('#user_ward').append('<option value="' + key + '" ' + (key == current_id ? 'selected' : '') + ' >' + response[key].name + '</option>');
+                    $('#user_ward').append('<option value="' + key + '" ' + (key == current_id ? ' selected' : '') + ' >' + response[key].name + '</option>');
                 }
             }
         })
