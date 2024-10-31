@@ -64,6 +64,8 @@ Route::middleware('user.logged_in')->group(function () {
     Route::get('/thankyouforyourorder/{order_id}', [CartController::class, 'thanks'])->name('thanks');
     Route::get('/errors', [CartController::class, 'errors'])->name('errors');
     Route::post('/userRatingProduct', [ProductController::class, 'userRatingProduct'])->name('userRatingProduct');
+    Route::get('/verifyCitizen', [AuthController::class, 'user_verify_citizen_card'])->name('verifyCitizen');
+    Route::post('/verifyCitizenCard', [AuthController::class, 'verifyCitizenCard'])->name('verifyCitizenCard');
 });
 
 Route::middleware('email.verified')->group(function () {

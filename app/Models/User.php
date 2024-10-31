@@ -22,6 +22,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'gender',
+        'citizen_ID',
+        'citizenship',
+        'date_of_birth',
+        'dateCard',
         'province_id',
         'district_id',
         'ward_id',

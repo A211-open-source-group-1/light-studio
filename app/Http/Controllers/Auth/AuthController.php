@@ -367,4 +367,40 @@ class AuthController extends Controller
             return view('auth.verified_results.error_verified');
         }
     }
+
+    public function user_verify_citizen_card()
+    {
+        if (Auth::id()) {
+            $user = Auth::user();
+            return view('Auth.verified_citizen_card', compact('user'));
+        }
+    }
+    public function verifyCitizenCard(Request $request)
+    {
+        $check = User::where('citizen_ID', '=', $request->citizen_id)->first();
+        if ($check) {
+            return response()->json(['isVerify' => false, 'message' => 'Số CMT đã tồn tại trong hệ thống']);
+        }
+    
+        if (Auth::id()) {
+            $user = User::find(Auth::id());
+            $user->citizen_ID = $request->citizen_id;
+            $user->name = $request->citizen_name;
+            $user->gender = $request->citizen_sex;
+    
+            $dateOfBirth = \DateTime::createFromFormat('d/m/Y', $request->citizen_date_of_birth);
+            $user->date_of_birth = $dateOfBirth ? $dateOfBirth->format('Y-m-d') : null;
+    
+            $dateCard = \DateTime::createFromFormat('d/m/Y', $request->citizen_card_date);
+            $user->dateCard = $dateCard ? $dateCard->format('Y-m-d') : null;
+    
+            $user->citizenship = $request->citizen_citizenship;
+            $user->save();
+    
+            return response()->json(['isVerify' => true, 'message' => 'Xác thực thành công']);
+        } else {
+            return response()->json(['isVerify' => false, 'message' => 'Xác thực thất bại']);
+        }
+    }
+    
 }
