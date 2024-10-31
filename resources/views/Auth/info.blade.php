@@ -39,10 +39,11 @@
                     </div>
                     <div class="form-group">
                         <label>Ngày hết hạn</label>
-                        @php 
-                           $formattedDateCard = \Carbon\Carbon::createFromFormat('Y-m-d', $user->dateCard)->format('d-m-Y');
+                        @php
+                        $formattedDateCard = $user->dateCard ? \Carbon\Carbon::createFromFormat('Y-m-d', $user->dateCard)->format('d-m-Y') : null;
                         @endphp
-                        <input name="id" class="form-control" value="{{ $formattedDateCard }}" readonly /></div>
+                        <input name="id" class="form-control" value="{{ $formattedDateCard }}" readonly />
+                    </div>
                     <div class="form-group">
                         <label>Số căn cước</label>
                         <input name="id" class="form-control" value="{{ $user->citizen_ID }}" readonly />
